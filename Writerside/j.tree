@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="j"
+                  name="JavaLang" start-page="Java.md">
+
+    <toc-element toc-title="Domus 1">
+        <toc-element topic="Java.md"/>
+        <toc-element topic="Empty-MD-Topic.md"/>
+        <toc-element topic="3-Estruturas-de-Controle.md"/>
+        <toc-element topic="4-POO.md"/>
+        <toc-element topic="5-Estruturas-de-Dados.md"/>
+        <toc-element topic="6-Exceções.md"/>
+        <toc-element topic="7-Trabalho-com-Arquivos-de-I-O.md"/>
+        <toc-element topic="8-Conceitos-Avançados.md"/>
+        <toc-element topic="9.md"/>
+        <toc-element topic="10.md"/>
+        <toc-element topic="11. Projeto-Prático.md"/>
+        <toc-element topic="Conclusões.md"/>
+    </toc-element>
+    <toc-element topic="Referênrcias.md"/>
+</instance-profile>

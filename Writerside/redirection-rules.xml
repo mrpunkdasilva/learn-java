@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="2427e5c4">
+        <description>Created after removal of "Sistemas Distribuidos" from Instance Name</description>
+        <accepts>Sistemas Distribuidos.html</accepts>
+    </rule>
+    <rule id="36425b6d">
+        <description>Created after removal of "Processos" from Instance Name</description>
+        <accepts>3 - Processos.html</accepts>
+    </rule>
+    <rule id="7914c776">
+        <description>Created after removal of "Threads" from Instance Name</description>
+        <accepts>4 - Threads.html</accepts>
+    </rule>
+    <rule id="46ad5fd8">
+        <description>Created after removal of "Intro - Gerencia de Memoria" from Instance Name</description>
+        <accepts>00 - Intro Gerencia de Memoria.html</accepts>
+    </rule>
+    <rule id="1b6aecd7">
+        <description>Created after removal of "Conceitos Básicos" from Instance Name</description>
+        <accepts>01 - Conceitos Básicos.html</accepts>
+    </rule>
+    <rule id="66389d01">
+        <description>Created after removal of "Associação de endereços" from Instance Name</description>
+        <accepts>02 - Associação de endereços.html</accepts>
+    </rule>
+    <rule id="75e5ca0c">
+        <description><![CDATA[Created after removal of "<Anexos.md>" from JavaLang]]></description>
+        <accepts>Anexos.html</accepts>
+    </rule>
+    <rule id="5326ddcd">
+        <description><![CDATA[Created after removal of "<08 - Caching.md>" from Instance Name]]></description>
+        <accepts>08 - Caching.html</accepts>
+    </rule>
+</rules>
