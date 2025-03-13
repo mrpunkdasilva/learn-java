@@ -46,7 +46,7 @@ mindmap
 - **Implementação em Java:**
   - A interface `List` é implementada por classes como `ArrayList` e `LinkedList`.
 
-##### Exemplo:
+##### Exemplo: {id="exemplo_1"}
 
 ```java
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class Main {
 - **Implementação em Java:**
   - A interface `Set` é implementada por classes como `HashSet` e `TreeSet`.
 
-##### Exemplo:
+##### Exemplo: {id="exemplo_2"}
 
 ```java
 import java.util.HashSet;

@@ -1,0 +1,260 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-03-13T19:25:14.51240309"><title>Projeto Pr&aacute;tico | JavaLang</title><script type="application/json" id="virtual-toc-data">[{"id":"projeto-refatorado-sistema-de-gerenciamento-de-invent-rio-com-sqlite","level":0,"title":"Projeto Refatorado: Sistema de Gerenciamento de Inventário com SQLite","anchor":"#projeto-refatorado-sistema-de-gerenciamento-de-invent-rio-com-sqlite"},{"id":"como-executar","level":0,"title":"Como Executar","anchor":"#como-executar"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b575/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Projeto Pr&aacute;tico | JavaLang"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="JavaLang Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/11-projeto-prático.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Projeto Pr&aacute;tico | JavaLang"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/11-projeto-prático.html#webpage",
+    "url": "writerside-documentation/11-projeto-prático.html",
+    "name": "Projeto Pr&aacute;tico | JavaLang",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "JavaLang Help"
+}</script><!-- End Schema.org --></head><body data-id="11-Projeto-Prático" data-main-title="Projeto Prático" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="Domus 1"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>JavaLang  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="11-Projeto-Prático" id="11-Projeto-Prático.md">Projeto Prático</h1><section class="chapter"><h2 id="projeto-refatorado-sistema-de-gerenciamento-de-invent-rio-com-sqlite" data-toc="projeto-refatorado-sistema-de-gerenciamento-de-invent-rio-com-sqlite"><span class="control" id="-yabjjs_8">Projeto Refatorado: Sistema de Gerenciamento de Invent&aacute;rio com SQLite</span></h2><section class="chapter"><h3 id="estrutura-do-projeto" data-toc="estrutura-do-projeto"><span class="control" id="-yabjjs_16">Estrutura do Projeto</span></h3><ol class="list _decimal" id="-yabjjs_10" type="1"><li class="list__item" id="-yabjjs_17"><p><span class="control" id="-yabjjs_21"><code class="code" id="-yabjjs_22">Database.java</code>:</span> Gerencia a conex&atilde;o com o banco de dados.</p></li><li class="list__item" id="-yabjjs_18"><p><span class="control" id="-yabjjs_23"><code class="code" id="-yabjjs_24">Item.java</code>:</span> Representa um item no invent&aacute;rio.</p></li><li class="list__item" id="-yabjjs_19"><p><span class="control" id="-yabjjs_25"><code class="code" id="-yabjjs_26">Inventario.java</code>:</span> Gerencia a l&oacute;gica do invent&aacute;rio e interage com o banco de dados.</p></li><li class="list__item" id="-yabjjs_20"><p><span class="control" id="-yabjjs_27"><code class="code" id="-yabjjs_28">Main.java</code>:</span> Interface simples para interagir com o invent&aacute;rio.</p></li></ol><section class="chapter"><h4 id="1-classe-database" data-toc="1-classe-database"><span class="control" id="-yabjjs_33">1. Classe <code class="code" id="-yabjjs_34">Database</code></span></h4><p id="-yabjjs_30">Respons&aacute;vel por gerenciar a conex&atilde;o com o banco de dados e criar a tabela se necess&aacute;rio.</p><div class="code-block" data-lang="java">
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Database {
+    private static final String URL = &quot;jdbc:sqlite:inventario.db&quot;;
+
+    // Retorna uma conexão com o banco de dados
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL);
+    }
+
+    // Cria a tabela de itens se não existir
+    public static void criarTabela() {
+        String sql = &quot;CREATE TABLE IF NOT EXISTS itens (&quot; +
+                     &quot;id INTEGER PRIMARY KEY AUTOINCREMENT,&quot; +
+                     &quot;nome TEXT NOT NULL,&quot; +
+                     &quot;quantidade INTEGER NOT NULL)&quot;;
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println(&quot;Erro ao criar tabela: &quot; + e.getMessage());
+        }
+    }
+}
+</div></section><section class="chapter"><h4 id="2-classe-item" data-toc="2-classe-item"><span class="control" id="-yabjjs_39">2. Classe <code class="code" id="-yabjjs_40">Item</code></span></h4><p id="-yabjjs_36">Representa um item no invent&aacute;rio.</p><div class="code-block" data-lang="java">
+public class Item {
+    private int id;
+    private String nome;
+    private int quantidade;
+
+    public Item(int id, String nome, int quantidade) {
+        this.id = id;
+        this.nome = nome;
+        this.quantidade = quantidade;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    @Override
+    public String toString() {
+        return nome + &quot; (Quantidade: &quot; + quantidade + &quot;)&quot;;
+    }
+}
+</div></section><section class="chapter"><h4 id="3-classe-inventario" data-toc="3-classe-inventario"><span class="control" id="-yabjjs_45">3. Classe <code class="code" id="-yabjjs_46">Inventario</code></span></h4><p id="-yabjjs_42">Gerencia a l&oacute;gica do invent&aacute;rio e interage com o banco de dados.</p><div class="code-block" data-lang="java">
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Inventario {
+    private List&lt;Item&gt; itens;
+
+    public Inventario() {
+        itens = new ArrayList&lt;&gt;();
+        carregarItens();
+    }
+
+    // Carrega os itens do banco de dados
+    private void carregarItens() {
+        String sql = &quot;SELECT * FROM itens&quot;;
+
+        try (Connection conn = Database.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                int id = rs.getInt(&quot;id&quot;);
+                String nome = rs.getString(&quot;nome&quot;);
+                int quantidade = rs.getInt(&quot;quantidade&quot;);
+                itens.add(new Item(id, nome, quantidade));
+            }
+        } catch (SQLException e) {
+            System.err.println(&quot;Erro ao carregar itens: &quot; + e.getMessage());
+        }
+    }
+
+    // Adiciona um item ao inventário e ao banco de dados
+    public void adicionarItem(String nome, int quantidade) {
+        String sql = &quot;INSERT INTO itens (nome, quantidade) VALUES (?, ?)&quot;;
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, nome);
+            stmt.setInt(2, quantidade);
+            stmt.executeUpdate();
+
+            // Recupera o ID gerado
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                itens.add(new Item(id, nome, quantidade));
+                System.out.println(quantidade + &quot; &quot; + nome + &quot;(s) adicionado(s).&quot;);
+            }
+        } catch (SQLException e) {
+            System.err.println(&quot;Erro ao adicionar item: &quot; + e.getMessage());
+        }
+    }
+
+    // Remove um item do inventário e do banco de dados
+    public void removerItem(String nome, int quantidade) {
+        for (Item item : itens) {
+            if (item.getNome().equals(nome)) {
+                if (item.getQuantidade() &gt;= quantidade) {
+                    item.setQuantidade(item.getQuantidade() - quantidade);
+                    atualizarItemNoBanco(item);
+                    System.out.println(quantidade + &quot; &quot; + nome + &quot;(s) removido(s). Restante: &quot; + item.getQuantidade());
+                    if (item.getQuantidade() == 0) {
+                        itens.remove(item);
+                        deletarItemDoBanco(item);
+                    }
+                } else {
+                    System.out.println(&quot;Quantidade insuficiente de &quot; + nome + &quot; no inventário.&quot;);
+                }
+                return;
+            }
+        }
+        System.out.println(&quot;Item &quot; + nome + &quot; não encontrado no inventário.&quot;);
+    }
+
+    // Atualiza a quantidade de um item no banco de dados
+    private void atualizarItemNoBanco(Item item) {
+        String sql = &quot;UPDATE itens SET quantidade = ? WHERE id = ?&quot;;
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, item.getQuantidade());
+            stmt.setInt(2, item.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(&quot;Erro ao atualizar item: &quot; + e.getMessage());
+        }
+    }
+
+    // Remove um item do banco de dados
+    private void deletarItemDoBanco(Item item) {
+        String sql = &quot;DELETE FROM itens WHERE id = ?&quot;;
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, item.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(&quot;Erro ao deletar item: &quot; + e.getMessage());
+        }
+    }
+
+    // Lista todos os itens do inventário
+    public void listarItens() {
+        if (itens.isEmpty()) {
+            System.out.println(&quot;O inventário está vazio.&quot;);
+        } else {
+            System.out.println(&quot;Itens no inventário:&quot;);
+            for (Item item : itens) {
+                System.out.println(item);
+            }
+        }
+    }
+
+    // Verifica a quantidade de um item específico
+    public void verificarQuantidade(String nome) {
+        for (Item item : itens) {
+            if (item.getNome().equals(nome)) {
+                System.out.println(&quot;Quantidade de &quot; + nome + &quot;: &quot; + item.getQuantidade());
+                return;
+            }
+        }
+        System.out.println(&quot;Item &quot; + nome + &quot; não encontrado no inventário.&quot;);
+    }
+}
+</div></section><section class="chapter"><h4 id="4-classe-main" data-toc="4-classe-main"><span class="control" id="-yabjjs_51">4. Classe <code class="code" id="-yabjjs_52">Main</code></span></h4><p id="-yabjjs_48">Interface simples para interagir com o invent&aacute;rio.</p><div class="code-block" data-lang="java">
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Database.criarTabela(); // Garante que a tabela exista
+        Inventario inventario = new Inventario();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println(&quot;\n--- Sistema de Gerenciamento de Inventário ---&quot;);
+            System.out.println(&quot;1. Adicionar item&quot;);
+            System.out.println(&quot;2. Remover item&quot;);
+            System.out.println(&quot;3. Listar itens&quot;);
+            System.out.println(&quot;4. Verificar quantidade de um item&quot;);
+            System.out.println(&quot;5. Sair&quot;);
+            System.out.print(&quot;Escolha uma opção: &quot;);
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha
+
+            switch (opcao) {
+                case 1:
+                    System.out.print(&quot;Nome do item: &quot;);
+                    String nomeAdicionar = scanner.nextLine();
+                    System.out.print(&quot;Quantidade: &quot;);
+                    int quantidadeAdicionar = scanner.nextInt();
+                    inventario.adicionarItem(nomeAdicionar, quantidadeAdicionar);
+                    break;
+                case 2:
+                    System.out.print(&quot;Nome do item: &quot;);
+                    String nomeRemover = scanner.nextLine();
+                    System.out.print(&quot;Quantidade: &quot;);
+                    int quantidadeRemover = scanner.nextInt();
+                    inventario.removerItem(nomeRemover, quantidadeRemover);
+                    break;
+                case 3:
+                    inventario.listarItens();
+                    break;
+                case 4:
+                    System.out.print(&quot;Nome do item: &quot;);
+                    String nomeVerificar = scanner.nextLine();
+                    inventario.verificarQuantidade(nomeVerificar);
+                    break;
+                case 5:
+                    System.out.println(&quot;Saindo...&quot;);
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println(&quot;Opção inválida. Tente novamente.&quot;);
+            }
+        }
+    }
+}
+</div></section></section></section><section class="chapter"><h2 id="como-executar" data-toc="como-executar"><span class="control" id="-yabjjs_56">Como Executar</span></h2><ol class="list _decimal" id="-yabjjs_54" type="1"><li class="list__item" id="-yabjjs_57"><p>Baixe o driver SQLite JDBC e adicione ao seu projeto.</p></li><li class="list__item" id="-yabjjs_58"><p>Crie o banco de dados <code class="code" id="-yabjjs_60">inventario.db</code> e a tabela <code class="code" id="-yabjjs_61">itens</code> (o c&oacute;digo j&aacute; faz isso automaticamente).</p></li><li class="list__item" id="-yabjjs_59"><p>Execute a classe <code class="code" id="-yabjjs_62">Main</code>.</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos"><span class="control" id="-yabjjs_66">Pr&oacute;ximos Passos</span></h2><p id="-yabjjs_64">Agora que o projeto est&aacute; mais limpo e organizado, voc&ecirc; pode adicionar novas funcionalidades, como:</p><ul class="list _bullet" id="-yabjjs_65"><li class="list__item" id="-yabjjs_67"><p>Valida&ccedil;&atilde;o de entradas do usu&aacute;rio.</p></li><li class="list__item" id="-yabjjs_68"><p>Interface gr&aacute;fica usando JavaFX ou Swing.</p></li><li class="list__item" id="-yabjjs_69"><p>Exporta&ccedil;&atilde;o/importa&ccedil;&atilde;o de dados para outros formatos (JSON, CSV).</p></li></ul></section><div class="last-modified">Last modified: 13 março 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="10.html" class="navigation-links__prev">10. Boas Pr&aacute;ticas e Ferramentas &Uacute;teis</a><a href="conclusões.html" class="navigation-links__next">12. Conclus&atilde;o e Pr&oacute;ximos Passos</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b575/app.js"></script></body></html>

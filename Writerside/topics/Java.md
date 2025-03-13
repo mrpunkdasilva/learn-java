@@ -144,7 +144,7 @@ Para começar a programar em Java, você precisa instalar o JDK e configurar o a
      1. Abra o Painel de Controle > Sistema e Segurança > Sistema > Configurações avançadas do sistema.
      2. Clique em "Variáveis de Ambiente".
      3. Na seção "Variáveis do Sistema", crie ou edite a variável `JAVA_HOME` com o caminho da instalação do JDK (ex: `C:\Program Files\Java\jdk-21`).
-     4. Edite a variável `Path` e adicione `%JAVA_HOME%\bin`.
+     4. Edite a variável `Path` e adicione `&percnt;JAVA_HOME&percnt;\bin`.
    - **Linux/macOS:**
      Adicione as seguintes linhas ao arquivo `~/.bashrc` ou `~/.zshrc`:
      ```bash
@@ -174,7 +174,7 @@ Você está absolutamente certo! Vou criar um **terceiro Mermaid** que faça mai
 
 ---
 
-### **3. Mermaid: Estrutura de um Programa Java**
+**Estrutura de um Programa Java**
 
 ```mermaid
 flowchart TD
@@ -192,7 +192,8 @@ flowchart TD
     K --> M[Referência String, Arrays, etc.]
  ```
 
-### **Explicação do Diagrama:**
+**Explicação do Diagrama:**
+
 1. **Programa Java:** Tudo começa com um programa Java.
 2. **Classe Principal:** Todo programa Java precisa de uma classe principal.
 3. **Método Main:** O ponto de entrada do programa é o método `main`.

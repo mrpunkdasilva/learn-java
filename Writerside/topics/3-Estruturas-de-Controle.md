@@ -182,8 +182,8 @@ for (int i = 0; i < 5; i++) {
 
 
 
-<br>
-<br>
+<br/>
+<br/>
 
 
 
@@ -247,8 +247,8 @@ while (contador < 5) {
 
 
 
-<br>
-<br>
+<br/>
+<br/>
 
 
 
@@ -311,9 +311,9 @@ do {
 
 
 
-<br>
-<br>
-<br>
+<br/>
+<br/>
+<br/>
 
 
 ### **Exemplo Prático Combinado**
