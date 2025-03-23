@@ -206,7 +206,6 @@ Comentários são usados para explicar o código e torná-lo mais legível.
 
 #### **2.10 Revisão**
 - Sintaxe básica do Java: tipos de dados, variáveis, operadores, estruturas de controle (condicionais e loops), arrays, matrizes, strings, entrada e saída de dados, comentários.
-- Exercícios para praticar e revisar os conhecimentos adquiridos.
 
 ---
 
