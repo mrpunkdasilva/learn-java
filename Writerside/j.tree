@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="j"
-                  name="JavaLang" start-page="Java.md">
+                  name="Learn Java" start-page="Java.md">
 
     <toc-element toc-title="Domus 1">
         <toc-element topic="Java.md"/>
@@ -17,7 +17,7 @@
         <toc-element topic="9.md"/>
         <toc-element topic="10.md"/>
         <toc-element topic="11-Projeto-Prático.md"/>
-        <toc-element topic="Conclusões.md"/>
+        <toc-element topic="Conclusoes.md"/>
     </toc-element>
     <toc-element topic="Referênrcias.md"/>
 </instance-profile>
