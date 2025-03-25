@@ -38,4 +38,8 @@
         <description><![CDATA[Created after removal of "<08 - Caching.md>" from Instance Name]]></description>
         <accepts>08 - Caching.html</accepts>
     </rule>
+    <rule id="2e7d1bfd">
+        <description>Created after removal of "Bibliografia" from Learn Java</description>
+        <accepts>Bibliografia.html</accepts>
+    </rule>
 </rules>
