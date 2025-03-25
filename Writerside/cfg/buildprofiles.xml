@@ -12,6 +12,8 @@
     <build-profile instance="j">
         <variables>
             <noindex-content>true</noindex-content>
+            <primary-color>#FD6182</primary-color>
+            <custom-video-cover>logo-primary.svg</custom-video-cover>
         </variables>
     </build-profile>
 
