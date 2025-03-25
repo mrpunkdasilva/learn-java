@@ -19,6 +19,7 @@
         <toc-element topic="11-Projeto-Pratico.md"/>
         <toc-element topic="Conclusoes.md"/>
     </toc-element>
-    <toc-element toc-title="Conclusoes" href="https://mrpunkdasilva.github.io/learn-jdbc-and-hibernate/starter-topic.html"
+    <toc-element toc-title="Learn JDBC &amp; Hibernate" href="https://mrpunkdasilva.github.io/learn-jdbc-and-hibernate/starter-topic.html" />
+    <toc-element toc-title="Learn CRUD in Java with MongoDB" href="https://mrpunkdasilva.github.io/learn-crud-java-mongdb/starter-topic.html" />
     <toc-element topic="Referenrcias.md"/>
 </instance-profile>
