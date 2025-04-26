@@ -1,0 +1,201 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-26T16:03:19.161859558"><title>Git B&aacute;sico | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"instala-o-e-setup","level":0,"title":"Instalação e Setup","anchor":"#instala-o-e-setup"},{"id":"opera-es-b-sicas","level":0,"title":"Operações Básicas","anchor":"#opera-es-b-sicas"},{"id":"branches","level":0,"title":"Branches","anchor":"#branches"},{"id":"opera-es-remotas","level":0,"title":"Operações Remotas","anchor":"#opera-es-remotas"},{"id":"gitflow","level":0,"title":"Gitflow","anchor":"#gitflow"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"git-avan-ado","level":0,"title":"Git Avançado","anchor":"#git-avan-ado"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"ferramentas-visuais","level":0,"title":"Ferramentas Visuais","anchor":"#ferramentas-visuais"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Git B&aacute;sico | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/git-basics.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Git B&aacute;sico | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/git-basics.html#webpage",
+    "url": "writerside-documentation/java/1.0/git-basics.html",
+    "name": "Git B&aacute;sico | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="git-basics" data-main-title="Git Básico" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="setup.md|Setup do Ambiente de Desenvolvimento"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="git-basics" id="git-basics.md">Git Básico</h1><div class="code-block" data-lang="none">
+GIT FUNDAMENTALS
+├── Setup Inicial
+├── Operações Básicas
+├── Branching
+├── Remote Operations
+└── Best Practices
+</div><section class="chapter"><h2 id="instala-o-e-setup" data-toc="instala-o-e-setup">Instala&ccedil;&atilde;o e Setup</h2><section class="chapter"><h3 id="instala-o" data-toc="instala-o">Instala&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Linux (Debian/Ubuntu)
+sudo apt install git
+
+# macOS
+brew install git
+
+# Windows
+winget install Git.Git
+</div></section><section class="chapter"><h3 id="configura-o-inicial" data-toc="configura-o-inicial">Configura&ccedil;&atilde;o Inicial</h3><div class="code-block" data-lang="bash">
+# Identidade
+git config --global user.name &quot;Seu Nome&quot;
+git config --global user.email &quot;seu@email.com&quot;
+
+# Editor padrão
+git config --global core.editor &quot;code --wait&quot;  # VS Code
+# git config --global core.editor &quot;vim&quot;        # Vim
+# git config --global core.editor &quot;nano&quot;       # Nano
+
+# Configurar branch padrão
+git config --global init.defaultBranch main
+</div></section></section><section class="chapter"><h2 id="opera-es-b-sicas" data-toc="opera-es-b-sicas">Opera&ccedil;&otilde;es B&aacute;sicas</h2><section class="chapter"><h3 id="ciclo-de-vida" data-toc="ciclo-de-vida">Ciclo de Vida</h3><div class="code-block" data-lang="none">
+FILE STATUS
+├── Untracked
+├── Staged
+├── Committed
+└── Modified
+</div></section><section class="chapter"><h3 id="comandos-essenciais" data-toc="comandos-essenciais">Comandos Essenciais</h3><div class="code-block" data-lang="bash">
+# Iniciar repositório
+git init
+
+# Status do repositório
+git status
+
+# Adicionar arquivos
+git add &lt;arquivo&gt;      # Arquivo específico
+git add .              # Todos os arquivos
+
+# Commit
+git commit -m &quot;mensagem&quot;
+git commit -am &quot;mensagem&quot;  # Add + Commit
+
+# Histórico
+git log
+git log --oneline
+git log --graph
+</div></section></section><section class="chapter"><h2 id="branches" data-toc="branches">Branches</h2><section class="chapter"><h3 id="opera-es-com-branches" data-toc="opera-es-com-branches">Opera&ccedil;&otilde;es com Branches</h3><div class="code-block" data-lang="bash">
+# Listar branches
+git branch
+
+# Criar branch
+git branch feature/nova-funcionalidade
+
+# Mudar de branch
+git checkout feature/nova-funcionalidade
+# ou
+git switch feature/nova-funcionalidade
+
+# Criar e mudar
+git checkout -b feature/nova-funcionalidade
+</div></section><section class="chapter"><h3 id="merge-e-rebase" data-toc="merge-e-rebase">Merge e Rebase</h3><div class="code-block" data-lang="bash">
+# Merge
+git checkout main
+git merge feature/nova-funcionalidade
+
+# Rebase
+git checkout feature/nova-funcionalidade
+git rebase main
+</div></section></section><section class="chapter"><h2 id="opera-es-remotas" data-toc="opera-es-remotas">Opera&ccedil;&otilde;es Remotas</h2><section class="chapter"><h3 id="configura-o-remota" data-toc="configura-o-remota">Configura&ccedil;&atilde;o Remota</h3><div class="code-block" data-lang="bash">
+# Adicionar remote
+git remote add origin https://github.com/user/repo.git
+
+# Listar remotes
+git remote -v
+
+# Remover remote
+git remote remove origin
+</div></section><section class="chapter"><h3 id="sincroniza-o" data-toc="sincroniza-o">Sincroniza&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Push
+git push origin main
+
+# Pull
+git pull origin main
+
+# Fetch
+git fetch origin
+
+# Clone
+git clone https://github.com/user/repo.git
+</div></section></section><section class="chapter"><h2 id="gitflow" data-toc="gitflow">Gitflow</h2><section class="chapter"><h3 id="estrutura-de-branches" data-toc="estrutura-de-branches">Estrutura de Branches</h3><div class="code-block" data-lang="none">
+BRANCH STRUCTURE
+├── main
+├── develop
+├── feature/*
+├── release/*
+├── hotfix/*
+└── bugfix/*
+</div></section><section class="chapter"><h3 id="workflow-b-sico" data-toc="workflow-b-sico">Workflow B&aacute;sico</h3><div class="code-block" data-lang="none">
+WORKFLOW
+├── Criar feature branch
+├── Desenvolver
+├── Commit changes
+├── Push to remote
+└── Create pull request
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="commits" data-toc="commits">Commits</h3><div class="code-block" data-lang="none">
+COMMIT PATTERNS
+├── Conventional Commits
+│   ├── feat: nova feature
+│   ├── fix: correção
+│   ├── docs: documentação
+│   ├── style: formatação
+│   ├── refactor: refatoração
+│   ├── test: testes
+│   └── chore: manutenção
+└── Atomic Commits
+</div></section><section class="chapter"><h3 id="gitignore" data-toc="gitignore">.gitignore</h3><div class="code-block" data-lang="bash">
+# Java
+*.class
+*.jar
+target/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+</div></section></section><section class="chapter"><h2 id="git-avan-ado" data-toc="git-avan-ado">Git Avan&ccedil;ado</h2><section class="chapter"><h3 id="stash" data-toc="stash">Stash</h3><div class="code-block" data-lang="bash">
+# Salvar alterações
+git stash
+
+# Listar stashes
+git stash list
+
+# Aplicar stash
+git stash apply
+git stash pop
+
+# Limpar stash
+git stash clear
+</div></section><section class="chapter"><h3 id="reset-e-revert" data-toc="reset-e-revert">Reset e Revert</h3><div class="code-block" data-lang="bash">
+# Reset
+git reset --soft HEAD~1   # Mantém alterações
+git reset --hard HEAD~1   # Remove alterações
+
+# Revert
+git revert HEAD          # Reverte último commit
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ol class="list _decimal" id="uv67tu_43" type="1"><li class="list__item" id="uv67tu_44"><p id="uv67tu_47"><span class="control" id="uv67tu_49">Conflitos de Merge</span></p><div class="code-block" data-lang="bash">
+# Abortar merge
+git merge --abort
+
+# Resolver manualmente
+# Editar arquivos
+git add .
+git commit
+</div></li><li class="list__item" id="uv67tu_45"><p id="uv67tu_50"><span class="control" id="uv67tu_52">Branch Errada</span></p><div class="code-block" data-lang="bash">
+# Mover alterações
+git stash
+git checkout branch-correta
+git stash pop
+</div></li><li class="list__item" id="uv67tu_46"><p id="uv67tu_53"><span class="control" id="uv67tu_55">Commit Errado</span></p><div class="code-block" data-lang="bash">
+# Desfazer último commit
+git reset --soft HEAD~1
+
+# Alterar mensagem
+git commit --amend
+</div></li></ol></section></section><section class="chapter"><h2 id="ferramentas-visuais" data-toc="ferramentas-visuais">Ferramentas Visuais</h2><section class="chapter"><h3 id="gui-clients" data-toc="gui-clients">GUI Clients</h3><div class="code-block" data-lang="none">
+GUI OPTIONS
+├── GitKraken
+├── SourceTree
+├── GitHub Desktop
+└── Git GUI
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="aprofundamento" data-toc="aprofundamento">Aprofundamento</h3><ul class="list _bullet" id="uv67tu_59"><li class="list__item" id="uv67tu_63"><p id="uv67tu_67">Explorar Git hooks</p></li><li class="list__item" id="uv67tu_64"><p id="uv67tu_68">Configurar CI/CD</p></li><li class="list__item" id="uv67tu_65"><p id="uv67tu_69">Aprender rebase interativo</p></li><li class="list__item" id="uv67tu_66"><p id="uv67tu_70">Estudar estrat&eacute;gias de branching</p></li></ul><p id="uv67tu_60"><span id="uv67tu_71">Essenciais do Terminal</span></p><aside class="prompt" data-type="tip" data-title="" id="uv67tu_62"><p id="uv67tu_72">&quot;No submundo digital, o controle de vers&atilde;o &eacute; sua linha do tempo pessoal - cada commit &eacute; um checkpoint que voc&ecirc; pode revisitar.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ide-setup.html" class="navigation-links__prev">Configura&ccedil;&atilde;o da IDE</a><a href="docker-basics.html" class="navigation-links__next">Docker B&aacute;sico</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

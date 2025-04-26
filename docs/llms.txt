@@ -76,7 +76,7 @@ public class NetRunner {
 
 1. Comece pela seção [Sobre o Projeto](about.html)
 
-2. Configure seu [Ambiente de Desenvolvimento](null)
+2. Configure seu [Ambiente de Desenvolvimento](development-environment.html)
 
 3. Inicie sua jornada com [Java Básico](null)
 
@@ -92,7 +92,170 @@ Tip:
 
 "O código é apenas o começo. O verdadeiro poder está em como você o utiliza." - NetRunner's Manifesto
 
-[Começar Agora](null)
+[Começar Agora](getting-started.html)
+
+
+
+# Iniciando no NetRunner
+
+```
+>> Inicializando sequência de boot...
+>> Carregando módulos básicos...
+>> Preparando ambiente de desenvolvimento...
+>> Sistema pronto para upload inicial...
+```
+
+## Pré-requisitos do Sistema
+
+### Hardware Recomendado
+
+* Processador: Dual Core ou superior
+
+* Memória RAM: 8GB mínimo (16GB recomendado)
+
+* Armazenamento: 10GB de espaço livre
+
+* Conexão com Internet estável
+
+### Software Base
+
+* Sistema Operacional: Windows 10/11, macOS, Linux
+
+* Java Development Kit (JDK) 17 ou superior
+
+* IDE compatível (recomendamos IntelliJ IDEA)
+
+* Git para controle de versão
+
+## Checklist de Inicialização
+
+```
+CHECKLIST
+├── [1] Configuração do Ambiente
+├── [2] Instalação das Ferramentas
+├── [3] Verificação do Sistema
+└── [4] Teste de Conexão
+```
+
+## Sequência de Boot
+
+### 1. Preparação Inicial
+
+Antes de mergulhar no código, certifique-se de:
+
+* Ler o [Sobre o Projeto](about.html)
+
+* Verificar os [Pré-requisitos](prerequisites.html)
+
+* Entender o [Caminho de Aprendizado](learning-path.html)
+
+### 2. Setup do Ambiente
+
+Configure seu ambiente de desenvolvimento:
+
+* [Configuração do Sistema Operacional](os-setup.html)
+
+* [Visão Geral das Ferramentas](tools-overview.html)
+
+### 3. Primeiros Passos
+
+```JAVA
+public class FirstConnection {
+    public static void main(String[] args) {
+        System.out.println("Conexão estabelecida com NetRunner...");
+        System.out.println("Iniciando upload de conhecimento...");
+        System.out.println("Bem-vindo à Matrix, runner!");
+    }
+}
+```
+
+## Roadmap Inicial
+
+```MERMAID
+graph TD
+    A[Início] --> B[Setup Ambiente]
+    B --> C[Fundamentos Java]
+    C --> D[Primeiros Projetos]
+    D --> E[Evolução Contínua]
+```
+
+## Navegação do Sistema
+
+### Estrutura do Curso
+
+* Módulos progressivos
+
+* Projetos práticos em cada seção
+
+* Exercícios de fixação
+
+* Desafios de código
+
+### Como Progredir
+
+1. Complete cada módulo sequencialmente
+
+2. Execute todos os exemplos de código
+
+3. Faça os exercícios propostos
+
+4. Construa os projetos sugeridos
+
+## Suporte e Recursos
+
+### Canais de Ajuda
+
+* Documentação oficial
+
+* Fórum da comunidade
+
+* Repositório de exemplos
+
+* Canal de dúvidas
+
+## Próximos Passos
+
+Escolha seu caminho:
+
+1. [Configurar Ambiente de Desenvolvimento](development-environment.html)
+
+2. [Instalar JDK](jdk-installation.html)
+
+3. [Configurar IDE](ide-setup.html)
+
+## Dicas de Sobrevivência
+
+Tip:
+
+"Na Matrix do código, a prática constante é sua melhor arma."
+
+* Mantenha um ritmo consistente de estudos
+
+* Pratique diariamente
+
+* Não pule etapas fundamentais
+
+* Construa seu próprio código
+
+* Participe da comunidade
+
+## Checkpoint
+
+Antes de prosseguir, certifique-se de:
+
+* [ ] Ter lido a introdução completa
+
+* [ ] Entender a estrutura do curso
+
+* [ ] Verificar os requisitos do sistema
+
+* [ ] Estar pronto para começar a configuração
+
+[Começar Configuração do Ambiente](development-environment.html)
+
+Tip:
+
+"Todo runner começa com um primeiro comando. Faça o seu contar."
 
 
 
@@ -237,11 +400,2493 @@ JAVA STACK
 
 Agora que você compreende a essência do NetRunner, é hora de configurar seu ambiente de desenvolvimento e começar sua jornada.
 
-[Configurar Ambiente de Desenvolvimento](null)
+[Configurar Ambiente de Desenvolvimento](development-environment.html)
 
 Tip:
 
 "A matrix tem seus padrões. Uma vez que você os entende, o código se torna sua segunda natureza."
+
+
+
+# Pré-requisitos do NetRunner
+
+```
+>> Escaneando requisitos do sistema...
+>> Verificando compatibilidade...
+>> Analisando perfil do usuário...
+>> Relatório de requisitos gerado...
+```
+
+## Requisitos Técnicos
+
+### Hardware Mínimo
+
+| Componente |Requisito Mínimo |Recomendado |
+---------------------------------------------
+| Processador |Dual Core 2GHz |Quad Core 3GHz+ |
+| Memória RAM |8GB |16GB+ |
+| Armazenamento |10GB livre |20GB+ livre |
+| Internet |5Mbps |15Mbps+ |
+
+### Software Base
+
+```
+REQUISITOS DE SOFTWARE
+├── Sistema Operacional
+│   ├── Windows 10/11
+│   ├── macOS Catalina+
+│   └── Linux (kernel 5.0+)
+├── Navegador Moderno
+│   ├── Chrome 90+
+│   ├── Firefox 88+
+│   └── Edge 90+
+└── Ferramentas Base
+    ├── Git 2.30+
+    └── Terminal
+```
+
+## Conhecimentos Prévios
+
+### Fundamentais
+
+* Lógica de programação básica
+
+* Conceitos de algoritmos
+
+* Familiaridade com terminal/linha de comando
+
+* Noções de versionamento
+
+### Recomendados
+
+* Experiência com qualquer linguagem de programação
+
+* Conhecimento básico de redes
+
+* Inglês técnico para leitura
+
+## Verificação de Requisitos
+
+### Checklist Técnico
+
+* [ ] Hardware compatível
+
+* [ ] SO atualizado
+
+* [ ] Espaço em disco suficiente
+
+* [ ] Conexão estável com internet
+
+### Checklist de Conhecimento
+
+* [ ] Entendimento de lógica de programação
+
+* [ ] Familiaridade com terminal
+
+* [ ] Noções de Git
+
+* [ ] Capacidade de leitura técnica
+
+## Auto-Avaliação
+
+Execute este diagnóstico básico:
+
+```JAVA
+public class SkillCheck {
+    public static void main(String[] args) {
+        // Se você entende este código básico
+        // você está no caminho certo
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Teste de lógica #" + i);
+        }
+    }
+}
+```
+
+## Preparação Inicial
+
+### 1. Verificação de Sistema
+
+```BASH
+# Execute estes comandos no terminal
+java -version
+git --version
+```
+
+### 2. Estudo Preliminar
+
+* Revisar conceitos básicos de programação
+
+* Familiarizar-se com terminal
+
+* Praticar Git básico
+
+## Recursos de Nivelamento
+
+### Material de Estudo
+
+* [Lógica de Programação Básica](learning-path.html)
+
+* [Introdução a Terminais](null)
+
+* [Git Fundamentals](git-basics.html)
+
+### Exercícios Preparatórios
+
+1. Criar algoritmos simples
+
+2. Praticar comandos de terminal
+
+3. Fazer operações básicas com Git
+
+## Próximos Passos
+
+Se você atende aos requisitos:
+
+1. [Começar Setup do Ambiente](development-environment.html)
+
+2. [Instalar Ferramentas](tools-overview.html)
+
+3. [Iniciar Jornada](learning-path.html)
+
+Se precisar de reforço:
+
+1. Revisar material de nivelamento
+
+2. Praticar exercícios básicos
+
+3. Retornar quando preparado
+
+## Suporte
+
+### Canais de Ajuda
+
+* Fórum da comunidade
+
+* Documentação oficial
+
+* Tutoriais de nivelamento
+
+* Mentoria da comunidade
+
+[Configurar Ambiente de Desenvolvimento](development-environment.html)
+
+Tip:
+
+"Prepare seu terminal. A Matrix espera apenas aqueles que estão verdadeiramente prontos."
+
+
+
+# Caminho de Aprendizado
+
+```
+>> Inicializando mapa neural...
+>> Carregando rotas de conhecimento...
+>> Calculando trajetória ótima...
+>> Caminho de desenvolvimento estabelecido...
+```
+
+## Roadmap de Evolução
+
+```MERMAID
+graph TD
+    A[Inicialização] --> B[Java Básico]
+    B --> C[POO & Estruturas]
+    C --> D[Recursos Avançados]
+    D --> E[Frameworks & Tools]
+    E --> F[Especialização]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+    style F fill:#1a1a1a,stroke:#00ff00
+```
+
+## Níveis de Progressão
+
+### Nível 1: Inicialização
+
+```
+FASE INICIAL
+├── Setup do Ambiente
+├── Sintaxe Básica
+├── Variáveis e Tipos
+├── Operadores
+└── Strings
+```
+
+### Nível 2: Controle de Fluxo
+
+```
+CONTROLE
+├── Condicionais
+├── Loops
+├── Switch
+└── Pattern Matching
+```
+
+### Nível 3: Estruturas de Dados
+
+```
+ESTRUTURAS
+├── Arrays
+├── Collections
+├── Lists & Sets
+└── Maps & Queues
+```
+
+### Nível 4: POO Fundamental
+
+```
+ORIENTAÇÃO A OBJETOS
+├── Classes e Objetos
+├── Encapsulamento
+├── Herança
+└── Polimorfismo
+```
+
+### Nível 5: Recursos Avançados
+
+```
+AVANÇADO
+├── Generics
+├── Lambda
+├── Streams
+└── Optional
+```
+
+## Metodologia de Progresso
+
+### Ciclo de Aprendizado
+
+```MERMAID
+graph LR
+    A[Teoria] --> B[Exemplo]
+    B --> C[Prática]
+    C --> D[Projeto]
+    D --> E[Review]
+    E --> A
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+```
+
+## Sistema de Missões
+
+### Projetos por Nível
+
+1. Básico
+
+* Calculadora
+
+* Conversor de Temperatura
+
+* Manipulador de Strings
+
+2. Intermediário
+
+* Sistema Bancário
+
+* Gerenciador de Tarefas
+
+* Processador de Dados
+
+3. Avançado
+
+* API REST
+
+* Microserviço
+
+* Sistema Distribuído
+
+## Métricas de Progresso
+
+### Indicadores de Evolução
+
+* Projetos completados
+
+* Exercícios resolvidos
+
+* Conceitos dominados
+
+* Código revisado
+
+### Sistema de Conquistas
+
+```
+CONQUISTAS
+├── Iniciante [▓▓▓▓▓░░░░░]
+├── Desenvolvedor [▓▓▓░░░░░░░]
+└── Especialista [▓░░░░░░░░░]
+```
+
+## Recursos de Suporte
+
+### Material Complementar
+
+* Documentação oficial
+
+* Artigos técnicos
+
+* Vídeos tutoriais
+
+* Exercícios práticos
+
+### Ferramentas de Desenvolvimento
+
+* IDEs recomendadas
+
+* Plugins essenciais
+
+* Frameworks populares
+
+* Bibliotecas úteis
+
+## Próximas Etapas
+
+### Caminhos de Especialização
+
+1. Backend Development
+
+2. Cloud Computing
+
+3. Microservices
+
+4. Data Engineering
+
+## Dicas de Progresso
+
+### Boas Práticas
+
+* Code todos os dias
+
+* Revise conceitos regularmente
+
+* Participe da comunidade
+
+* Construa projetos pessoais
+
+### Armadilhas Comuns
+
+* Pular fundamentos
+
+* Não praticar código
+
+* Ignorar boas práticas
+
+* Evitar desafios
+
+[Começar Jornada](null)
+
+Tip:
+
+"O caminho do conhecimento é como a Matrix - infinito em possibilidades, limitado apenas pela sua dedicação."
+
+
+
+# Ambiente de Desenvolvimento
+
+```
+>> Iniciando configuração do ambiente...
+>> Verificando dependências do sistema...
+>> Preparando ferramentas de desenvolvimento...
+>> Ambiente base estabelecido...
+```
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Sistema Operacional] --> B[JDK]
+    B --> C[IDE]
+    C --> D[Ferramentas Auxiliares]
+    D --> E[Ambiente Completo]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+```
+
+## Stack de Desenvolvimento
+
+### Componentes Essenciais
+
+```
+AMBIENTE BASE
+├── JDK 17+
+├── IDE
+│   ├── IntelliJ IDEA
+│   ├── Eclipse
+│   └── VS Code
+├── Git
+└── Terminal
+```
+
+### Ferramentas Auxiliares
+
+```
+TOOLS
+├── Maven/Gradle
+├── Docker
+├── Postman
+└── DBeaver
+```
+
+## Configuração por Sistema Operacional
+
+### Windows
+
+```POWERSHELL
+# Verificar versão do Java
+java -version
+
+# Verificar versão do Git
+git --version
+
+# Verificar variáveis de ambiente
+echo %JAVA_HOME%
+echo %PATH%
+```
+
+### macOS/Linux
+
+```BASH
+# Verificar versão do Java
+java -version
+
+# Verificar versão do Git
+git --version
+
+# Verificar variáveis de ambiente
+echo $JAVA_HOME
+echo $PATH
+```
+
+## IDEs Recomendadas
+
+### IntelliJ IDEA
+
+* Community Edition * Gratuita * Recursos essenciais * Plugins básicos
+
+* Ultimate Edition * Recursos avançados * Suporte a frameworks * Ferramentas profissionais
+
+### VS Code
+
+* Leve e rápido
+
+* Extensível
+
+* Multiplataforma
+
+* Gratuito
+
+### Eclipse
+
+* IDE tradicional
+
+* Grande comunidade
+
+* Plugins diversos
+
+* Gratuito
+
+## Plugins Essenciais
+
+### Para Produtividade
+
+```
+PLUGINS
+├── Code Completion
+├── Git Integration
+├── Code Analysis
+└── Theme Tools
+```
+
+### Para Qualidade
+
+```
+QUALITY
+├── SonarLint
+├── CheckStyle
+├── PMD
+└── SpotBugs
+```
+
+## Configurações Recomendadas
+
+### Editor Settings
+
+```JSON
+{
+    "editor.formatOnSave": true,
+    "java.format.enabled": true,
+    "java.completion.enabled": true,
+    "java.debug.settings.hotCodeReplace": "auto"
+}
+```
+
+### Git Config
+
+```BASH
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+git config --global core.editor "code --wait"
+```
+
+## Verificação do Ambiente
+
+### Checklist de Instalação
+
+* [ ] JDK instalado e configurado
+
+* [ ] IDE instalada e configurada
+
+* [ ] Git instalado e configurado
+
+* [ ] Terminal configurado
+
+* [ ] Plugins essenciais instalados
+
+### Teste do Ambiente
+
+```JAVA
+public class EnvironmentTest {
+    public static void main(String[] args) {
+        System.out.println("Java Version: " + 
+            System.getProperty("java.version"));
+        System.out.println("Java Home: " + 
+            System.getProperty("java.home"));
+        System.out.println("OS: " + 
+            System.getProperty("os.name"));
+    }
+}
+```
+
+## Próximos Passos
+
+1. [Configurar Sistema Operacional](os-setup.html)
+
+2. [Explorar Ferramentas](tools-overview.html)
+
+3. [Começar a Programar](null)
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. Java não encontrado
+
+* Verificar instalação
+
+* Conferir PATH
+
+* Reinstalar se necessário
+
+2. IDE não reconhece JDK
+
+* Verificar configurações
+
+* Reconfigurar JAVA_HOME
+
+* Reinstalar JDK
+
+3. Git não configurado
+
+* Executar configurações básicas
+
+* Verificar credenciais
+
+* Testar conexão com repositório
+
+[Configurar Sistema Operacional](os-setup.html)
+
+Tip:
+
+"Um ambiente bem configurado é como ter acesso direto à Matrix - tudo flui naturalmente."
+
+
+
+# Configuração do Sistema Operacional
+
+```
+>> Iniciando diagnóstico do sistema...
+>> Verificando compatibilidade...
+>> Ajustando configurações base...
+>> Sistema preparado para desenvolvimento...
+```
+
+## Requisitos por Sistema
+
+### Windows
+
+```
+WINDOWS SETUP
+├── Windows 10/11
+├── PowerShell 5.1+
+├── Windows Terminal
+└── WSL2 (recomendado)
+```
+
+### macOS
+
+```
+MACOS SETUP
+├── Catalina (10.15)+
+├── Terminal/iTerm2
+├── Homebrew
+└── Command Line Tools
+```
+
+### Linux
+
+```
+LINUX SETUP
+├── Kernel 5.0+
+├── Terminal
+├── Package Manager
+└── Build Tools
+```
+
+## Configuração do Windows
+
+### 1. Habilitar WSL2
+
+```POWERSHELL
+# Habilitar WSL
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+# Habilitar Virtualização
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+# Definir WSL2 como padrão
+wsl --set-default-version 2
+```
+
+### 2. Windows Terminal
+
+```
+TERMINAL FEATURES
+├── Multi-tabs
+├── Temas personalizados
+├── Split panes
+└── Integração WSL
+```
+
+### 3. Variáveis de Ambiente
+
+```POWERSHELL
+# Adicionar ao Path
+[Environment]::SetEnvironmentVariable(
+    "Path",
+    [Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\your\path",
+    "Machine"
+)
+```
+
+## Configuração do macOS
+
+### 1. Homebrew
+
+```BASH
+# Instalar Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Verificar instalação
+brew doctor
+```
+
+### 2. Command Line Tools
+
+```BASH
+# Instalar Command Line Tools
+xcode-select --install
+
+# Verificar instalação
+xcode-select -p
+```
+
+### 3. Terminal Enhancement
+
+```BASH
+# Instalar iTerm2
+brew install --cask iterm2
+
+# Instalar Oh My Zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Configuração do Linux
+
+### 1. Pacotes Essenciais
+
+```BASH
+# Ubuntu/Debian
+sudo apt update
+sudo apt install build-essential curl wget git
+
+# Fedora
+sudo dnf groupinstall "Development Tools"
+sudo dnf install curl wget git
+```
+
+### 2. Terminal Setup
+
+```BASH
+# Instalar e configurar ZSH
+sudo apt install zsh
+chsh -s $(which zsh)
+
+# Instalar Oh My Zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Configurações Comuns
+
+### 1. Git Global
+
+```BASH
+# Configuração básica
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+
+# Editor padrão
+git config --global core.editor "code --wait"
+```
+
+### 2. SSH Keys
+
+```BASH
+# Gerar nova chave SSH
+ssh-keygen -t ed25519 -C "seu@email.com"
+
+# Iniciar ssh-agent
+eval "$(ssh-agent -s)"
+
+# Adicionar chave
+ssh-add ~/.ssh/id_ed25519
+```
+
+## Personalização
+
+### Terminal Theme
+
+```JSON
+{
+    "colorScheme": "Cyberpunk",
+    "fontFace": "Cascadia Code",
+    "fontSize": 12,
+    "useAcrylic": true,
+    "acrylicOpacity": 0.8
+}
+```
+
+### Aliases Úteis
+
+```BASH
+# Git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+
+# Navigation
+alias ll='ls -la'
+alias ..='cd ..'
+alias ...='cd ../..'
+```
+
+## Ambientes de Desenvolvimento Isolados
+
+### SDKMAN! com Docker
+
+```
+FROM ubuntu:22.04
+
+# Instalar dependências
+RUN apt-get update && apt-get install -y \
+    curl \
+    zip \
+    unzip
+
+# Instalar SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+ENV SDKMAN_DIR="/root/.sdkman"
+
+# Configurar ambiente
+COPY .sdkmanrc /app/.sdkmanrc
+WORKDIR /app
+
+# Instalar SDKs
+RUN bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh && \
+    sdk env install"
+```
+
+### Gerenciamento de Versões por Projeto
+
+```
+PROJECT STRUCTURE
+├── .sdkmanrc        # Versões do projeto
+├── .java-version    # Alternativa para Java
+└── docker-compose.yml
+```
+
+### Exemplo de docker-compose.yml
+
+```YAML
+version: '3.8'
+services:
+  java-dev:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - SDKMAN_DIR=/root/.sdkman
+```
+
+### Scripts de Automação
+
+```BASH
+#!/bin/bash
+# setup-dev.sh
+
+# Verificar SDKMAN!
+if ! command -v sdk &> /dev/null; then
+    echo "Instalando SDKMAN!..."
+    curl -s "https://get.sdkman.io" | bash
+fi
+
+# Carregar SDKMAN!
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Instalar versões do projeto
+if [ -f .sdkmanrc ]; then
+    echo "Configurando ambiente do projeto..."
+    sdk env install
+fi
+```
+
+### Integração com IDEs
+
+```
+IDE INTEGRATION
+├── IntelliJ IDEA
+│   └── Project SDK
+├── Eclipse
+│   └── Installed JREs
+└── VS Code
+    └── Java Runtime
+```
+
+### Verificação de Ambiente
+
+```BASH
+# Verificar todas as versões instaladas
+sdk current
+
+# Listar candidatos instalados
+sdk list
+
+# Verificar ambiente do projeto
+sdk env
+```
+
+## Verificação
+
+### Checklist Final
+
+* [ ] Sistema atualizado
+
+* [ ] Terminal configurado
+
+* [ ] Git instalado
+
+* [ ] SSH configurado
+
+* [ ] Aliases definidos
+
+### Teste de Ambiente
+
+```BASH
+# Verificar versões
+java -version
+git --version
+node --version
+
+# Testar SSH
+ssh -T git@github.com
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. WSL não inicia
+
+* Verificar virtualização no BIOS
+
+* Reinstalar WSL
+
+* Atualizar Windows
+
+2. Homebrew falha
+
+* Verificar permissões
+
+* Atualizar macOS
+
+* Reinstalar Xcode CLI
+
+3. Linux packages quebrados
+
+* Limpar cache
+
+* Atualizar repositórios
+
+* Verificar dependências
+
+[Explorar Ferramentas](tools-overview.html)
+
+Tip:
+
+"Configure seu sistema como um verdadeiro netrunner - cada detalhe importa na Matrix."
+
+
+
+# Visão Geral das Ferramentas
+
+```
+NETRUNNER TOOLKIT
+├── Development
+│   ├── JDK
+│   ├── IDE
+│   └── Build Tools
+├── Version Control
+│   ├── Git
+│   └── GitHub/GitLab
+├── Containers
+│   ├── Docker
+│   └── Kubernetes
+└── Cloud Tools
+    ├── AWS CLI
+    ├── Azure CLI
+    └── GCloud SDK
+```
+
+## Ferramentas Essenciais
+
+### JDK (Java Development Kit)
+
+```
+JDK DISTRIBUTIONS
+├── Oracle JDK
+├── OpenJDK
+├── Amazon Corretto
+├── Eclipse Temurin
+└── GraalVM
+```
+
+#### Gerenciadores de Versão
+
+* SDKMAN! - Gerenciamento de SDKs
+
+* Jabba - Alternativa multiplataforma
+
+* jEnv - Específico para Unix
+
+### IDEs (Integrated Development Environment)
+
+```
+IDE OPTIONS
+├── IntelliJ IDEA
+│   ├── Community Edition
+│   └── Ultimate Edition
+├── Eclipse
+│   └── Enterprise Edition
+├── VS Code
+│   └── Java Extensions
+└── NetBeans
+```
+
+#### Recursos Principais
+
+* Debugging avançado
+
+* Integração com ferramentas
+
+* Refatoração inteligente
+
+* Suporte a frameworks
+
+### Build Tools
+
+```
+BUILD SYSTEMS
+├── Maven
+│   ├── Dependency Management
+│   └── Lifecycle Management
+├── Gradle
+│   ├── Groovy DSL
+│   └── Kotlin DSL
+└── Ant (Legacy)
+```
+
+## Ferramentas de Controle de Versão
+
+### Git
+
+```
+GIT ESSENTIALS
+├── Controle de versão
+├── Branching
+├── Merging
+└── Colaboração
+```
+
+### Interfaces Git
+
+```
+GIT GUI TOOLS
+├── GitKraken
+├── SourceTree
+├── GitHub Desktop
+└── IDE Integration
+```
+
+## Ferramentas de Container
+
+### Docker
+
+```
+DOCKER STACK
+├── Docker Engine
+├── Docker Compose
+├── Docker Hub
+└── Docker Desktop
+```
+
+### Container Registry
+
+```
+REGISTRY OPTIONS
+├── Docker Hub
+├── GitHub Packages
+├── AWS ECR
+└── Azure Container Registry
+```
+
+## Ferramentas Cloud
+
+### CLI Tools
+
+```
+CLOUD TOOLS
+├── AWS CLI
+├── Azure CLI
+├── Google Cloud SDK
+└── Heroku CLI
+```
+
+### Cloud IDEs
+
+```
+CLOUD DEVELOPMENT
+├── GitHub Codespaces
+├── GitPod
+├── Cloud9
+└── Eclipse Che
+```
+
+## Ferramentas de Produtividade
+
+### Terminal
+
+```
+TERMINAL SETUP
+├── Windows Terminal
+├── iTerm2 (macOS)
+├── Terminator (Linux)
+└── Shell
+    ├── Bash
+    ├── Zsh
+    └── Fish
+```
+
+### Extensões Recomendadas
+
+#### VS Code
+
+```
+VS CODE EXTENSIONS
+├── Java Extension Pack
+├── Spring Boot Tools
+├── Debugger for Java
+└── Test Runner
+```
+
+#### IntelliJ IDEA
+
+```
+INTELLIJ PLUGINS
+├── Lombok
+├── SonarLint
+├── GitToolBox
+└── Rainbow Brackets
+```
+
+## Ferramentas de Teste
+
+### Testing Framework
+
+```
+TEST TOOLS
+├── JUnit
+├── TestNG
+├── Mockito
+└── AssertJ
+```
+
+### Análise de Código
+
+```
+CODE QUALITY
+├── SonarQube
+├── CheckStyle
+├── PMD
+└── SpotBugs
+```
+
+## Ferramentas de Documentação
+
+### Documentation
+
+```
+DOCUMENTATION
+├── JavaDoc
+├── Swagger/OpenAPI
+├── AsciiDoc
+└── Markdown
+```
+
+## Setup Inicial
+
+### Checklist de Instalação
+
+* [ ] JDK via SDKMAN!
+
+* [ ] IDE principal
+
+* [ ] Git
+
+* [ ] Docker
+
+* [ ] Cloud CLI necessária
+
+* [ ] Terminal configurado
+
+### Configuração Recomendada
+
+```BASH
+# Instalar JDK
+sdk install java
+
+# Configurar Git
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+
+# Verificar Docker
+docker --version
+```
+
+## Manutenção
+
+### Atualizações Regulares
+
+```
+UPDATE ROUTINE
+├── JDK patches
+├── IDE updates
+├── Docker images
+└── Dependencies
+```
+
+### Backup de Configurações
+
+```
+BACKUP ESSENTIALS
+├── IDE settings
+├── Git config
+├── Docker config
+└── Terminal preferences
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. Conflitos de Versão Java
+
+* Usar SDKMAN! para gerenciar versões
+
+* Verificar JAVA_HOME
+
+* Limpar caches
+
+2. Problemas IDE
+
+* Limpar caches
+
+* Atualizar índices
+
+* Reinstalar plugins
+
+3. Issues Docker
+
+* Verificar serviço
+
+* Limpar volumes
+
+* Reset configurações
+
+[Começar Instalação JDK](jdk-installation.html)
+
+Tip:
+
+"Um netrunner é tão bom quanto suas ferramentas. Escolha-as sabiamente."
+
+
+
+# Setup do Ambiente de Desenvolvimento
+
+```
+SYSTEM INITIALIZATION
+├── JDK Setup
+├── IDE Config
+├── Git Setup
+├── Docker Init
+├── Cloud Tools
+└── Terminal Setup
+```
+
+## Visão Geral
+
+### Requisitos Mínimos
+
+```
+MINIMUM SPECS
+├── CPU: 2+ cores
+├── RAM: 8GB+
+├── Storage: 10GB+
+└── Internet: 10Mbps+
+```
+
+### Componentes Principais
+
+* Java Development Kit (JDK)
+
+* Ambiente de Desenvolvimento Integrado (IDE)
+
+* Sistema de Controle de Versão
+
+* Ferramentas de Containerização
+
+* CLIs de Cloud
+
+* Terminal Configurado
+
+## Ordem de Instalação
+
+### Sequência Recomendada
+
+1. [Instalação do JDK](jdk-installation.html)
+
+2. [Configuração da IDE](ide-setup.html)
+
+3. [Básico do Git](git-basics.html)
+
+4. [Essenciais do Terminal](null)
+
+5. [Básico do Docker](docker-basics.html)
+
+6. [Setup Cloud](cloud-setup.html)
+
+## Verificação de Ambiente
+
+### Checklist de Validação
+
+```BASH
+# Verificar Java
+java --version
+
+# Verificar Git
+git --version
+
+# Verificar Docker
+docker --version
+
+# Verificar Cloud CLI
+aws --version  # ou
+az --version   # ou
+gcloud --version
+```
+
+## Próximos Passos
+
+### Configuração Avançada
+
+* Personalização da IDE
+
+* Configuração do Git
+
+* Setup de Containers
+
+* Integração Cloud
+
+[Iniciar Instalação do JDK](jdk-installation.html)
+
+Tip:
+
+"A preparação adequada é metade da batalha. Configure seu ambiente com precisão."
+
+
+
+# Instalação do JDK
+
+```
+JDK INSTALLATION
+├── SDKMAN! Setup
+├── JDK Selection
+├── Environment Config
+└── Validation
+```
+
+## SDKMAN!
+
+### Instalação do SDKMAN!
+
+```BASH
+# Download e instalação
+curl -s "https://get.sdkman.io" | bash
+
+# Recarregar shell
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Verificar instalação
+sdk version
+```
+
+### Comandos Básicos
+
+```
+SDKMAN COMMANDS
+├── sdk list java     # Listar versões
+├── sdk install java  # Instalar JDK
+├── sdk use java     # Usar versão
+└── sdk default java # Definir padrão
+```
+
+## Instalação do JDK
+
+### Escolha da Distribuição
+
+```
+JDK OPTIONS
+├── Oracle JDK
+│   └── Licença comercial
+├── OpenJDK
+│   └── Open source
+├── Amazon Corretto
+│   └── AWS optimized
+├── Eclipse Temurin
+│   └── AdoptOpenJDK successor
+└── GraalVM
+    └── Native compilation
+```
+
+### Instalação via SDKMAN!
+
+```BASH
+# Listar versões disponíveis
+sdk list java
+
+# Instalar JDK LTS
+sdk install java 17.0.8-tem
+
+# Definir como padrão
+sdk default java 17.0.8-tem
+```
+
+## Configuração do Ambiente
+
+### Variáveis de Ambiente
+
+```BASH
+# Verificar JAVA_HOME
+echo $JAVA_HOME
+
+# Verificar PATH
+echo $PATH | grep java
+```
+
+### Configuração Manual (se necessário)
+
+```BASH
+# Para Bash/Zsh
+echo "export JAVA_HOME=$HOME/.sdkman/candidates/java/current" >> ~/.bashrc
+echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bashrc
+
+# Para Fish
+set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
+set -Ux PATH $JAVA_HOME/bin $PATH
+```
+
+## Verificação da Instalação
+
+### Testes Básicos
+
+```BASH
+# Verificar versão Java
+java --version
+
+# Verificar compilador
+javac --version
+
+# Testar compilação
+echo 'public class Test { public static void main(String[] args) { System.out.println("Hello, NetRunner!"); } }' > Test.java
+javac Test.java
+java Test
+```
+
+## Multi-versão
+
+### Gerenciamento de Versões
+
+```BASH
+# Instalar múltiplas versões
+sdk install java 11.0.20-tem
+sdk install java 17.0.8-tem
+sdk install java 21-tem
+
+# Alternar entre versões
+sdk use java 11.0.20-tem  # Temporário
+sdk default java 17.0.8-tem  # Permanente
+```
+
+### Configuração por Projeto
+
+```BASH
+# Criar arquivo de configuração
+echo "java=17.0.8-tem" > .sdkmanrc
+
+# Ativar ambiente do projeto
+sdk env
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. SDKMAN! não instala
+
+* Verificar curl instalado
+
+* Verificar permissões
+
+* Verificar conexão
+
+2. JDK não encontrado
+
+* Recarregar terminal
+
+* Verificar PATH
+
+* Verificar JAVA_HOME
+
+3. Conflitos de versão
+
+* Usar `sdk flush`
+
+* Remover versão: `sdk rm java`
+
+* Reinstalar SDKMAN!
+
+## Próximos Passos
+
+### Configuração IDE
+
+* Configurar Project SDK
+
+* Importar projetos
+
+* Configurar build tools
+
+[Configurar IDE](ide-setup.html)
+
+Tip:
+
+"A base de todo netrunner é um JDK bem configurado. Escolha suas armas com sabedoria."
+
+
+
+# Configuração da IDE
+
+```
+IDE SETUP
+├── IntelliJ IDEA
+├── Eclipse
+├── VS Code
+└── NetBeans
+```
+
+## IntelliJ IDEA
+
+### Instalação
+
+```
+INTELLIJ VARIANTS
+├── Community Edition
+│   └── Open Source
+└── Ultimate Edition
+    └── Trial/Licensed
+```
+
+```BASH
+# Linux (snap)
+sudo snap install intellij-idea-community --classic
+
+# macOS (brew)
+brew install --cask intellij-idea-ce
+
+# Windows
+winget install JetBrains.IntelliJ.IDEA.Community
+```
+
+### Plugins Essenciais
+
+```
+CORE PLUGINS
+├── Java Development
+├── Git Integration
+├── Maven/Gradle
+└── Docker
+```
+
+### Configuração Inicial
+
+```
+INITIAL SETUP
+├── Project SDK
+├── Code Style
+├── File Templates
+└── Live Templates
+```
+
+## Visual Studio Code
+
+### Instalação
+
+```BASH
+# Linux
+sudo snap install code --classic
+
+# macOS
+brew install --cask visual-studio-code
+
+# Windows
+winget install Microsoft.VisualStudioCode
+```
+
+### Extensões Java
+
+```
+EXTENSIONS
+├── Extension Pack for Java
+├── Spring Boot Extension Pack
+├── Java Test Runner
+└── Debugger for Java
+```
+
+### Configurações Recomendadas
+
+```JSON
+{
+    "java.home": "/path/to/jdk",
+    "java.format.settings.url": "eclipse-formatter.xml",
+    "java.completion.importOrder": [
+        "java",
+        "javax",
+        "com",
+        "org"
+    ]
+}
+```
+
+## Eclipse
+
+### Instalação
+
+```
+ECLIPSE PACKAGES
+├── Eclipse IDE for Java
+├── Eclipse IDE for Enterprise
+└── Eclipse IDE for Web
+```
+
+```BASH
+# Linux
+sudo snap install eclipse --classic
+
+# macOS
+brew install --cask eclipse-java
+
+# Windows
+winget install Eclipse.Java
+```
+
+### Plugins Recomendados
+
+```
+ECLIPSE PLUGINS
+├── EGit
+├── Spring Tools
+├── CodeMix
+└── Darkest Dark Theme
+```
+
+## Configurações Avançadas
+
+### Personalização
+
+```
+CUSTOMIZATION
+├── Theme Setup
+├── Keymap Config
+├── Code Templates
+└── Live Templates
+```
+
+### Integração Git
+
+```
+GIT SETUP
+├── SSH Keys
+├── GitHub Integration
+├── GitLab Integration
+└── Bitbucket Integration
+```
+
+### Debug & Profiling
+
+```
+DEBUG TOOLS
+├── Remote Debug
+├── Memory Analyzer
+├── CPU Profiler
+└── Thread Dump
+```
+
+## Produtividade
+
+### Atalhos Essenciais
+
+```
+SHORTCUTS
+├── Code Completion
+│   ├── Ctrl+Space
+│   └── Alt+Enter
+├── Navigation
+│   ├── Ctrl+Click
+│   └── Alt+F7
+├── Refactoring
+│   ├── Shift+F6
+│   └── Ctrl+Alt+M
+└── Debug
+    ├── F8
+    └── F9
+```
+
+### Templates
+
+```JAVA
+// Live Template: psvm
+public static void main(String[] args) {
+    
+}
+
+// Live Template: sout
+System.out.println();
+
+// Live Template: fori
+for (int i = 0; i < ; i++) {
+    
+}
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. IDE não reconhece JDK
+
+* Verificar JAVA_HOME
+
+* Reconfigurar Project SDK
+
+* Invalidar caches
+
+2. Performance lenta
+
+* Aumentar heap memory
+
+* Desabilitar plugins
+
+* Limpar índices
+
+3. Problemas de indexação
+
+* Invalidar caches
+
+* Reconstruir índices
+
+* Verificar exclusões
+
+## Configuração do Projeto
+
+### Estrutura Básica
+
+```
+PROJECT STRUCTURE
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   └── resources/
+│   └── test/
+│       ├── java/
+│       └── resources/
+├── pom.xml
+└── .gitignore
+```
+
+### Build Tools
+
+```
+BUILD CONFIG
+├── Maven
+│   └── pom.xml
+└── Gradle
+    └── build.gradle
+```
+
+## Próximos Passos
+
+### Workflow Setup
+
+* Configurar formatação de código
+
+* Definir templates de projeto
+
+* Configurar integração contínua
+
+* Preparar ambiente de debug
+
+[Configurar Git](git-basics.html)
+
+Tip:
+
+"Uma IDE bem configurada é como ter um deck cyberdeck personalizado - aumenta exponencialmente sua eficiência na Matrix."
+
+
+
+# Git Básico
+
+```
+GIT FUNDAMENTALS
+├── Setup Inicial
+├── Operações Básicas
+├── Branching
+├── Remote Operations
+└── Best Practices
+```
+
+## Instalação e Setup
+
+### Instalação
+
+```BASH
+# Linux (Debian/Ubuntu)
+sudo apt install git
+
+# macOS
+brew install git
+
+# Windows
+winget install Git.Git
+```
+
+### Configuração Inicial
+
+```BASH
+# Identidade
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+
+# Editor padrão
+git config --global core.editor "code --wait"  # VS Code
+# git config --global core.editor "vim"        # Vim
+# git config --global core.editor "nano"       # Nano
+
+# Configurar branch padrão
+git config --global init.defaultBranch main
+```
+
+## Operações Básicas
+
+### Ciclo de Vida
+
+```
+FILE STATUS
+├── Untracked
+├── Staged
+├── Committed
+└── Modified
+```
+
+### Comandos Essenciais
+
+```BASH
+# Iniciar repositório
+git init
+
+# Status do repositório
+git status
+
+# Adicionar arquivos
+git add <arquivo>      # Arquivo específico
+git add .              # Todos os arquivos
+
+# Commit
+git commit -m "mensagem"
+git commit -am "mensagem"  # Add + Commit
+
+# Histórico
+git log
+git log --oneline
+git log --graph
+```
+
+## Branches
+
+### Operações com Branches
+
+```BASH
+# Listar branches
+git branch
+
+# Criar branch
+git branch feature/nova-funcionalidade
+
+# Mudar de branch
+git checkout feature/nova-funcionalidade
+# ou
+git switch feature/nova-funcionalidade
+
+# Criar e mudar
+git checkout -b feature/nova-funcionalidade
+```
+
+### Merge e Rebase
+
+```BASH
+# Merge
+git checkout main
+git merge feature/nova-funcionalidade
+
+# Rebase
+git checkout feature/nova-funcionalidade
+git rebase main
+```
+
+## Operações Remotas
+
+### Configuração Remota
+
+```BASH
+# Adicionar remote
+git remote add origin https://github.com/user/repo.git
+
+# Listar remotes
+git remote -v
+
+# Remover remote
+git remote remove origin
+```
+
+### Sincronização
+
+```BASH
+# Push
+git push origin main
+
+# Pull
+git pull origin main
+
+# Fetch
+git fetch origin
+
+# Clone
+git clone https://github.com/user/repo.git
+```
+
+## Gitflow
+
+### Estrutura de Branches
+
+```
+BRANCH STRUCTURE
+├── main
+├── develop
+├── feature/*
+├── release/*
+├── hotfix/*
+└── bugfix/*
+```
+
+### Workflow Básico
+
+```
+WORKFLOW
+├── Criar feature branch
+├── Desenvolver
+├── Commit changes
+├── Push to remote
+└── Create pull request
+```
+
+## Boas Práticas
+
+### Commits
+
+```
+COMMIT PATTERNS
+├── Conventional Commits
+│   ├── feat: nova feature
+│   ├── fix: correção
+│   ├── docs: documentação
+│   ├── style: formatação
+│   ├── refactor: refatoração
+│   ├── test: testes
+│   └── chore: manutenção
+└── Atomic Commits
+```
+
+### .gitignore
+
+```BASH
+# Java
+*.class
+*.jar
+target/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+```
+
+## Git Avançado
+
+### Stash
+
+```BASH
+# Salvar alterações
+git stash
+
+# Listar stashes
+git stash list
+
+# Aplicar stash
+git stash apply
+git stash pop
+
+# Limpar stash
+git stash clear
+```
+
+### Reset e Revert
+
+```BASH
+# Reset
+git reset --soft HEAD~1   # Mantém alterações
+git reset --hard HEAD~1   # Remove alterações
+
+# Revert
+git revert HEAD          # Reverte último commit
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. Conflitos de Merge
+
+```BASH
+# Abortar merge
+git merge --abort
+
+# Resolver manualmente
+# Editar arquivos
+git add .
+git commit
+```
+
+2. Branch Errada
+
+```BASH
+# Mover alterações
+git stash
+git checkout branch-correta
+git stash pop
+```
+
+3. Commit Errado
+
+```BASH
+# Desfazer último commit
+git reset --soft HEAD~1
+
+# Alterar mensagem
+git commit --amend
+```
+
+## Ferramentas Visuais
+
+### GUI Clients
+
+```
+GUI OPTIONS
+├── GitKraken
+├── SourceTree
+├── GitHub Desktop
+└── Git GUI
+```
+
+## Próximos Passos
+
+### Aprofundamento
+
+* Explorar Git hooks
+
+* Configurar CI/CD
+
+* Aprender rebase interativo
+
+* Estudar estratégias de branching
+
+[Essenciais do Terminal](null)
+
+Tip:
+
+"No submundo digital, o controle de versão é sua linha do tempo pessoal - cada commit é um checkpoint que você pode revisitar."
+
+
+
+# Docker Básico
+
+```
+DOCKER ESSENTIALS
+├── Conceitos
+├── Instalação
+├── Comandos Básicos
+├── Docker Compose
+└── Best Practices
+```
+
+## Fundamentos
+
+### Conceitos Básicos
+
+```
+DOCKER COMPONENTS
+├── Images
+├── Containers
+├── Volumes
+├── Networks
+└── Registry
+```
+
+### Instalação
+
+```BASH
+# Linux (Ubuntu)
+curl -fsSL https://get.docker.com | sh
+
+# Windows/Mac
+# Baixar Docker Desktop do site oficial
+```
+
+## Comandos Essenciais
+
+### Gerenciamento de Containers
+
+```BASH
+# Executar container
+docker run hello-world
+docker run -d -p 8080:80 nginx
+
+# Listar containers
+docker ps
+docker ps -a
+
+# Operações
+docker start container_id
+docker stop container_id
+docker restart container_id
+docker rm container_id
+```
+
+### Imagens
+
+```BASH
+# Listar imagens
+docker images
+
+# Pull de imagem
+docker pull ubuntu:latest
+
+# Remover imagem
+docker rmi imagem_id
+
+# Build de imagem
+docker build -t app:1.0 .
+```
+
+## Dockerfile
+
+### Estrutura Básica
+
+```
+# Base image
+FROM openjdk:17-jdk-slim
+
+# Metadados
+LABEL maintainer="netrunner@corp.net"
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copiar arquivos
+COPY target/*.jar app.jar
+
+# Porta
+EXPOSE 8080
+
+# Comando de execução
+CMD ["java", "-jar", "app.jar"]
+```
+
+## Docker Compose
+
+### docker-compose.yml
+
+```YAML
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=secret
+```
+
+### Comandos Compose
+
+```BASH
+# Iniciar serviços
+docker-compose up -d
+
+# Parar serviços
+docker-compose down
+
+# Logs
+docker-compose logs
+```
+
+## Redes
+
+### Network Commands
+
+```BASH
+# Criar rede
+docker network create mynet
+
+# Listar redes
+docker network ls
+
+# Conectar container
+docker network connect mynet container_id
+```
+
+## Volumes
+
+### Volume Management
+
+```BASH
+# Criar volume
+docker volume create mydata
+
+# Listar volumes
+docker volume ls
+
+# Usar volume
+docker run -v mydata:/data nginx
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+```BASH
+# Verificar logs
+docker logs container_id
+
+# Inspecionar container
+docker inspect container_id
+
+# Entrar no container
+docker exec -it container_id bash
+```
+
+## Segurança
+
+### Best Practices
+
+```
+SECURITY CHECKLIST
+├── Usar imagens oficiais
+├── Manter containers atualizados
+├── Limitar recursos
+├── Usar usuários não-root
+└── Escanear vulnerabilidades
+```
+
+## Monitoramento
+
+### Ferramentas
+
+```
+MONITORING TOOLS
+├── Docker Stats
+├── Prometheus
+├── Grafana
+└── cAdvisor
+```
+
+## Próximos Passos
+
+### Aprofundamento
+
+* Orquestração com Kubernetes
+
+* CI/CD com Docker
+
+* Docker Swarm
+
+* Microserviços
+
+[Setup Cloud](cloud-setup.html)
+
+Tip:
+
+"Containers são como cápsulas de dados na Matrix - isolados, portáteis e prontos para deployment."
+
+
+
+# Setup Cloud
+
+```
+CLOUD SETUP
+├── Providers
+├── CLI Tools
+├── Authentication
+└── Basic Services
+```
+
+## Cloud Providers
+
+### Principais Provedores
+
+```
+CLOUD OPTIONS
+├── AWS
+├── Azure
+├── Google Cloud
+└── Oracle Cloud
+```
+
+## CLI Setup
+
+### AWS CLI
+
+```BASH
+# Instalar AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Configurar
+aws configure
+```
+
+### Azure CLI
+
+```BASH
+# Instalar Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+# Login
+az login
+```
+
+### Google Cloud SDK
+
+```BASH
+# Instalar Google Cloud SDK
+curl https://sdk.cloud.google.com | bash
+
+# Inicializar
+gcloud init
+```
+
+## Autenticação
+
+### Credenciais
+
+```
+AUTH METHODS
+├── Access Keys
+├── Service Accounts
+├── IAM Roles
+└── MFA
+```
+
+### Configuração
+
+```BASH
+# AWS Credentials
+aws configure set aws_access_key_id YOUR_KEY
+aws configure set aws_secret_access_key YOUR_SECRET
+
+# GCloud Auth
+gcloud auth login
+gcloud config set project YOUR_PROJECT
+```
+
+## Serviços Básicos
+
+### Storage
+
+```
+STORAGE SERVICES
+├── AWS S3
+├── Azure Blob
+└── Google Cloud Storage
+```
+
+### Compute
+
+```
+COMPUTE SERVICES
+├── EC2/VM
+├── Container Services
+└── Serverless
+```
+
+## Networking
+
+### VPC Setup
+
+```
+NETWORK CONFIG
+├── VPC/VNET
+├── Subnets
+├── Security Groups
+└── Load Balancers
+```
+
+## Monitoramento
+
+### Ferramentas Cloud
+
+```
+MONITORING
+├── CloudWatch
+├── Azure Monitor
+└── Cloud Monitoring
+```
+
+## Segurança
+
+### Best Practices
+
+```
+SECURITY CHECKLIST
+├── MFA Ativado
+├── Least Privilege
+├── Encryption
+└── Logging
+```
+
+## Cost Management
+
+### Controle de Custos
+
+```
+COST CONTROL
+├── Budgets
+├── Alerts
+├── Resource Tags
+└── Cost Explorer
+```
+
+## Próximos Passos
+
+### Aprofundamento
+
+* Infrastructure as Code
+
+* Cloud Native Development
+
+* Serverless Architecture
+
+* Multi-Cloud Strategy
+
+[Começar com Java](null)
+
+Tip:
+
+"A nuvem é a nova fronteira da Matrix - um território vasto de recursos virtualizados prontos para serem explorados."
 
 
 

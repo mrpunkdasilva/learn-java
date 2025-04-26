@@ -1,0 +1,145 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-26T16:03:19.008683911"><title>Docker B&aacute;sico | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"comandos-essenciais","level":0,"title":"Comandos Essenciais","anchor":"#comandos-essenciais"},{"id":"dockerfile","level":0,"title":"Dockerfile","anchor":"#dockerfile"},{"id":"docker-compose","level":0,"title":"Docker Compose","anchor":"#docker-compose"},{"id":"redes","level":0,"title":"Redes","anchor":"#redes"},{"id":"volumes","level":0,"title":"Volumes","anchor":"#volumes"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"seguran-a","level":0,"title":"Segurança","anchor":"#seguran-a"},{"id":"monitoramento","level":0,"title":"Monitoramento","anchor":"#monitoramento"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Docker B&aacute;sico | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/docker-basics.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Docker B&aacute;sico | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/docker-basics.html#webpage",
+    "url": "writerside-documentation/java/1.0/docker-basics.html",
+    "name": "Docker B&aacute;sico | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="docker-basics" data-main-title="Docker Básico" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="setup.md|Setup do Ambiente de Desenvolvimento"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="docker-basics" id="docker-basics.md">Docker Básico</h1><div class="code-block" data-lang="none">
+DOCKER ESSENTIALS
+├── Conceitos
+├── Instalação
+├── Comandos Básicos
+├── Docker Compose
+└── Best Practices
+</div><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><section class="chapter"><h3 id="conceitos-b-sicos" data-toc="conceitos-b-sicos">Conceitos B&aacute;sicos</h3><div class="code-block" data-lang="none">
+DOCKER COMPONENTS
+├── Images
+├── Containers
+├── Volumes
+├── Networks
+└── Registry
+</div></section><section class="chapter"><h3 id="instala-o" data-toc="instala-o">Instala&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Linux (Ubuntu)
+curl -fsSL https://get.docker.com | sh
+
+# Windows/Mac
+# Baixar Docker Desktop do site oficial
+</div></section></section><section class="chapter"><h2 id="comandos-essenciais" data-toc="comandos-essenciais">Comandos Essenciais</h2><section class="chapter"><h3 id="gerenciamento-de-containers" data-toc="gerenciamento-de-containers">Gerenciamento de Containers</h3><div class="code-block" data-lang="bash">
+# Executar container
+docker run hello-world
+docker run -d -p 8080:80 nginx
+
+# Listar containers
+docker ps
+docker ps -a
+
+# Operações
+docker start container_id
+docker stop container_id
+docker restart container_id
+docker rm container_id
+</div></section><section class="chapter"><h3 id="imagens" data-toc="imagens">Imagens</h3><div class="code-block" data-lang="bash">
+# Listar imagens
+docker images
+
+# Pull de imagem
+docker pull ubuntu:latest
+
+# Remover imagem
+docker rmi imagem_id
+
+# Build de imagem
+docker build -t app:1.0 .
+</div></section></section><section class="chapter"><h2 id="dockerfile" data-toc="dockerfile">Dockerfile</h2><section class="chapter"><h3 id="estrutura-b-sica" data-toc="estrutura-b-sica">Estrutura B&aacute;sica</h3><div class="code-block" data-lang="none">
+# Base image
+FROM openjdk:17-jdk-slim
+
+# Metadados
+LABEL maintainer=&quot;netrunner@corp.net&quot;
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copiar arquivos
+COPY target/*.jar app.jar
+
+# Porta
+EXPOSE 8080
+
+# Comando de execução
+CMD [&quot;java&quot;, &quot;-jar&quot;, &quot;app.jar&quot;]
+</div></section></section><section class="chapter"><h2 id="docker-compose" data-toc="docker-compose">Docker Compose</h2><section class="chapter"><h3 id="docker-compose-yml" data-toc="docker-compose-yml">docker-compose.yml</h3><div class="code-block" data-lang="yaml">
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - &quot;8080:8080&quot;
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=secret
+</div></section><section class="chapter"><h3 id="comandos-compose" data-toc="comandos-compose">Comandos Compose</h3><div class="code-block" data-lang="bash">
+# Iniciar serviços
+docker-compose up -d
+
+# Parar serviços
+docker-compose down
+
+# Logs
+docker-compose logs
+</div></section></section><section class="chapter"><h2 id="redes" data-toc="redes">Redes</h2><section class="chapter"><h3 id="network-commands" data-toc="network-commands">Network Commands</h3><div class="code-block" data-lang="bash">
+# Criar rede
+docker network create mynet
+
+# Listar redes
+docker network ls
+
+# Conectar container
+docker network connect mynet container_id
+</div></section></section><section class="chapter"><h2 id="volumes" data-toc="volumes">Volumes</h2><section class="chapter"><h3 id="volume-management" data-toc="volume-management">Volume Management</h3><div class="code-block" data-lang="bash">
+# Criar volume
+docker volume create mydata
+
+# Listar volumes
+docker volume ls
+
+# Usar volume
+docker run -v mydata:/data nginx
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><div class="code-block" data-lang="bash">
+# Verificar logs
+docker logs container_id
+
+# Inspecionar container
+docker inspect container_id
+
+# Entrar no container
+docker exec -it container_id bash
+</div></section></section><section class="chapter"><h2 id="seguran-a" data-toc="seguran-a">Seguran&ccedil;a</h2><section class="chapter"><h3 id="best-practices" data-toc="best-practices">Best Practices</h3><div class="code-block" data-lang="none">
+SECURITY CHECKLIST
+├── Usar imagens oficiais
+├── Manter containers atualizados
+├── Limitar recursos
+├── Usar usuários não-root
+└── Escanear vulnerabilidades
+</div></section></section><section class="chapter"><h2 id="monitoramento" data-toc="monitoramento">Monitoramento</h2><section class="chapter"><h3 id="ferramentas" data-toc="ferramentas">Ferramentas</h3><div class="code-block" data-lang="none">
+MONITORING TOOLS
+├── Docker Stats
+├── Prometheus
+├── Grafana
+└── cAdvisor
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="aprofundamento" data-toc="aprofundamento">Aprofundamento</h3><ul class="list _bullet" id="qis192_39"><li class="list__item" id="qis192_43"><p id="qis192_47">Orquestra&ccedil;&atilde;o com Kubernetes</p></li><li class="list__item" id="qis192_44"><p id="qis192_48">CI/CD com Docker</p></li><li class="list__item" id="qis192_45"><p id="qis192_49">Docker Swarm</p></li><li class="list__item" id="qis192_46"><p id="qis192_50">Microservi&ccedil;os</p></li></ul><p id="qis192_40"><a href="cloud-setup.html" id="qis192_51" data-tooltip="Infrastructure as Code">Setup Cloud</a></p><aside class="prompt" data-type="tip" data-title="" id="qis192_42"><p id="qis192_52">&quot;Containers s&atilde;o como c&aacute;psulas de dados na Matrix - isolados, port&aacute;teis e prontos para deployment.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="git-basics.html" class="navigation-links__prev">Git B&aacute;sico</a><a href="cloud-setup.html" class="navigation-links__next">Setup Cloud</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

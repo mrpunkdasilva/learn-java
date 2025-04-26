@@ -1,0 +1,98 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-26T16:03:19.084947401"><title>Instala&ccedil;&atilde;o do JDK | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"sdkman","level":0,"title":"SDKMAN!","anchor":"#sdkman"},{"id":"instala-o-do-jdk","level":0,"title":"Instalação do JDK","anchor":"#instala-o-do-jdk"},{"id":"configura-o-do-ambiente","level":0,"title":"Configuração do Ambiente","anchor":"#configura-o-do-ambiente"},{"id":"verifica-o-da-instala-o","level":0,"title":"Verificação da Instalação","anchor":"#verifica-o-da-instala-o"},{"id":"multi-vers-o","level":0,"title":"Multi-versão","anchor":"#multi-vers-o"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Instala&ccedil;&atilde;o do JDK | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/jdk-installation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Instala&ccedil;&atilde;o do JDK | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/jdk-installation.html#webpage",
+    "url": "writerside-documentation/java/1.0/jdk-installation.html",
+    "name": "Instala&ccedil;&atilde;o do JDK | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="jdk-installation" data-main-title="Instalação do JDK" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="setup.md|Setup do Ambiente de Desenvolvimento"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="jdk-installation" id="jdk-installation.md">Instalação do JDK</h1><div class="code-block" data-lang="none">
+JDK INSTALLATION
+├── SDKMAN! Setup
+├── JDK Selection
+├── Environment Config
+└── Validation
+</div><section class="chapter"><h2 id="sdkman" data-toc="sdkman">SDKMAN!</h2><section class="chapter"><h3 id="instala-o-do-sdkman" data-toc="instala-o-do-sdkman">Instala&ccedil;&atilde;o do SDKMAN!</h3><div class="code-block" data-lang="bash">
+# Download e instalação
+curl -s &quot;https://get.sdkman.io&quot; | bash
+
+# Recarregar shell
+source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;
+
+# Verificar instalação
+sdk version
+</div></section><section class="chapter"><h3 id="comandos-b-sicos" data-toc="comandos-b-sicos">Comandos B&aacute;sicos</h3><div class="code-block" data-lang="none">
+SDKMAN COMMANDS
+├── sdk list java     # Listar versões
+├── sdk install java  # Instalar JDK
+├── sdk use java     # Usar versão
+└── sdk default java # Definir padrão
+</div></section></section><section class="chapter"><h2 id="instala-o-do-jdk" data-toc="instala-o-do-jdk">Instala&ccedil;&atilde;o do JDK</h2><section class="chapter"><h3 id="escolha-da-distribui-o" data-toc="escolha-da-distribui-o">Escolha da Distribui&ccedil;&atilde;o</h3><div class="code-block" data-lang="none">
+JDK OPTIONS
+├── Oracle JDK
+│   └── Licença comercial
+├── OpenJDK
+│   └── Open source
+├── Amazon Corretto
+│   └── AWS optimized
+├── Eclipse Temurin
+│   └── AdoptOpenJDK successor
+└── GraalVM
+    └── Native compilation
+</div></section><section class="chapter"><h3 id="instala-o-via-sdkman" data-toc="instala-o-via-sdkman">Instala&ccedil;&atilde;o via SDKMAN!</h3><div class="code-block" data-lang="bash">
+# Listar versões disponíveis
+sdk list java
+
+# Instalar JDK LTS
+sdk install java 17.0.8-tem
+
+# Definir como padrão
+sdk default java 17.0.8-tem
+</div></section></section><section class="chapter"><h2 id="configura-o-do-ambiente" data-toc="configura-o-do-ambiente">Configura&ccedil;&atilde;o do Ambiente</h2><section class="chapter"><h3 id="vari-veis-de-ambiente" data-toc="vari-veis-de-ambiente">Vari&aacute;veis de Ambiente</h3><div class="code-block" data-lang="bash">
+# Verificar JAVA_HOME
+echo $JAVA_HOME
+
+# Verificar PATH
+echo $PATH | grep java
+</div></section><section class="chapter"><h3 id="configura-o-manual-se-necess-rio" data-toc="configura-o-manual-se-necess-rio">Configura&ccedil;&atilde;o Manual (se necess&aacute;rio)</h3><div class="code-block" data-lang="bash">
+# Para Bash/Zsh
+echo &quot;export JAVA_HOME=$HOME/.sdkman/candidates/java/current&quot; &gt;&gt; ~/.bashrc
+echo &quot;export PATH=\$JAVA_HOME/bin:\$PATH&quot; &gt;&gt; ~/.bashrc
+
+# Para Fish
+set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
+set -Ux PATH $JAVA_HOME/bin $PATH
+</div></section></section><section class="chapter"><h2 id="verifica-o-da-instala-o" data-toc="verifica-o-da-instala-o">Verifica&ccedil;&atilde;o da Instala&ccedil;&atilde;o</h2><section class="chapter"><h3 id="testes-b-sicos" data-toc="testes-b-sicos">Testes B&aacute;sicos</h3><div class="code-block" data-lang="bash">
+# Verificar versão Java
+java --version
+
+# Verificar compilador
+javac --version
+
+# Testar compilação
+echo 'public class Test { public static void main(String[] args) { System.out.println(&quot;Hello, NetRunner!&quot;); } }' &gt; Test.java
+javac Test.java
+java Test
+</div></section></section><section class="chapter"><h2 id="multi-vers-o" data-toc="multi-vers-o">Multi-vers&atilde;o</h2><section class="chapter"><h3 id="gerenciamento-de-vers-es" data-toc="gerenciamento-de-vers-es">Gerenciamento de Vers&otilde;es</h3><div class="code-block" data-lang="bash">
+# Instalar múltiplas versões
+sdk install java 11.0.20-tem
+sdk install java 17.0.8-tem
+sdk install java 21-tem
+
+# Alternar entre versões
+sdk use java 11.0.20-tem  # Temporário
+sdk default java 17.0.8-tem  # Permanente
+</div></section><section class="chapter"><h3 id="configura-o-por-projeto" data-toc="configura-o-por-projeto">Configura&ccedil;&atilde;o por Projeto</h3><div class="code-block" data-lang="bash">
+# Criar arquivo de configuração
+echo &quot;java=17.0.8-tem&quot; &gt; .sdkmanrc
+
+# Ativar ambiente do projeto
+sdk env
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ol class="list _decimal" id="b1r2lo_30" type="1"><li class="list__item" id="b1r2lo_31"><p id="b1r2lo_34"><span class="control" id="b1r2lo_36">SDKMAN! n&atilde;o instala</span></p><ul class="list _bullet" id="b1r2lo_35"><li class="list__item" id="b1r2lo_37"><p id="b1r2lo_40">Verificar curl instalado</p></li><li class="list__item" id="b1r2lo_38"><p id="b1r2lo_41">Verificar permiss&otilde;es</p></li><li class="list__item" id="b1r2lo_39"><p id="b1r2lo_42">Verificar conex&atilde;o</p></li></ul></li><li class="list__item" id="b1r2lo_32"><p id="b1r2lo_43"><span class="control" id="b1r2lo_45">JDK n&atilde;o encontrado</span></p><ul class="list _bullet" id="b1r2lo_44"><li class="list__item" id="b1r2lo_46"><p id="b1r2lo_49">Recarregar terminal</p></li><li class="list__item" id="b1r2lo_47"><p id="b1r2lo_50">Verificar PATH</p></li><li class="list__item" id="b1r2lo_48"><p id="b1r2lo_51">Verificar JAVA_HOME</p></li></ul></li><li class="list__item" id="b1r2lo_33"><p id="b1r2lo_52"><span class="control" id="b1r2lo_54">Conflitos de vers&atilde;o</span></p><ul class="list _bullet" id="b1r2lo_53"><li class="list__item" id="b1r2lo_55"><p id="b1r2lo_58">Usar <code class="code" id="b1r2lo_59">sdk flush</code></p></li><li class="list__item" id="b1r2lo_56"><p id="b1r2lo_60">Remover vers&atilde;o: <code class="code" id="b1r2lo_61">sdk rm java</code></p></li><li class="list__item" id="b1r2lo_57"><p id="b1r2lo_62">Reinstalar SDKMAN!</p></li></ul></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="configura-o-ide" data-toc="configura-o-ide">Configura&ccedil;&atilde;o IDE</h3><ul class="list _bullet" id="b1r2lo_64"><li class="list__item" id="b1r2lo_68"><p id="b1r2lo_71">Configurar Project SDK</p></li><li class="list__item" id="b1r2lo_69"><p id="b1r2lo_72">Importar projetos</p></li><li class="list__item" id="b1r2lo_70"><p id="b1r2lo_73">Configurar build tools</p></li></ul><p id="b1r2lo_65"><a href="ide-setup.html" id="b1r2lo_74" data-tooltip="IDE não reconhece JDK">Configurar IDE</a></p><aside class="prompt" data-type="tip" data-title="" id="b1r2lo_67"><p id="b1r2lo_75">&quot;A base de todo netrunner &eacute; um JDK bem configurado. Escolha suas armas com sabedoria.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="setup.html" class="navigation-links__prev">Setup do Ambiente de Desenvolvimento</a><a href="ide-setup.html" class="navigation-links__next">Configura&ccedil;&atilde;o da IDE</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

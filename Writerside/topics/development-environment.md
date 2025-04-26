@@ -2,113 +2,191 @@
 
 ```ascii
 >> Iniciando configuração do ambiente...
->> Verificando requisitos do sistema...
->> Preparando ferramentas essenciais...
->> Ambiente pronto para customização...
+>> Verificando dependências do sistema...
+>> Preparando ferramentas de desenvolvimento...
+>> Ambiente base estabelecido...
 ```
 
 ## Visão Geral
 
-O ambiente de desenvolvimento é seu terminal de acesso à Matrix. Uma configuração adequada é crucial para sua eficiência e produtividade.
+```mermaid
+graph TD
+    A[Sistema Operacional] --> B[JDK]
+    B --> C[IDE]
+    C --> D[Ferramentas Auxiliares]
+    D --> E[Ambiente Completo]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+```
 
-## Componentes Essenciais
+## Stack de Desenvolvimento
 
-### 1. Sistema Operacional
-Escolha sua plataforma:
-- Windows 10/11
-- macOS (Catalina ou superior)
-- Linux (Ubuntu, Fedora, etc.)
-
-### 2. Core Tools
-
+### Componentes Essenciais
 ```ascii
-SETUP ESSENCIAL
+AMBIENTE BASE
 ├── JDK 17+
 ├── IDE
-│   ├── IntelliJ IDEA (Recomendado)
+│   ├── IntelliJ IDEA
 │   ├── Eclipse
 │   └── VS Code
 ├── Git
 └── Terminal
 ```
 
-## Configuração Passo a Passo
+### Ferramentas Auxiliares
+```ascii
+TOOLS
+├── Maven/Gradle
+├── Docker
+├── Postman
+└── DBeaver
+```
 
-### Fase 1: Setup Base
-1. [Configuração do Sistema Operacional](os-setup.md)
-2. [Visão Geral das Ferramentas](tools-overview.md)
-3. [Instalação do JDK](jdk-installation.md)
-4. [Configuração da IDE](ide-setup.md)
+## Configuração por Sistema Operacional
 
-### Fase 2: Ferramentas Auxiliares
-1. [Git Basics](git-basics.md)
-2. [Terminal Essentials](terminal-essentials.md)
-3. [Docker Basics](docker-basics.md)
-4. [Cloud Setup](cloud-setup.md)
+### Windows
+```powershell
+# Verificar versão do Java
+java -version
+
+# Verificar versão do Git
+git --version
+
+# Verificar variáveis de ambiente
+echo %JAVA_HOME%
+echo %PATH%
+```
+
+### macOS/Linux
+```bash
+# Verificar versão do Java
+java -version
+
+# Verificar versão do Git
+git --version
+
+# Verificar variáveis de ambiente
+echo $JAVA_HOME
+echo $PATH
+```
+
+## IDEs Recomendadas
+
+### IntelliJ IDEA
+- **Community Edition**
+  - Gratuita
+  - Recursos essenciais
+  - Plugins básicos
+
+- **Ultimate Edition**
+  - Recursos avançados
+  - Suporte a frameworks
+  - Ferramentas profissionais
+
+### VS Code
+- Leve e rápido
+- Extensível
+- Multiplataforma
+- Gratuito
+
+### Eclipse
+- IDE tradicional
+- Grande comunidade
+- Plugins diversos
+- Gratuito
+
+## Plugins Essenciais
+
+### Para Produtividade
+```ascii
+PLUGINS
+├── Code Completion
+├── Git Integration
+├── Code Analysis
+└── Theme Tools
+```
+
+### Para Qualidade
+```ascii
+QUALITY
+├── SonarLint
+├── CheckStyle
+├── PMD
+└── SpotBugs
+```
+
+## Configurações Recomendadas
+
+### Editor Settings
+```json
+{
+    "editor.formatOnSave": true,
+    "java.format.enabled": true,
+    "java.completion.enabled": true,
+    "java.debug.settings.hotCodeReplace": "auto"
+}
+```
+
+### Git Config
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+git config --global core.editor "code --wait"
+```
 
 ## Verificação do Ambiente
 
-Execute este código para testar sua configuração:
+### Checklist de Instalação
+- [ ] JDK instalado e configurado
+- [ ] IDE instalada e configurada
+- [ ] Git instalado e configurado
+- [ ] Terminal configurado
+- [ ] Plugins essenciais instalados
 
+### Teste do Ambiente
 ```java
-public class EnvironmentCheck {
+public class EnvironmentTest {
     public static void main(String[] args) {
-        System.out.println("Java Version: " + System.getProperty("java.version"));
-        System.out.println("Java Home: " + System.getProperty("java.home"));
-        System.out.println("OS: " + System.getProperty("os.name"));
-        System.out.println("User: " + System.getProperty("user.name"));
+        System.out.println("Java Version: " + 
+            System.getProperty("java.version"));
+        System.out.println("Java Home: " + 
+            System.getProperty("java.home"));
+        System.out.println("OS: " + 
+            System.getProperty("os.name"));
     }
 }
 ```
 
-## Customização do Ambiente
+## Próximos Passos
 
-### IDE Settings
-- Tema escuro (recomendado)
-- Fonte monoespaçada
-- Auto-save
-- Git integration
-- Plugins essenciais
-
-### Terminal Setup
-- Shell customizado
-- Aliases úteis
-- Prompt personalizado
-- Ferramentas CLI
-
-## Checklist de Configuração
-
-- [ ] Sistema Operacional atualizado
-- [ ] JDK instalado e configurado
-- [ ] IDE instalada e configurada
-- [ ] Git configurado
-- [ ] Terminal personalizado
-- [ ] Ambiente testado
+1. [Configurar Sistema Operacional](os-setup.md)
+2. [Explorar Ferramentas](tools-overview.md)
+3. [Começar a Programar](java-basics.md)
 
 ## Troubleshooting
 
 ### Problemas Comuns
-1. Variáveis de ambiente não configuradas
-2. Versões incompatíveis
-3. Permissões de sistema
-4. Conflitos de porta
+1. **Java não encontrado**
+   - Verificar instalação
+   - Conferir PATH
+   - Reinstalar se necessário
 
-### Soluções
-- Verifique PATH
-- Use comandos de diagnóstico
-- Consulte logs
-- Reinicie serviços
+2. **IDE não reconhece JDK**
+   - Verificar configurações
+   - Reconfigurar JAVA_HOME
+   - Reinstalar JDK
 
-## Próximos Passos
+3. **Git não configurado**
+   - Executar configurações básicas
+   - Verificar credenciais
+   - Testar conexão com repositório
 
-Após configurar seu ambiente:
-
-1. [Instalar JDK](jdk-installation.md)
-2. [Configurar IDE](ide-setup.md)
-3. [Aprender Git Basics](git-basics.md)
-
-[Começar Instalação do JDK](jdk-installation.md){.next-step}
+[Configurar Sistema Operacional](os-setup.md){.next-step}
 
 ---
 
-> "Um ambiente bem configurado é metade do caminho para o sucesso na Matrix."
+> "Um ambiente bem configurado é como ter acesso direto à Matrix - tudo flui naturalmente."
