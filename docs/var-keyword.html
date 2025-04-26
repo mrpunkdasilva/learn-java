@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-26T16:23:53.251944618"><title>Palavra-chave var | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"introdu-o","level":0,"title":"Introdução","anchor":"#introdu-o"},{"id":"infer-ncia-de-tipo","level":0,"title":"Inferência de Tipo","anchor":"#infer-ncia-de-tipo"},{"id":"restri-es","level":0,"title":"Restrições","anchor":"#restri-es"},{"id":"usos-comuns","level":0,"title":"Usos Comuns","anchor":"#usos-comuns"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Palavra-chave var | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/var-keyword.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Palavra-chave var | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/var-keyword.html#webpage",
+    "url": "writerside-documentation/java/1.0/var-keyword.html",
+    "name": "Palavra-chave var | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="var-keyword" data-main-title="Palavra-chave var" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="java-basics.md|Fundamentos Java///variables.md|Variáveis em Java"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="var-keyword" id="var-keyword.md">Palavra-chave var</h1><div class="code-block" data-lang="none">
+VAR KEYWORD
+├── Inferência de Tipo
+├── Restrições
+├── Usos Comuns
+└── Boas Práticas
+</div><section class="chapter"><h2 id="introdu-o" data-toc="introdu-o">Introdu&ccedil;&atilde;o</h2><section class="chapter"><h3 id="o-que-var" data-toc="o-que-var">O que &eacute; var?</h3><div class="code-block" data-lang="java">
+// Inferência de tipo local
+var mensagem = &quot;Conexão estabelecida&quot;;
+var contador = 0;
+var lista = new ArrayList&lt;String&gt;();
+</div></section></section><section class="chapter"><h2 id="infer-ncia-de-tipo" data-toc="infer-ncia-de-tipo">Infer&ecirc;ncia de Tipo</h2><section class="chapter"><h3 id="como-funciona" data-toc="como-funciona">Como Funciona</h3><div class="code-block" data-lang="java">
+// O compilador infere o tipo
+var numero = 42; // int
+var texto = &quot;Matrix&quot;; // String
+var decimal = 3.14; // double
+</div></section><section class="chapter"><h3 id="tipos-inferidos" data-toc="tipos-inferidos">Tipos Inferidos</h3><div class="code-block" data-lang="java">
+// Tipos complexos
+var mapa = new HashMap&lt;String, Integer&gt;();
+var executor = Executors.newFixedThreadPool(10);
+var padrao = Pattern.compile(&quot;\\w+&quot;);
+</div></section></section><section class="chapter"><h2 id="restri-es" data-toc="restri-es">Restri&ccedil;&otilde;es</h2><section class="chapter"><h3 id="onde-n-o-usar" data-toc="onde-n-o-usar">Onde N&atilde;o Usar</h3><div class="code-block" data-lang="java">
+// Não permitido:
+var campo; // Sem inicialização
+var = &quot;valor&quot;; // Sem nome
+var[] array = new int[10]; // Arrays
+var método() { } // Retorno de método
+</div></section><section class="chapter"><h3 id="limita-es" data-toc="limita-es">Limita&ccedil;&otilde;es</h3><div class="code-block" data-lang="none">
+RESTRICTIONS
+├── Variáveis de classe
+├── Parâmetros de método
+├── Retorno de método
+└── Catch blocks
+</div></section></section><section class="chapter"><h2 id="usos-comuns" data-toc="usos-comuns">Usos Comuns</h2><section class="chapter"><h3 id="loops" data-toc="loops">Loops</h3><div class="code-block" data-lang="java">
+// Iteração em collections
+for (var item : lista) {
+    System.out.println(item);
+}
+
+// Loop tradicional
+for (var i = 0; i &lt; 10; i++) {
+    // código
+}
+</div></section><section class="chapter"><h3 id="lambda" data-toc="lambda">Lambda</h3><div class="code-block" data-lang="java">
+// Com var em parâmetros (Java 11+)
+Consumer&lt;String&gt; consumer = (@NonNull var s) -&gt; 
+    System.out.println(s);
+</div></section><section class="chapter"><h3 id="try-with-resources" data-toc="try-with-resources">Try-with-resources</h3><div class="code-block" data-lang="java">
+try (var arquivo = new FileInputStream</div></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="type-casting.html" class="navigation-links__prev">Type Casting em Java</a><a href="operators.html" class="navigation-links__next">Operadores em Java</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

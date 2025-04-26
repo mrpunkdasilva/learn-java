@@ -78,7 +78,7 @@ public class NetRunner {
 
 2. Configure seu [Ambiente de Desenvolvimento](development-environment.html)
 
-3. Inicie sua jornada com [Java Básico](null)
+3. Inicie sua jornada com [Java Básico](java-basics.html)
 
 ## Status do Projeto
 
@@ -527,7 +527,7 @@ git --version
 
 * [Lógica de Programação Básica](learning-path.html)
 
-* [Introdução a Terminais](null)
+* [Introdução a Terminais](terminal-essentials.html)
 
 * [Git Fundamentals](git-basics.html)
 
@@ -781,7 +781,7 @@ CONQUISTAS
 
 * Evitar desafios
 
-[Começar Jornada](null)
+[Começar Jornada](java-basics.html)
 
 Tip:
 
@@ -975,7 +975,7 @@ public class EnvironmentTest {
 
 2. [Explorar Ferramentas](tools-overview.html)
 
-3. [Começar a Programar](null)
+3. [Começar a Programar](java-basics.html)
 
 ## Troubleshooting
 
@@ -1710,7 +1710,7 @@ MINIMUM SPECS
 
 3. [Básico do Git](git-basics.html)
 
-4. [Essenciais do Terminal](null)
+4. [Essenciais do Terminal](terminal-essentials.html)
 
 5. [Básico do Docker](docker-basics.html)
 
@@ -2496,11 +2496,222 @@ GUI OPTIONS
 
 * Estudar estratégias de branching
 
-[Essenciais do Terminal](null)
+[Essenciais do Terminal](terminal-essentials.html)
 
 Tip:
 
 "No submundo digital, o controle de versão é sua linha do tempo pessoal - cada commit é um checkpoint que você pode revisitar."
+
+
+
+# Essenciais do Terminal
+
+```
+TERMINAL MASTERY
+├── Básico
+├── Navegação
+├── Manipulação
+├── Processos
+└── Customização
+```
+
+## Comandos Fundamentais
+
+### Navegação
+
+```BASH
+# Listar arquivos
+ls
+ls -la
+
+# Mudar diretório
+cd path/to/dir
+cd ..
+cd ~
+
+# Mostrar diretório atual
+pwd
+```
+
+### Manipulação de Arquivos
+
+```BASH
+# Criar
+touch arquivo.txt
+mkdir pasta
+
+# Copiar
+cp origem destino
+cp -r pasta1 pasta2
+
+# Mover/Renomear
+mv origem destino
+
+# Remover
+rm arquivo.txt
+rm -r pasta
+```
+
+### Visualização
+
+```BASH
+# Ver conteúdo
+cat arquivo.txt
+less arquivo.txt
+head arquivo.txt
+tail arquivo.txt
+
+# Buscar
+grep "texto" arquivo.txt
+find . -name "*.java"
+```
+
+## Permissões
+
+### Gerenciamento
+
+```BASH
+# Visualizar
+ls -l
+
+# Modificar
+chmod +x script.sh
+chmod 755 arquivo
+
+# Mudar proprietário
+chown usuario:grupo arquivo
+```
+
+## Processos
+
+### Gerenciamento
+
+```BASH
+# Listar processos
+ps aux
+top
+
+# Background
+comando &
+bg
+fg
+
+# Terminar processo
+kill PID
+killall processo
+```
+
+## Redirecionamento
+
+### Input/Output
+
+```BASH
+# Redirecionamento
+comando > output.txt
+comando >> output.txt
+comando < input.txt
+
+# Pipes
+comando1 | comando2
+```
+
+## Ambiente
+
+### Variáveis
+
+```BASH
+# Exibir
+echo $PATH
+env
+
+# Definir
+export JAVA_HOME=/path/to/java
+```
+
+## Customização
+
+### Shell RC
+
+```BASH
+# .bashrc ou .zshrc
+alias ll='ls -la'
+alias gs='git status'
+
+# Path
+export PATH=$PATH:/novo/caminho
+```
+
+## Atalhos
+
+### Keyboard Shortcuts
+
+```
+SHORTCUTS
+├── Ctrl + C  (Cancelar)
+├── Ctrl + L  (Limpar)
+├── Ctrl + R  (Buscar histórico)
+├── Ctrl + A  (Início da linha)
+└── Ctrl + E  (Fim da linha)
+```
+
+## Scripts
+
+### Shell Scripts
+
+```BASH
+#!/bin/bash
+
+# Exemplo básico
+echo "Iniciando script..."
+for i in {1..5}; do
+    echo "Iteração $i"
+done
+```
+
+## Ferramentas Avançadas
+
+### Power Tools
+
+```
+POWER TOOLS
+├── tmux    (Terminal Multiplexer)
+├── vim     (Editor)
+├── htop    (Process Viewer)
+└── fzf     (Fuzzy Finder)
+```
+
+## Troubleshooting
+
+### Debug
+
+```BASH
+# Debug modo
+set -x
+
+# Verificar status
+echo $?
+
+# Ver logs
+tail -f /var/log/syslog
+```
+
+## Próximos Passos
+
+### Aprofundamento
+
+* Shell scripting avançado
+
+* Automação com cron
+
+* Terminal multiplexing
+
+* Customização avançada
+
+[Básico do Docker](docker-basics.html)
+
+Tip:
+
+"O terminal é sua interface direta com a Matrix - domine-o, e você controlará o sistema."
 
 
 
@@ -2882,11 +3093,1664 @@ COST CONTROL
 
 * Multi-Cloud Strategy
 
-[Começar com Java](null)
+[Começar com Java](java-basics.html)
 
 Tip:
 
 "A nuvem é a nova fronteira da Matrix - um território vasto de recursos virtualizados prontos para serem explorados."
+
+
+
+# Fundamentos Java
+
+```
+JAVA BASICS
+├── Estrutura
+├── Sintaxe
+├── Tipos
+├── Operadores
+└── Strings
+```
+
+## Estrutura de um Programa
+
+### Anatomia Básica
+
+```JAVA
+// Arquivo: HelloMatrix.java
+public class HelloMatrix {
+    public static void main(String[] args) {
+        System.out.println("Iniciando conexão com a Matrix...");
+    }
+}
+```
+
+### Componentes Principais
+
+```
+JAVA STRUCTURE
+├── Package Declaration
+├── Imports
+├── Class Declaration
+├── Fields
+└── Methods
+```
+
+## Convenções de Código
+
+### Nomenclatura
+
+```
+NAMING CONVENTIONS
+├── Classes        (PascalCase)
+├── Methods        (camelCase)
+├── Variables      (camelCase)
+├── Constants      (UPPER_SNAKE_CASE)
+└── Packages       (lowercase)
+```
+
+## Compilação e Execução
+
+### Processo
+
+```
+COMPILATION FLOW
+Source (.java) → Bytecode (.class) → JVM → Execution
+```
+
+### Comandos
+
+```BASH
+# Compilar
+javac HelloMatrix.java
+
+# Executar
+java HelloMatrix
+```
+
+## Estrutura de Arquivos
+
+### Organização
+
+```
+PROJECT STRUCTURE
+src/
+├── com/
+│   └── netrunner/
+│       └── core/
+│           └── HelloMatrix.java
+└── resources/
+    └── config.properties
+```
+
+## Comentários
+
+### Tipos
+
+```JAVA
+// Comentário de linha única
+
+/*
+   Comentário de
+   múltiplas linhas
+*/
+
+/**
+ * Documentação JavaDoc
+ * @author NetRunner
+ * @version 1.0
+ */
+```
+
+## Palavras-Chave
+
+### Keywords Principais
+
+```
+KEYWORDS
+├── Controle     (if, else, for, while)
+├── Modificadores (public, private, static)
+├── Tipos        (class, interface, enum)
+└── Outros       (new, return, this, super)
+```
+
+## Ambiente de Desenvolvimento
+
+### Ferramentas Essenciais
+
+```
+DEV ENVIRONMENT
+├── JDK
+├── IDE
+├── Build Tools
+└── Version Control
+```
+
+## Debug e Logs
+
+### Técnicas Básicas
+
+```JAVA
+// Print debugging
+System.out.println("Debug: " + variable);
+
+// Logging básico
+Logger logger = Logger.getLogger(HelloMatrix.class.getName());
+logger.info("Iniciando aplicação...");
+```
+
+## Boas Práticas
+
+### Princípios
+
+```
+BEST PRACTICES
+├── Clean Code
+├── DRY (Don't Repeat Yourself)
+├── KISS (Keep It Simple)
+└── SOLID Principles
+```
+
+## Próximos Passos
+
+### Tópicos Seguintes
+
+* Sintaxe detalhada
+
+* Variáveis e tipos
+
+* Operadores
+
+* Strings e manipulação
+
+* Projetos práticos
+
+[Sintaxe Java](syntax.html)
+
+Tip:
+
+"Java é como o código base da Matrix - estruturado, robusto e onipresente."
+
+## Subseções
+
+* [Sintaxe](syntax.html)
+
+* [Variáveis](variables.html)
+
+* [Operadores](operators.html)
+
+* [Strings](null)
+
+* [Projetos Básicos](null)
+
+
+
+# Sintaxe Java
+
+```
+SYNTAX STRUCTURE
+├── Declarações
+├── Blocos
+├── Expressões
+└── Statements
+```
+
+## Estrutura Básica
+
+### Classe
+
+```JAVA
+public class MatrixCode {
+    // Membros da classe aqui
+}
+```
+
+### Método
+
+```JAVA
+public void hackSystem() {
+    // Código do método aqui
+}
+```
+
+## Declarações
+
+### Variáveis
+
+```JAVA
+// Declaração simples
+tipo nome;
+
+// Declaração com inicialização
+tipo nome = valor;
+
+// Exemplos
+int contador = 0;
+String mensagem = "Conexão estabelecida";
+boolean sistemaBloqueado = false;
+```
+
+### Constantes
+
+```JAVA
+// Constante
+final double PI = 3.14159;
+
+// Constante estática
+public static final String VERSION = "1.0.0";
+```
+
+## Blocos de Código
+
+### Estrutura
+
+```JAVA
+{
+    // Bloco de código
+    // Pode conter múltiplas linhas
+}
+```
+
+### Escopo
+
+```JAVA
+public void exemplo() {
+    int x = 1; // Escopo do método
+    {
+        int y = 2; // Escopo do bloco
+        // y é acessível aqui
+    }
+    // y não é acessível aqui
+    // x é acessível em todo o método
+}
+```
+
+## Statements
+
+### Tipos
+
+```JAVA
+// Statement simples
+System.out.println("Executando...");
+
+// Statement composto
+if (status == "online") {
+    System.out.println("Conectado");
+    iniciarOperacao();
+}
+```
+
+## Expressões
+
+### Componentes
+
+```JAVA
+// Expressões aritméticas
+resultado = 10 + 5 * 2;
+
+// Expressões lógicas
+boolean acessoPermitido = nivel >= 5 && !bloqueado;
+
+// Expressões de string
+String nomeCompleto = nome + " " + sobrenome;
+```
+
+## Identificadores
+
+### Regras
+
+```
+IDENTIFIER RULES
+├── Começar com letra, $ ou _
+├── Pode conter números
+├── Case-sensitive
+└── Sem palavras reservadas
+```
+
+### Exemplos
+
+```JAVA
+// Válidos
+String usuarioNome;
+int _contador;
+double $taxa;
+
+// Inválidos
+int 123numero;     // Começa com número
+String class;      // Palavra reservada
+```
+
+## Palavras Reservadas
+
+### Keywords
+
+```
+RESERVED WORDS
+├── Tipos      (boolean, byte, char...)
+├── Controle   (if, else, for, while...)
+├── Acesso     (public, private, protected...)
+└── Outros     (new, return, this, super...)
+```
+
+## Separadores
+
+### Caracteres Especiais
+
+```
+SEPARATORS
+├── { }    Blocos
+├── [ ]    Arrays
+├── ( )    Parâmetros
+├── ;      Fim de statement
+├── ,      Separador
+└── .      Acesso a membros
+```
+
+## Convenções
+
+### Estilo de Código
+
+```
+CODE STYLE
+├── Classes        PascalCase
+├── Métodos        camelCase
+├── Variáveis      camelCase
+├── Constantes     UPPER_SNAKE_CASE
+└── Pacotes        lowercase
+```
+
+## Exemplos Práticos
+
+### Classe Completa
+
+```JAVA
+package com.netrunner.core;
+
+public class SecuritySystem {
+    private static final int MAX_ATTEMPTS = 3;
+    private int attemptCount;
+    
+    public SecuritySystem() {
+        this.attemptCount = 0;
+    }
+    
+    public boolean authenticate(String code) {
+        attemptCount++;
+        if (attemptCount > MAX_ATTEMPTS) {
+            lockSystem();
+            return false;
+        }
+        return validateCode(code);
+    }
+    
+    private void lockSystem() {
+        System.out.println("Sistema bloqueado!");
+    }
+    
+    private boolean validateCode(String code) {
+        return code.equals("MATRIX_1999");
+    }
+}
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Variáveis](variables.html)
+
+* [Operadores](operators.html)
+
+* [Estruturas de Controle](null)
+
+[Variáveis](variables.html)
+
+Tip:
+
+"A sintaxe é o protocolo que mantém a Matrix funcionando. Domine-a, e você dominará o sistema."
+
+
+
+# Variáveis em Java
+
+```
+VARIABLES
+├── Tipos Primitivos
+├── Tipos de Referência
+├── Type Casting
+└── Palavra-chave var
+```
+
+## Conceitos Básicos
+
+### Definição
+
+Uma variável é um local na memória que armazena dados. Em Java, toda variável tem:
+
+* Nome (identificador)
+
+* Tipo
+
+* Valor
+
+### Declaração
+
+```JAVA
+// Sintaxe básica
+tipoDaVariavel nomeDaVariavel;
+
+// Com inicialização
+tipoDaVariavel nomeDaVariavel = valor;
+```
+
+## Categorias Principais
+
+### Tipos Primitivos
+
+```
+PRIMITIVE TYPES
+├── Números Inteiros (byte, short, int, long)
+├── Números Decimais (float, double)
+├── Caractere (char)
+└── Booleano (boolean)
+```
+
+### Tipos de Referência
+
+```
+REFERENCE TYPES
+├── Classes
+├── Interfaces
+├── Arrays
+└── Enums
+```
+
+## Escopo
+
+### Níveis
+
+```
+SCOPE LEVELS
+├── Classe (campos)
+├── Método (variáveis locais)
+└── Bloco (variáveis de bloco)
+```
+
+### Exemplo
+
+```JAVA
+public class DataMatrix {
+    private int nivelAcesso; // Escopo de classe
+    
+    public void processarDados() {
+        int contador = 0; // Escopo de método
+        
+        for (int i = 0; i < 10; i++) { // i tem escopo de bloco
+            // código aqui
+        }
+    }
+}
+```
+
+## Modificadores
+
+### Constantes
+
+```JAVA
+// Constante de classe
+public static final int MAX_CONEXOES = 100;
+
+// Constante local
+final double PI = 3.14159;
+```
+
+### Variáveis Estáticas
+
+```JAVA
+public class Sistema {
+    static int contadorGlobal; // Compartilhada por todas instâncias
+    int contadorLocal; // Específica para cada instância
+}
+```
+
+## Boas Práticas
+
+### Nomenclatura
+
+```JAVA
+// Bom
+int userId;
+String firstName;
+boolean isActive;
+
+// Evitar
+int a;
+String x;
+boolean flag;
+```
+
+### Inicialização
+
+```JAVA
+// Valores padrão
+int numero; // 0
+boolean status; // false
+String texto; // null
+
+// Inicialização explícita (recomendado)
+int numero = 0;
+boolean status = false;
+String texto = "";
+```
+
+## Subseções
+
+* [Tipos Primitivos](primitive-types.html)
+
+* [Tipos de Referência](reference-types.html)
+
+* [Type Casting](type-casting.html)
+
+* [Palavra-chave var](var-keyword.html)
+
+[Tipos Primitivos](primitive-types.html)
+
+Tip:
+
+"Variáveis são como terminais na Matrix - pontos de acesso para manipular a realidade digital."
+
+
+
+# Tipos Primitivos
+
+```
+PRIMITIVE DATA TYPES
+├── Inteiros
+│   ├── byte  (8 bits)
+│   ├── short (16 bits)
+│   ├── int   (32 bits)
+│   └── long  (64 bits)
+├── Decimais
+│   ├── float  (32 bits)
+│   └── double (64 bits)
+├── Caractere
+│   └── char   (16 bits)
+└── Lógico
+    └── boolean (1 bit)
+```
+
+## Tipos Numéricos Inteiros
+
+### byte
+
+```JAVA
+// Range: -128 até 127
+byte nivelPoder = 100;
+byte codigoStatus = -50;
+```
+
+### short
+
+```JAVA
+// Range: -32,768 até 32,767
+short populacao = 30000;
+short temperatura = -200;
+```
+
+### int
+
+```JAVA
+// Range: -2^31 até 2^31-1
+int usuarios = 1000000;
+int pontuacao = 2147483647;
+```
+
+### long
+
+```JAVA
+// Range: -2^63 até 2^63-1
+long populacaoMundial = 7800000000L;
+long distanciaEspacial = 9223372036854775807L;
+```
+
+## Tipos Numéricos Decimais
+
+### float
+
+```JAVA
+// Precisão: 6-7 dígitos decimais
+float taxa = 19.99f;
+float temperatura = -273.15f;
+```
+
+### double
+
+```JAVA
+// Precisão: 15-16 dígitos decimais
+double pi = 3.141592653589793;
+double velocidadeLuz = 299792458.0;
+```
+
+## Tipo Caractere
+
+### char
+
+```JAVA
+// Unicode 16-bit
+char nivel = 'A';
+char simbolo = '$';
+char unicode = '\u0041'; // 'A'
+```
+
+## Tipo Booleano
+
+### boolean
+
+```JAVA
+// Valores: true ou false
+boolean sistemaAtivo = true;
+boolean acessoPermitido = false;
+```
+
+## Valores Padrão
+
+### Inicialização Automática
+
+```
+DEFAULT VALUES
+├── byte, short, int, long → 0
+├── float, double → 0.0
+├── char → '\u0000'
+└── boolean → false
+```
+
+## Limites e Constantes
+
+### Valores Máximos e Mínimos
+
+```JAVA
+// Constantes úteis
+byte maxByte = Byte.MAX_VALUE;    // 127
+int minInt = Integer.MIN_VALUE;   // -2147483648
+long maxLong = Long.MAX_VALUE;    // 9223372036854775807
+```
+
+## Literais Numéricos
+
+### Representações
+
+```JAVA
+// Decimal
+int decimal = 1234;
+
+// Hexadecimal
+int hexadecimal = 0xFF; // 255
+
+// Binário
+int binario = 0b1010; // 10
+
+// Octal
+int octal = 0757; // 495
+```
+
+## Separador de Dígitos
+
+### Uso do Underscore
+
+```JAVA
+// Melhorando legibilidade
+long cartaoCredito = 1234_5678_9012_3456L;
+int milhao = 1_000_000;
+```
+
+## Considerações de Performance
+
+### Escolha do Tipo
+
+```
+PERFORMANCE TIPS
+├── Use int para loops
+├── Prefira double a float
+├── byte/short para arrays grandes
+└── boolean para flags
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Tipos de Referência](reference-types.html)
+
+* [Type Casting](type-casting.html)
+
+* [Operadores](operators.html)
+
+[Tipos de Referência](reference-types.html)
+
+Tip:
+
+"Os tipos primitivos são como os átomos da Matrix - as unidades fundamentais que compõem toda a realidade digital."
+
+
+
+# Tamanhos dos Tipos de Dados
+
+## Visão Geral
+
+```
+MEMORY ALLOCATION
+├── Inteiros
+│   ├── byte  (8 bits  = 1 byte)
+│   ├── short (16 bits = 2 bytes)
+│   ├── int   (32 bits = 4 bytes)
+│   └── long  (64 bits = 8 bytes)
+├── Decimais
+│   ├── float  (32 bits = 4 bytes)
+│   └── double (64 bits = 8 bytes)
+├── Caractere
+│   └── char   (16 bits = 2 bytes)
+└── Lógico
+    └── boolean (1 bit, JVM usa 1 byte)
+```
+
+## Capacidade de Armazenamento
+
+### Inteiros
+
+```JAVA
+// byte (8 bits)
+// Range: -2^7 até 2^7-1
+// Range: -128 até 127
+byte minByte = -128;
+byte maxByte = 127;
+
+// short (16 bits)
+// Range: -2^15 até 2^15-1
+// Range: -32,768 até 32,767
+short minShort = -32768;
+short maxShort = 32767;
+
+// int (32 bits)
+// Range: -2^31 até 2^31-1
+// Range: -2,147,483,648 até 2,147,483,647
+int minInt = -2147483648;
+int maxInt = 2147483647;
+
+// long (64 bits)
+// Range: -2^63 até 2^63-1
+// Range: -9,223,372,036,854,775,808 até 9,223,372,036,854,775,807
+long minLong = -9223372036854775808L;
+long maxLong = 9223372036854775807L;
+```
+
+## Representação na Memória
+
+### Visualização dos Bits
+
+```
+BYTE REPRESENTATION (8 bits)
+├── Positivo: 0000 0001 = 1
+├── Negativo: 1111 1111 = -1
+└── Zero:     0000 0000 = 0
+```
+
+### Ponto Flutuante
+
+```
+FLOAT/DOUBLE FORMAT
+├── Sign bit (1 bit)
+├── Exponent (8/11 bits)
+└── Mantissa (23/52 bits)
+```
+
+## Impacto na Performance
+
+### Uso de Memória
+
+```
+MEMORY USAGE
+├── Arrays de 1000 elementos
+│   ├── byte[]  = 1000 bytes
+│   ├── short[] = 2000 bytes
+│   ├── int[]   = 4000 bytes
+│   └── long[]  = 8000 bytes
+```
+
+### Escolha do Tipo
+
+```
+SELECTION CRITERIA
+├── Pequenos números → byte/short
+├── Uso geral → int
+├── Números grandes → long
+├── Precisão decimal → double
+└── Economia de memória → tipos menores
+```
+
+## Considerações Práticas
+
+### Quando Usar Cada Tamanho
+
+```
+USE CASES
+├── byte
+│   ├── Valores de status (-128 a 127)
+│   └── Arrays grandes com valores pequenos
+├── short
+│   ├── Ano (ex: 2024)
+│   └── Códigos de erro
+├── int
+│   ├── Contadores
+│   └── Índices
+└── long
+    ├── IDs únicos
+    └── Timestamps
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Tipos Primitivos](primitive-types.html)
+
+* [Type Casting](type-casting.html)
+
+* [Operadores](operators.html)
+
+[Tipos Primitivos](primitive-types.html)
+
+Tip:
+
+"Cada bit é como um pulso na Matrix - precisamos entender seu tamanho e capacidade para otimizar nosso código."
+
+
+
+# Tipos de Referência
+
+```
+REFERENCE TYPES
+├── Classes
+├── Interfaces
+├── Arrays
+└── Enums
+```
+
+## Classes
+
+### Definição e Uso
+
+```JAVA
+// Declaração
+String mensagem = new String("Conexão estabelecida");
+StringBuilder buffer = new StringBuilder();
+
+// Null é permitido
+String dados = null;
+```
+
+### Classes Comuns
+
+```JAVA
+// Wrapper classes
+Integer numero = 42;
+Double valor = 3.14;
+Boolean flag = true;
+
+// Utilitários
+Date data = new Date();
+Random gerador = new Random();
+```
+
+## Arrays
+
+### Declaração e Inicialização
+
+```JAVA
+// Arrays unidimensionais
+int[] numeros = new int[5];
+String[] comandos = {"LOGIN", "EXECUTE", "LOGOUT"};
+
+// Arrays multidimensionais
+int[][] matriz = new int[3][3];
+```
+
+### Manipulação
+
+```JAVA
+// Acessando elementos
+int primeiro = numeros[0];
+
+// Modificando elementos
+numeros[1] = 42;
+
+// Comprimento
+int tamanho = numeros.length;
+```
+
+## Enums
+
+### Definição
+
+```JAVA
+public enum NivelAcesso {
+    ADMIN,
+    USUARIO,
+    CONVIDADO
+}
+```
+
+### Uso
+
+```JAVA
+NivelAcesso nivel = NivelAcesso.ADMIN;
+
+switch (nivel) {
+    case ADMIN:
+        System.out.println("Acesso total");
+        break;
+    case USUARIO:
+        System.out.println("Acesso parcial");
+        break;
+    case CONVIDADO:
+        System.out.println("Acesso limitado");
+        break;
+}
+```
+
+## Interfaces
+
+### Implementação
+
+```JAVA
+public interface Conexao {
+    void conectar();
+    void desconectar();
+}
+
+public class ConexaoSegura implements Conexao {
+    @Override
+    public void conectar() {
+        // Implementação
+    }
+
+    @Override
+    public void desconectar() {
+        // Implementação
+    }
+}
+```
+
+## Diferenças dos Primitivos
+
+### Características
+
+```
+REFERENCE VS PRIMITIVE
+├── Armazenamento (Heap vs Stack)
+├── Null permitido
+├── Métodos disponíveis
+└── Overhead de memória
+```
+
+### Exemplo
+
+```JAVA
+// Primitivo
+int x = 10;
+
+// Referência
+Integer y = 10;
+y.toString(); // Métodos disponíveis
+y = null; // Permitido
+```
+
+## Garbage Collection
+
+### Ciclo de Vida
+
+```
+OBJECT LIFECYCLE
+├── Criação (new)
+├── Referenciação
+├── Desreferenciação
+└── Coleta de lixo
+```
+
+### Exemplo
+
+```JAVA
+String texto = new String("temp"); // Objeto criado
+texto = null; // Objeto elegível para GC
+```
+
+## Collections Framework
+
+### Tipos Principais
+
+```JAVA
+// List
+List<String> lista = new ArrayList<>();
+
+// Set
+Set<Integer> conjunto = new HashSet<>();
+
+// Map
+Map<String, Integer> mapa = new HashMap<>();
+```
+
+## Boas Práticas
+
+### Recomendações
+
+```
+BEST PRACTICES
+├── Inicialize referências
+├── Use interfaces apropriadas
+├── Verifique null
+└── Libere recursos
+```
+
+### Exemplo
+
+```JAVA
+// Verificação de null
+if (objeto != null) {
+    objeto.metodo();
+}
+
+// Try-with-resources
+try (Scanner scanner = new Scanner(System.in)) {
+    // Uso do scanner
+}
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Type Casting](type-casting.html)
+
+* [Palavra-chave var](var-keyword.html)
+
+* [Collections](null)
+
+[Type Casting](type-casting.html)
+
+Tip:
+
+"Os tipos de referência são como os programas da Matrix - entidades complexas que manipulam a realidade digital."
+
+
+
+# Type Casting em Java
+
+```
+TYPE CASTING
+├── Implícito (Widening)
+├── Explícito (Narrowing)
+├── Referência
+└── Autoboxing/Unboxing
+```
+
+## Casting Implícito
+
+### Widening Casting
+
+```
+WIDENING PATH
+byte → short → int → long → float → double
+        char ↗
+```
+
+### Exemplos
+
+```JAVA
+// Conversões automáticas
+byte byteNum = 100;
+int intNum = byteNum; // byte para int
+
+int intValue = 10;
+double doubleValue = intNum; // int para double
+```
+
+## Casting Explícito
+
+### Narrowing Casting
+
+```
+NARROWING PATH
+double → float → long → int → short → byte
+                        ↘ char
+```
+
+### Exemplos
+
+```JAVA
+// Conversões manuais
+double doubleNum = 9.78;
+int intNum = (int) doubleNum; // double para int
+
+int largeNum = 130;
+byte byteNum = (byte) largeNum; // int para byte
+```
+
+## Casting de Referência
+
+### Upcasting
+
+```JAVA
+// Classe pai para filho
+class Animal {}
+class Gato extends Animal {}
+
+Animal animal = new Gato(); // Upcast automático
+```
+
+### Downcasting
+
+```JAVA
+// Filho para pai (requer verificação)
+Animal animal = new Gato();
+if (animal instanceof Gato) {
+    Gato gato = (Gato) animal; // Downcast explícito
+}
+```
+
+## Autoboxing e Unboxing
+
+### Autoboxing
+
+```JAVA
+// Primitivo para Wrapper
+int primitivo = 42;
+Integer wrapper = primitivo; // Autoboxing
+```
+
+### Unboxing
+
+```JAVA
+// Wrapper para primitivo
+Integer wrapper = 42;
+int primitivo = wrapper; // Unboxing
+```
+
+## Verificações de Tipo
+
+### instanceof
+
+```JAVA
+Object obj = "teste";
+if (obj instanceof String) {
+    String str = (String) obj;
+    System.out.println(str.length());
+}
+```
+
+### Pattern Matching (Java 16+)
+
+```JAVA
+Object obj = "teste";
+if (obj instanceof String str) {
+    System.out.println(str.length());
+}
+```
+
+## Conversões Comuns
+
+### String Conversions
+
+```JAVA
+// String para número
+String strNum = "42";
+int num = Integer.parseInt(strNum);
+double dNum = Double.parseDouble("3.14");
+
+// Número para String
+String str1 = String.valueOf(42);
+String str2 = Integer.toString(42);
+```
+
+## Perda de Dados
+
+### Exemplos
+
+```JAVA
+// Perda de precisão
+int x = 128;
+byte b = (byte) x; // Overflow: -128
+
+double pi = 3.14159;
+int iPi = (int) pi; // Truncado: 3
+```
+
+## Boas Práticas
+
+### Recomendações
+
+```
+CASTING GUIDELINES
+├── Prefira casting implícito
+├── Verifique antes de downcast
+├── Evite casting numérico arriscado
+└── Use métodos de conversão apropriados
+```
+
+### Exemplo Seguro
+
+```JAVA
+// Verificação de range
+long longValue = 42L;
+if (longValue >= Integer.MIN_VALUE && 
+    longValue <= Integer.MAX_VALUE) {
+    int intValue = (int) longValue;
+}
+```
+
+## Casos Especiais
+
+### Char Casting
+
+```JAVA
+// Char para número
+char ch = 'A';
+int ascii = ch; // 65
+
+// Número para char
+int num = 66;
+char character = (char) num; // 'B'
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Palavra-chave var](var-keyword.html)
+
+* [Operadores](operators.html)
+
+* [Tipos de Dados](variables.html)
+
+[Palavra-chave var](var-keyword.html)
+
+Tip:
+
+"O type casting é como hackear a Matrix - transformando dados de uma forma para outra."
+
+
+
+# Palavra-chave var
+
+```
+VAR KEYWORD
+├── Inferência de Tipo
+├── Restrições
+├── Usos Comuns
+└── Boas Práticas
+```
+
+## Introdução
+
+### O que é var?
+
+```JAVA
+// Inferência de tipo local
+var mensagem = "Conexão estabelecida";
+var contador = 0;
+var lista = new ArrayList<String>();
+```
+
+## Inferência de Tipo
+
+### Como Funciona
+
+```JAVA
+// O compilador infere o tipo
+var numero = 42; // int
+var texto = "Matrix"; // String
+var decimal = 3.14; // double
+```
+
+### Tipos Inferidos
+
+```JAVA
+// Tipos complexos
+var mapa = new HashMap<String, Integer>();
+var executor = Executors.newFixedThreadPool(10);
+var padrao = Pattern.compile("\\w+");
+```
+
+## Restrições
+
+### Onde Não Usar
+
+```JAVA
+// Não permitido:
+var campo; // Sem inicialização
+var = "valor"; // Sem nome
+var[] array = new int[10]; // Arrays
+var método() { } // Retorno de método
+```
+
+### Limitações
+
+```
+RESTRICTIONS
+├── Variáveis de classe
+├── Parâmetros de método
+├── Retorno de método
+└── Catch blocks
+```
+
+## Usos Comuns
+
+### Loops
+
+```JAVA
+// Iteração em collections
+for (var item : lista) {
+    System.out.println(item);
+}
+
+// Loop tradicional
+for (var i = 0; i < 10; i++) {
+    // código
+}
+```
+
+### Lambda
+
+```JAVA
+// Com var em parâmetros (Java 11+)
+Consumer<String> consumer = (@NonNull var s) -> 
+    System.out.println(s);
+```
+
+### Try-with-resources
+
+```JAVA
+try (var arquivo = new FileInputStream
+```
+
+
+
+# Operadores em Java
+
+## Visão Geral
+
+```
+OPERATOR TYPES
+├── Aritméticos (+, -, *, /, %)
+├── Lógicos (&&, ||, !)
+└── Bit a Bit (&, |, ^, ~, <<, >>, >>>)
+```
+
+## Categorias Principais
+
+### Classificação
+
+```
+OPERATOR CATEGORIES
+├── Unários (++, --, !, ~)
+├── Binários (+, -, *, /, &, |)
+└── Ternário (?:)
+```
+
+## Precedência
+
+### Ordem de Execução
+
+```
+PRECEDENCE ORDER
+├── Unários (++, --, !)
+├── Multiplicativos (*, /, %)
+├── Aditivos (+, -)
+├── Shift (<<, >>, >>>)
+├── Relacionais (<, >, <=, >=)
+├── Igualdade (==, !=)
+├── Bit a Bit (&, ^, |)
+├── Lógicos (&&, ||)
+└── Atribuição (=, +=, -=, etc)
+```
+
+## Próximos Passos
+
+### Tópicos Detalhados
+
+* [Operadores Aritméticos](arithmetic.html)
+
+* [Operadores Lógicos](logical.html)
+
+* [Operadores Bit a Bit](bitwise.html)
+
+[Operadores Aritméticos](arithmetic.html)
+
+Tip:
+
+"Os operadores são como os comandos básicos da Matrix - eles transformam e manipulam os dados em sua forma mais fundamental."
+
+
+
+# Operadores Aritméticos
+
+## Operadores Básicos
+
+### Operações Fundamentais
+
+```JAVA
+// Adição
+int soma = 5 + 3;        // 8
+
+// Subtração
+int diferenca = 10 - 4;  // 6
+
+// Multiplicação
+int produto = 3 * 4;     // 12
+
+// Divisão
+int quociente = 15 / 3;  // 5
+
+// Módulo (resto)
+int resto = 17 % 5;      // 2
+```
+
+## Incremento e Decremento
+
+### Pré e Pós
+
+```JAVA
+int x = 5;
+int y = ++x;  // x = 6, y = 6 (pré-incremento)
+int z = x++;  // z = 6, x = 7 (pós-incremento)
+
+int a = 5;
+int b = --a;  // a = 4, b = 4 (pré-decremento)
+int c = a--;  // c = 4, a = 3 (pós-decremento)
+```
+
+## Operadores Compostos
+
+### Atribuição com Operação
+
+```JAVA
+int valor = 10;
+valor += 5;   // valor = valor + 5
+valor -= 3;   // valor = valor - 3
+valor *= 2;   // valor = valor * 2
+valor /= 4;   // valor = valor / 4
+valor %= 3;   // valor = valor % 3
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Operadores Lógicos](logical.html)
+
+* [Operadores Bit a Bit](bitwise.html)
+
+* [Expressões](null)
+
+[Operadores Lógicos](logical.html)
+
+
+
+# Operadores Lógicos
+
+## Operadores Básicos
+
+### Booleanos
+
+```JAVA
+// AND lógico (&&)
+boolean and = true && false;  // false
+
+// OR lógico (||)
+boolean or = true || false;   // true
+
+// NOT lógico (!)
+boolean not = !true;         // false
+```
+
+## Curto-Circuito
+
+### Avaliação Otimizada
+
+```JAVA
+// AND com curto-circuito
+if (obj != null && obj.getValue() > 0) {
+    // Segundo termo só é avaliado se obj != null
+}
+
+// OR com curto-circuito
+if (cache.containsKey(key) || loadFromDatabase()) {
+    // loadFromDatabase() só é chamado se necessário
+}
+```
+
+## Operadores Bit a Bit Booleanos
+
+### Operações sem Curto-Circuito
+
+```JAVA
+// AND bit a bit (&)
+boolean bitwiseAnd = true & false;
+
+// OR bit a bit (|)
+boolean bitwiseOr = true | false;
+
+// XOR bit a bit (^)
+boolean xor = true ^ false;
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Operadores Bit a Bit](bitwise.html)
+
+* [Estruturas Condicionais](null)
+
+* [Expressões Booleanas](null)
+
+[Operadores Bit a Bit](bitwise.html)
+
+
+
+# Operadores Bit a Bit
+
+## Operadores Básicos
+
+### Manipulação de Bits
+
+```JAVA
+// AND bit a bit (&)
+int and = 12 & 5;   // 1100 & 0101 = 0100 (4)
+
+// OR bit a bit (|)
+int or = 12 | 5;    // 1100 | 0101 = 1101 (13)
+
+// XOR bit a bit (^)
+int xor = 12 ^ 5;   // 1100 ^ 0101 = 1001 (9)
+
+// NOT bit a bit (~)
+int not = ~12;      // ~1100 = ...11110011
+```
+
+## Operadores de Deslocamento
+
+### Shift de Bits
+
+```JAVA
+// Shift left (<<)
+int left = 8 << 2;    // 1000 -> 100000 (32)
+
+// Shift right (>>)
+int right = 8 >> 2;   // 1000 -> 0010 (2)
+
+// Shift right sem sinal (>>>)
+int unsignedRight = -8 >>> 2;  // Preenche com 0
+```
+
+## Aplicações Práticas
+
+### Uso Comum
+
+```JAVA
+// Flags de bit
+int FLAG_READ = 1;     // 0001
+int FLAG_WRITE = 2;    // 0010
+int FLAG_EXECUTE = 4;  // 0100
+
+// Combinando flags
+int permissions = FLAG_READ | FLAG_WRITE;  // 0011
+
+// Verificando flags
+boolean canRead = (permissions & FLAG_READ) != 0;
+```
+
+### Otimizações
+
+```JAVA
+// Multiplicação por 2
+int multiply = num << 1;  // Equivalente a num * 2
+
+// Divisão por 2
+int divide = num >> 1;    // Equivalente a num / 2
+
+// Alternância de bit
+int toggleBit = num ^ (1 << position);
+```
+
+## Máscaras de Bits
+
+### Técnicas de Mascaramento
+
+```JAVA
+// Máscara para últimos 8 bits
+int mask = 0xFF;
+
+// Aplicando máscara
+int lastByte = number & mask;
+
+// Limpando bits
+int clearBits = number & ~mask;
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Tipos Primitivos](primitive-types.html)
+
+* [Operadores Lógicos](logical.html)
+
+* [Manipulação de Bits](null)
+
+[Tipos Primitivos](primitive-types.html)
+
+Tip:
+
+"Os operadores bit a bit são como os comandos de baixo nível da Matrix - manipulando a realidade digital bit por bit."
 
 
 

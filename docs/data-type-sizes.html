@@ -1,0 +1,92 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-26T16:23:53.225736224"><title>Tamanhos dos Tipos de Dados | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"capacidade-de-armazenamento","level":0,"title":"Capacidade de Armazenamento","anchor":"#capacidade-de-armazenamento"},{"id":"representa-o-na-mem-ria","level":0,"title":"Representação na Memória","anchor":"#representa-o-na-mem-ria"},{"id":"impacto-na-performance","level":0,"title":"Impacto na Performance","anchor":"#impacto-na-performance"},{"id":"considera-es-pr-ticas","level":0,"title":"Considerações Práticas","anchor":"#considera-es-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Tamanhos dos Tipos de Dados | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/data-type-sizes.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Tamanhos dos Tipos de Dados | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/data-type-sizes.html#webpage",
+    "url": "writerside-documentation/java/1.0/data-type-sizes.html",
+    "name": "Tamanhos dos Tipos de Dados | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="data-type-sizes" data-main-title="Tamanhos dos Tipos de Dados" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="java-basics.md|Fundamentos Java///variables.md|Variáveis em Java"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="data-type-sizes" id="data-type-sizes.md">Tamanhos dos Tipos de Dados</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><div class="code-block" data-lang="none">
+MEMORY ALLOCATION
+├── Inteiros
+│   ├── byte  (8 bits  = 1 byte)
+│   ├── short (16 bits = 2 bytes)
+│   ├── int   (32 bits = 4 bytes)
+│   └── long  (64 bits = 8 bytes)
+├── Decimais
+│   ├── float  (32 bits = 4 bytes)
+│   └── double (64 bits = 8 bytes)
+├── Caractere
+│   └── char   (16 bits = 2 bytes)
+└── Lógico
+    └── boolean (1 bit, JVM usa 1 byte)
+</div></section><section class="chapter"><h2 id="capacidade-de-armazenamento" data-toc="capacidade-de-armazenamento">Capacidade de Armazenamento</h2><section class="chapter"><h3 id="inteiros" data-toc="inteiros">Inteiros</h3><div class="code-block" data-lang="java">
+// byte (8 bits)
+// Range: -2^7 até 2^7-1
+// Range: -128 até 127
+byte minByte = -128;
+byte maxByte = 127;
+
+// short (16 bits)
+// Range: -2^15 até 2^15-1
+// Range: -32,768 até 32,767
+short minShort = -32768;
+short maxShort = 32767;
+
+// int (32 bits)
+// Range: -2^31 até 2^31-1
+// Range: -2,147,483,648 até 2,147,483,647
+int minInt = -2147483648;
+int maxInt = 2147483647;
+
+// long (64 bits)
+// Range: -2^63 até 2^63-1
+// Range: -9,223,372,036,854,775,808 até 9,223,372,036,854,775,807
+long minLong = -9223372036854775808L;
+long maxLong = 9223372036854775807L;
+</div></section></section><section class="chapter"><h2 id="representa-o-na-mem-ria" data-toc="representa-o-na-mem-ria">Representa&ccedil;&atilde;o na Mem&oacute;ria</h2><section class="chapter"><h3 id="visualiza-o-dos-bits" data-toc="visualiza-o-dos-bits">Visualiza&ccedil;&atilde;o dos Bits</h3><div class="code-block" data-lang="none">
+BYTE REPRESENTATION (8 bits)
+├── Positivo: 0000 0001 = 1
+├── Negativo: 1111 1111 = -1
+└── Zero:     0000 0000 = 0
+</div></section><section class="chapter"><h3 id="ponto-flutuante" data-toc="ponto-flutuante">Ponto Flutuante</h3><div class="code-block" data-lang="none">
+FLOAT/DOUBLE FORMAT
+├── Sign bit (1 bit)
+├── Exponent (8/11 bits)
+└── Mantissa (23/52 bits)
+</div></section></section><section class="chapter"><h2 id="impacto-na-performance" data-toc="impacto-na-performance">Impacto na Performance</h2><section class="chapter"><h3 id="uso-de-mem-ria" data-toc="uso-de-mem-ria">Uso de Mem&oacute;ria</h3><div class="code-block" data-lang="none">
+MEMORY USAGE
+├── Arrays de 1000 elementos
+│   ├── byte[]  = 1000 bytes
+│   ├── short[] = 2000 bytes
+│   ├── int[]   = 4000 bytes
+│   └── long[]  = 8000 bytes
+</div></section><section class="chapter"><h3 id="escolha-do-tipo" data-toc="escolha-do-tipo">Escolha do Tipo</h3><div class="code-block" data-lang="none">
+SELECTION CRITERIA
+├── Pequenos números → byte/short
+├── Uso geral → int
+├── Números grandes → long
+├── Precisão decimal → double
+└── Economia de memória → tipos menores
+</div></section></section><section class="chapter"><h2 id="considera-es-pr-ticas" data-toc="considera-es-pr-ticas">Considera&ccedil;&otilde;es Pr&aacute;ticas</h2><section class="chapter"><h3 id="quando-usar-cada-tamanho" data-toc="quando-usar-cada-tamanho">Quando Usar Cada Tamanho</h3><div class="code-block" data-lang="none">
+USE CASES
+├── byte
+│   ├── Valores de status (-128 a 127)
+│   └── Arrays grandes com valores pequenos
+├── short
+│   ├── Ano (ex: 2024)
+│   └── Códigos de erro
+├── int
+│   ├── Contadores
+│   └── Índices
+└── long
+    ├── IDs únicos
+    └── Timestamps
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="t-picos-relacionados" data-toc="t-picos-relacionados">T&oacute;picos Relacionados</h3><ul class="list _bullet" id="rr5jfq_23"><li class="list__item" id="rr5jfq_27"><p id="rr5jfq_30"><a href="primitive-types.html" id="rr5jfq_31" data-tooltip="Tipos de Referência">Tipos Primitivos</a></p></li><li class="list__item" id="rr5jfq_28"><p id="rr5jfq_32"><a href="type-casting.html" id="rr5jfq_33" data-tooltip="Palavra-chave var">Type Casting</a></p></li><li class="list__item" id="rr5jfq_29"><p id="rr5jfq_34"><a href="operators.html" id="rr5jfq_35" data-tooltip="Operadores Aritméticos">Operadores</a></p></li></ul><p id="rr5jfq_24"><a href="primitive-types.html" id="rr5jfq_36" data-tooltip="Tipos de Referência">Tipos Primitivos</a></p><aside class="prompt" data-type="tip" data-title="" id="rr5jfq_26"><p id="rr5jfq_37">&quot;Cada bit &eacute; como um pulso na Matrix - precisamos entender seu tamanho e capacidade para otimizar nosso c&oacute;digo.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="primitive-types.html" class="navigation-links__prev">Tipos Primitivos</a><a href="reference-types.html" class="navigation-links__next">Tipos de Refer&ecirc;ncia</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -28,6 +28,7 @@
         <toc-element topic="syntax.md"/>
         <toc-element topic="variables.md">
             <toc-element topic="primitive-types.md"/>
+            <toc-element topic="data-type-sizes.md"/>
             <toc-element topic="reference-types.md"/>
             <toc-element topic="type-casting.md"/>
             <toc-element topic="var-keyword.md"/>
