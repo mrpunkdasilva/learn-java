@@ -1,0 +1,207 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-27T16:08:34.188793882"><title>Data Processor | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"objetivos","level":0,"title":"Objetivos","anchor":"#objetivos"},{"id":"implementa-o","level":0,"title":"Implementação","anchor":"#implementa-o"},{"id":"desafios-de-implementa-o","level":0,"title":"Desafios de Implementação","anchor":"#desafios-de-implementa-o"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Data Processor | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/data-processor.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Data Processor | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/data-processor.html#webpage",
+    "url": "writerside-documentation/java/1.0/data-processor.html",
+    "name": "Data Processor | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="data-processor" data-main-title="Data Processor" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="advanced-features.md///advanced-projects.md|Projetos Avançados"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="data-processor" id="data-processor.md">Data Processor</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="nt8neb_9">O Data Processor &eacute; um projeto avan&ccedil;ado que demonstra o uso de anota&ccedil;&otilde;es personalizadas para criar um sistema flex&iacute;vel de processamento de dados.</p></section><section class="chapter"><h2 id="objetivos" data-toc="objetivos">Objetivos</h2><ul class="list _bullet" id="nt8neb_10"><li class="list__item" id="nt8neb_11"><p id="nt8neb_15">Implementar um sistema de valida&ccedil;&atilde;o baseado em anota&ccedil;&otilde;es</p></li><li class="list__item" id="nt8neb_12"><p id="nt8neb_16">Criar transformadores de dados customiz&aacute;veis</p></li><li class="list__item" id="nt8neb_13"><p id="nt8neb_17">Desenvolver um pipeline de processamento configur&aacute;vel</p></li><li class="list__item" id="nt8neb_14"><p id="nt8neb_18">Suportar diferentes formatos e fontes de dados</p></li></ul></section><section class="chapter"><h2 id="implementa-o" data-toc="implementa-o">Implementa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-anota-es-base" data-toc="1-anota-es-base">1. Anota&ccedil;&otilde;es Base</h3><div class="code-block" data-lang="java">
+// Anotação principal para marcar classes processáveis
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface DataProcessor {
+    String value() default &quot;&quot;;
+    String version() default &quot;1.0&quot;;
+    ProcessingMode mode() default ProcessingMode.SYNC;
+    
+    public enum ProcessingMode {
+        SYNC, ASYNC, BATCH
+    }
+}
+
+// Anotação para validação de campos
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Validate {
+    String pattern() default &quot;&quot;;
+    boolean required() default true;
+    int minLength() default 0;
+    int maxLength() default Integer.MAX_VALUE;
+    String message() default &quot;&quot;;
+}
+
+// Anotação para transformação de dados
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Transform {
+    Class&lt;? extends DataTransformer&lt;?&gt;&gt; transformer();
+    String[] params() default {};
+}
+
+// Anotação para persistência
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Persist {
+    String strategy() default &quot;DEFAULT&quot;;
+    boolean async() default false;
+}
+</div></section><section class="chapter"><h3 id="2-interfaces-base" data-toc="2-interfaces-base">2. Interfaces Base</h3><div class="code-block" data-lang="java">
+// Interface para transformadores de dados
+public interface DataTransformer&lt;T&gt; {
+    T transform(T input, String... params);
+}
+
+// Interface para validadores
+public interface DataValidator {
+    boolean validate(Object value, Validate annotation);
+    String getErrorMessage();
+}
+
+// Interface para persistência
+public interface DataPersister {
+    void persist(Object data, Persist annotation);
+    Object retrieve(String id, Class&lt;?&gt; type);
+}
+</div></section><section class="chapter"><h3 id="3-implementa-es-principais" data-toc="3-implementa-es-principais">3. Implementa&ccedil;&otilde;es Principais</h3><div class="code-block" data-lang="java">
+// Processador principal
+public class DataProcessorEngine {
+    private final Map&lt;Class&lt;?&gt;, DataValidator&gt; validators;
+    private final Map&lt;Class&lt;?&gt;, DataTransformer&lt;?&gt;&gt; transformers;
+    private final Map&lt;String, DataPersister&gt; persisters;
+
+    public &lt;T&gt; ProcessingResult&lt;T&gt; process(T data) {
+        Class&lt;?&gt; dataClass = data.getClass();
+        
+        if (!dataClass.isAnnotationPresent(DataProcessor.class)) {
+            throw new IllegalArgumentException(&quot;Class not annotated with @DataProcessor&quot;);
+        }
+
+        ProcessingResult&lt;T&gt; result = new ProcessingResult&lt;&gt;();
+        
+        // Validação
+        validateFields(data, result);
+        
+        if (!result.isValid()) {
+            return result;
+        }
+
+        // Transformação
+        T transformed = transformFields(data);
+        
+        // Persistência
+        persistFields(transformed);
+
+        result.setProcessedData(transformed);
+        return result;
+    }
+
+    private &lt;T&gt; void validateFields(T data, ProcessingResult&lt;T&gt; result) {
+        // Implementação da validação
+    }
+
+    private &lt;T&gt; T transformFields(T data) {
+        // Implementação da transformação
+    }
+
+    private &lt;T&gt; void persistFields(T data) {
+        // Implementação da persistência
+    }
+}
+</div></section><section class="chapter"><h3 id="4-implementa-es-de-transformadores" data-toc="4-implementa-es-de-transformadores">4. Implementa&ccedil;&otilde;es de Transformadores</h3><div class="code-block" data-lang="java">
+// Transformador de criptografia
+public class EncryptTransformer implements DataTransformer&lt;String&gt; {
+    @Override
+    public String transform(String input, String... params) {
+        // Implementação da criptografia
+        return encrypt(input, params[0]); // params[0] = chave de criptografia
+    }
+
+    private String encrypt(String data, String key) {
+        // Lógica de criptografia
+        return /* dados criptografados */;
+    }
+}
+
+// Transformador de formatação de data
+public class DateFormatTransformer implements DataTransformer&lt;Date&gt; {
+    @Override
+    public Date transform(Date input, String... params) {
+        String pattern = params[0]; // formato da data
+        // Implementação da formatação
+        return /* data formatada */;
+    }
+}
+</div></section><section class="chapter"><h3 id="5-exemplo-de-uso" data-toc="5-exemplo-de-uso">5. Exemplo de Uso</h3><div class="code-block" data-lang="java">
+@DataProcessor(
+    value = &quot;userProcessor&quot;,
+    version = &quot;1.0&quot;,
+    mode = ProcessingMode.ASYNC
+)
+public class UserData {
+    @Validate(
+        pattern = &quot;^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$&quot;,
+        message = &quot;Email inválido&quot;
+    )
+    private String email;
+    
+    @Transform(transformer = EncryptTransformer.class)
+    @Validate(required = true, minLength = 8)
+    private String password;
+    
+    @Transform(
+        transformer = DateFormatTransformer.class,
+        params = &quot;yyyy-MM-dd&quot;
+    )
+    private Date birthDate;
+    
+    @Persist(strategy = &quot;JDBC&quot;, async = true)
+    private UserProfile profile;
+
+    // Getters e Setters
+}
+
+// Uso do processador
+public class UserService {
+    private final DataProcessorEngine processor;
+
+    public void registerUser(UserData userData) {
+        ProcessingResult&lt;UserData&gt; result = processor.process(userData);
+        
+        if (result.isValid()) {
+            // Usuário processado com sucesso
+            UserData processedData = result.getProcessedData();
+            // Continuar com o fluxo
+        } else {
+            // Tratar erros de validação
+            List&lt;String&gt; errors = result.getErrors();
+            // Tratamento de erros
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="desafios-de-implementa-o" data-toc="desafios-de-implementa-o">Desafios de Implementa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-valida-o-ass-ncrona" data-toc="1-valida-o-ass-ncrona">1. Valida&ccedil;&atilde;o Ass&iacute;ncrona</h3><p id="nt8neb_32">Implementar suporte a valida&ccedil;&otilde;es ass&iacute;ncronas para campos que requerem verifica&ccedil;&otilde;es externas.</p><div class="code-block" data-lang="java">
+@Validate(async = true, validator = EmailExistsValidator.class)
+private String email;
+</div></section><section class="chapter"><h3 id="2-pipeline-customiz-vel" data-toc="2-pipeline-customiz-vel">2. Pipeline Customiz&aacute;vel</h3><p id="nt8neb_34">Criar um sistema de pipeline onde a ordem de processamento pode ser configurada.</p><div class="code-block" data-lang="java">
+@DataProcessor(
+    pipeline = {
+        @Stage(type = VALIDATION, order = 1),
+        @Stage(type = TRANSFORMATION, order = 2),
+        @Stage(type = PERSISTENCE, order = 3)
+    }
+)
+</div></section><section class="chapter"><h3 id="3-transforma-es-compostas" data-toc="3-transforma-es-compostas">3. Transforma&ccedil;&otilde;es Compostas</h3><p id="nt8neb_36">Permitir m&uacute;ltiplas transforma&ccedil;&otilde;es em sequ&ecirc;ncia para um mesmo campo.</p><div class="code-block" data-lang="java">
+@Transform({
+    @SingleTransform(transformer = TrimTransformer.class),
+    @SingleTransform(transformer = LowerCaseTransformer.class),
+    @SingleTransform(transformer = EncryptTransformer.class)
+})
+private String data;
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="nt8neb_38" type="1"><li class="list__item" id="nt8neb_39"><p id="nt8neb_42"><span class="control" id="nt8neb_44">Otimiza&ccedil;&otilde;es</span></p><ul class="list _bullet" id="nt8neb_43"><li class="list__item" id="nt8neb_45"><p id="nt8neb_48">Implementar cache de reflex&atilde;o</p></li><li class="list__item" id="nt8neb_46"><p id="nt8neb_49">Adicionar pool de threads para processamento ass&iacute;ncrono</p></li><li class="list__item" id="nt8neb_47"><p id="nt8neb_50">Otimizar valida&ccedil;&otilde;es em lote</p></li></ul></li><li class="list__item" id="nt8neb_40"><p id="nt8neb_51"><span class="control" id="nt8neb_53">Extens&otilde;es</span></p><ul class="list _bullet" id="nt8neb_52"><li class="list__item" id="nt8neb_54"><p id="nt8neb_57">Suporte a express&otilde;es regulares complexas</p></li><li class="list__item" id="nt8neb_55"><p id="nt8neb_58">Valida&ccedil;&otilde;es customizadas via scripts</p></li><li class="list__item" id="nt8neb_56"><p id="nt8neb_59">Plugins para novos transformadores</p></li></ul></li><li class="list__item" id="nt8neb_41"><p id="nt8neb_60"><span class="control" id="nt8neb_62">Monitoramento</span></p><ul class="list _bullet" id="nt8neb_61"><li class="list__item" id="nt8neb_63"><p id="nt8neb_66">M&eacute;tricas de processamento</p></li><li class="list__item" id="nt8neb_64"><p id="nt8neb_67">Logging detalhado</p></li><li class="list__item" id="nt8neb_65"><p id="nt8neb_68">Rastreamento de transforma&ccedil;&otilde;es</p></li></ul></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="nt8neb_69"><li class="list__item" id="nt8neb_71"><p id="nt8neb_75"><span id="nt8neb_76">Documenta&ccedil;&atilde;o completa</span></p></li><li class="list__item" id="nt8neb_72"><p id="nt8neb_77"><span id="nt8neb_78">Exemplos de uso</span></p></li><li class="list__item" id="nt8neb_73"><p id="nt8neb_79"><span id="nt8neb_80">Guia de contribui&ccedil;&atilde;o</span></p></li><li class="list__item" id="nt8neb_74"><p id="nt8neb_81"><span id="nt8neb_82">FAQ</span></p></li></ul><aside class="prompt" data-type="tip" data-title="" id="nt8neb_70"><p id="nt8neb_83"><span class="control" id="nt8neb_84">Dica</span>: Comece com um conjunto pequeno de validadores e transformadores, e expanda gradualmente conforme as necessidades do projeto.</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="advanced-projects.html" class="navigation-links__prev">Projetos Avan&ccedil;ados</a><a href="functional-calculator.html" class="navigation-links__next">Calculadora Funcional</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

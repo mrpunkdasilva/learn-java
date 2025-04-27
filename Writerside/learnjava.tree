@@ -115,6 +115,9 @@
             <toc-element topic="data-processor.md"/>
             <toc-element topic="functional-calculator.md"/>
             <toc-element topic="custom-framework.md"/>
+            <toc-element topic="annotation-processor.md"/>
+            <toc-element topic="generic-container.md"/>
+            <toc-element topic="reflection-explorer.md"/>
         </toc-element>
     </toc-element>
 

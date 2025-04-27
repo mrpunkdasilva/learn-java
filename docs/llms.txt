@@ -6127,7 +6127,7 @@ String classifyGrade(double grade) {
 
 * Pratique com exercícios em [Control Flow Projects](control-flow-projects.html)
 
-* Aprenda sobre expressões lambda em [Lambda](null)
+* Aprenda sobre expressões lambda em [Lambda](lambda.html)
 
 [Pattern Matching](pattern-matching.html)
 
@@ -11152,284 +11152,4471 @@ for (Shape shape : shapes) {
 
 ## Visão Geral
 
-Este projeto implementa um sistema de plugins extensível usando recursos modernos do Java, demonstrando conceitos avançados de design de software e modularidade.
+Este projeto implementa um sistema de plugins básico usando Java, demonstrando conceitos fundamentais de programação orientada a objetos e estruturas de dados básicas.
 
 ```MERMAID
 graph TD
-    A[PluginManager] --> B[Plugin Interface]
-    B --> C[SecurityPlugin]
-    B --> D[NetworkPlugin]
-    B --> E[DataPlugin]
-    A --> F[PluginLoader]
-    A --> G[DependencyResolver]
+    A[PluginSystem] --> B[Plugin]
+    B --> C[name]
+    B --> D[commands]
+    B --> E[isEnabled]
+    A --> F[plugins array]
     
     style A fill:#1a1a1a,stroke:#00ff00
     style B fill:#1a1a1a,stroke:#33ccff
     style F fill:#1a1a1a,stroke:#ff3366
-    style G fill:#1a1a1a,stroke:#ff9933
 ```
 
 ## Componentes Principais
 
-### Interface Plugin
+### Classe Plugin
+
+A classe `Plugin` representa um plugin individual no sistema:
 
 ```JAVA
-public sealed interface Plugin 
-    permits SecurityPlugin, NetworkPlugin, DataPlugin {
-    
-    void initialize(PluginConfig config);
-    void start();
-    void stop();
-    String getStatus();
-}
-```
+public class Plugin {
+    private String name;
+    private boolean isEnabled;
+    private String[] commands;
 
-### Configuração de Plugin
+    // Construtor e métodos principais
+    public Plugin(String name, String[] commands) {
+        this.name = name;
+        this.isEnabled = false;
+        this.commands = commands;
+    }
 
-```JAVA
-public record PluginConfig(
-    String name,
-    String version,
-    Set<String> dependencies,
-    Map<String, String> settings
-) {
-    public PluginConfig {
-        // Validação defensiva
-        Objects.requireNonNull(name, "Nome não pode ser nulo");
-        Objects.requireNonNull(version, "Versão não pode ser nula");
-        Objects.requireNonNull(dependencies, "Dependências não podem ser nulas");
-        Objects.requireNonNull(settings, "Configurações não podem ser nulas");
-        
-        // Cria cópias imutáveis
-        dependencies = Set.copyOf(dependencies);
-        settings = Map.copyOf(settings);
+    public void enable() {
+        isEnabled = true;
+    }
+
+    public void disable() {
+        isEnabled = false;
+    }
+
+    public void executeCommand(String command) {
+        // Executa um comando se o plugin estiver ativado
     }
 }
 ```
 
-### Gerenciador de Plugins
+### Sistema de Gerenciamento
+
+A classe `PluginSystem` gerencia todos os plugins:
 
 ```JAVA
-public class PluginManager {
-    private final Map<String, Plugin> plugins = new ConcurrentHashMap<>();
-    private final DependencyResolver resolver;
-    private final PluginLoader loader;
-    
-    public void loadPlugin(Path pluginPath) {
-        var config = loader.loadConfig(pluginPath);
-        resolver.validateDependencies(config);
-        
-        var plugin = loader.createPlugin(pluginPath);
-        plugin.initialize(config);
-        plugins.put(config.name(), plugin);
+public class PluginSystem {
+    private Plugin[] plugins;
+    private int pluginCount;
+    private static final int MAX_PLUGINS = 10;
+
+    public void addPlugin(Plugin plugin) {
+        // Adiciona um novo plugin ao sistema
     }
-    
-    public void startPlugin(String name) {
-        getPlugin(name).start();
+
+    public void enablePlugin(String name) {
+        // Ativa um plugin específico
     }
-    
-    public void stopPlugin(String name) {
-        getPlugin(name).stop();
+
+    public void disablePlugin(String name) {
+        // Desativa um plugin específico
     }
-    
-    private Plugin getPlugin(String name) {
-        return Optional.ofNullable(plugins.get(name))
-            .orElseThrow(() -> new PluginNotFoundException(name));
+
+    public void executeCommand(String pluginName, String command) {
+        // Executa um comando em um plugin específico
     }
 }
 ```
 
-## Implementação de Plugins
+## Funcionalidades Principais
 
-### Plugin de Segurança
+1. Gerenciamento de Plugins
 
-```JAVA
-public final class SecurityPlugin implements Plugin {
-    private final SecurityManager securityManager;
-    private PluginConfig config;
-    
-    @Override
-    public void initialize(PluginConfig config) {
-        this.config = config;
-        this.securityManager = new SecurityManager(config.settings());
-    }
-    
-    @Override
-    public void start() {
-        securityManager.enableSecurity();
-        log.info("Security plugin started");
-    }
-    
-    @Override
-    public void stop() {
-        securityManager.disableSecurity();
-        log.info("Security plugin stopped");
-    }
-}
-```
+* Adicionar plugins
 
-## Sistema de Eventos
+* Ativar/desativar plugins
 
-### Event Bus
+* Listar plugins instalados
+
+2. Sistema de Comandos
+
+* Cada plugin possui seus próprios comandos
+
+* Verificação de comandos disponíveis
+
+* Execução segura de comandos
+
+3. Estado dos Plugins
+
+* Controle de estado (ativado/desativado)
+
+* Verificação antes da execução
+
+* Feedback de operações
+
+## Exemplo de Uso
 
 ```JAVA
-public class PluginEventBus {
-    private final Map<String, Set<EventListener>> listeners = new ConcurrentHashMap<>();
-    
-    public void publish(PluginEvent event) {
-        getListeners(event.type()).forEach(listener -> 
-            CompletableFuture.runAsync(() -> 
-                listener.onEvent(event)));
-    }
-    
-    public void subscribe(String eventType, EventListener listener) {
-        listeners.computeIfAbsent(eventType, k -> 
-            ConcurrentHashMap.newKeySet()).add(listener);
-    }
-}
-```
+// Criar sistema de plugins
+PluginSystem system = new PluginSystem();
 
-## Carregamento Dinâmico
+// Criar um plugin de calculadora
+Plugin calculadora = new Plugin("Calculadora", 
+    new String[]{"somar", "subtrair", "multiplicar"});
 
-### Plugin Loader
+// Adicionar ao sistema
+system.addPlugin(calculadora);
 
-```JAVA
-public class PluginLoader {
-    private final ClassLoader classLoader;
-    
-    public Plugin createPlugin(Path path) {
-        try {
-            URL[] urls = { path.toUri().toURL() };
-            URLClassLoader loader = new URLClassLoader(urls, classLoader);
-            Class<?> pluginClass = loader.loadClass("plugin.MainClass");
-            return (Plugin) pluginClass.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new PluginLoadException("Failed to load plugin", e);
-        }
-    }
-}
-```
+// Ativar o plugin
+system.enablePlugin("Calculadora");
 
-## Exemplos de Uso
-
-### Configuração Básica
-
-```JAVA
-var config = new PluginConfig(
-    "security-plugin",
-    "1.0.0",
-    Set.of("core", "crypto"),
-    Map.of(
-        "encryption.algorithm", "AES256",
-        "key.size", "256"
-    )
-);
-
-var manager = new PluginManager();
-manager.loadPlugin(Path.of("/plugins/security.jar"));
-manager.startPlugin("security-plugin");
-```
-
-### Manipulação de Eventos
-
-```JAVA
-pluginEventBus.subscribe("SECURITY_ALERT", event -> {
-    log.warn("Security alert: {}", event.getData());
-    notificationService.sendAlert(event);
-});
-
-// Publicar evento
-pluginEventBus.publish(new PluginEvent(
-    "SECURITY_ALERT",
-    Map.of("type", "intrusion", "severity", "high")
-));
+// Executar um comando
+system.executeCommand("Calculadora", "somar");
 ```
 
 ## Exercícios Práticos
 
 1. Plugin Básico
 
-* Criar plugin simples
+* Crie um novo plugin com comandos personalizados
 
-* Implementar ciclo de vida
+* Implemente a lógica de execução dos comandos
 
-* Adicionar configuração
+* Teste a ativação e desativação
 
-2. Sistema de Eventos
+2. Sistema de Plugins
 
-* Implementar observer pattern
+* Adicione múltiplos plugins ao sistema
 
-* Criar handlers de eventos
+* Gerencie as interações entre plugins
 
-* Adicionar logging
+* Implemente listagem de plugins
 
-3. Hot Reload
+3. Comandos Personalizados
 
-* Implementar recarga dinâmica
+* Crie comandos com parâmetros
 
-* Gerenciar estado
+* Implemente validação de comandos
 
-* Lidar com exceções
-
-## Desafios Avançados
-
-1. Segurança
-
-* Sandbox para plugins
-
-* Verificação de assinatura
-
-* Isolamento de recursos
-
-2. Performance
-
-* Carregamento lazy
-
-* Pool de threads
-
-* Cache de classes
+* Adicione feedback de execução
 
 ## Boas Práticas
 
-1. Design
+1. Organização do Código
 
-* Interface minimalista
+* Mantenha métodos curtos e focados
 
-* Versionamento semântico
+* Use nomes descritivos para variáveis
 
-* Documentação clara
+* Comente seções importantes do código
 
-2. Segurança
+2. Validação
 
-* Validação de entrada
+* Verifique estados antes de executar ações
 
-* Controle de acesso
+* Valide entradas de usuário
 
-* Logging seguro
+* Forneça feedback claro
 
 3. Manutenção
 
-* Testes unitários
+* Mantenha o código organizado
 
-* Monitoramento
+* Documente funcionalidades
 
-* Backup de configuração
-
-## Recursos Adicionais
-
-* [Java Module System](https://www.oracle.com/corporate/features/understanding-java-9-modules.html)
-
-* [ClassLoader API](https://docs.oracle.com/javase/9/docs/api/java/lang/ClassLoader.html)
-
-* [Design Patterns](https://refactoring.guru/design-patterns)
+* Teste todas as operações
 
 ## Próximos Passos
 
-* Explore padrões de design relacionados
+* Adicione mais tipos de plugins
 
-* Implemente sistema de versionamento
+* Implemente sistema de configuração
 
-* Adicione testes de integração
+* Crie uma interface de usuário simples
+
+* Adicione persistência de dados
+
+## Recursos Adicionais
+
+* [Documentação Java](https://docs.oracle.com/javase/tutorial/)
+
+* [Boas Práticas de Programação](https://www.oracle.com/java/technologies/javase/codeconventions.html)
+
+
+
+# Tratamento de Erros em Java
+
+O tratamento de erros é uma parte fundamental da programação em Java, permitindo que você lide com situações inesperadas de forma elegante e robusta.
+
+## Por que o Tratamento de Erros é Importante?
+
+```MERMAID
+graph TD
+    A[Programa] --> B{Erro?}
+    B -->|Sim| C[Tratamento de Erro]
+    B -->|Não| D[Fluxo Normal]
+    C --> E[Recuperação]
+    C --> F[Log]
+    C --> G[Feedback ao Usuário]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#ff3366
+    style C fill:#1a1a1a,stroke:#33ccff
+```
+
+### Benefícios Principais
+
+1. Robustez
+
+* Previne falhas catastróficas
+
+* Mantém o programa funcionando
+
+* Garante consistência dos dados
+
+2. Experiência do Usuário
+
+* Mensagens de erro claras
+
+* Feedback apropriado
+
+* Recuperação graciosa
+
+3. Manutenibilidade
+
+* Código mais organizado
+
+* Melhor depuração
+
+* Logs mais efetivos
+
+## Conceitos Fundamentais
+
+### Tipos de Erros
+
+1. Erros de Compilação
+
+* Sintaxe incorreta
+
+* Tipos incompatíveis
+
+* Recursos não encontrados
+
+2. Erros de Runtime
+
+* Divisão por zero
+
+* Null pointer
+
+* Array index out of bounds
+
+3. Erros Lógicos
+
+* Bugs de negócio
+
+* Cálculos incorretos
+
+* Fluxos inesperados
+
+### Hierarquia de Exceções
+
+```JAVA
+try {
+    // Código que pode gerar exceção
+    riskyOperation();
+} catch (Exception e) {
+    // Tratamento do erro
+    handleError(e);
+} finally {
+    // Código que sempre executa
+    cleanup();
+}
+```
+
+## Tópicos Principais
+
+Este módulo abordará:
+
+* [Exceções em Java](exceptions.html)
+
+* [Try-Catch e Finally](try-catch.html)
+
+* [Exceções Personalizadas](custom-exceptions.html)
+
+* [Try-with-Resources](try-with-resources.html)
+
+## Melhores Práticas
+
+1. Nunca Ignore Exceções
+
+```JAVA
+try {
+    // operação
+} catch (Exception e) {
+    // NO MÍNIMO faça log do erro
+    logger.error("Erro na operação", e);
+}
+```
+
+2. Use Exceções Específicas
+
+```JAVA
+try {
+    // operação
+} catch (FileNotFoundException e) {
+    // tratamento específico
+} catch (IOException e) {
+    // tratamento mais genérico
+}
+```
+
+3. Documente Exceções
+
+```JAVA
+/**
+ * @throws IllegalArgumentException se o valor for negativo
+ */
+public void setValue(int value) {
+    if (value < 0) {
+        throw new IllegalArgumentException("Valor não pode ser negativo");
+    }
+}
+```
+
+## Próximos Passos
+
+* Explore os diferentes tipos de exceções
+
+* Pratique criando exceções personalizadas
+
+* Implemente tratamento de erros em seus projetos
+
+* Aprenda sobre logging e debugging
+
+## Recursos Adicionais
+
+* [Java Exception Handling Tutorial](https://docs.oracle.com/javase/tutorial/essential/exceptions/)
+
+* [Best Practices for Exception Handling](https://www.oracle.com/java/technologies/javase/exceptions.html)
+
+Tip:
+
+"Em um mundo perfeito, não precisaríamos de tratamento de erros. Mas no mundo real, ele é tão essencial quanto o próprio código."
+
+[Começar com Exceções](exceptions.html)
+
+
+
+# Exceções em Java
+
+## Hierarquia de Exceções
+
+```MERMAID
+graph TD
+    A[Throwable] --> B[Error]
+    A --> C[Exception]
+    C --> D[RuntimeException]
+    C --> E[CheckedException]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#ff3366
+    style C fill:#1a1a1a,stroke:#33ccff
+```
+
+## Tipos de Exceções
+
+### 1. Checked Exceptions
+
+* Verificadas em tempo de compilação
+
+* Devem ser declaradas ou tratadas
+
+* Exemplos: `IOException`, `SQLException`
+
+```JAVA
+public void readFile() throws IOException {
+    FileReader file = new FileReader("arquivo.txt");
+    // código para ler arquivo
+}
+```
+
+### 2. Unchecked Exceptions (RuntimeException)
+
+* Não verificadas em tempo de compilação
+
+* Geralmente indicam erros de programação
+
+* Exemplos: `NullPointerException`, `ArrayIndexOutOfBoundsException`
+
+```JAVA
+public void processArray(int[] array) {
+    // Pode lançar NullPointerException ou ArrayIndexOutOfBoundsException
+    int value = array[10];
+}
+```
+
+### 3. Errors
+
+* Problemas graves na JVM
+
+* Não devem ser tratados pelo programa
+
+* Exemplos: `OutOfMemoryError`, `StackOverflowError`
+
+## Exceções Comuns
+
+1. NullPointerException
+
+```JAVA
+String str = null;
+str.length(); // Lança NullPointerException
+```
+
+1. ArrayIndexOutOfBoundsException
+
+```JAVA
+int[] array = new int[5];
+array[10] = 1; // Lança ArrayIndexOutOfBoundsException
+```
+
+1. IllegalArgumentException
+
+```JAVA
+public void setAge(int age) {
+    if (age < 0) {
+        throw new IllegalArgumentException("Idade não pode ser negativa");
+    }
+}
+```
+
+## Boas Práticas
+
+1. Seja Específico
+
+* Use exceções específicas em vez de genéricas
+
+* Ajuda na identificação e tratamento do problema
+
+1. Documente as Exceções
+
+```JAVA
+/**
+ * @throws IllegalArgumentException se o valor for negativo
+ * @throws IOException em caso de erro de leitura
+ */
+public void processValue(int value) throws IOException {
+    // implementação
+}
+```
+
+1. Mantenha a Granularidade
+
+* Lance exceções no nível mais baixo possível
+
+* Trate no nível apropriado da aplicação
+
+## Exemplos Práticos
+
+### Exemplo 1: Validação de Entrada
+
+```JAVA
+public class UserValidator {
+    public void validateUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("Username não pode ser vazio");
+        }
+        if (username.length() < 3) {
+            throw new IllegalArgumentException("Username deve ter no mínimo 3 caracteres");
+        }
+    }
+}
+```
+
+### Exemplo 2: Operações de Arquivo
+
+```JAVA
+public class FileProcessor {
+    public String readFile(String path) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            return reader.readLine();
+        }
+    }
+}
+```
+
+## Próximos Passos
+
+* Aprenda sobre [Try-Catch e Finally](try-catch.html)
+
+* Explore [Exceções Personalizadas](custom-exceptions.html)
+
+* Estude [Try-with-Resources](try-with-resources.html)
+
+## Recursos Adicionais
+
+* [Java Exception Tutorial](https://docs.oracle.com/javase/tutorial/essential/exceptions/)
+
+* [Java Exception Best Practices](https://www.oracle.com/java/technologies/javase/exceptions.html)
+
+
+
+# Try-Catch e Finally em Java
+
+## Estrutura Básica
+
+```JAVA
+try {
+    // Código que pode lançar exceção
+} catch (ExceptionType e) {
+    // Tratamento da exceção
+} finally {
+    // Código que sempre executa
+}
+```
+
+## Blocos Try-Catch
+
+### Try Block
+
+* Contém código que pode lançar exceções
+
+* Pode conter múltiplas linhas
+
+* Deve ser seguido por catch ou finally
+
+```JAVA
+try {
+    int result = 10 / 0;  // Lança ArithmeticException
+    System.out.println(result);
+}
+```
+
+### Catch Block
+
+* Captura e trata exceções específicas
+
+* Pode ter múltiplos blocos catch
+
+* Deve ser ordenado do mais específico para o mais genérico
+
+```JAVA
+try {
+    // código arriscado
+} catch (ArithmeticException e) {
+    System.out.println("Erro de divisão: " + e.getMessage());
+} catch (Exception e) {
+    System.out.println("Erro genérico: " + e.getMessage());
+}
+```
+
+### Finally Block
+
+* Sempre executa, independente de exceção
+
+* Útil para limpeza de recursos
+
+* Opcional, mas importante para boas práticas
+
+```JAVA
+FileReader reader = null;
+try {
+    reader = new FileReader("file.txt");
+    // processar arquivo
+} catch (IOException e) {
+    System.out.println("Erro ao ler arquivo");
+} finally {
+    if (reader != null) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            // handle close exception
+        }
+    }
+}
+```
+
+## Padrões Comuns
+
+### 1. Múltiplos Catch
+
+```JAVA
+try {
+    // código arriscado
+} catch (FileNotFoundException e) {
+    // tratamento específico para arquivo não encontrado
+} catch (IOException e) {
+    // tratamento para outros erros de I/O
+} catch (Exception e) {
+    // tratamento para qualquer outra exceção
+}
+```
+
+### 2. Multi-catch (Java 7+)
+
+```JAVA
+try {
+    // código arriscado
+} catch (IOException | SQLException e) {
+    // tratamento comum para ambas exceções
+}
+```
+
+### 3. Rethrow
+
+```JAVA
+try {
+    // código arriscado
+} catch (Exception e) {
+    // log do erro
+    logger.error("Erro durante processamento", e);
+    throw e; // relança a exceção
+}
+```
+
+## Boas Práticas
+
+1. Seja Específico
+
+```JAVA
+// Ruim
+try {
+    // código
+} catch (Exception e) { }
+
+// Bom
+try {
+    // código
+} catch (FileNotFoundException e) {
+    // tratamento específico
+}
+```
+
+1. Log Adequado
+
+```JAVA
+try {
+    // código
+} catch (Exception e) {
+    logger.error("Contexto do erro: " + e.getMessage(), e);
+}
+```
+
+1. Limpeza de Recursos
+
+```JAVA
+Connection conn = null;
+try {
+    conn = getConnection();
+    // usar conexão
+} finally {
+    if (conn != null) {
+        conn.close();
+    }
+}
+```
+
+## Exemplos Práticos
+
+### Exemplo 1: Processamento de Arquivo
+
+```JAVA
+public class FileProcessor {
+    public void processFile(String path) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(path));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                processLine(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Arquivo não encontrado: " + path);
+        } catch (IOException e) {
+            System.err.println("Erro ao ler arquivo: " + e.getMessage());
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.err.println("Erro ao fechar arquivo");
+                }
+            }
+        }
+    }
+}
+```
+
+### Exemplo 2: Operações de Banco de Dados
+
+```JAVA
+public class DatabaseOperations {
+    public void updateRecord(int id, String data) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("UPDATE records SET data = ? WHERE id = ?");
+            stmt.setString(1, data);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erro de banco de dados: " + e.getMessage());
+        } finally {
+            closeResources(conn, stmt);
+        }
+    }
+}
+```
+
+## Próximos Passos
+
+* Aprenda sobre [Try-with-Resources](try-with-resources.html)
+
+* Explore [Exceções Personalizadas](custom-exceptions.html)
+
+* Pratique com diferentes tipos de exceções
+
+## Recursos Adicionais
+
+* [Java Exception Handling Tutorial](https://docs.oracle.com/javase/tutorial/essential/exceptions/)
+
+* [Best Practices for Exception Handling](https://www.oracle.com/java/technologies/javase/exceptions.html)
+
+
+
+# Exceções Personalizadas em Java
+
+## Introdução
+
+Exceções personalizadas permitem criar tipos específicos de erro para seu domínio de negócio, tornando o código mais expressivo e manutenível.
+
+## Criando Exceções Personalizadas
+
+### Exceção Verificada (Checked)
+
+```JAVA
+public class BusinessException extends Exception {
+    public BusinessException(String message) {
+        super(message);
+    }
+
+    public BusinessException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+```
+
+### Exceção Não Verificada (Unchecked)
+
+```JAVA
+public class ValidationException extends RuntimeException {
+    public ValidationException(String message) {
+        super(message);
+    }
+
+    public ValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+```
+
+## Padrões Comuns
+
+### 1. Exceções de Domínio
+
+```JAVA
+public class UserNotFoundException extends RuntimeException {
+    private final String userId;
+
+    public UserNotFoundException(String userId) {
+        super("Usuário não encontrado: " + userId);
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+}
+```
+
+### 2. Exceções com Dados Adicionais
+
+```JAVA
+public class OrderProcessingException extends Exception {
+    private final String orderId;
+    private final OrderStatus status;
+
+    public OrderProcessingException(String message, String orderId, OrderStatus status) {
+        super(message);
+        this.orderId = orderId;
+        this.status = status;
+    }
+
+    // Getters para informações adicionais
+    public String getOrderId() { return orderId; }
+    public OrderStatus getStatus() { return status; }
+}
+```
+
+## Exemplos de Uso
+
+### Exemplo 1: Validação de Negócio
+
+```JAVA
+public class UserService {
+    public void createUser(User user) throws ValidationException {
+        if (user.getAge() < 18) {
+            throw new ValidationException("Usuário deve ser maior de idade");
+        }
+        if (user.getEmail() == null || !user.getEmail().contains("@")) {
+            throw new ValidationException("Email inválido");
+        }
+        // Continua processamento
+    }
+}
+```
+
+### Exemplo 2: Processamento de Pedidos
+
+```JAVA
+public class OrderProcessor {
+    public void processOrder(Order order) throws OrderProcessingException {
+        try {
+            validateOrder(order);
+            calculateTotal(order);
+            saveOrder(order);
+        } catch (Exception e) {
+            throw new OrderProcessingException(
+                "Erro ao processar pedido",
+                order.getId(),
+                order.getStatus()
+            );
+        }
+    }
+}
+```
+
+## Boas Práticas
+
+1. Nomeação Clara
+
+```JAVA
+// Bom
+public class InvalidPasswordException extends RuntimeException { }
+
+// Ruim
+public class PasswordException extends RuntimeException { }
+```
+
+1. Informações Relevantes
+
+```JAVA
+public class DatabaseConnectionException extends Exception {
+    public DatabaseConnectionException(String server, int port, Throwable cause) {
+        super(String.format("Falha ao conectar ao servidor %s:%d", server, port), cause);
+    }
+}
+```
+
+1. Hierarquia Apropriada
+
+```JAVA
+// Exceção base para o módulo
+public abstract class PaymentException extends Exception { }
+
+// Exceções específicas
+public class PaymentDeclinedException extends PaymentException { }
+public class InsufficientFundsException extends PaymentException { }
+```
+
+## Exemplos Práticos
+
+### Sistema de Pagamento
+
+```JAVA
+public class PaymentProcessor {
+    public void processPayment(Payment payment) throws PaymentException {
+        try {
+            validatePayment(payment);
+            executeTransaction(payment);
+            notifySuccess(payment);
+        } catch (ValidationException e) {
+            throw new PaymentValidationException("Pagamento inválido", e);
+        } catch (TransactionException e) {
+            throw new PaymentProcessingException("Erro na transação", e);
+        }
+    }
+}
+```
+
+### Sistema de Arquivos
+
+```JAVA
+public class FileManager {
+    public void saveDocument(Document doc) throws DocumentException {
+        if (!isValidDocument(doc)) {
+            throw new InvalidDocumentException("Documento inválido");
+        }
+        
+        try {
+            writeToFile(doc);
+        } catch (IOException e) {
+            throw new DocumentStorageException("Erro ao salvar documento", e);
+        }
+    }
+}
+```
+
+## Próximos Passos
+
+* Identifique casos de uso para exceções personalizadas em seu código
+
+* Crie hierarquias de exceção para seu domínio
+
+* Implemente tratamento adequado para suas exceções
+
+## Recursos Adicionais
+
+* [Java Exception Handling Best Practices](https://www.oracle.com/java/technologies/javase/exceptions.html)
+
+* [Design Guidelines for Exceptions](https://docs.oracle.com/javase/tutorial/essential/exceptions/design.html)
+
+
+
+# Try-with-Resources em Java
+
+## Introdução
+
+Try-with-resources é um recurso introduzido no Java 7 que simplifica o gerenciamento de recursos que precisam ser fechados após o uso.
+
+## Sintaxe Básica
+
+```JAVA
+try (Resource resource = new Resource()) {
+    // uso do recurso
+} catch (Exception e) {
+    // tratamento de exceção
+}
+```
+
+## Recursos AutoCloseable
+
+### Interface AutoCloseable
+
+```JAVA
+public interface AutoCloseable {
+    void close() throws Exception;
+}
+```
+
+### Implementação Básica
+
+```JAVA
+public class MyResource implements AutoCloseable {
+    public MyResource() {
+        System.out.println("Recurso criado");
+    }
+
+    @Override
+    public void close() throws Exception {
+        System.out.println("Recurso fechado");
+    }
+}
+```
+
+## Comparação com Try-Catch-Finally Tradicional
+
+### Antes (Try-Catch-Finally)
+
+```JAVA
+FileReader reader = null;
+try {
+    reader = new FileReader("file.txt");
+    // usar reader
+} catch (IOException e) {
+    // tratamento de erro
+} finally {
+    if (reader != null) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            // tratamento de erro ao fechar
+        }
+    }
+}
+```
+
+### Depois (Try-with-Resources)
+
+```JAVA
+try (FileReader reader = new FileReader("file.txt")) {
+    // usar reader
+} catch (IOException e) {
+    // tratamento de erro
+}
+```
+
+## Múltiplos Recursos
+
+### Gerenciando Vários Recursos
+
+```JAVA
+try (FileInputStream input = new FileInputStream("input.txt");
+     FileOutputStream output = new FileOutputStream("output.txt")) {
+    // usar input e output
+    byte[] buffer = new byte[1024];
+    int length;
+    while ((length = input.read(buffer)) > 0) {
+        output.write(buffer, 0, length);
+    }
+}
+```
+
+## Exemplos Práticos
+
+### Exemplo 1: Processamento de Arquivo
+
+```JAVA
+public class FileProcessor {
+    public List<String> readLines(String path) throws IOException {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        }
+        return lines;
+    }
+}
+```
+
+### Exemplo 2: Operações de Banco de Dados
+
+```JAVA
+public class DatabaseOperations {
+    public void transferMoney(int fromAccount, int toAccount, double amount) {
+        try (Connection conn = getConnection();
+             PreparedStatement debit = conn.prepareStatement("UPDATE accounts SET balance = balance - ? WHERE id = ?");
+             PreparedStatement credit = conn.prepareStatement("UPDATE accounts SET balance = balance + ? WHERE id = ?")) {
+            
+            conn.setAutoCommit(false);
+            
+            debit.setDouble(1, amount);
+            debit.setInt(2, fromAccount);
+            debit.executeUpdate();
+            
+            credit.setDouble(1, amount);
+            credit.setInt(2, toAccount);
+            credit.executeUpdate();
+            
+            conn.commit();
+        }
+    }
+}
+```
+
+## Recursos Personalizados
+
+### Criando Recurso Personalizado
+
+```JAVA
+public class DatabaseConnection implements AutoCloseable {
+    private final Connection connection;
+    
+    public DatabaseConnection(String url) throws SQLException {
+        this.connection = DriverManager.getConnection(url);
+    }
+    
+    public Connection getConnection() {
+        return connection;
+    }
+    
+    @Override
+    public void close() throws Exception {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
+        }
+    }
+}
+```
+
+### Usando Recurso Personalizado
+
+```JAVA
+public class CustomResourceExample {
+    public void useCustomResource() {
+        try (DatabaseConnection db = new DatabaseConnection("jdbc:mysql://localhost/db")) {
+            Connection conn = db.getConnection();
+            // usar conexão
+        } catch (Exception e) {
+            // tratamento de erro
+        }
+    }
+}
+```
+
+## Boas Práticas
+
+1. Sempre Use para Recursos AutoCloseable
+
+```JAVA
+// Bom
+try (InputStream in = new FileInputStream("file.txt")) {
+    // código
+}
+
+// Evite
+InputStream in = new FileInputStream("file.txt");
+try {
+    // código
+} finally {
+    in.close();
+}
+```
+
+1. Ordem de Fechamento
+
+```JAVA
+try (ResourceOne one = new ResourceOne();
+     ResourceTwo two = new ResourceTwo()) {
+    // Os recursos são fechados na ord
+```
+
+
+
+# Projetos de Tratamento de Erros
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Projetos de Erros] --> B[Sistema de Validação]
+    A --> C[Logger de Erros]
+    A --> D[Circuit Breaker]
+    
+    B --> B1[Validadores]
+    B --> B2[Regras]
+    B --> B3[Feedback]
+    
+    C --> C1[Captura]
+    C --> C2[Formatação]
+    C --> C3[Persistência]
+    
+    D --> D1[Monitoramento]
+    D --> D2[Fallback]
+    D --> D3[Recuperação]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+```
+
+## Projetos Disponíveis
+
+### 1. Sistema de Validação
+
+* [Sistema de Validação](validation-system.html) - Sistema robusto de validação de dados
+
+* Implementa diferentes tipos de validadores
+
+* Fornece feedback detalhado sobre erros
+
+### 2. Logger de Erros
+
+* [Logger de Erros](error-logger.html) - Sistema avançado de logging
+
+* Captura e formata exceções
+
+* Persiste logs para análise posterior
+
+### 3. Circuit Breaker
+
+* [Circuit Breaker](circuit-breaker.html) - Padrão de resiliência
+
+* Previne falhas em cascata
+
+* Implementa estados e recuperação
+
+## Conceitos Aplicados
+
+1. Tratamento de Exceções
+
+* Try-catch blocks
+
+* Exceções personalizadas
+
+* Propagação de erros
+
+2. Validação de Dados
+
+* Regras de negócio
+
+* Validação de entrada
+
+* Feedback ao usuário
+
+3. Logging
+
+* Níveis de log
+
+* Formatação de mensagens
+
+* Rotação de arquivos
+
+4. Resiliência
+
+* Estados do circuit breaker
+
+* Timeouts e retries
+
+* Fallback mechanisms
+
+## Objetivos de Aprendizado
+
+* Implementar tratamento robusto de erros
+
+* Criar sistemas de validação flexíveis
+
+* Desenvolver mecanismos de logging eficientes
+
+* Construir aplicações resilientes
+
+## Boas Práticas
+
+1. Validação
+
+* Valide entrada no ponto mais próximo da origem
+
+* Forneça mensagens de erro claras
+
+* Mantenha validações consistentes
+
+2. Logging
+
+* Use níveis apropriados de log
+
+* Inclua contexto relevante
+
+* Evite informações sensíveis
+
+3. Resiliência
+
+* Implemente timeouts adequados
+
+* Prepare-se para falhas
+
+* Tenha estratégias de fallback
+
+## Desafios Práticos
+
+1. Sistema de Validação
+
+* Adicione novos tipos de validadores
+
+* Implemente validação assíncrona
+
+* Crie regras compostas
+
+2. Logger
+
+* Implemente rotação de arquivos
+
+* Adicione formatação personalizada
+
+* Integre com sistemas externos
+
+3. Circuit Breaker
+
+* Adicione métricas
+
+* Implemente recuperação gradual
+
+* Crie dashboard de monitoramento
+
+## Próximos Passos
+
+* Explore padrões avançados de resiliência
+
+* Integre com frameworks de logging
+
+* Implemente validação distribuída
+
+* Adicione telemetria e monitoramento
+
+## Recursos Adicionais
+
+* [Java Exception Handling Best Practices](https://docs.oracle.com/javase/tutorial/essential/exceptions/)
+
+* [Resilience4j Documentation](https://resilience4j.readme.io/)
+
+* [SLF4J User Manual](http://www.slf4j.org/manual.html)
+
+Tip:
+
+"Um sistema robusto não é aquele que nunca falha, mas sim aquele que sabe lidar com as falhas de forma elegante."
+
+[Começar com Sistema de Validação](validation-system.html)
+
+
+
+# Sistema de Validação
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Sistema de Validação] --> B[Validadores]
+    A --> C[Resultados]
+    A --> D[Feedback]
+    
+    B --> B1[Tipo Dados]
+    B1 --> B11[String]
+    B1 --> B12[Número]
+    B1 --> B13[Data]
+    
+    B --> B2[Regras]
+    B2 --> B21[Tamanho]
+    B2 --> B22[Formato]
+    B2 --> B23[Range]
+    
+    C --> C1[Sucesso]
+    C --> C2[Falha]
+    C --> C3[Erros]
+    
+    D --> D1[Mensagens]
+    D --> D2[Códigos]
+    D --> D3[Detalhes]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+```
+
+## Implementação Base
+
+```JAVA
+public class ValidationSystem {
+    private final List<Validator> validators;
+    
+    public ValidationResult validate(Object data) {
+        // Implementação
+    }
+}
+```
+
+## Componentes Principais
+
+### 1. Interface Validator
+
+* Define contrato para validadores
+
+* Método principal de validação
+
+* Retorno padronizado
+
+### 2. ValidationResult
+
+* Status da validação
+
+* Lista de erros
+
+* Mensagens detalhadas
+
+### 3. ValidationBuilder
+
+* Construção fluente
+
+* Encadeamento de validações
+
+* Composição de regras
+
+## Uso Prático
+
+```JAVA
+ValidationSystem validator = new ValidationSystem();
+validator.addValidator(new EmailValidator());
+validator.addValidator(new PasswordValidator());
+
+ValidationResult result = validator.validate(userData);
+if (!result.isValid()) {
+    System.out.println(result.getErrors());
+}
+```
+
+## Tipos de Validadores
+
+1. Dados Básicos
+
+* String (comprimento, formato)
+
+* Números (range, precisão)
+
+* Datas (formato, período)
+
+2. Regras de Negócio
+
+* Validações compostas
+
+* Dependências entre campos
+
+* Regras customizadas
+
+3. Validações Assíncronas
+
+* Consultas externas
+
+* Verificações em banco
+
+* APIs de terceiros
+
+## Boas Práticas
+
+1. Desempenho
+
+* Cache de resultados
+
+* Validação lazy
+
+* Otimização de regras
+
+2. Manutenibilidade
+
+* Validadores isolados
+
+* Regras reutilizáveis
+
+* Documentação clara
+
+3. Usabilidade
+
+* Mensagens claras
+
+* Feedback imediato
+
+* Sugestões de correção
+
+## Exercícios Práticos
+
+1. Validador de Formulário
+
+```JAVA
+public class FormValidator extends Validator {
+    @Override
+    public ValidationResult validate(Object data) {
+        // Implementar validação
+    }
+}
+```
+
+1. Validador de Documentos
+
+```JAVA
+public class DocumentValidator extends Validator {
+    @Override
+    public ValidationResult validate(Object data) {
+        // Implementar validação
+    }
+}
+```
+
+## Próximos Passos
+
+* Implementar novos validadores
+
+* Adicionar suporte a anotações
+
+* Criar validações customizadas
+
+* Integrar com frameworks
+
+[Próximo: Logger de Erros](error-logger.html)
+
+
+
+# Logger de Erros
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Logger de Erros] --> B[Captura]
+    A --> C[Formatação]
+    A --> D[Persistência]
+    
+    B --> B1[Exceções]
+    B --> B2[Contexto]
+    B --> B3[Stack Trace]
+    
+    C --> C1[Estrutura]
+    C --> C2[Níveis]
+    C --> C3[Metadados]
+    
+    D --> D1[Arquivo]
+    D --> D2[Banco]
+    D --> D3[Serviço]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+```
+
+## Implementação Base
+
+```JAVA
+public class ErrorLogger {
+    private final Queue<LogEntry> logQueue;
+    
+    public void log(Exception e, String context) {
+        // Implementação
+    }
+}
+```
+
+## Componentes Principais
+
+### 1. LogEntry
+
+* Timestamp do erro
+
+* Tipo da exceção
+
+* Mensagem detalhada
+
+* Stack trace
+
+### 2. LogProcessor
+
+* Processamento assíncrono
+
+* Formatação de mensagens
+
+* Rotação de arquivos
+
+### 3. LogPersistence
+
+* Estratégias de armazenamento
+
+* Políticas de retenção
+
+* Compressão de logs
+
+## Níveis de Log
+
+1. ERROR
+
+* Erros críticos
+
+* Falhas de sistema
+
+* Exceções não tratadas
+
+2. WARN
+
+* Situações inesperadas
+
+* Degradação de performance
+
+* Retry operations
+
+3. INFO
+
+* Eventos importantes
+
+* Mudanças de estado
+
+* Operações principais
+
+## Boas Práticas
+
+1. Performance
+
+* Logging assíncrono
+
+* Buffer de mensagens
+
+* Compressão eficiente
+
+2. Organização
+
+* Estrutura clara
+
+* Rotação de arquivos
+
+* Categorização
+
+3. Segurança
+
+* Sanitização de dados
+
+* Controle de acesso
+
+* Backup regular
+
+## Uso Prático
+
+```JAVA
+ErrorLogger logger = new ErrorLogger();
+
+try {
+    // Operação que pode falhar
+} catch (Exception e) {
+    logger.log(e, "Contexto da operação");
+}
+```
+
+## Formatos de Log
+
+1. JSON
+
+```JSON
+{
+    "timestamp": "2024-01-20T10:15:30",
+    "level": "ERROR",
+    "message": "Falha na operação",
+    "stackTrace": "..."
+}
+```
+
+1. Text
+
+```TEXT
+[2024-01-20 10:15:30] ERROR: Falha na operação
+Context: Processamento de pagamento
+Stack: ...
+```
+
+## Monitoramento
+
+1. Métricas
+
+* Taxa de erros
+
+* Tempo de processamento
+
+* Uso de recursos
+
+2. Alertas
+
+* Thresholds
+
+* Notificações
+
+* Escalação
+
+## Exercícios Práticos
+
+1. Implementar Rotação
+
+```JAVA
+public class LogRotator {
+    public void rotate(String logFile) {
+        // Implementar rotação
+    }
+}
+```
+
+1. Criar Formatador
+
+```JAVA
+public class LogFormatter {
+    public String format(LogEntry entry) {
+        // Implementar formatação
+    }
+}
+```
+
+## Próximos Passos
+
+* Implementar agregação de logs
+
+* Adicionar análise em tempo real
+
+* Criar dashboards
+
+* Integrar com APM
+
+[Próximo: Circuit Breaker](circuit-breaker.html)
+
+
+
+# Circuit Breaker
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Circuit Breaker] --> B[Estados]
+    A --> C[Monitoramento]
+    A --> D[Recuperação]
+    
+    B --> B1[Fechado]
+    B --> B2[Aberto]
+    B --> B3[Semi-Aberto]
+    
+    C --> C1[Falhas]
+    C --> C2[Timeouts]
+    C --> C3[Métricas]
+    
+    D --> D1[Fallback]
+    D --> D2[Reset]
+    D --> D3[Retry]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+```
+
+## Implementação Base
+
+```JAVA
+public class CircuitBreaker {
+    private CircuitState state;
+    private int failureCount;
+    
+    public <T> T execute(Supplier<T> operation) {
+        // Implementação
+    }
+}
+```
+
+## Estados do Circuit Breaker
+
+### 1. CLOSED (Fechado)
+
+* Estado normal
+
+* Operações permitidas
+
+* Monitoramento de falhas
+
+### 2. OPEN (Aberto)
+
+* Falhas detectadas
+
+* Rejeita requisições
+
+* Timeout para reset
+
+### 3. HALF-OPEN (Semi-Aberto)
+
+* Período de teste
+
+* Limitação de requisições
+
+* Monitoramento intensivo
+
+## Componentes Principais
+
+1. Failure Detection
+
+* Contagem de falhas
+
+* Tipos de erro
+
+* Thresholds
+
+2. State Management
+
+* Transições
+
+* Timeouts
+
+* Reset logic
+
+3. Fallback Mechanism
+
+* Respostas default
+
+* Cache
+
+* Alternativas
+
+## Uso Prático
+
+```JAVA
+CircuitBreaker breaker = new CircuitBreaker("payment-service");
+breaker.addFallback("process-payment", () -> "Fallback Response");
+
+try {
+    String result = breaker.execute("process-payment", 
+        () -> paymentService.process());
+} catch (CircuitBreakerException e) {
+    // Handle exception
+}
+```
+
+## Configurações
+
+1. Thresholds
+
+```JAVA
+public record BreakerConfig(
+    int failureThreshold,
+    long resetTimeout,
+    int halfOpenCalls
+) {}
+```
+
+1. Métricas
+
+```JAVA
+public class BreakerMetrics {
+    private long failureCount;
+    private long successCount;
+    private double errorRate;
+}
+```
+
+## Padrões de Uso
+
+1. Remote Services
+
+* APIs externas
+
+* Microserviços
+
+* Banco de dados
+
+2. Resource Protection
+
+* Rate limiting
+
+* Load balancing
+
+* Degradação graciosa
+
+## Boas Práticas
+
+1. Configuração
+
+* Thresholds apropriados
+
+* Timeouts adequados
+
+* Fallbacks relevantes
+
+2. Monitoramento
+
+* Logging detalhado
+
+* Métricas em tempo real
+
+* Alertas
+
+3. Recuperação
+
+* Estratégias de retry
+
+* Backoff exponencial
+
+* Cache de fallback
+
+## Exercícios Práticos
+
+1. Implementar Métricas
+
+```JAVA
+public class MetricsCollector {
+    public void recordSuccess() {
+        // Implementar
+    }
+    
+    public void recordFailure() {
+        // Implementar
+    }
+}
+```
+
+1. Criar Fallback
+
+```JAVA
+public class FallbackRegistry {
+    public void register(String operation, Supplier<?> fallback) {
+        // Implementar
+    }
+}
+```
+
+## Integração com Sistemas
+
+1. Monitoring
+
+* Prometheus
+
+* Grafana
+
+* Health checks
+
+2. Logging
+
+* Estado changes
+
+* Falhas
+
+* Recuperações
+
+## Próximos Passos
+
+* Implementar circuit breaker distribuído
+
+* Adicionar métricas avançadas
+
+* Criar dashboard de monitoramento
+
+* Integrar com service mesh
+
+[Voltar para Projetos de Erro](error-projects.html)
+
+
+
+# Generics: Flexibilidade com Tipo Seguro
+
+```
+GENERICS MAP
+├── Type Parameters
+├── Generic Classes
+├── Generic Methods
+└── Type Bounds
+```
+
+## Conceitos Básicos
+
+### Type Parameters
+
+```JAVA
+// T é um type parameter comum
+public class Box<T> {
+    private T content;
+    
+    public void store(T item) {
+        this.content = item;
+    }
+    
+    public T retrieve() {
+        return content;
+    }
+}
+```
+
+### Convenções de Nomenclatura
+
+* `T` - Tipo genérico
+
+* `E` - Elemento
+
+* `K` - Chave
+
+* `V` - Valor
+
+* `N` - Número
+
+## Wildcards
+
+### Upper Bounded
+
+```JAVA
+// Aceita Number ou subtipos
+public void process(List<? extends Number> numbers) {
+    for (Number n : numbers) {
+        System.out.println(n.doubleValue());
+    }
+}
+```
+
+### Lower Bounded
+
+```JAVA
+// Aceita Integer ou supertipos
+public void addNumbers(List<? super Integer> list) {
+    list.add(10);
+    list.add(20);
+}
+```
+
+## Type Erasure
+
+O Java usa type erasure para implementar generics:
+
+```JAVA
+// Em tempo de compilação
+List<String> strings = new ArrayList<String>();
+
+// Em runtime se torna
+List strings = new ArrayList();
+```
+
+## Práticas Recomendadas
+
+1. Use Generics para Collections
+
+```JAVA
+// Ruim
+List lista = new ArrayList();
+
+// Bom
+List<String> lista = new ArrayList<>();
+```
+
+1. Defina Bounds Quando Necessário
+
+```JAVA
+public class NumericBox<T extends Number> {
+    private T number;
+    
+    public double getValue() {
+        return number.doubleValue();
+    }
+}
+```
+
+## Exercício Prático
+
+Implemente uma classe genérica `Stack<T>`:
+
+```JAVA
+public class Stack<T> {
+    private List<T> items = new ArrayList<>();
+    
+    public void push(T item) {
+        items.add(item);
+    }
+    
+    public T pop() {
+        if (items.isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return items.remove(items.size() - 1);
+    }
+}
+```
+
+
+
+# Expressões Lambda: Programação Funcional em Java
+
+```
+LAMBDA CONCEPTS
+├── Syntax
+├── Functional Interfaces
+├── Method References
+└── Common Use Cases
+```
+
+## Sintaxe Básica
+
+### Forma Padrão
+
+```JAVA
+// Sintaxe: (parâmetros) -> { corpo }
+Runnable r = () -> { System.out.println("Executando"); };
+
+// Versão simplificada
+Comparator<String> c = (s1, s2) -> s1.length() - s2.length();
+```
+
+## Interfaces Funcionais Comuns
+
+### Function<T,R>
+
+```JAVA
+Function<String, Integer> length = str -> str.length();
+Integer size = length.apply("NetRunner");
+```
+
+### 
+
+Predicate
+
+```JAVA
+Predicate<String> isEmpty = str -> str.trim().isEmpty();
+boolean result = isEmpty.test("  ");
+```
+
+### 
+
+Consumer
+
+```JAVA
+Consumer<String> print = msg -> System.out.println(msg);
+print.accept("Hello, Runner!");
+```
+
+### 
+
+Supplier
+
+```JAVA
+Supplier<LocalDateTime> now = () -> LocalDateTime.now();
+LocalDateTime time = now.get();
+```
+
+## Method References
+
+### Tipos de References
+
+```JAVA
+// Referência a método estático
+Function<String, Integer> parser = Integer::parseInt;
+
+// Referência a método de instância
+String str = "NetRunner";
+Supplier<Integer> length = str::length;
+
+// Referência a construtor
+Supplier<ArrayList<String>> constructor = ArrayList::new;
+```
+
+## Composição de Funções
+
+### Combining Functions
+
+```JAVA
+Function<String, String> upper = String::toUpperCase;
+Function<String, String> trim = String::trim;
+Function<String, String> combined = upper.andThen(trim);
+```
+
+## Exemplo Prático
+
+### Stream com Lambda
+
+```JAVA
+List<String> hackers = Arrays.asList("Neo", "Trinity", "Morpheus");
+
+hackers.stream()
+    .filter(name -> name.length() > 3)
+    .map(String::toUpperCase)
+    .forEach(System.out::println);
+```
+
+## Boas Práticas
+
+1. Mantenha Lambdas Simples
+
+```JAVA
+// Ruim
+button.setOnAction(e -> {
+    // 20 linhas de código aqui
+});
+
+// Bom
+button.setOnAction(this::handleClick);
+```
+
+1. Use Method References
+
+```JAVA
+// Menos legível
+list.forEach(item -> System.out.println(item));
+
+// Mais legível
+list.forEach(System.out::println);
+```
+
+## Exercício
+
+Implemente um sistema de filtro usando lambdas:
+
+```JAVA
+public class HackerFilter {
+    public static List<Hacker> filterBySkill(
+        List<Hacker> hackers,
+        Predicate<Hacker> criteria
+    ) {
+        return hackers.stream()
+                     .filter(criteria)
+                     .collect(Collectors.toList());
+    }
+}
+
+// Uso
+List<Hacker> eliteHackers = filterBySkill(
+    hackerList,
+    h -> h.getSkillLevel() > 9000
+);
+```
+
+
+
+# Streams API: Processamento de Dados Fluente
+
+```
+STREAMS API
+├── Creation
+├── Intermediate Ops
+├── Terminal Ops
+└── Parallel Streams
+```
+
+## Criando Streams
+
+### Métodos de Criação
+
+```JAVA
+// De Collection
+List<String> list = Arrays.asList("Neo", "Trinity");
+Stream<String> stream = list.stream();
+
+// Stream direto
+Stream<String> direct = Stream.of("Morpheus", "Tank");
+
+// Stream infinito
+Stream<Integer> infinite = Stream.iterate(0, n -> n + 1);
+```
+
+## Operações Intermediárias
+
+### Filter
+
+```JAVA
+List<String> hackers = Arrays.asList("Neo", "Trinity", "Morpheus");
+hackers.stream()
+      .filter(name -> name.length() > 3)
+      .collect(Collectors.toList());
+```
+
+### Map
+
+```JAVA
+List<Integer> lengths = hackers.stream()
+    .map(String::length)
+    .collect(Collectors.toList());
+```
+
+### FlatMap
+
+```JAVA
+List<List<String>> nested = Arrays.asList(
+    Arrays.asList("Neo", "Trinity"),
+    Arrays.asList("Morpheus", "Tank")
+);
+
+List<String> flat = nested.stream()
+    .flatMap(List::stream)
+    .collect(Collectors.toList());
+```
+
+## Operações Terminais
+
+### Collect
+
+```JAVA
+// Para Lista
+List<String> list = stream.collect(Collectors.toList());
+
+// Para Set
+Set<String> set = stream.collect(Collectors.toSet());
+
+// Para Map
+Map<String, Integer> map = stream.collect(
+    Collectors.toMap(
+        s -> s,
+        String::length
+    )
+);
+```
+
+### Reduce
+
+```JAVA
+Optional<Integer> sum = Stream.of(1, 2, 3)
+    .reduce((a, b) -> a + b);
+
+int total = Stream.of(1, 2, 3)
+    .reduce(0, Integer::sum);
+```
+
+## Streams Paralelos
+
+### Processamento Paralelo
+
+```JAVA
+// Stream paralelo de Collection
+List<String> result = hackers.parallelStream()
+    .filter(name -> name.length() > 3)
+    .collect(Collectors.toList());
+
+// Converter para paralelo
+Stream<String> parallel = stream.parallel();
+```
+
+## Exemplos Práticos
+
+### Análise de Dados
+
+```JAVA
+class HackerStats {
+    public static Map<String, Long> analyzeSkills(List<Hacker> hackers) {
+        return hackers.stream()
+            .flatMap(h -> h.getSkills().stream())
+            .collect(Collectors.groupingBy(
+                skill -> skill,
+                Collectors.counting()
+            ));
+    }
+}
+```
+
+### Pipeline Complexo
+
+```JAVA
+List<Hacker> eliteSquad = hackers.stream()
+    .filter(h -> h.getLevel() > 50)
+    .sorted(Comparator.comparing(Hacker::getSkillLevel).reversed())
+    .limit(5)
+    .collect(Collectors.toList());
+```
+
+## Boas Práticas
+
+1. Use Parallel com Cautela
+
+```JAVA
+// Nem sempre mais rápido!
+boolean anyMatch = hugeList.parallelStream()
+    .anyMatch(predicate);
+```
+
+1. Evite Estado Mutável
+
+```JAVA
+// Ruim
+List<String> results = new ArrayList<>();
+stream.forEach(results::add);
+
+// Bom
+List<String> results = stream.collect(Collectors.toList());
+```
+
+## Exercício
+
+Implemente um sistema de análise de logs:
+
+```JAVA
+public class LogAnalyzer {
+    public static Map<String, Long> analyzeErrors(
+        List<LogEntry> logs
+    ) {
+        return logs.stream()
+            .filter(log -> log.getLevel() == Level.ERROR)
+            .collect(Collectors.groupingBy(
+                LogEntry::getErrorCode,
+                Collectors.counting()
+            ));
+    }
+}
+```
+
+
+
+# Optional: Tratamento Elegante de Null
+
+```
+OPTIONAL API
+├── Creation
+├── Checking
+├── Extraction
+└── Transformation
+```
+
+## Criando Optionals
+
+### Métodos de Criação
+
+```JAVA
+// Valor presente
+Optional<String> present = Optional.of("Neo");
+
+// Possivelmente null
+Optional<String> nullable = Optional.ofNullable(getValue());
+
+// Definitivamente vazio
+Optional<String> empty = Optional.empty();
+```
+
+## Verificando Valores
+
+### Métodos de Verificação
+
+```JAVA
+Optional<String> opt = Optional.of("Trinity");
+
+// Verifica se há valor
+boolean hasValue = opt.isPresent();
+
+// Verifica se está vazio
+boolean isEmpty = opt.isEmpty(); // Java 11+
+```
+
+## Extraindo Valores
+
+### Métodos de Extração
+
+```JAVA
+String value = opt.get(); // Pode lançar NoSuchElementException
+
+// Com valor padrão
+String safe = opt.orElse("Default");
+
+// Com supplier
+String computed = opt.orElseGet(() -> computeDefault());
+
+// Com exceção
+String required = opt.orElseThrow(
+    () -> new IllegalStateException("Valor requerido")
+);
+```
+
+## Transformando Valores
+
+### Map e FlatMap
+
+```JAVA
+Optional<String> upper = opt.map(String::toUpperCase);
+
+Optional<Optional<String>> nested = 
+    Optional.of(Optional.of("Nested"));
+Optional<String> flat = nested.flatMap(o -> o);
+```
+
+## Padrões de Uso
+
+### Encadeamento
+
+```JAVA
+public class UserService {
+    public Optional<String> getEmail(String userId) {
+        return findUser(userId)
+            .map(User::getProfile)
+            .map(Profile::getEmail);
+    }
+}
+```
+
+### Consumindo Valores
+
+```JAVA
+opt.ifPresent(value -> System.out.println(value));
+
+// Com ação alternativa (Java 9+)
+opt.ifPresentOrElse(
+    value -> System.out.println(value),
+    () -> System.out.println("Vazio")
+);
+```
+
+## Boas Práticas
+
+1. Evite Optional.get()
+
+```JAVA
+// Ruim
+String value = optional.get();
+
+// Bom
+String value = optional.orElse("default");
+```
+
+1. Não use Optional como Parâmetro
+
+```JAVA
+// Ruim
+public void process(Optional<String> value) {}
+
+// Bom
+public void process(String value) {}
+```
+
+1. Use para Retornos
+
+```JAVA
+public Optional<User> findUser(String id) {
+    User user = database.query(id);
+    return Optional.ofNullable(user);
+}
+```
+
+## Exemplo Prático
+
+### Sistema de Configuração
+
+```JAVA
+public class Config {
+    private Map<String, String> settings;
+
+    public Optional<String> getSetting(String key) {
+        return Optional.ofNullable(settings.get(key));
+    }
+
+    public String getSettingWithDefault(String key) {
+        return getSetting(key)
+            .map(String::trim)
+            .filter(s -> !s.isEmpty())
+            .orElse("default");
+    }
+}
+```
+
+## Exercício
+
+Implemente um sistema de cache com Optional:
+
+```JAVA
+public class Cache<K, V> {
+    private Map<K, V> storage = new HashMap<>();
+
+    public Optional<V> get(K key) {
+        return Optional.ofNullable(storage.get(key));
+    }
+
+    public V getOrCompute(K key, Supplier<V> computer) {
+        return get(key)
+            .orElseGet(() -> {
+                V value = computer.get();
+                storage.put(key, value);
+                return value;
+            });
+    }
+}
+```
+
+
+
+# Sistema de Módulos Java
+
+## Visão Geral
+
+O sistema de módulos do Java (Project Jigsaw) foi introduzido no Java 9 para melhorar a modularidade e escalabilidade de aplicações Java.
+
+## Conceitos Fundamentais
+
+### Estrutura de um Módulo
+
+```
+MODULE STRUCTURE
+├── module-info.java
+├── com.example.module
+│   ├── internal
+│   └── api
+└── resources
+```
+
+## Declaração de Módulo
+
+### Sintaxe Básica
+
+```JAVA
+module com.example.mymodule {
+    requires java.base;
+    exports com.example.api;
+    provides com.example.spi.MyService with com.example.impl.MyServiceImpl;
+}
+```
+
+## Diretivas Principais
+
+### Exports
+
+* Controla quais pacotes são acessíveis
+
+* Permite exportação seletiva
+
+* Gerencia visibilidade do módulo
+
+### Requires
+
+* Define dependências do módulo
+
+* Especifica módulos necessários
+
+* Controla transitividade
+
+### Provides/Uses
+
+* Implementa serviços
+
+* Define interfaces de serviço
+
+* Permite extensibilidade
+
+## Benefícios
+
+1. Encapsulamento Forte
+
+* Melhor segurança
+
+* Controle de acesso refinado
+
+* Isolamento de implementação
+
+2. Dependências Explícitas
+
+* Clareza nas relações
+
+* Gestão simplificada
+
+* Detecção precoce de problemas
+
+3. Performance
+
+* Carregamento otimizado
+
+* Menor footprint de memória
+
+* Inicialização mais rápida
+
+## Práticas Recomendadas
+
+### Organização
+
+* Módulos coesos
+
+* Interfaces bem definidas
+
+* Dependências mínimas
+
+### Nomenclatura
+
+* Nomes descritivos
+
+* Convenções consistentes
+
+* Hierarquia lógica
+
+## Exemplos Práticos
+
+### Módulo Básico
+
+```JAVA
+module com.example.core {
+    exports com.example.core.api;
+    requires java.logging;
+}
+```
+
+### Módulo de Serviço
+
+```JAVA
+module com.example.service {
+    exports com.example.service;
+    provides com.example.spi.Service with com.example.service.impl.ServiceImpl;
+}
+```
+
+## Ferramentas e Comandos
+
+### jmod
+
+```BASH
+jmod create --class-path mods/com.example.mymodule
+```
+
+### jdeps
+
+```BASH
+jdeps --module-path mods com.example.mymodule
+```
+
+## Migração para Módulos
+
+### Passos
+
+1. Análise de dependências
+
+2. Criação do module-info
+
+3. Refatoração de código
+
+4. Testes de integração
+
+### Desafios Comuns
+
+* Dependências circulares
+
+* Código legado
+
+* Bibliotecas não modulares
+
+## Recursos Adicionais
+
+### Documentação
+
+* [JEP 261](https://openjdk.java.net/jeps/261)
+
+* Java Platform Module System Specification
+
+* Tutorial oficial do Java
+
+### Ferramentas
+
+* Maven plugins
+
+* Gradle support
+
+* IDE integration
+
+
+
+# Reflection API
+
+## Fundamentos
+
+### O que é Reflection?
+
+Reflection é a capacidade de examinar e modificar o comportamento de classes, interfaces e métodos em tempo de execução.
+
+## Principais Componentes
+
+### Class<?>
+
+```JAVA
+// Obtendo Class object
+Class<?> clazz = MyClass.class;
+Class<?> clazz = objeto.getClass();
+Class<?> clazz = Class.forName("com.example.MyClass");
+```
+
+### Métodos
+
+```JAVA
+// Acessando métodos
+Method[] methods = clazz.getDeclaredMethods();
+Method method = clazz.getDeclaredMethod("methodName", parameterTypes);
+```
+
+### Campos
+
+```JAVA
+// Acessando campos
+Field[] fields = clazz.getDeclaredFields();
+Field field = clazz.getDeclaredField("fieldName");
+```
+
+## Casos de Uso
+
+### Inspeção de Classes
+
+```JAVA
+public void inspectClass(Class<?> clazz) {
+    System.out.println("Class: " + clazz.getName());
+    System.out.println("Superclass: " + clazz.getSuperclass().getName());
+    System.out.println("Interfaces: " + Arrays.toString(clazz.getInterfaces()));
+}
+```
+
+### Manipulação de Objetos
+
+```JAVA
+public Object createInstance(String className) throws Exception {
+    Class<?> clazz = Class.forName(className);
+    return clazz.getDeclaredConstructor().newInstance();
+}
+```
+
+## Recursos Avançados
+
+### Anotações
+
+```JAVA
+// Lendo anotações
+Annotation[] annotations = clazz.getAnnotations();
+MyAnnotation annotation = clazz.getAnnotation(MyAnnotation.class);
+```
+
+### Generics
+
+```JAVA
+// Trabalhando com tipos genéricos
+Type[] genericTypes = ((ParameterizedType) field.getGenericType())
+    .getActualTypeArguments();
+```
+
+## Boas Práticas
+
+### Performance
+
+* Cache de reflection
+
+* Minimizar uso em loops
+
+* Preferir acesso direto quando possível
+
+### Segurança
+
+* Usar setAccessible com cautela
+
+* Validar entrada do usuário
+
+* Considerar políticas de segurança
+
+## Exemplos Práticos
+
+### Framework de Teste
+
+```JAVA
+public class TestRunner {
+    public void runTests(Class<?> testClass) throws Exception {
+        Object instance = testClass.getDeclaredConstructor().newInstance();
+        
+        for (Method method : testClass.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(Test.class)) {
+                method.invoke(instance);
+            }
+        }
+    }
+}
+```
+
+### Injeção de Dependência
+
+```JAVA
+public class DependencyInjector {
+    public void inject(Object instance) throws Exception {
+        Class<?> clazz = instance.getClass();
+        
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(Inject.class)) {
+                field.setAccessible(true);
+                field.set(instance, createDependency(field.getType()));
+            }
+        }
+    }
+}
+```
+
+## Debugging e Troubleshooting
+
+### Erros Comuns
+
+1. IllegalAccessException
+
+2. NoSuchMethodException
+
+3. InvocationTargetException
+
+### Soluções
+
+```JAVA
+// Tratamento de exceções
+try {
+    method.setAccessible(true);
+    method.invoke(object, args);
+} catch (Exception e) {
+    handleReflectionException(e);
+}
+```
+
+## Performance
+
+### Otimizações
+
+```JAVA
+// Cache de reflection
+private static final Map<Class<?>, Method[]> methodCache = new ConcurrentHashMap<>();
+
+public Method[] getMethods(Class<?> clazz) {
+    return methodCache.computeIfAbsent(clazz, Class::getDeclaredMethods);
+}
+```
+
+## Recursos Adicionais
+
+### Documentação
+
+* Java Reflection API Documentation
+
+* Tutorial Oracle sobre Reflection
+
+* Especificação da linguagem Java
+
+### Ferramentas
+
+* ByteBuddy
+
+* Reflections Library
+
+* ASM
+
+
+
+# Anotações em Java
+
+## Fundamentos
+
+### O que são Anotações?
+
+Anotações são metadados que podem ser adicionados ao código Java para fornecer informações adicionais sobre o programa.
+
+## Tipos de Anotações
+
+### Built-in Annotations
+
+```JAVA
+@Override
+@Deprecated
+@SuppressWarnings
+@FunctionalInterface
+@SafeVarargs
+```
+
+### Meta-Annotations
+
+```JAVA
+@Retention
+@Target
+@Documented
+@Inherited
+@Repeatable
+```
+
+## Criando Anotações
+
+### Sintaxe Básica
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Test {
+    String value() default "";
+    boolean enabled() default true;
+}
+```
+
+### Elementos de Anotação
+
+```JAVA
+public @interface Configuration {
+    String name();              // Elemento obrigatório
+    int port() default 8080;    // Elemento com valor default
+    String[] protocols();       // Array
+}
+```
+
+## Criando Annotations Personalizadas
+
+### Anatomia de uma Annotation
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)           // Quando a annotation está disponível
+@Target({ElementType.METHOD, ElementType.TYPE}) // Onde pode ser usada
+@Documented                                   // Incluir na documentação JavaDoc
+public @interface MinhaAnnotation {
+    String value();                // Elemento obrigatório
+    int count() default 0;         // Elemento opcional com valor padrão
+    String[] tags() default {};    // Array com valor padrão vazio
+}
+```
+
+### Tipos de Elementos Permitidos
+
+```JAVA
+public @interface ConfiguracaoCompleta {
+    // Tipos primitivos
+    int valor();
+    boolean ativo();
+    
+    // String
+    String descricao();
+    
+    // Class
+    Class<?> tipo();
+    
+    // Enum
+    NivelLog nivel() default NivelLog.INFO;
+    
+    // Annotation
+    Override referencia() default @Override;
+    
+    // Arrays
+    String[] tags();
+}
+```
+
+### Valores Default
+
+```JAVA
+public @interface Configuracao {
+    // Valor único sem default (obrigatório)
+    String nome();
+    
+    // Valor único com default (opcional)
+    int timeout() default 1000;
+    
+    // Array com default vazio
+    String[] perfis() default {};
+    
+    // Array com valores default
+    String[] ambientes() default {"dev", "test"};
+}
+```
+
+### Annotations Simples vs. Complexas
+
+#### Annotation Simples (Marker)
+
+```JAVA
+// Annotation marcadora - sem elementos
+public @interface Auditavel {}
+
+// Uso
+@Auditavel
+public class ContaBancaria {}
+```
+
+#### Annotation com Valor Único
+
+```JAVA
+public @interface NomeTabela {
+    String value();  // Elemento especial 'value'
+}
+
+// Uso simplificado
+@NomeTabela("usuarios")
+public class Usuario {}
+```
+
+#### Annotation Complexa
+
+```JAVA
+public @interface Entidade {
+    String nome();
+    String schema() default "";
+    boolean auditavel() default false;
+    String[] indices() default {};
+}
+
+// Uso
+@Entidade(
+    nome = "produtos",
+    schema = "estoque",
+    auditavel = true,
+    indices = {"idx_nome", "idx_codigo"}
+)
+public class Produto {}
+```
+
+### Annotations Aninhadas
+
+```JAVA
+// Annotation interna
+public @interface Coluna {
+    String nome();
+    boolean nullable() default true;
+}
+
+// Annotation container
+public @interface Colunas {
+    Coluna[] value();
+}
+
+// Uso
+@Colunas({
+    @Coluna(nome = "id", nullable = false),
+    @Coluna(nome = "nome")
+})
+public class Exemplo {}
+```
+
+### Processamento de Annotations Customizadas
+
+```JAVA
+public class ProcessadorAnnotation {
+    public void processar(Class<?> classe) {
+        // Verificando se a classe tem a annotation
+        if (classe.isAnnotationPresent(MinhaAnnotation.class)) {
+            // Obtendo a annotation
+            MinhaAnnotation annotation = 
+                classe.getAnnotation(MinhaAnnotation.class);
+            
+            // Acessando elementos
+            String valor = annotation.value();
+            int contador = annotation.count();
+            String[] tags = annotation.tags();
+            
+            // Processamento...
+        }
+    }
+}
+```
+
+### Exemplo Completo
+
+```JAVA
+// Definição da annotation
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface ServicoRest {
+    String path();
+    String versao() default "1.0";
+    MetodoHttp[] metodos() default {};
+    
+    public enum MetodoHttp {
+        GET, POST, PUT, DELETE
+    }
+}
+
+// Uso da annotation
+@ServicoRest(
+    path = "/usuarios",
+    versao = "2.0",
+    metodos = {
+        ServicoRest.MetodoHttp.GET,
+        ServicoRest.MetodoHttp.POST
+    }
+)
+public class UsuarioController {
+    // Implementação...
+}
+
+// Processamento
+public class ServicoRestScanner {
+    public void scanearServicos(String pacote) {
+        // Lógica para encontrar classes no pacote
+        Class<?>[] classes = // ...
+        
+        for (Class<?> classe : classes) {
+            if (classe.isAnnotationPresent(ServicoRest.class)) {
+                ServicoRest servico = 
+                    classe.getAnnotation(ServicoRest.class);
+                
+                // Registrar endpoint
+                registrarEndpoint(
+                    servico.path(),
+                    servico.versao(),
+                    servico.metodos()
+                );
+            }
+        }
+    }
+    
+    private void registrarEndpoint(
+        String path, 
+        String versao, 
+        MetodoHttp[] metodos
+    ) {
+        // Implementação do registro...
+    }
+}
+```
+
+## Uso de Anotações
+
+### Em Classes
+
+```JAVA
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue
+    private Long id;
+    
+    @Column(nullable = false)
+    private String name;
+}
+```
+
+### Em Métodos
+
+```JAVA
+@Test
+@Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
+public void testMethod() {
+    // Test implementation
+}
+```
+
+## Processamento de Anotações
+
+### Em Tempo de Compilação
+
+```JAVA
+@SupportedAnnotationTypes("com.example.annotations.*")
+@SupportedSourceVersion(SourceVersion.RELEASE_17)
+public class MyAnnotationProcessor extends AbstractProcessor {
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        // Processamento
+        return true;
+    }
+}
+```
+
+### Em Tempo de Execução
+
+```JAVA
+public class AnnotationReader {
+    public void readAnnotations(Class<?> clazz) {
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(Test.class)) {
+                Test test = method.getAnnotation(Test.class);
+                System.out.println("Test: " + test.value());
+            }
+        }
+    }
+}
+```
+
+## Padrões de Uso
+
+### Validação
+
+```JAVA
+@NotNull
+@Size(min = 5, max = 50)
+private String username;
+
+@Email
+@NotBlank
+private String email;
+```
+
+### Configuração
+
+```JAVA
+@Configuration
+@EnableCaching
+public class AppConfig {
+    @Bean
+    @Scope("singleton")
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager();
+    }
+}
+```
+
+## Boas Práticas
+
+### Nomenclatura
+
+* Nomes descritivos
+
+* Convenções consistentes
+
+* Documentação clara
+
+### Design
+
+* Mantenha simples
+
+* Evite duplicação
+
+* Use valores default apropriados
+
+## Exemplos Avançados
+
+### Anotações Repetíveis
+
+```JAVA
+@Repeatable(Roles.class)
+public @interface Role {
+    String value();
+}
+
+public @interface Roles {
+    Role[] value();
+}
+
+@Role("ADMIN")
+@Role("USER")
+public class UserController { }
+```
+
+### Anotações Compostas
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@SpringBootApplication
+@EnableCaching
+@EnableScheduling
+public @interface MyApplication { }
+```
+
+## Casos de Uso
+
+### Framework de Teste
+
+```JAVA
+@Test
+@DisplayName("Teste de soma")
+@Tag("math")
+public void testAdd() {
+    assertEquals(4, Calculator.add(2, 2));
+}
+```
+
+### Injeção de Dependência
+
+```JAVA
+@Component
+public class UserService {
+    @Autowired
+    private UserRepository repository;
+    
+    @Transactional
+    public void saveUser(User user) {
+        repository.save(user);
+    }
+}
+```
+
+## Recursos Adicionais
+
+### Documentação
+
+* Java Annotation Specification
+
+* Tutorial Oracle sobre Annotations
+
+* Processadores de Anotação
+
+### Frameworks
+
+* Spring Annotations
+
+* JUnit Annotations
+
+* Jakarta EE Annotations
+
+
+
+# Projetos Avançados
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Projetos Avançados] --> B[Data Processor]
+    A --> C[Functional Calculator]
+    A --> D[Custom Framework]
+    A --> E[Annotation Processor]
+    A --> F[Generic Container]
+    A --> G[Reflection Explorer]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+    style E fill:#1a1a1a,stroke:#33ccff
+    style F fill:#1a1a1a,stroke:#33ccff
+    style G fill:#1a1a1a,stroke:#33ccff
+```
+
+## Estrutura Base dos Projetos
+
+```
+PROJETO
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── netrunner/
+│   │   │           └── project/
+│   │   │               ├── annotations/
+│   │   │               ├── processors/
+│   │   │               ├── core/
+│   │   │               └── util/
+│   │   └── resources/
+│   │       └── META-INF/
+│   │           └── services/
+│   └── test/
+│       └── java/
+└── pom.xml
+```
+
+## Data Processor
+
+### Objetivo
+
+Criar um sistema de processamento de dados com anotações personalizadas para validação, transformação e persistência.
+
+### Características
+
+* Anotações para validação de campos
+
+* Transformadores de dados customizáveis
+
+* Pipeline de processamento configurável
+
+* Suporte a diferentes formatos de dados
+
+### Exemplo de Implementação
+
+```JAVA
+@Entity
+@DataProcessor(version = "1.0")
+public class UserData {
+    @Validate(pattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
+    private String email;
+    
+    @Transform(transformer = EncryptTransformer.class)
+    private String password;
+    
+    @Persist(strategy = "JDBC")
+    private UserProfile profile;
+}
+```
+
+## Functional Calculator
+
+### Objetivo
+
+Implementar uma calculadora avançada usando programação funcional e expressões lambda.
+
+### Características
+
+* Operações encadeadas
+
+* Histórico de operações
+
+* Funções customizáveis
+
+* Suporte a expressões complexas
+
+### Exemplo de Implementação
+
+```JAVA
+public class FunctionalCalculator {
+    @Operation("SUM")
+    public Function<Double, Double> sum(Double a) {
+        return b -> a + b;
+    }
+    
+    @Operation("COMPOSE")
+    public <T, R> Function<T, R> compose(
+        @OperationParam Function<T, R>... functions
+    ) {
+        return Arrays.stream(functions)
+                    .reduce(Function.identity(), Function::andThen);
+    }
+}
+```
+
+## Custom Framework
+
+### Objetivo
+
+Desenvolver um mini-framework usando reflexão e anotações para injeção de dependências.
+
+### Características
+
+* Injeção de dependências
+
+* Gerenciamento de ciclo de vida
+
+* Configuração via anotações
+
+* Suporte a plugins
+
+### Exemplo de Implementação
+
+```JAVA
+@Component
+@Scope("singleton")
+public class ServiceManager {
+    @Inject
+    private ConfigProvider config;
+    
+    @Initialize
+    public void setup() {
+        // Inicialização
+    }
+    
+    @HandleRequest("/api")
+    public Response processRequest(Request request) {
+        // Processamento
+    }
+}
+```
+
+## Annotation Processor
+
+### Objetivo
+
+Criar um processador de anotações para geração de código em tempo de compilação.
+
+### Características
+
+* Geração de código
+
+* Validação em tempo de compilação
+
+* Documentação automática
+
+* Templates customizáveis
+
+### Exemplo de Implementação
+
+```JAVA
+@SupportedAnnotationTypes("com.netrunner.annotations.*")
+@SupportedSourceVersion(SourceVersion.RELEASE_17)
+public class CustomAnnotationProcessor extends AbstractProcessor {
+    @Override
+    public boolean process(
+        Set<? extends TypeElement> annotations,
+        RoundEnvironment roundEnv
+    ) {
+        // Processamento das anotações
+        return true;
+    }
+}
+```
+
+## Generic Container
+
+### Objetivo
+
+Implementar um container genérico com suporte a diferentes tipos de dados e operações.
+
+### Características
+
+* Tipos genéricos
+
+* Operações type-safe
+
+* Validações em tempo de compilação
+
+* Conversões automáticas
+
+### Exemplo de Implementação
+
+```JAVA
+@Container
+public class DataContainer<T extends Comparable<T>> {
+    @Validate
+    private List<T> elements;
+    
+    @Operation
+    public <R> Optional<R> transform(
+        @Transformer Function<T, R> transformer
+    ) {
+        // Transformação de dados
+    }
+}
+```
+
+## Reflection Explorer
+
+### Objetivo
+
+Criar uma ferramenta para exploração e manipulação de classes usando reflexão.
+
+### Características
+
+* Inspeção de classes
+
+* Modificação em runtime
+
+* Proxy dinâmico
+
+* Carregamento de classes
+
+### Exemplo de Implementação
+
+```JAVA
+public class ReflectionExplorer {
+    @Inspect
+    public ClassInfo analyze(Class<?> target) {
+        return ClassInfo.builder()
+                       .methods(getMethods(target))
+                       .fields(getFields(target))
+                       .annotations(getAnnotations(target))
+                       .build();
+    }
+    
+    @Modify
+    public Object enhance(
+        @Target Object instance,
+        @Enhancement Enhancement enhancement
+    ) {
+        // Modificação dinâmica
+    }
+}
+```
+
+## Desafios Extras
+
+### Data Processor
+
+* Implementar validação assíncrona
+
+* Adicionar suporte a expressões regulares complexas
+
+* Criar pipeline de transformação configurável
+
+* Implementar persistência em diferentes bancos
+
+### Functional Calculator
+
+* Adicionar suporte a operações matemáticas avançadas
+
+* Implementar sistema de plugins para novas operações
+
+* Criar DSL para expressões matemáticas
+
+* Adicionar suporte a cálculos paralelos
+
+### Custom Framework
+
+* Implementar hot reload de componentes
+
+* Adicionar suporte a aspectos
+
+* Criar sistema de plugins dinâmicos
+
+* Implementar balanceamento de carga
+
+### Annotation Processor
+
+* Gerar documentação automática
+
+* Implementar validações complexas
+
+* Criar templates customizáveis
+
+* Adicionar suporte a diferentes linguagens
+
+### Generic Container
+
+* Implementar operações batch
+
+* Adicionar suporte a streams
+
+* Criar sistema de cache inteligente
+
+* Implementar serialização customizada
+
+### Reflection Explorer
+
+* Adicionar suporte a bytecode manipulation
+
+* Implementar hot swapping de classes
+
+* Criar visualização gráfica de hierarquias
+
+* Implementar debugging dinâmico
+
+## Dicas de Implementação
+
+1. Planejamento
+
+* Comece com diagramas UML
+
+* Defina casos de uso claros
+
+* Estabeleça critérios de aceitação
+
+* Planeje a arquitetura
+
+2. Desenvolvimento
+
+* Use TDD/BDD
+
+* Implemente incrementalmente
+
+* Documente decisões importantes
+
+* Mantenha o código limpo
+
+3. Testes
+
+* Crie testes unitários
+
+* Implemente testes de integração
+
+* Realize testes de performance
+
+* Valide edge cases
+
+4. Otimização
+
+* Profile o código
+
+* Otimize pontos críticos
+
+* Monitore uso de recursos
+
+* Implemente caching quando necessário
+
+## Recursos Adicionais
+
+### Documentação
+
+* JavaDoc completo
+
+* Diagramas de arquitetura
+
+* Guias de uso
+
+* Exemplos práticos
+
+### Ferramentas
+
+* IDEs recomendadas
+
+* Plugins úteis
+
+* Frameworks de teste
+
+* Ferramentas de build
+
+### Comunidade
+
+* Fóruns de discussão
+
+* Canais de suporte
+
+* Repositórios de exemplo
+
+* Artigos relacionados
+
+
+
+# Data Processor
+
+## Visão Geral
+
+O Data Processor é um projeto avançado que demonstra o uso de anotações personalizadas para criar um sistema flexível de processamento de dados.
+
+## Objetivos
+
+* Implementar um sistema de validação baseado em anotações
+
+* Criar transformadores de dados customizáveis
+
+* Desenvolver um pipeline de processamento configurável
+
+* Suportar diferentes formatos e fontes de dados
+
+## Implementação
+
+### 1. Anotações Base
+
+```JAVA
+// Anotação principal para marcar classes processáveis
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface DataProcessor {
+    String value() default "";
+    String version() default "1.0";
+    ProcessingMode mode() default ProcessingMode.SYNC;
+    
+    public enum ProcessingMode {
+        SYNC, ASYNC, BATCH
+    }
+}
+
+// Anotação para validação de campos
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Validate {
+    String pattern() default "";
+    boolean required() default true;
+    int minLength() default 0;
+    int maxLength() default Integer.MAX_VALUE;
+    String message() default "";
+}
+
+// Anotação para transformação de dados
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Transform {
+    Class<? extends DataTransformer<?>> transformer();
+    String[] params() default {};
+}
+
+// Anotação para persistência
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Persist {
+    String strategy() default "DEFAULT";
+    boolean async() default false;
+}
+```
+
+### 2. Interfaces Base
+
+```JAVA
+// Interface para transformadores de dados
+public interface DataTransformer<T> {
+    T transform(T input, String... params);
+}
+
+// Interface para validadores
+public interface DataValidator {
+    boolean validate(Object value, Validate annotation);
+    String getErrorMessage();
+}
+
+// Interface para persistência
+public interface DataPersister {
+    void persist(Object data, Persist annotation);
+    Object retrieve(String id, Class<?> type);
+}
+```
+
+### 3. Implementações Principais
+
+```JAVA
+// Processador principal
+public class DataProcessorEngine {
+    private final Map<Class<?>, DataValidator> validators;
+    private final Map<Class<?>, DataTransformer<?>> transformers;
+    private final Map<String, DataPersister> persisters;
+
+    public <T> ProcessingResult<T> process(T data) {
+        Class<?> dataClass = data.getClass();
+        
+        if (!dataClass.isAnnotationPresent(DataProcessor.class)) {
+            throw new IllegalArgumentException("Class not annotated with @DataProcessor");
+        }
+
+        ProcessingResult<T> result = new ProcessingResult<>();
+        
+        // Validação
+        validateFields(data, result);
+        
+        if (!result.isValid()) {
+            return result;
+        }
+
+        // Transformação
+        T transformed = transformFields(data);
+        
+        // Persistência
+        persistFields(transformed);
+
+        result.setProcessedData(transformed);
+        return result;
+    }
+
+    private <T> void validateFields(T data, ProcessingResult<T> result) {
+        // Implementação da validação
+    }
+
+    private <T> T transformFields(T data) {
+        // Implementação da transformação
+    }
+
+    private <T> void persistFields(T data) {
+        // Implementação da persistência
+    }
+}
+```
+
+### 4. Implementações de Transformadores
+
+```JAVA
+// Transformador de criptografia
+public class EncryptTransformer implements DataTransformer<String> {
+    @Override
+    public String transform(String input, String... params) {
+        // Implementação da criptografia
+        return encrypt(input, params[0]); // params[0] = chave de criptografia
+    }
+
+    private String encrypt(String data, String key) {
+        // Lógica de criptografia
+        return /* dados criptografados */;
+    }
+}
+
+// Transformador de formatação de data
+public class DateFormatTransformer implements DataTransformer<Date> {
+    @Override
+    public Date transform(Date input, String... params) {
+        String pattern = params[0]; // formato da data
+        // Implementação da formatação
+        return /* data formatada */;
+    }
+}
+```
+
+### 5. Exemplo de Uso
+
+```JAVA
+@DataProcessor(
+    value = "userProcessor",
+    version = "1.0",
+    mode = ProcessingMode.ASYNC
+)
+public class UserData {
+    @Validate(
+        pattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$",
+        message = "Email inválido"
+    )
+    private String email;
+    
+    @Transform(transformer = EncryptTransformer.class)
+    @Validate(required = true, minLength = 8)
+    private String password;
+    
+    @Transform(
+        transformer = DateFormatTransformer.class,
+        params = "yyyy-MM-dd"
+    )
+    private Date birthDate;
+    
+    @Persist(strategy = "JDBC", async = true)
+    private UserProfile profile;
+
+    // Getters e Setters
+}
+
+// Uso do processador
+public class UserService {
+    private final DataProcessorEngine processor;
+
+    public void registerUser(UserData userData) {
+        ProcessingResult<UserData> result = processor.process(userData);
+        
+        if (result.isValid()) {
+            // Usuário processado com sucesso
+            UserData processedData = result.getProcessedData();
+            // Continuar com o fluxo
+        } else {
+            // Tratar erros de validação
+            List<String> errors = result.getErrors();
+            // Tratamento de erros
+        }
+    }
+}
+```
+
+## Desafios de Implementação
+
+### 1. Validação Assíncrona
+
+Implementar suporte a validações assíncronas para campos que requerem verificações externas.
+
+```JAVA
+@Validate(async = true, validator = EmailExistsValidator.class)
+private String email;
+```
+
+### 2. Pipeline Customizável
+
+Criar um sistema de pipeline onde a ordem de processamento pode ser configurada.
+
+```JAVA
+@DataProcessor(
+    pipeline = {
+        @Stage(type = VALIDATION, order = 1),
+        @Stage(type = TRANSFORMATION, order = 2),
+        @Stage(type = PERSISTENCE, order = 3)
+    }
+)
+```
+
+### 3. Transformações Compostas
+
+Permitir múltiplas transformações em sequência para um mesmo campo.
+
+```JAVA
+@Transform({
+    @SingleTransform(transformer = TrimTransformer.class),
+    @SingleTransform(transformer = LowerCaseTransformer.class),
+    @SingleTransform(transformer = EncryptTransformer.class)
+})
+private String data;
+```
+
+## Próximos Passos
+
+1. Otimizações
+
+* Implementar cache de reflexão
+
+* Adicionar pool de threads para processamento assíncrono
+
+* Otimizar validações em lote
+
+2. Extensões
+
+* Suporte a expressões regulares complexas
+
+* Validações customizadas via scripts
+
+* Plugins para novos transformadores
+
+3. Monitoramento
+
+* Métricas de processamento
+
+* Logging detalhado
+
+* Rastreamento de transformações
+
+## Recursos Adicionais
+
+* [Documentação completa](null)
+
+* [Exemplos de uso](null)
+
+* [Guia de contribuição](null)
+
+* [FAQ](null)
+
+Tip:
+
+Dica: Comece com um conjunto pequeno de validadores e transformadores, e expanda gradualmente conforme as necessidades do projeto.
+
+
+
+# Calculadora Funcional
+
+## Visão Geral
+
+A Calculadora Funcional é um projeto avançado que demonstra os princípios da programação funcional em Java, utilizando expressões lambda, funções de ordem superior e composição de funções.
+
+## Objetivos
+
+* Implementar operações matemáticas usando programação funcional
+
+* Demonstrar o uso de expressões lambda e referências de método
+
+* Criar um sistema de composição de operações
+
+* Implementar histórico de operações usando streams
+
+## Implementação
+
+### Estrutura Base
+
+```JAVA
+@FunctionalInterface
+public interface Operation<T> {
+    T apply(T a, T b);
+}
+
+public class FunctionalCalculator {
+    private final List<String> history = new ArrayList<>();
+    
+    @Operation("ADD")
+    public Function<Double, Double> add(Double a) {
+        return b -> {
+            double result = a + b;
+            logOperation("ADD", a, b, result);
+            return result;
+        };
+    }
+    
+    @Operation("MULTIPLY")
+    public Function<Double, Double> multiply(Double a) {
+        return b -> {
+            double result = a * b;
+            logOperation("MULTIPLY", a, b, result);
+            return result;
+        };
+    }
+    
+    private void logOperation(String op, Double a, Double b, Double result) {
+        history.add(String.format("%s: %f %s %f = %f", 
+            op, a, op.toLowerCase(), b, result));
+    }
+    
+    public List<String> getHistory() {
+        return Collections.unmodifiableList(history);
+    }
+}
+```
+
+### Composição de Operações
+
+```JAVA
+public class OperationComposer {
+    @Operation("COMPOSE")
+    public <T> Function<T, T> compose(
+        @OperationParam Function<T, T>... functions
+    ) {
+        return Arrays.stream(functions)
+                    .reduce(Function.identity(), Function::andThen);
+    }
+}
+```
+
+## Exemplos de Uso
+
+### Operações Básicas
+
+```JAVA
+FunctionalCalculator calc = new FunctionalCalculator();
+
+// Operação simples
+double result = calc.add(5.0).apply(3.0);  // 8.0
+
+// Composição de operações
+Function<Double, Double> operation = calc.compose(
+    calc.add(5.0),
+    calc.multiply(2.0)
+);
+double composedResult = operation.apply(3.0);  // 16.0
+```
+
+### Histórico de Operações
+
+```JAVA
+calc.getHistory().forEach(System.out::println);
+// Saída:
+// ADD: 5.000000 add 3.000000 = 8.000000
+// MULTIPLY: 8.000000 multiply 2.000000 = 16.000000
+```
+
+## Exercícios Propostos
+
+1. Implementar operações adicionais:
+
+* Subtração
+
+* Divisão
+
+* Potenciação
+
+* Raiz quadrada
+
+2. Adicionar validações:
+
+* Divisão por zero
+
+* Números negativos em raiz quadrada
+
+* Overflow/Underflow
+
+3. Implementar operações com diferentes tipos:
+
+* Inteiros
+
+* Números complexos
+
+* Vetores
+
+## Desafios Avançados
+
+### 1. Sistema de Plugins
+
+Criar um sistema que permite adicionar novas operações dinamicamente:
+
+```JAVA
+public interface OperationPlugin {
+    String getName();
+    Function<Double, Double> getOperation(Double input);
+}
+```
+
+### 2. Expressões Matemáticas
+
+Implementar um parser de expressões matemáticas:
+
+```JAVA
+public class ExpressionParser {
+    public Function<Double, Double> parse(String expression) {
+        // Implementação do parser
+    }
+}
+```
+
+### 3. Operações Assíncronas
+
+Adicionar suporte para cálculos assíncronos:
+
+```JAVA
+public class AsyncCalculator {
+    public CompletableFuture<Double> calculateAsync(
+        Function<Double, Double> operation,
+        Double input
+    ) {
+        return CompletableFuture.supplyAsync(
+            () -> operation.apply(input)
+        );
+    }
+}
+```
+
+## Boas Práticas
+
+1. Imutabilidade
+
+* Use tipos imutáveis
+
+* Evite estado mutável
+
+* Retorne novas instâncias
+
+2. Composição
+
+* Prefira composição sobre herança
+
+* Use funções pequenas e focadas
+
+* Combine funções para operações complexas
+
+3. Tratamento de Erros
+
+* Use Optional para resultados opcionais
+
+* Implemente tratamento de exceções funcional
+
+* Mantenha a transparência referencial
+
+## Recursos Adicionais
+
+* [Documentação Java Stream API](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
+
+* [Tutorial sobre Programação Funcional](null)
+
+* [Padrões Funcionais](null)
+
+## Próximos Passos
+
+Após completar este projeto, você estará preparado para:
+
+* Desenvolver sistemas mais complexos usando programação funcional
+
+* Implementar operações assíncronas e paralelas
+
+* Criar DSLs (Domain Specific Languages) funcionais
+
+
+
+# Framework de Injeção de Dependências Customizado
+
+## Visão Geral
+
+Neste projeto, vamos desenvolver um mini-framework de injeção de dependências usando reflexão e anotações em Java. O framework oferecerá funcionalidades básicas de DI (Dependency Injection) e gerenciamento de ciclo de vida de componentes.
+
+## Principais Características
+
+* Injeção automática de dependências
+
+* Gerenciamento de escopo (singleton/prototype)
+
+* Configuração via anotações
+
+* Inicialização e destruição de componentes
+
+* Suporte a plugins
+
+## Anotações do Framework
+
+### @Component
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface Component {
+    String value() default "";
+    String scope() default "singleton";
+}
+```
+
+### @Inject
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD, ElementType.CONSTRUCTOR})
+public @interface Inject {
+}
+```
+
+### @Initialize
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Initialize {
+    int order() default 0;
+}
+```
+
+## Container de Dependências
+
+### Implementação Básica
+
+```JAVA
+public class DIContainer {
+    private Map<Class<?>, Object> singletons = new HashMap<>();
+    private Map<Class<?>, Class<?>> bindings = new HashMap<>();
+
+    public <T> void bind(Class<T> interfaceClass, Class<? extends T> implementationClass) {
+        bindings.put(interfaceClass, implementationClass);
+    }
+
+    public <T> T getInstance(Class<T> type) {
+        // Verifica se é singleton
+        if (singletons.containsKey(type)) {
+            return (T) singletons.get(type);
+        }
+
+        // Cria nova instância
+        return createInstance(type);
+    }
+
+    private <T> T createInstance(Class<T> type) {
+        try {
+            Constructor<?> constructor = type.getDeclaredConstructor();
+            T instance = (T) constructor.newInstance();
+            injectDependencies(instance);
+            return instance;
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao criar instância", e);
+        }
+    }
+
+    private void injectDependencies(Object instance) {
+        Class<?> type = instance.getClass();
+        for (Field field : type.getDeclaredFields()) {
+            if (field.isAnnotationPresent(Inject.class)) {
+                field.setAccessible(true);
+                Object dependency = getInstance(field.getType());
+                try {
+                    field.set(instance, dependency);
+                } catch (Exception e) {
+                    throw new RuntimeException("Erro ao injetar dependência", e);
+                }
+            }
+        }
+    }
+}
+```
+
+## Exemplo de Uso
+
+### Definição de Componentes
+
+```JAVA
+@Component
+public class UserService {
+    @Inject
+    private UserRepository userRepository;
+    
+    @Initialize
+    public void setup() {
+        System.out.println("Inicializando UserService");
+    }
+    
+    public User findUser(Long id) {
+        return userRepository.findById(id);
+    }
+}
+
+@Component(scope = "prototype")
+public class UserRepository {
+    private DatabaseConnection connection;
+    
+    @Inject
+    public UserRepository(DatabaseConnection connection) {
+        this.connection = connection;
+    }
+    
+    public User findById(Long id) {
+        // Implementação
+        return null;
+    }
+}
+```
+
+### Configuração e Uso
+
+```JAVA
+public class Application {
+    public static void main(String[] args) {
+        DIContainer container = new DIContainer();
+        
+        // Configuração
+        container.bind(UserRepository.class, UserRepositoryImpl.class);
+        
+        // Uso
+        UserService userService = container.getInstance(UserService.class);
+        User user = userService.findUser(1L);
+    }
+}
+```
+
+## Recursos Avançados
+
+### Plugin System
+
+```JAVA
+@Plugin
+public interface UserPlugin {
+    void onUserCreated(User user);
+}
+
+public class PluginManager {
+    private List<UserPlugin> plugins = new ArrayList<>();
+    
+    public void registerPlugin(UserPlugin plugin) {
+        plugins.add(plugin);
+    }
+    
+    public void notifyUserCreated(User user) {
+        plugins.forEach(plugin -> plugin.onUserCreated(user));
+    }
+}
+```
+
+### Aspect-Like Features
+
+```JAVA
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Transactional {
+}
+
+public class TransactionInterceptor {
+    public Object intercept(Method method, Object[] args) {
+        beginTransaction();
+        try {
+            Object result = method.invoke(args);
+            commitTransaction();
+            return result;
+        } catch (Exception e) {
+            rollbackTransaction();
+            throw e;
+        }
+    }
+}
+```
+
+## Considerações de Design
+
+### Padrões Utilizados
+
+* Singleton para gerenciamento de instâncias
+
+* Factory Method para criação de objetos
+
+* Observer para sistema de plugins
+
+* Proxy para interceptação de métodos
+
+### Boas Práticas
+
+* Lazy loading de dependências
+
+* Cache de reflexão para performance
+
+* Detecção de ciclos de dependência
+
+* Logging e tratamento de erros
+
+## Próximos Passos
+
+1. Implementar suporte a profiles
+
+2. Adicionar injeção por construtor
+
+3. Desenvolver sistema de eventos
+
+4. Criar mecanismo de configuração externa
+
+5. Implementar lazy injection
 
 
 

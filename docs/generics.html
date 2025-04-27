@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-27T16:08:35.671830597"><title>Generics: Flexibilidade com Tipo Seguro | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"conceitos-b-sicos","level":0,"title":"Conceitos Básicos","anchor":"#conceitos-b-sicos"},{"id":"wildcards","level":0,"title":"Wildcards","anchor":"#wildcards"},{"id":"type-erasure","level":0,"title":"Type Erasure","anchor":"#type-erasure"},{"id":"pr-ticas-recomendadas","level":0,"title":"Práticas Recomendadas","anchor":"#pr-ticas-recomendadas"},{"id":"exerc-cio-pr-tico","level":0,"title":"Exercício Prático","anchor":"#exerc-cio-pr-tico"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Generics: Flexibilidade com Tipo Seguro | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/generics.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Generics: Flexibilidade com Tipo Seguro | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/generics.html#webpage",
+    "url": "writerside-documentation/java/1.0/generics.html",
+    "name": "Generics: Flexibilidade com Tipo Seguro | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="generics" data-main-title="Generics: Flexibilidade com Tipo Seguro" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="advanced-features.md"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="generics" id="generics.md">Generics: Flexibilidade com Tipo Seguro</h1><div class="code-block" data-lang="none">
+GENERICS MAP
+├── Type Parameters
+├── Generic Classes
+├── Generic Methods
+└── Type Bounds
+</div><section class="chapter"><h2 id="conceitos-b-sicos" data-toc="conceitos-b-sicos">Conceitos B&aacute;sicos</h2><section class="chapter"><h3 id="type-parameters" data-toc="type-parameters">Type Parameters</h3><div class="code-block" data-lang="java">
+// T é um type parameter comum
+public class Box&lt;T&gt; {
+    private T content;
+    
+    public void store(T item) {
+        this.content = item;
+    }
+    
+    public T retrieve() {
+        return content;
+    }
+}
+</div></section><section class="chapter"><h3 id="conven-es-de-nomenclatura" data-toc="conven-es-de-nomenclatura">Conven&ccedil;&otilde;es de Nomenclatura</h3><ul class="list _bullet" id="-4zjmey_12"><li class="list__item" id="-4zjmey_13"><p id="-4zjmey_18"><code class="code" id="-4zjmey_19">T</code> - Tipo gen&eacute;rico</p></li><li class="list__item" id="-4zjmey_14"><p id="-4zjmey_20"><code class="code" id="-4zjmey_21">E</code> - Elemento</p></li><li class="list__item" id="-4zjmey_15"><p id="-4zjmey_22"><code class="code" id="-4zjmey_23">K</code> - Chave</p></li><li class="list__item" id="-4zjmey_16"><p id="-4zjmey_24"><code class="code" id="-4zjmey_25">V</code> - Valor</p></li><li class="list__item" id="-4zjmey_17"><p id="-4zjmey_26"><code class="code" id="-4zjmey_27">N</code> - N&uacute;mero</p></li></ul></section></section><section class="chapter"><h2 id="wildcards" data-toc="wildcards">Wildcards</h2><section class="chapter"><h3 id="upper-bounded" data-toc="upper-bounded">Upper Bounded</h3><div class="code-block" data-lang="java">
+// Aceita Number ou subtipos
+public void process(List&lt;? extends Number&gt; numbers) {
+    for (Number n : numbers) {
+        System.out.println(n.doubleValue());
+    }
+}
+</div></section><section class="chapter"><h3 id="lower-bounded" data-toc="lower-bounded">Lower Bounded</h3><div class="code-block" data-lang="java">
+// Aceita Integer ou supertipos
+public void addNumbers(List&lt;? super Integer&gt; list) {
+    list.add(10);
+    list.add(20);
+}
+</div></section></section><section class="chapter"><h2 id="type-erasure" data-toc="type-erasure">Type Erasure</h2><p id="-4zjmey_32">O Java usa type erasure para implementar generics:</p><div class="code-block" data-lang="java">
+// Em tempo de compilação
+List&lt;String&gt; strings = new ArrayList&lt;String&gt;();
+
+// Em runtime se torna
+List strings = new ArrayList();
+</div></section><section class="chapter"><h2 id="pr-ticas-recomendadas" data-toc="pr-ticas-recomendadas">Pr&aacute;ticas Recomendadas</h2><ol class="list _decimal" id="-4zjmey_34" type="1"><li class="list__item" id="-4zjmey_38"><p id="-4zjmey_39"><span class="control" id="-4zjmey_40">Use Generics para Collections</span></p></li></ol><div class="code-block" data-lang="java">
+// Ruim
+List lista = new ArrayList();
+
+// Bom
+List&lt;String&gt; lista = new ArrayList&lt;&gt;();
+</div><ol class="list _decimal" id="-4zjmey_36" type="1" start="2"><li class="list__item" id="-4zjmey_41"><p id="-4zjmey_42"><span class="control" id="-4zjmey_43">Defina Bounds Quando Necess&aacute;rio</span></p></li></ol><div class="code-block" data-lang="java">
+public class NumericBox&lt;T extends Number&gt; {
+    private T number;
+    
+    public double getValue() {
+        return number.doubleValue();
+    }
+}
+</div></section><section class="chapter"><h2 id="exerc-cio-pr-tico" data-toc="exerc-cio-pr-tico">Exerc&iacute;cio Pr&aacute;tico</h2><p id="-4zjmey_44">Implemente uma classe gen&eacute;rica <code class="code" id="-4zjmey_46">Stack&lt;T&gt;</code>:</p><div class="code-block" data-lang="java">
+public class Stack&lt;T&gt; {
+    private List&lt;T&gt; items = new ArrayList&lt;&gt;();
+    
+    public void push(T item) {
+        items.add(item);
+    }
+    
+    public T pop() {
+        if (items.isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return items.remove(items.size() - 1);
+    }
+}
+</div></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="circuit-breaker.html" class="navigation-links__prev">Circuit Breaker</a><a href="lambda.html" class="navigation-links__next">Express&otilde;es Lambda: Programa&ccedil;&atilde;o Funcional em Java</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
