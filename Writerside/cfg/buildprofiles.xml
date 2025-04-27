@@ -11,7 +11,9 @@
         <download-title>Repositorio</download-title>
         <download-page>https://github.com/mrpunkdasilva/learn-java</download-page>
         <showDownloadButton>true</showDownloadButton>
+        <search-scope>project</search-scope>
     </variables>
+
 
     <build-profile instance="learnjava">
         <variables>

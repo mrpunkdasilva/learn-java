@@ -1,0 +1,131 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-27T00:48:29.163417564"><title>Sistema de Invent&aacute;rio (Arsenal) | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"objetivos-de-aprendizado","level":0,"title":"Objetivos de Aprendizado","anchor":"#objetivos-de-aprendizado"},{"id":"conceitos-aplicados","level":0,"title":"Conceitos Aplicados","anchor":"#conceitos-aplicados"},{"id":"implementa-o-base","level":0,"title":"Implementação Base","anchor":"#implementa-o-base"},{"id":"exemplo-de-uso","level":0,"title":"Exemplo de Uso","anchor":"#exemplo-de-uso"},{"id":"exerc-cios-propostos","level":0,"title":"Exercícios Propostos","anchor":"#exerc-cios-propostos"},{"id":"desafios-avan-ados","level":0,"title":"Desafios Avançados","anchor":"#desafios-avan-ados"},{"id":"dicas-de-implementa-o","level":0,"title":"Dicas de Implementação","anchor":"#dicas-de-implementa-o"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Sistema de Invent&aacute;rio (Arsenal) | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/inventory-system.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Sistema de Invent&aacute;rio (Arsenal) | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/inventory-system.html#webpage",
+    "url": "writerside-documentation/java/1.0/inventory-system.html",
+    "name": "Sistema de Invent&aacute;rio (Arsenal) | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="inventory-system" data-main-title="Sistema de Inventário (Arsenal)" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="arrays-collections.md|Arrays e Coleções///collections-projects.md|Projetos Práticos: Collections em Ação"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="inventory-system" id="inventory-system.md">Sistema de Inventário (Arsenal)</h1><p id="-sd308u_3">Um sistema de invent&aacute;rio cyberpunk para gerenciar equipamentos e recursos.</p><section class="chapter"><h2 id="objetivos-de-aprendizado" data-toc="objetivos-de-aprendizado">Objetivos de Aprendizado</h2><ul class="list _bullet" id="-sd308u_12"><li class="list__item" id="-sd308u_13"><p id="-sd308u_16">Implementar um sistema usando <code class="code" id="-sd308u_17">Map</code>, <code class="code" id="-sd308u_18">Set</code> e <code class="code" id="-sd308u_19">Queue</code></p></li><li class="list__item" id="-sd308u_14"><p id="-sd308u_20">Gerenciar estoque com estruturas de dados apropriadas</p></li><li class="list__item" id="-sd308u_15"><p id="-sd308u_21">Aplicar l&oacute;gica de neg&oacute;cios com cole&ccedil;&otilde;es</p></li></ul></section><section class="chapter"><h2 id="conceitos-aplicados" data-toc="conceitos-aplicados">Conceitos Aplicados</h2><ul class="list _bullet" id="-sd308u_22"><li class="list__item" id="-sd308u_23"><p id="-sd308u_28">HashMap para armazenamento principal</p></li><li class="list__item" id="-sd308u_24"><p id="-sd308u_29">HashSet para itens em baixo estoque</p></li><li class="list__item" id="-sd308u_25"><p id="-sd308u_30">Queue para pedidos pendentes</p></li><li class="list__item" id="-sd308u_26"><p id="-sd308u_31">Encapsulamento de dados</p></li><li class="list__item" id="-sd308u_27"><p id="-sd308u_32">Valida&ccedil;&otilde;es de neg&oacute;cio</p></li></ul></section><section class="chapter"><h2 id="implementa-o-base" data-toc="implementa-o-base">Implementa&ccedil;&atilde;o Base</h2><section class="chapter"><h3 id="classe-item" data-toc="classe-item">Classe Item</h3><div class="code-block" data-lang="java">
+public class Item {
+    private String code;
+    private String name;
+    private int quantity;
+    private int minimum;
+    private double price;
+
+    public Item(String code, String name, int quantity, int minimum, double price) {
+        this.code = code;
+        this.name = name;
+        this.quantity = quantity;
+        this.minimum = minimum;
+        this.price = price;
+    }
+
+    // Getters e Setters
+    public String getCode() { return code; }
+    public String getName() { return name; }
+    public int getQuantity() { return quantity; }
+    public int getMinimum() { return minimum; }
+    public double getPrice() { return price; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+}
+</div></section><section class="chapter"><h3 id="classe-order" data-toc="classe-order">Classe Order</h3><div class="code-block" data-lang="java">
+public class Order {
+    private String itemCode;
+    private int quantity;
+    private String status;
+
+    public Order(String itemCode, int quantity) {
+        this.itemCode = itemCode;
+        this.quantity = quantity;
+        this.status = &quot;PENDING&quot;;
+    }
+
+    // Getters e Setters
+    public String getItemCode() { return itemCode; }
+    public int getQuantity() { return quantity; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}
+</div></section><section class="chapter"><h3 id="sistema-principal" data-toc="sistema-principal">Sistema Principal</h3><div class="code-block" data-lang="java">
+public class InventorySystem {
+    private Map&lt;String, Item&gt; inventory = new HashMap&lt;&gt;();
+    private Set&lt;String&gt; lowStock = new HashSet&lt;&gt;();
+    private Queue&lt;Order&gt; pendingOrders = new LinkedList&lt;&gt;();
+    
+    // Adicionar item ao inventário
+    public void addItem(Item item) {
+        inventory.put(item.getCode(), item);
+        checkStock(item);
+    }
+    
+    // Verificar nível de estoque
+    private void checkStock(Item item) {
+        if (item.getQuantity() &lt; item.getMinimum()) {
+            lowStock.add(item.getCode());
+            createRestockOrder(item);
+        }
+    }
+    
+    // Criar pedido de reposição
+    private void createRestockOrder(Item item) {
+        int orderQuantity = item.getMinimum() - item.getQuantity();
+        Order order = new Order(item.getCode(), orderQuantity);
+        pendingOrders.offer(order);
+    }
+    
+    // Remover item do inventário
+    public void removeItem(String code) {
+        inventory.remove(code);
+        lowStock.remove(code);
+    }
+    
+    // Atualizar quantidade
+    public void updateQuantity(String code, int quantity) {
+        Item item = inventory.get(code);
+        if (item != null) {
+            item.setQuantity(quantity);
+            checkStock(item);
+        }
+    }
+    
+    // Listar itens em baixo estoque
+    public Set&lt;String&gt; getLowStockItems() {
+        return new HashSet&lt;&gt;(lowStock);
+    }
+    
+    // Processar próximo pedido
+    public Order processNextOrder() {
+        return pendingOrders.poll();
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exemplo-de-uso" data-toc="exemplo-de-uso">Exemplo de Uso</h2><div class="code-block" data-lang="java">
+public class InventoryDemo {
+    public static void main(String[] args) {
+        InventorySystem system = new InventorySystem();
+        
+        // Adicionar itens
+        system.addItem(new Item(&quot;HACK001&quot;, &quot;NetHack Module&quot;, 5, 10, 299.99));
+        system.addItem(new Item(&quot;DECK002&quot;, &quot;CyberDeck&quot;, 2, 5, 999.99));
+        
+        // Verificar baixo estoque
+        Set&lt;String&gt; lowStock = system.getLowStockItems();
+        System.out.println(&quot;Itens em baixo estoque: &quot; + lowStock);
+        
+        // Processar pedidos
+        Order nextOrder = system.processNextOrder();
+        if (nextOrder != null) {
+            System.out.println(&quot;Processando pedido: &quot; + nextOrder.getItemCode());
+        }
+    }
+}
+</div></section><section class="chapter"><h2 id="exerc-cios-propostos" data-toc="exerc-cios-propostos">Exerc&iacute;cios Propostos</h2><ol class="list _decimal" id="-sd308u_40" type="1"><li class="list__item" id="-sd308u_41"><p id="-sd308u_44"><span class="control" id="-sd308u_46">Implementar Relat&oacute;rios</span></p><ul class="list _bullet" id="-sd308u_45"><li class="list__item" id="-sd308u_47"><p id="-sd308u_50">Gerar relat&oacute;rio de valor total do invent&aacute;rio</p></li><li class="list__item" id="-sd308u_48"><p id="-sd308u_51">Listar itens por faixa de pre&ccedil;o</p></li><li class="list__item" id="-sd308u_49"><p id="-sd308u_52">Calcular estat&iacute;sticas de pedidos</p></li></ul></li><li class="list__item" id="-sd308u_42"><p id="-sd308u_53"><span class="control" id="-sd308u_55">Adicionar Valida&ccedil;&otilde;es</span></p><ul class="list _bullet" id="-sd308u_54"><li class="list__item" id="-sd308u_56"><p id="-sd308u_59">Verificar c&oacute;digos duplicados</p></li><li class="list__item" id="-sd308u_57"><p id="-sd308u_60">Validar quantidades negativas</p></li><li class="list__item" id="-sd308u_58"><p id="-sd308u_61">Implementar limites de estoque</p></li></ul></li><li class="list__item" id="-sd308u_43"><p id="-sd308u_62"><span class="control" id="-sd308u_64">Expandir Funcionalidades</span></p><ul class="list _bullet" id="-sd308u_63"><li class="list__item" id="-sd308u_65"><p id="-sd308u_68">Adicionar categorias de itens</p></li><li class="list__item" id="-sd308u_66"><p id="-sd308u_69">Implementar sistema de alertas</p></li><li class="list__item" id="-sd308u_67"><p id="-sd308u_70">Criar hist&oacute;rico de transa&ccedil;&otilde;es</p></li></ul></li></ol></section><section class="chapter"><h2 id="desafios-avan-ados" data-toc="desafios-avan-ados">Desafios Avan&ccedil;ados</h2><ol class="list _decimal" id="-sd308u_71" type="1"><li class="list__item" id="-sd308u_72"><p id="-sd308u_74"><span class="control" id="-sd308u_76">Sistema de Prioridade</span></p><ul class="list _bullet" id="-sd308u_75"><li class="list__item" id="-sd308u_77"><p id="-sd308u_80">Implementar PriorityQueue para pedidos</p></li><li class="list__item" id="-sd308u_78"><p id="-sd308u_81">Definir crit&eacute;rios de prioriza&ccedil;&atilde;o</p></li><li class="list__item" id="-sd308u_79"><p id="-sd308u_82">Gerenciar pedidos urgentes</p></li></ul></li><li class="list__item" id="-sd308u_73"><p id="-sd308u_83"><span class="control" id="-sd308u_85">Persist&ecirc;ncia de Dados</span></p><ul class="list _bullet" id="-sd308u_84"><li class="list__item" id="-sd308u_86"><p id="-sd308u_89">Salvar estado do invent&aacute;rio</p></li><li class="list__item" id="-sd308u_87"><p id="-sd308u_90">Carregar dados de arquivo</p></li><li class="list__item" id="-sd308u_88"><p id="-sd308u_91">Implementar backup autom&aacute;tico</p></li></ul></li></ol></section><section class="chapter"><h2 id="dicas-de-implementa-o" data-toc="dicas-de-implementa-o">Dicas de Implementa&ccedil;&atilde;o</h2><ul class="list _bullet" id="-sd308u_92"><li class="list__item" id="-sd308u_93"><p id="-sd308u_98">Use enums para status e categorias</p></li><li class="list__item" id="-sd308u_94"><p id="-sd308u_99">Implemente tratamento de exce&ccedil;&otilde;es</p></li><li class="list__item" id="-sd308u_95"><p id="-sd308u_100">Mantenha o c&oacute;digo modular</p></li><li class="list__item" id="-sd308u_96"><p id="-sd308u_101">Documente as funcionalidades</p></li><li class="list__item" id="-sd308u_97"><p id="-sd308u_102">Adicione logs de opera&ccedil;&otilde;es</p></li></ul></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-sd308u_103"><li class="list__item" id="-sd308u_106"><p id="-sd308u_109"><a href="cache-implementation.html" id="-sd308u_110" data-tooltip="Um sistema de cache é uma estrutura de dados que armazena temporariamente dados frequentemente acessados para melhorar a performance. Neste projeto, implementaremos um cache simples usando arrays e conceitos básicos de Java.">Cache Implementation</a></p></li><li class="list__item" id="-sd308u_107"><p id="-sd308u_111"><a href="collections-overview.html" id="-sd308u_112" data-tooltip="Imagine o Collections Framework como uma organização criminosa bem estruturada - cada família tem sua especialidade, mas todas trabalham juntas quando necessário.">Collections Overview</a></p></li><li class="list__item" id="-sd308u_108"><p id="-sd308u_113"><a href="maps.html" id="-sd308u_114" data-tooltip="Maps são como um guarda-volumes high-tech - cada item tem sua chave única, e você pode guardar qualquer coisa lá dentro.">Maps</a></p></li></ul><aside class="prompt" data-type="tip" data-title="" id="-sd308u_105"><p id="-sd308u_115">&quot;Um bom arsenal n&atilde;o &eacute; apenas sobre quantidade, mas sobre organiza&ccedil;&atilde;o e controle.&quot;</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="task-manager.html" class="navigation-links__prev">Task Manager: Gerenciador de Tarefas Digital</a><a href="cache-implementation.html" class="navigation-links__next">Implementa&ccedil;&atilde;o de Cache</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

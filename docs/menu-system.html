@@ -1,0 +1,170 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-27T00:48:28.883961694"><title>Sistema de Menu | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"descri-o-do-projeto","level":0,"title":"Descrição do Projeto","anchor":"#descri-o-do-projeto"},{"id":"conceitos-aplicados","level":0,"title":"Conceitos Aplicados","anchor":"#conceitos-aplicados"},{"id":"implementa-o-base","level":0,"title":"Implementação Base","anchor":"#implementa-o-base"},{"id":"interface-com-usu-rio","level":0,"title":"Interface com Usuário","anchor":"#interface-com-usu-rio"},{"id":"recursos-avan-ados","level":0,"title":"Recursos Avançados","anchor":"#recursos-avan-ados"},{"id":"desafios-de-extens-o","level":0,"title":"Desafios de Extensão","anchor":"#desafios-de-extens-o"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Sistema de Menu | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/menu-system.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Sistema de Menu | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/menu-system.html#webpage",
+    "url": "writerside-documentation/java/1.0/menu-system.html",
+    "name": "Sistema de Menu | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="menu-system" data-main-title="Sistema de Menu" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="control-flow.md|Controle de Fluxo///control-flow-projects.md|Projetos de Controle de Fluxo"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="menu-system" id="menu-system.md">Sistema de Menu</h1><section class="chapter"><h2 id="descri-o-do-projeto" data-toc="descri-o-do-projeto">Descri&ccedil;&atilde;o do Projeto</h2><p id="dw0q3v_10">Desenvolva um sistema de menu interativo estilo cyberpunk para uma interface de terminal.</p></section><section class="chapter"><h2 id="conceitos-aplicados" data-toc="conceitos-aplicados">Conceitos Aplicados</h2><ul class="list _bullet" id="dw0q3v_11"><li class="list__item" id="dw0q3v_12"><p id="dw0q3v_16">Switch Expressions</p></li><li class="list__item" id="dw0q3v_13"><p id="dw0q3v_17">Pattern Matching</p></li><li class="list__item" id="dw0q3v_14"><p id="dw0q3v_18">Loops</p></li><li class="list__item" id="dw0q3v_15"><p id="dw0q3v_19">Condicionais Aninhados</p></li></ul></section><section class="chapter"><h2 id="implementa-o-base" data-toc="implementa-o-base">Implementa&ccedil;&atilde;o Base</h2><div class="code-block" data-lang="java">
+public class MenuSystem {
+    public static void main(String[] args) {
+        // Estado atual do menu usando String
+        String menuAtual = &quot;PRINCIPAL&quot;;
+        
+        // Flag para controle do loop
+        boolean sistemaAtivo = true;
+        
+        // Mensagem de boas-vindas usando Text Block
+        System.out.println(&quot;&quot;&quot;
+            === SISTEMA CYBERDECK v1.0 ===
+            Menu Principal:
+            1. Iniciar Sistema
+            2. Configurações
+            3. Status
+            4. Sair
+            ===========================
+            &quot;&quot;&quot;);
+        
+        // Loop principal do sistema
+        while (sistemaAtivo) {
+            System.out.println(&quot;\nMenu atual: &quot; + menuAtual);
+            System.out.print(&quot;Digite uma opção: &quot;);
+            
+            // Simulando entrada do usuário (você pode modificar para testar)
+            var opcao = &quot;1&quot;; // Simula entrada do usuário
+            
+            // Controle de fluxo baseado no menu atual
+            switch (menuAtual) {
+                case &quot;PRINCIPAL&quot;:
+                    switch (opcao) {
+                        case &quot;1&quot;:
+                            menuAtual = &quot;SISTEMA&quot;;
+                            System.out.println(&quot;&quot;&quot;
+                                === Menu do Sistema ===
+                                1. Verificar Status
+                                2. Executar Diagnóstico
+                                3. Voltar
+                                &quot;&quot;&quot;);
+                            break;
+                        case &quot;2&quot;:
+                            menuAtual = &quot;CONFIG&quot;;
+                            System.out.println(&quot;&quot;&quot;
+                                === Menu de Configurações ===
+                                1. Display
+                                2. Segurança
+                                3. Rede
+                                4. Voltar
+                                &quot;&quot;&quot;);
+                            break;
+                        case &quot;3&quot;:
+                            System.out.println(&quot;&quot;&quot;
+                                Status do Sistema:
+                                - Memória: OK
+                                - Processador: OK
+                                - Rede: OK
+                                &quot;&quot;&quot;);
+                            break;
+                        case &quot;4&quot;:
+                            sistemaAtivo = false;
+                            break;
+                    }
+                    break;
+                    
+                case &quot;CONFIG&quot;:
+                    switch (opcao) {
+                        case &quot;1&quot;:
+                            System.out.println(&quot;Configurando Display...&quot;);
+                            break;
+                        case &quot;2&quot;:
+                            System.out.println(&quot;Configurando Segurança...&quot;);
+                            break;
+                        case &quot;3&quot;:
+                            System.out.println(&quot;Configurando Rede...&quot;);
+                            break;
+                        case &quot;4&quot;:
+                            menuAtual = &quot;PRINCIPAL&quot;;
+                            System.out.println(&quot;Voltando ao Menu Principal...&quot;);
+                            break;
+                    }
+                    break;
+                    
+                case &quot;SISTEMA&quot;:
+                    switch (opcao) {
+                        case &quot;1&quot;:
+                            System.out.println(&quot;Verificando status...&quot;);
+                            break;
+                        case &quot;2&quot;:
+                            System.out.println(&quot;Executando diagnóstico...&quot;);
+                            break;
+                        case &quot;3&quot;:
+                            menuAtual = &quot;PRINCIPAL&quot;;
+                            System.out.println(&quot;Voltando ao Menu Principal...&quot;);
+                            break;
+                    }
+                    break;
+            }
+            
+            // Pequena pausa para simular processamento
+            System.out.println(&quot;Processando...&quot;);
+        }
+        
+        System.out.println(&quot;Sistema finalizado.&quot;);
+    }
+}
+</div></section><section class="chapter"><h2 id="interface-com-usu-rio" data-toc="interface-com-usu-rio">Interface com Usu&aacute;rio</h2><div class="code-block" data-lang="java">
+public class MenuSystemUI {
+    public static void main(String[] args) {
+        MenuSystem menu = new MenuSystem();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println(&quot;&quot;&quot;
+            === SISTEMA CYBERDECK v1.0 ===
+            Iniciando interface...
+            &quot;&quot;&quot;);
+        
+        String input;
+        do {
+            System.out.print(&quot;&gt; &quot;);
+            input = scanner.nextLine().trim();
+            String response = menu.processInput(input);
+            System.out.println(response);
+        } while (!input.equals(&quot;exit&quot;));
+    }
+}
+</div></section><section class="chapter"><h2 id="recursos-avan-ados" data-toc="recursos-avan-ados">Recursos Avan&ccedil;ados</h2><ol class="list _decimal" id="dw0q3v_22" type="1"><li class="list__item" id="dw0q3v_26"><p id="dw0q3v_27"><span class="control" id="dw0q3v_28">Anima&ccedil;&otilde;es de Terminal</span></p></li></ol><div class="code-block" data-lang="java">
+public class TerminalEffects {
+    public static void typeWriter(String text) {
+        for (char c : text.toCharArray()) {
+            System.out.print(c);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println();
+    }
+}
+</div><ol class="list _decimal" id="dw0q3v_24" type="1" start="2"><li class="list__item" id="dw0q3v_29"><p id="dw0q3v_30"><span class="control" id="dw0q3v_31">Sistema de Cores</span></p></li></ol><div class="code-block" data-lang="java">
+public class ColoredOutput {
+    public static final String ANSI_GREEN = &quot;\u001B[32m&quot;;
+    public static final String ANSI_RED = &quot;\u001B[31m&quot;;
+    public static final String ANSI_RESET = &quot;\u001B[0m&quot;;
+    
+    public static String success(String text) {
+        return ANSI_GREEN + text + ANSI_RESET;
+    }
+    
+    public static String error(String text) {
+        return ANSI_RED + text + ANSI_RESET;
+    }
+}
+</div></section><section class="chapter"><h2 id="desafios-de-extens-o" data-toc="desafios-de-extens-o">Desafios de Extens&atilde;o</h2><ol class="list _decimal" id="dw0q3v_32" type="1"><li class="list__item" id="dw0q3v_33"><p id="dw0q3v_37">Adicione autentica&ccedil;&atilde;o de usu&aacute;rio</p></li><li class="list__item" id="dw0q3v_34"><p id="dw0q3v_38">Implemente submenus din&acirc;micos</p></li><li class="list__item" id="dw0q3v_35"><p id="dw0q3v_39">Crie um sistema de logs</p></li><li class="list__item" id="dw0q3v_36"><p id="dw0q3v_40">Adicione efeitos visuais ASCII art</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="dw0q3v_41"><li class="list__item" id="dw0q3v_43"><p id="dw0q3v_46">Implemente mais funcionalidades no menu</p></li><li class="list__item" id="dw0q3v_44"><p id="dw0q3v_47">Adicione persist&ecirc;ncia de configura&ccedil;&otilde;es</p></li><li class="list__item" id="dw0q3v_45"><p id="dw0q3v_48">Crie uma interface gr&aacute;fica ASCII mais elaborada</p></li></ul><p id="dw0q3v_42"><a href="state-machine.html" id="dw0q3v_49" data-tooltip="Implemente uma máquina de estados que simula um sistema de segurança cyberpunk.">State Machine</a></p></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="number-game.html" class="navigation-links__prev">Jogo de N&uacute;meros</a><a href="state-machine.html" class="navigation-links__next">M&aacute;quina de Estados</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -3279,9 +3279,9 @@ Tip:
 
 * [Operadores](operators.html)
 
-* [Strings](null)
+* [Strings](strings.html)
 
-* [Projetos Básicos](null)
+* [Projetos Básicos](basic-projects.html)
 
 
 
@@ -3501,7 +3501,7 @@ public class SecuritySystem {
 
 * [Operadores](operators.html)
 
-* [Estruturas de Controle](null)
+* [Estruturas de Controle](control-flow.html)
 
 [Variáveis](variables.html)
 
@@ -3833,138 +3833,6 @@ Tip:
 
 
 
-# Tamanhos dos Tipos de Dados
-
-## Visão Geral
-
-```
-MEMORY ALLOCATION
-├── Inteiros
-│   ├── byte  (8 bits  = 1 byte)
-│   ├── short (16 bits = 2 bytes)
-│   ├── int   (32 bits = 4 bytes)
-│   └── long  (64 bits = 8 bytes)
-├── Decimais
-│   ├── float  (32 bits = 4 bytes)
-│   └── double (64 bits = 8 bytes)
-├── Caractere
-│   └── char   (16 bits = 2 bytes)
-└── Lógico
-    └── boolean (1 bit, JVM usa 1 byte)
-```
-
-## Capacidade de Armazenamento
-
-### Inteiros
-
-```JAVA
-// byte (8 bits)
-// Range: -2^7 até 2^7-1
-// Range: -128 até 127
-byte minByte = -128;
-byte maxByte = 127;
-
-// short (16 bits)
-// Range: -2^15 até 2^15-1
-// Range: -32,768 até 32,767
-short minShort = -32768;
-short maxShort = 32767;
-
-// int (32 bits)
-// Range: -2^31 até 2^31-1
-// Range: -2,147,483,648 até 2,147,483,647
-int minInt = -2147483648;
-int maxInt = 2147483647;
-
-// long (64 bits)
-// Range: -2^63 até 2^63-1
-// Range: -9,223,372,036,854,775,808 até 9,223,372,036,854,775,807
-long minLong = -9223372036854775808L;
-long maxLong = 9223372036854775807L;
-```
-
-## Representação na Memória
-
-### Visualização dos Bits
-
-```
-BYTE REPRESENTATION (8 bits)
-├── Positivo: 0000 0001 = 1
-├── Negativo: 1111 1111 = -1
-└── Zero:     0000 0000 = 0
-```
-
-### Ponto Flutuante
-
-```
-FLOAT/DOUBLE FORMAT
-├── Sign bit (1 bit)
-├── Exponent (8/11 bits)
-└── Mantissa (23/52 bits)
-```
-
-## Impacto na Performance
-
-### Uso de Memória
-
-```
-MEMORY USAGE
-├── Arrays de 1000 elementos
-│   ├── byte[]  = 1000 bytes
-│   ├── short[] = 2000 bytes
-│   ├── int[]   = 4000 bytes
-│   └── long[]  = 8000 bytes
-```
-
-### Escolha do Tipo
-
-```
-SELECTION CRITERIA
-├── Pequenos números → byte/short
-├── Uso geral → int
-├── Números grandes → long
-├── Precisão decimal → double
-└── Economia de memória → tipos menores
-```
-
-## Considerações Práticas
-
-### Quando Usar Cada Tamanho
-
-```
-USE CASES
-├── byte
-│   ├── Valores de status (-128 a 127)
-│   └── Arrays grandes com valores pequenos
-├── short
-│   ├── Ano (ex: 2024)
-│   └── Códigos de erro
-├── int
-│   ├── Contadores
-│   └── Índices
-└── long
-    ├── IDs únicos
-    └── Timestamps
-```
-
-## Próximos Passos
-
-### Tópicos Relacionados
-
-* [Tipos Primitivos](primitive-types.html)
-
-* [Type Casting](type-casting.html)
-
-* [Operadores](operators.html)
-
-[Tipos Primitivos](primitive-types.html)
-
-Tip:
-
-"Cada bit é como um pulso na Matrix - precisamos entender seu tamanho e capacidade para otimizar nosso código."
-
-
-
 # Tipos de Referência
 
 ```
@@ -4172,7 +4040,7 @@ try (Scanner scanner = new Scanner(System.in)) {
 
 * [Palavra-chave var](var-keyword.html)
 
-* [Collections](null)
+* [Collections](collections-overview.html)
 
 [Type Casting](type-casting.html)
 
@@ -4648,7 +4516,7 @@ boolean xor = true ^ false;
 
 * [Operadores Bit a Bit](bitwise.html)
 
-* [Estruturas Condicionais](null)
+* [Estruturas Condicionais](conditionals.html)
 
 * [Expressões Booleanas](null)
 
@@ -4751,6 +4619,5196 @@ int clearBits = number & ~mask;
 Tip:
 
 "Os operadores bit a bit são como os comandos de baixo nível da Matrix - manipulando a realidade digital bit por bit."
+
+
+
+# Strings em Java
+
+## Visão Geral
+
+```
+STRING CONCEPTS
+├── Imutabilidade
+├── Pool de Strings
+├── Concatenação
+└── Comparação
+```
+
+## Criação de Strings
+
+### Formas de Inicialização
+
+```JAVA
+// Literal
+String comando = "EXECUTE";
+
+// Construtor
+String status = new String("ONLINE");
+
+// Pool vs Heap
+String s1 = "MATRIX";         // Pool de Strings
+String s2 = new String("MATRIX"); // Heap
+```
+
+## Operações Básicas
+
+### Manipulação
+
+```JAVA
+String codigo = "NET_RUNNER";
+int tamanho = codigo.length();     // 10
+char primeiro = codigo.charAt(0);   // 'N'
+String sub = codigo.substring(0,3); // "NET"
+```
+
+## Próximos Passos
+
+### Tópicos Detalhados
+
+* [Métodos de String](string-methods.html)
+
+* [StringBuilder](string-builder.html)
+
+* [Formatação de Strings](string-formatting.html)
+
+[Métodos de String](string-methods.html)
+
+Tip:
+
+"Strings são como os dados criptografados da Matrix - precisam ser manipulados com precisão e eficiência."
+
+
+
+# Métodos de String
+
+## Métodos de Busca
+
+### Localização
+
+```JAVA
+String texto = "CYBERPUNK_2077";
+
+// Busca
+int posicao = texto.indexOf("PUNK");    // 5
+int ultimo = texto.lastIndexOf("7");     // 12
+boolean contem = texto.contains("CYBER"); // true
+```
+
+## Métodos de Transformação
+
+### Modificação
+
+```JAVA
+String codigo = "NetRunner";
+
+// Transformações
+String maiusculo = codigo.toUpperCase(); // "NETRUNNER"
+String minusculo = codigo.toLowerCase(); // "netrunner"
+String semEspacos = codigo.trim();      // Remove espaços
+String[] partes = codigo.split("R");    // ["Net", "unner"]
+```
+
+## Métodos de Comparação
+
+### Verificação
+
+```JAVA
+String s1 = "MATRIX";
+String s2 = "matrix";
+
+// Comparações
+boolean igual = s1.equals(s2);           // false
+boolean ignoraCase = s1.equalsIgnoreCase(s2); // true
+int comparacao = s1.compareTo(s2);       // Comparação lexicográfica
+```
+
+## Métodos de Substituição
+
+### Alteração
+
+```JAVA
+String log = "Error:404:NotFound";
+
+// Substituições
+String novo = log.replace(":", "-");     // "Error-404-NotFound"
+String primeiro = log.replaceFirst(":", "-"); // "Error-404:NotFound"
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [StringBuilder](string-builder.html)
+
+* [Formatação de Strings](string-formatting.html)
+
+* [Expressões Regulares](null)
+
+[StringBuilder](string-builder.html)
+
+
+
+# StringBuilder
+
+## Conceitos Básicos
+
+### Criação
+
+```JAVA
+// Inicialização
+StringBuilder buffer = new StringBuilder();
+StringBuilder preset = new StringBuilder("INIT:");
+StringBuilder sized = new StringBuilder(32);
+```
+
+## Operações Principais
+
+### Manipulação
+
+```JAVA
+StringBuilder log = new StringBuilder();
+
+// Adição
+log.append("STATUS: ")    // Concatenação
+   .append("ONLINE")      // Encadeamento
+   .append(" - ")
+   .append(2077);
+
+// Inserção
+log.insert(0, "[LOG] ");  // Início
+log.insert(6, "DEBUG ");  // Meio
+
+// Remoção
+log.delete(0, 5);         // Range
+log.deleteCharAt(10);     // Caractere único
+
+// Reversão
+log.reverse();            // Inverte a string
+```
+
+## Performance
+
+### Comparação com String
+
+```JAVA
+// Má prática (String)
+String result = "";
+for (int i = 0; i < 1000; i++) {
+    result += "Data";  // Cria nova String cada vez
+}
+
+// Boa prática (StringBuilder)
+StringBuilder builder = new StringBuilder();
+for (int i = 0; i < 1000; i++) {
+    builder.append("Data");  // Modifica o mesmo objeto
+}
+String result = builder.toString();
+```
+
+## Métodos Úteis
+
+### Funcionalidades Adicionais
+
+```JAVA
+StringBuilder cmd = new StringBuilder("EXECUTE");
+
+// Capacidade
+int cap = cmd.capacity();     // Capacidade atual
+cmd.ensureCapacity(100);      // Garante capacidade mínima
+
+// Modificação
+cmd.setCharAt(0, 'e');       // Modifica caractere
+cmd.setLength(4);            // Trunca ou expande
+cmd.replace(0, 2, "RE");     // Substitui range
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Formatação de Strings](string-formatting.html)
+
+* [StringBuffer](null)
+
+* [Performance](null)
+
+[Formatação de Strings](string-formatting.html)
+
+
+
+# Formatação de Strings
+
+## String.format()
+
+### Sintaxe Básica
+
+```JAVA
+// Formatação básica
+String msg = String.format("Usuário: %s, ID: %d", "Neo", 1337);
+
+// Números
+String num = String.format("%.2f", 3.14159);  // "3.14"
+String hex = String.format("%x", 255);        // "ff"
+```
+
+## System.out.printf()
+
+### Saída Formatada
+
+```JAVA
+// Impressão formatada
+System.out.printf("Status: %s%n", "ONLINE");
+
+// Múltiplos argumentos
+System.out.printf("X: %d, Y: %d%n", 10, 20);
+```
+
+## Especificadores de Formato
+
+### Tipos Comuns
+
+```JAVA
+// Strings e caracteres
+%s  // String
+%c  // Caractere
+%n  // Nova linha
+
+// Números
+%d  // Inteiro decimal
+%f  // Ponto flutuante
+%e  // Notação científica
+%x  // Hexadecimal
+```
+
+## Flags de Formatação
+
+### Modificadores
+
+```JAVA
+// Alinhamento e preenchimento
+String align = String.format("|%-10s|", "LEFT");   // Alinha à esquerda
+String pad = String.format("%05d", 42);            // "00042"
+
+// Números
+String prec = String.format("%.3f", 3.14159);      // "3.142"
+String group = String.format("%,d", 1000000);      // "1,000,000"
+```
+
+## MessageFormat
+
+### Formatação Complexa
+
+```JAVA
+import java.text.MessageFormat;
+
+// Padrão de mensagem
+String pattern = "User {0} logged in at {1}";
+String msg = MessageFormat.format(pattern, "Trinity", "12:00");
+
+// Números e datas
+MessageFormat mf = new MessageFormat("Balance: {0,number,currency}");
+String balance = mf.format(new Object[]{1234.56});
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Internacionalização](null)
+
+* [Formatação de Datas](null)
+
+* [Formatação de Números](null)
+
+[Internacionalização](null)
+
+Tip:
+
+"A formatação de strings é como a interface da Matrix - a forma como apresentamos os dados ao mundo real."
+
+
+
+# Projetos Básicos
+
+Os projetos nesta seção aplicam os conceitos fundamentais de Java em cenários práticos inspirados no universo cyberpunk.
+
+## Visão Geral dos Projetos
+
+```MERMAID
+graph LR
+    A[Matrix Code Generator] --> D[Visualização de Dados]
+    B[Cyber Deck Simulator] --> E[Interface de Comando]
+    C[Data Encryptor] --> F[Segurança de Dados]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#33ccff
+    style E fill:#1a1a1a,stroke:#33ccff
+    style F fill:#1a1a1a,stroke:#33ccff
+```
+
+## Objetivos de Aprendizado
+
+### Matrix Code Generator
+
+* Manipulação de strings e caracteres
+
+* Loops e controle de fluxo
+
+* Temporização básica
+
+* Saída formatada no console
+
+* Arrays unidimensionais e bidimensionais
+
+### Cyber Deck Simulator
+
+* Entrada e saída do usuário
+
+* Estruturas condicionais
+
+* Comandos e argumentos
+
+* Formatação de terminal
+
+* Processamento de strings
+
+### Data Encryptor
+
+* Operações com bytes
+
+* Algoritmos básicos
+
+* Manipulação de arquivos
+
+* Geração de chaves
+
+* Conversão de tipos
+
+## Habilidades Desenvolvidas
+
+| Projeto |Conceitos Principais |Dificuldade |
+----------------------------------------------
+| Matrix Code Generator |Strings, Arrays, Loops |⭐⭐ |
+| Cyber Deck Simulator |I/O, Condicionais |⭐⭐ |
+| Data Encryptor |Bytes, Arquivos |⭐⭐⭐ |
+
+## Pré-requisitos
+
+```JAVA
+// Conhecimentos necessários
+public class Prerequisites {
+    // Sintaxe básica
+    String[] fundamentals = {
+        "Variáveis",
+        "Tipos de dados",
+        "Operadores",
+        "Estruturas de controle"
+    };
+    
+    // Ambiente de desenvolvimento
+    boolean ready = hasJDK() && hasIDE();
+}
+```
+
+## Estrutura dos Projetos
+
+```
+PROJETO
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/
+│   │           └── netrunner/
+│   │               └── project/
+│   │                   ├── Main.java
+│   │                   └── core/
+│   └── test/
+│       └── java/
+└── README.md
+```
+
+## Dicas de Implementação
+
+* Comece com uma versão básica funcional
+
+* Adicione recursos gradualmente
+
+* Teste cada nova funcionalidade
+
+* Mantenha o código organizado
+
+* Documente as partes importantes
+
+## Desafios Extras
+
+### Matrix Code Generator
+
+* Adicionar cores diferentes
+
+* Implementar velocidades variáveis
+
+* Criar padrões personalizados
+
+### Cyber Deck Simulator
+
+* Adicionar novos comandos
+
+* Implementar histórico
+
+* Criar aliases para comandos
+
+### Data Encryptor
+
+* Suportar múltiplos algoritmos
+
+* Adicionar compressão
+
+* Implementar assinaturas digitais
+
+## Recursos Adicionais
+
+### Referências
+
+* [Java Documentation](https://docs.oracle.com/en/java/)
+
+* [Console Colors](https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println)
+
+* [File Handling in Java](https://www.w3schools.com/java/java_files.asp)
+
+### Ferramentas Úteis
+
+* Terminal: [JLine](https://github.com/jline/jline3)
+
+* Criptografia: [Bouncy Castle](https://www.bouncycastle.org/)
+
+* Logging: [SLF4J](http://www.slf4j.org/)
+
+## Próximos Passos
+
+Após completar estes projetos básicos, você estará preparado para:
+
+* Explorar projetos mais complexos
+
+* Aprender sobre design patterns
+
+* Trabalhar com bibliotecas externas
+
+* Desenvolver aplicações mais robustas
+
+```
+
+## Conclusão
+
+Estes projetos fornecem uma base sólida em programação Java através de aplicações práticas e envolventes. Cada projeto pode ser expandido e personalizado de acordo com seus interesses e necessidades de aprendizado.
+```
+
+
+
+# Calculadora Básica
+
+## Conceitos Aplicados
+
+* Variáveis primitivas (`int`, `double`)
+
+* Operadores aritméticos
+
+* Type casting
+
+* Palavra-chave `var`
+
+## Implementação Base
+
+```JAVA
+public class Calculator {
+    // Usando tipos primitivos para armazenar resultados
+    private double result;
+    
+    // Demonstração de operadores aritméticos básicos
+    public double add(double a, double b) {
+        result = a + b;
+        return result;
+    }
+    
+    public double subtract(double a, double b) {
+        result = a - b;
+        return result;
+    }
+    
+    // Exemplo de casting implícito
+    public double multiply(int a, double b) {
+        result = a * b; // int é automaticamente convertido para double
+        return result;
+    }
+    
+    // Demonstração de var com inferência de tipo
+    public double divide(double a, double b) {
+        var quotient = a / b; // var infere double
+        result = quotient;
+        return result;
+    }
+}
+```
+
+## Exercícios Propostos
+
+1. Implementar operações com diferentes tipos numéricos
+
+2. Praticar conversões explícitas entre tipos
+
+3. Explorar precedência de operadores
+
+4. Usar var em diferentes contextos
+
+## Desafios
+
+1. Adicionar operações com números inteiros e decimais
+
+2. Implementar conversões entre tipos numéricos
+
+3. Criar operações com diferentes precedências
+
+
+
+# Conversor de Temperatura
+
+## Conceitos Aplicados
+
+* Tipos primitivos (`double`)
+
+* Operadores aritméticos
+
+* Type casting
+
+* Operadores lógicos
+
+## Implementação Base
+
+```JAVA
+public class TemperatureConverter {
+    // Demonstração de constantes com tipos primitivos
+    private static final double ABSOLUTE_ZERO_C = -273.15;
+    
+    // Uso de operadores aritméticos e type casting
+    public double celsiusToFahrenheit(double celsius) {
+        return (celsius * 9/5) + 32;
+    }
+    
+    public double fahrenheitToCelsius(double fahrenheit) {
+        return (fahrenheit - 32) * 5/9;
+    }
+    
+    // Demonstração de operadores lógicos
+    public boolean isValidTemperature(double celsius) {
+        return celsius >= ABSOLUTE_ZERO_C;
+    }
+}
+```
+
+## Exercícios Propostos
+
+1. Trabalhar com diferentes escalas de precisão
+
+2. Implementar validações usando operadores lógicos
+
+3. Praticar conversões entre tipos numéricos
+
+4. Explorar formatação de números decimais
+
+## Desafios
+
+1. Adicionar validações de temperatura
+
+2. Implementar arredondamento de resultados
+
+3. Criar verificações de limites físicos
+
+
+
+# Manipulador de Strings
+
+## Conceitos Aplicados
+
+* String como tipo de referência
+
+* Métodos de String
+
+* StringBuilder
+
+* String formatting
+
+## Implementação Base
+
+```JAVA
+public class StringManipulator {
+    // Demonstração de String como tipo de referência
+    private String text;
+    
+    public StringManipulator(String text) {
+        this.text = text;
+    }
+    
+    // Uso de métodos de String
+    public String toUpperCase() {
+        return text.toUpperCase();
+    }
+    
+    // Demonstração de StringBuilder
+    public String reverse() {
+        StringBuilder builder = new StringBuilder(text);
+        return builder.reverse().toString();
+    }
+    
+    // Exemplo de String formatting
+    public String format() {
+        return String.format("Texto: %s, Tamanho: %d", 
+                           text, text.length());
+    }
+}
+```
+
+## Exercícios Propostos
+
+1. Explorar métodos da classe String
+
+2. Praticar concatenação com StringBuilder
+
+3. Implementar diferentes formatos de string
+
+4. Trabalhar com substrings e caracteres
+
+## Desafios
+
+1. Criar diferentes formatos de saída
+
+2. Implementar manipulações de texto
+
+3. Otimizar operações com StringBuilder
+
+
+
+# Controle de Fluxo
+
+![Control Flow Banner](control-flow-banner.png)
+
+```
+>> Inicializando módulo de controle...
+>> Carregando padrões de decisão...
+>> Estabelecendo loops de execução...
+```
+
+## Visão Geral
+
+O controle de fluxo é fundamental para direcionar a execução do seu código. Como um netrunner navegando pela matrix, você precisa tomar decisões e repetir ações de forma eficiente.
+
+```MERMAID
+graph TD
+    A[Entrada] --> B{Decisão}
+    B -->|Condição 1| C[Execução A]
+    B -->|Condição 2| D[Execução B]
+    C --> E[Próximo Passo]
+    D --> E
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+```
+
+## Elementos Principais
+
+### 1. Estruturas Condicionais
+
+* if/else
+
+* switch/case
+
+* operador ternário
+
+### 2. Estruturas de Repetição
+
+* while
+
+* do-while
+
+* for
+
+* for-each
+
+### 3. Controle de Fluxo
+
+* break
+
+* continue
+
+* return
+
+## Exemplo Prático
+
+```JAVA
+public class AccessControl {
+    private static final int MAX_ATTEMPTS = 3;
+    
+    public void validateAccess(String code) {
+        int attempts = 0;
+        
+        while (attempts < MAX_ATTEMPTS) {
+            if (code.equals("MATRIX")) {
+                System.out.println("Acesso concedido");
+                return;
+            } else {
+                attempts++;
+                if (attempts == MAX_ATTEMPTS) {
+                    System.out.println("Sistema bloqueado");
+                    break;
+                }
+                System.out.println("Tentativa " + attempts);
+                continue;
+            }
+        }
+    }
+}
+```
+
+## Padrões de Uso
+
+### Estrutura Condicional
+
+```JAVA
+if (condicao) {
+    // código para condição verdadeira
+} else if (outraCondicao) {
+    // código para outra condição
+} else {
+    // código para nenhuma condição verdadeira
+}
+```
+
+### Loop com For
+
+```JAVA
+for (int i = 0; i < 10; i++) {
+    // código a ser repetido
+    if (condicaoParada) {
+        break;
+    }
+}
+```
+
+### Switch Expression (Java 14+)
+
+```JAVA
+String status = switch (code) {
+    case 200 -> "Success";
+    case 404 -> "Not Found";
+    case 500 -> "Server Error";
+    default -> "Unknown";
+};
+```
+
+## Boas Práticas
+
+1. Clareza nas Condições
+
+* Use nomes descritivos
+
+* Evite negações complexas
+
+* Mantenha condições simples
+
+2. Estrutura dos Loops
+
+* Defina condições de parada claras
+
+* Evite loops infinitos
+
+* Use o tipo correto de loop
+
+3. Otimização
+
+* Minimize aninhamentos
+
+* Use break/continue com critério
+
+* Prefira switch para múltiplas condições
+
+## Próximos Passos
+
+Explore cada conceito em detalhes:
+
+* [Condicionais](conditionals.html)
+
+* [Loops](loops.html)
+
+* [Switch Expressions](switch-expressions.html)
+
+* [Pattern Matching](pattern-matching.html)
+
+[Condicionais](conditionals.html)
+
+Tip:
+
+"O controle de fluxo é como navegar pela Matrix - você precisa saber quando dobrar as regras e quando quebrá-las."
+
+
+
+# Estruturas Condicionais
+
+```
+>> Inicializando sistema de decisão...
+>> Carregando árvores lógicas...
+>> Estabelecendo caminhos de execução...
+```
+
+## Visão Geral
+
+As estruturas condicionais são como os checkpoints da Matrix - elas determinam quais caminhos seu código pode seguir.
+
+## Estruturas Básicas
+
+### 1. if-else
+
+```JAVA
+if (condicao) {
+    // código executado se verdadeiro
+} else {
+    // código executado se falso
+}
+```
+
+#### Exemplo Prático
+
+```JAVA
+int securityLevel = 5;
+if (securityLevel >= 4) {
+    System.out.println("Acesso concedido ao mainframe");
+} else {
+    System.out.println("Acesso negado");
+}
+```
+
+### 2. else-if
+
+```JAVA
+if (condicao1) {
+    // código para condição 1
+} else if (condicao2) {
+    // código para condição 2
+} else {
+    // código padrão
+}
+```
+
+#### Exemplo Prático
+
+```JAVA
+int threatLevel = 3;
+if (threatLevel == 1) {
+    System.out.println("Alerta Verde");
+} else if (threatLevel == 2) {
+    System.out.println("Alerta Amarelo");
+} else {
+    System.out.println("Alerta Vermelho");
+}
+```
+
+### 3. Operador Ternário
+
+```JAVA
+resultado = (condicao) ? valorSeVerdadeiro : valorSeFalso;
+```
+
+#### Exemplo Prático
+
+```JAVA
+int energia = 50;
+String status = (energia > 20) ? "Online" : "Offline";
+```
+
+## Operadores de Comparação
+
+| Operador |Descrição |
+-----------------------
+| `==` |Igual a |
+| `!=` |Diferente de |
+| `>` |Maior que |
+| `<` |Menor que |
+| `>=` |Maior ou igual |
+| `<=` |Menor ou igual |
+
+## Operadores Lógicos
+
+| Operador |Descrição |
+-----------------------
+| `&&` |AND lógico |
+| `\\|\\|` |OR lógico |
+| `!` |NOT lógico |
+
+## Boas Práticas
+
+1. Clareza nas Condições
+
+```JAVA
+// Ruim
+if (x == 1 && y == 2 || z == 3 && !w) { }
+
+// Bom
+boolean isValidX = (x == 1);
+boolean isValidY = (y == 2);
+boolean isValidZ = (z == 3 && !w);
+if (isValidX && isValidY || isValidZ) { }
+```
+
+2. Evite Aninhamento Excessivo
+
+```JAVA
+// Evite
+if (a) {
+    if (b) {
+        if (c) {
+            // código
+        }
+    }
+}
+
+// Prefira
+if (!a || !b || !c) return;
+// código
+```
+
+3. Use Chaves Sempre
+
+```JAVA
+// Evite
+if (condicao) comando;
+
+// Prefira
+if (condicao) {
+    comando;
+}
+```
+
+## Padrões Avançados
+
+### Switch Expression (Java 14+)
+
+```JAVA
+String mensagem = switch (nivelAcesso) {
+    case 1 -> "Acesso Básico";
+    case 2 -> "Acesso Intermediário";
+    case 3 -> "Acesso Total";
+    default -> "Sem Acesso";
+};
+```
+
+### Pattern Matching (Preview)
+
+```JAVA
+if (obj instanceof String s && s.length() > 5) {
+    System.out.println("String longa: " + s);
+}
+```
+
+## Exercícios Práticos
+
+1. Sistema de Autenticação
+
+```JAVA
+public boolean verificarAcesso(String usuario, int nivel) {
+    if (usuario == null || usuario.isEmpty()) {
+        return false;
+    }
+    return nivel >= 3 && usuario.startsWith("ADMIN_");
+}
+```
+
+2. Validador de Status
+
+```JAVA
+public String verificarStatus(int memoria, int cpu) {
+    if (memoria < 10 || cpu > 90) {
+        return "CRÍTICO";
+    } else if (memoria < 30 || cpu > 70) {
+        return "ALERTA";
+    }
+    return "NORMAL";
+}
+```
+
+## Próximos Passos
+
+* Explore estruturas de repetição em [Loops](loops.html)
+
+* Aprenda sobre expressões switch em [Switch Expressions](switch-expressions.html)
+
+* Descubra pattern matching em [Pattern Matching](pattern-matching.html)
+
+[Loops](loops.html)
+
+
+
+# Estruturas de Repetição
+
+```
+>> Iniciando ciclos de execução...
+>> Configurando iteradores...
+>> Estabelecendo pontos de controle...
+```
+
+## Visão Geral
+
+Loops são como rotinas de hack - eles permitem executar operações repetitivas de forma eficiente e controlada.
+
+## Tipos de Loops
+
+### 1. for Loop
+
+```JAVA
+for (inicialização; condição; incremento) {
+    // código a ser repetido
+}
+```
+
+#### Exemplo Prático
+
+```JAVA
+for (int i = 0; i < 5; i++) {
+    System.out.println("Tentativa de acesso: " + i);
+}
+```
+
+### 2. while Loop
+
+```JAVA
+while (condição) {
+    // código a ser repetido
+}
+```
+
+#### Exemplo Prático
+
+```JAVA
+int tentativas = 0;
+while (tentativas < 3) {
+    System.out.println("Tentando conexão...");
+    tentativas++;
+}
+```
+
+### 3. do-while Loop
+
+```JAVA
+do {
+    // código a ser repetido
+} while (condição);
+```
+
+#### Exemplo Prático
+
+```JAVA
+int senha;
+do {
+    senha = gerarSenha();
+} while (!validarSenha(senha));
+```
+
+### 4. for-each Loop
+
+```JAVA
+for (tipo elemento : coleção) {
+    // código a ser repetido
+}
+```
+
+#### Exemplo Prático
+
+```JAVA
+String[] servidores = {"Alpha", "Beta", "Gamma"};
+for (String servidor : servidores) {
+    System.out.println("Verificando servidor: " + servidor);
+}
+```
+
+## Controle de Loop
+
+### break
+
+Interrompe a execução do loop completamente.
+
+```JAVA
+for (int i = 0; i < 100; i++) {
+    if (detectarIntruso()) {
+        break; // Sai do loop imediatamente
+    }
+}
+```
+
+### continue
+
+Pula para a próxima iteração do loop.
+
+```JAVA
+for (int porta = 0; porta < 1024; porta++) {
+    if (!portaVulneravel(porta)) {
+        continue; // Verifica próxima porta
+    }
+    atacarPorta(porta);
+}
+```
+
+## Padrões de Uso
+
+### 1. Loop Infinito Controlado
+
+```JAVA
+while (true) {
+    if (condicaoParada()) {
+        break;
+    }
+    // processamento
+}
+```
+
+### 2. Loop com Múltiplas Variáveis
+
+```JAVA
+for (int i = 0, j = 10; i < j; i++, j--) {
+    System.out.printf("i: %d, j: %d%n", i, j);
+}
+```
+
+### 3. Loop Aninhado
+
+```JAVA
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        System.out.printf("[%d,%d] ", i, j);
+    }
+    System.out.println();
+}
+```
+
+## Boas Práticas
+
+1. Use o Loop Adequado
+
+```JAVA
+// Para número conhecido de iterações
+for (int i = 0; i < tamanho; i++) { }
+
+// Para condição desconhecida
+while (temDados()) { }
+
+// Para arrays/collections
+for (Elemento e : colecao) { }
+```
+
+2. Evite Loop Infinito Acidental
+
+```JAVA
+// Ruim - possível loop infinito
+while (x > 0) {
+    // esqueceu de modificar x
+}
+
+// Bom
+while (x > 0) {
+    x--;
+    // processamento
+}
+```
+
+3. Mantenha Loops Simples
+
+```JAVA
+// Evite
+for (int i = 0; i < 100; i++) {
+    // muito código aqui
+}
+
+// Prefira
+for (int i = 0; i < 100; i++) {
+    processarItem(i);
+}
+```
+
+## Exemplos Avançados
+
+### 1. Loop com Timer
+
+```JAVA
+long inicio = System.currentTimeMillis();
+long limite = 5000; // 5 segundos
+
+while (System.currentTimeMillis() - inicio < limite) {
+    // processamento limitado por tempo
+}
+```
+
+### 2. Loop com Retry
+
+```JAVA
+int maxTentativas = 3;
+int tentativa = 0;
+
+while (tentativa < maxTentativas) {
+    try {
+        conectar();
+        break;
+    } catch (Exception e) {
+        tentativa++;
+        if (tentativa == maxTentativas) {
+            throw new RuntimeException("Falha na conexão");
+        }
+    }
+}
+```
+
+### 3. Loop com Buffer
+
+```JAVA
+StringBuilder buffer = new StringBuilder();
+for (int i = 0; i < dados.length; i++) {
+    buffer.append(dados[i]);
+    if (buffer.length() >= 1000) {
+        processarBuffer(buffer.toString());
+        buffer.setLength(0);
+    }
+}
+```
+
+## Exercícios Práticos
+
+1. Scanner de Portas
+
+```JAVA
+public void scanearPortas(int inicio, int fim) {
+    for (int porta = inicio; porta <= fim; porta++) {
+        if (portaAberta(porta)) {
+            System.out.println("Porta " + porta + " está aberta");
+        }
+    }
+}
+```
+
+2. Processador de Dados
+
+```JAVA
+public void processarDados(List<String> dados) {
+    int processados = 0;
+    while (!dados.isEmpty()) {
+        String dado = dados.remove(0);
+        processar(dado);
+        processados++;
+        if (processados % 100 == 0) {
+            System.out.println("Progresso: " + processados);
+        }
+    }
+}
+```
+
+## Próximos Passos
+
+* Aprenda sobre condicionais em [Conditionals](conditionals.html)
+
+* Explore expressões switch em [Switch Expressions](switch-expressions.html)
+
+* Descubra pattern matching em [Pattern Matching](pattern-matching.html)
+
+[Pattern Matching](pattern-matching.html)
+
+
+
+# Switch Expressions
+
+```
+>> Inicializando sistema de expressões switch...
+>> Carregando padrões de correspondência...
+>> Estabelecendo rotas de decisão...
+```
+
+## Introdução
+
+O switch expression é uma feature moderna do Java que oferece uma forma mais concisa e segura de escrever estruturas de decisão múltipla.
+
+## Sintaxe Básica
+
+### Switch Expression Tradicional
+
+```JAVA
+String status = switch (statusCode) {
+    case 200 -> "OK";
+    case 404 -> "Not Found";
+    case 500 -> "Internal Server Error";
+    default -> "Unknown Status";
+};
+```
+
+### Switch com Múltiplos Casos
+
+```JAVA
+String category = switch (score) {
+    case 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100 -> "A";
+    case 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 -> "B";
+    case 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 -> "C";
+    default -> "F";
+};
+```
+
+## Recursos Avançados
+
+### Yield
+
+```JAVA
+String message = switch (level) {
+    case "INFO" -> {
+        logInfo();
+        yield "Information message";
+    }
+    case "WARNING" -> {
+        logWarning();
+        yield "Warning message";
+    }
+    case "ERROR" -> {
+        logError();
+        yield "Error message";
+    }
+    default -> "Unknown level";
+};
+```
+
+### Pattern Matching (Preview)
+
+```JAVA
+String typeCheck = switch (obj) {
+    case String s -> "Text: " + s;
+    case Integer i -> "Number: " + i;
+    case Long l -> "Long: " + l;
+    case null -> "Null value";
+    default -> "Unknown type";
+};
+```
+
+## Boas Práticas
+
+1. Expressividade
+
+* Use nomes descritivos para variáveis
+
+* Mantenha casos relacionados agrupados
+
+* Evite lógica complexa dentro dos casos
+
+2. Organização
+
+* Ordene os casos de forma lógica
+
+* Agrupe casos similares
+
+* Use comentários para documentar casos complexos
+
+3. Manutenibilidade
+
+* Evite fallthrough entre casos
+
+* Sempre inclua um caso default
+
+* Mantenha a lógica simples e direta
+
+## Exemplos Práticos
+
+### Processador de Status HTTP
+
+```JAVA
+HttpResponse processStatus(int code) {
+    return switch (code) {
+        case 200, 201, 202 -> new SuccessResponse();
+        case 400, 401, 403 -> new ClientErrorResponse();
+        case 500, 502, 503 -> new ServerErrorResponse();
+        default -> new UnknownResponse();
+    };
+}
+```
+
+### Calculadora Simples
+
+```JAVA
+double calculate(double a, double b, String operator) {
+    return switch (operator) {
+        case "+" -> a + b;
+        case "-" -> a - b;
+        case "*" -> a * b;
+        case "/" -> {
+            if (b == 0) {
+                throw new ArithmeticException("Divisão por zero");
+            }
+            yield a / b;
+        }
+        default -> throw new IllegalArgumentException("Operador inválido");
+    };
+}
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. Esquecimento do Default
+
+```JAVA
+// Incorreto - Compilação falha
+String result = switch (value) {
+    case 1 -> "Um";
+    case 2 -> "Dois";
+}; // Erro: falta caso default
+
+// Correto
+String result = switch (value) {
+    case 1 -> "Um";
+    case 2 -> "Dois";
+    default -> "Outro";
+};
+```
+
+1. Mistura de Arrow e Block
+
+```JAVA
+// Incorreto - Sintaxe inconsistente
+String result = switch (value) {
+    case 1 -> "Um"
+    case 2: yield "Dois";
+};
+
+// Correto
+String result = switch (value) {
+    case 1 -> "Um";
+    case 2 -> "Dois";
+};
+```
+
+## Exercícios Práticos
+
+1. Conversor de Dia da Semana
+
+```JAVA
+String getDayName(int day) {
+    return switch (day) {
+        case 1 -> "Domingo";
+        case 2 -> "Segunda";
+        case 3 -> "Terça";
+        case 4 -> "Quarta";
+        case 5 -> "Quinta";
+        case 6 -> "Sexta";
+        case 7 -> "Sábado";
+        default -> "Dia inválido";
+    };
+}
+```
+
+1. Classificador de Notas
+
+```JAVA
+String classifyGrade(double grade) {
+    return switch ((int) grade / 10) {
+        case 10, 9 -> "A";
+        case 8 -> "B";
+        case 7 -> "C";
+        case 6 -> "D";
+        default -> "F";
+    };
+}
+```
+
+## Próximos Passos
+
+* Explore pattern matching em [Pattern Matching](pattern-matching.html)
+
+* Pratique com exercícios em [Control Flow Projects](control-flow-projects.html)
+
+* Aprenda sobre expressões lambda em [Lambda](null)
+
+[Pattern Matching](pattern-matching.html)
+
+
+
+# Pattern Matching
+
+```
+>> Inicializando sistema de correspondência de padrões...
+>> Carregando tipos de dados...
+>> Estabelecendo regras de matching...
+```
+
+## Introdução
+
+Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.
+
+## Pattern Matching com instanceof
+
+### Sintaxe Tradicional vs. Nova
+
+```JAVA
+// Forma antiga
+if (obj instanceof String) {
+    String str = (String) obj;
+    System.out.println(str.length());
+}
+
+// Pattern Matching
+if (obj instanceof String str) {
+    System.out.println(str.length());
+}
+```
+
+### Uso com Negação
+
+```JAVA
+if (!(obj instanceof String str)) {
+    return;
+}
+// str está disponível aqui
+System.out.println(str.length());
+```
+
+## Pattern Matching em Switch (Preview)
+
+### Matching por Tipo
+
+```JAVA
+String formatted = switch (obj) {
+    case String str -> "String: " + str.toUpperCase();
+    case Integer num -> "Int: " + num.toString();
+    case Double d -> "Double: " + String.format("%.2f", d);
+    case null -> "null";
+    default -> "Unknown: " + obj.toString();
+};
+```
+
+### Guarded Patterns
+
+```JAVA
+String checkNumber = switch (num) {
+    case Integer i when i < 0 -> "Negativo";
+    case Integer i when i > 0 -> "Positivo";
+    case Integer i -> "Zero";
+    default -> "Não é um número";
+};
+```
+
+## Casos de Uso Avançados
+
+### Hierarquia de Classes
+
+```JAVA
+public sealed interface Shape 
+    permits Circle, Rectangle, Triangle {}
+
+record Circle(double radius) implements Shape {}
+record Rectangle(double width, double height) implements Shape {}
+record Triangle(double base, double height) implements Shape {}
+
+double calculateArea(Shape shape) {
+    return switch (shape) {
+        case Circle c -> Math.PI * c.radius() * c.radius();
+        case Rectangle r -> r.width() * r.height();
+        case Triangle t -> (t.base() * t.height()) / 2;
+    };
+}
+```
+
+### Processamento de Dados
+
+```JAVA
+String processData(Object data) {
+    return switch (data) {
+        case String s when s.length() > 10 -> "String longa: " + s.substring(0, 10) + "...";
+        case String s -> "String: " + s;
+        case List<?> list when list.isEmpty() -> "Lista vazia";
+        case List<?> list -> "Lista com " + list.size() + " elementos";
+        case Map<?, ?> map -> "Map com " + map.size() + " entradas";
+        case null -> "Dado nulo";
+        default -> "Tipo não suportado";
+    };
+}
+```
+
+## Boas Práticas
+
+1. Clareza
+
+* Use nomes descritivos para variáveis de pattern
+
+* Mantenha padrões simples e diretos
+
+* Documente casos complexos
+
+2. Organização
+
+* Ordene casos do mais específico para o mais genérico
+
+* Agrupe padrões relacionados
+
+* Use guards para refinar a lógica
+
+3. Performance
+
+* Evite operações pesadas em guards
+
+* Considere a ordem dos padrões
+
+* Mantenha o código eficiente
+
+## Exemplos Práticos
+
+### Validador de Dados
+
+```JAVA
+String validateInput(Object input) {
+    return switch (input) {
+        case String s when s.isBlank() -> "String vazia";
+        case String s when s.matches("\\d+") -> "Número válido: " + s;
+        case String s -> "Texto válido: " + s;
+        case Integer i when i >= 0 -> "Número positivo: " + i;
+        case Integer i -> "Número negativo: " + i;
+        case null -> "Input nulo";
+        default -> "Input inválido";
+    };
+}
+```
+
+### Processador de Eventos
+
+```JAVA
+void processEvent(Event event) {
+    switch (event) {
+        case UserEvent u when u.isAdmin() -> handleAdminEvent(u);
+        case UserEvent u -> handleUserEvent(u);
+        case SystemEvent s when s.isCritical() -> handleCriticalSystemEvent(s);
+        case SystemEvent s -> handleSystemEvent(s);
+        case null -> throw new IllegalArgumentException("Evento nulo");
+        default -> handleUnknownEvent(event);
+    }
+}
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. Ordem dos Patterns
+
+```JAVA
+// Incorreto - Padrão inalcançável
+switch (obj) {
+    case Object o -> "Objeto";    // Captura tudo
+    case String s -> "String";    // Nunca alcançado
+}
+
+// Correto
+switch (obj) {
+    case String s -> "String";    // Mais específico primeiro
+    case Object o -> "Objeto";    // Mais genérico depois
+}
+```
+
+1. Null Handling
+
+```JAVA
+// Incorreto - NullPointerException possível
+switch (obj) {
+    case String s -> s.length();
+    default -> 0;
+}
+
+// Correto
+switch (obj) {
+    case null -> 0;
+    case String s -> s.length();
+    default -> 0;
+}
+```
+
+## Exercícios Práticos
+
+1. Analisador de Dados
+
+```JAVA
+String analyzeData(Object data) {
+    return switch (data) {
+        case String s when s.contains("@") -> "Email: " + s;
+        case String s when s.matches("\\d{10}") -> "Telefone: " + s;
+        case String s -> "Texto: " + s;
+        case Integer i -> "Número: " + i;
+        case List<?> l -> "Lista[" + l.size() + "]";
+        case null -> "NULO";
+        default -> "Desconhecido";
+    };
+}
+```
+
+1. Calculadora de Formas
+
+```JAVA
+record Point(int x, int y) {}
+record Circle(Point center, double radius) {}
+record Rectangle(Point topLeft, double width, double height) {}
+
+String describeShape(Object shape) {
+    return switch (shape) {
+        case Circle c -> 
+            String.format("Círculo em (%d,%d) com raio %.2f",
+                c.center().x(), c.center().y(), c.radius());
+        case Rectangle r -> 
+            String.format("Retângulo em (%d,%d) de %.2fx%.2f",
+                r.topLeft().x(), r.topLeft().y(), r.width(), r.height());
+        case null -> "Forma nula";
+        default -> "Forma não reconhecida";
+    };
+}
+```
+
+## Próximos Passos
+
+* Explore expressões switch em [Switch Expressions](switch-expressions.html)
+
+* Pratique com projetos em [Control Flow Projects](control-flow-projects.html)
+
+* Aprenda sobre sealed classes em [Sealed Classes](null)
+
+[Control Flow Projects](control-flow-projects.html)
+
+
+
+# Projetos de Controle de Fluxo
+
+```
+>> Iniciando simulação de projetos...
+>> Carregando cenários de teste...
+>> Executando casos de uso...
+```
+
+## Visão Geral
+
+Esta seção apresenta três projetos práticos que demonstram diferentes aspectos do controle de fluxo em Java, todos ambientados em um contexto cyberpunk.
+
+```MERMAID
+graph TD
+    A[Projetos de Controle] --> B[Jogo de Números]
+    A --> C[Sistema de Menu]
+    A --> D[Máquina de Estados]
+    
+    B --> E[if/else]
+    B --> F[while]
+    
+    C --> G[switch]
+    C --> H[break]
+    
+    D --> I[switch/case]
+    D --> J[estados]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#33ccff
+    style F fill:#1a1a1a,stroke:#33ccff
+    style G fill:#1a1a1a,stroke:#33ccff
+    style H fill:#1a1a1a,stroke:#33ccff
+    style I fill:#1a1a1a,stroke:#33ccff
+    style J fill:#1a1a1a,stroke:#33ccff
+```
+
+## Projetos Disponíveis
+
+### 1. Jogo de Números
+
+* [Jogo de Números](number-game.html) - Um jogo de adivinhação que utiliza loops e condicionais
+
+* Demonstra uso de `while`, `if/else` e operadores de comparação
+
+* Implementa sistema de pontuação e feedback ao usuário
+
+### 2. Sistema de Menu
+
+* [Sistema de Menu](menu-system.html) - Interface de comando baseada em menus
+
+* Explora uso extensivo de `switch/case`
+
+* Demonstra navegação entre diferentes estados do menu
+
+### 3. Máquina de Estados
+
+* [Máquina de Estados](state-machine.html) - Sistema de segurança com estados
+
+* Implementa uma máquina de estados simples
+
+* Utiliza combinação de `switch/case` e controle de fluxo
+
+## Conceitos Aplicados
+
+1. Estruturas Condicionais
+
+* `if/else`
+
+* `switch/case`
+
+* Operadores de comparação
+
+2. Loops
+
+* `while`
+
+* Controle de iteração
+
+* Condições de saída
+
+3. Controle de Fluxo
+
+* `break`
+
+* `continue`
+
+* Estados e transições
+
+## Objetivos de Aprendizado
+
+* Praticar diferentes estruturas de controle
+
+* Entender fluxo de execução
+
+* Implementar lógica de decisão
+
+* Gerenciar estados do programa
+
+## Próximos Passos
+
+Após completar estes projetos, você estará preparado para:
+
+1. Desenvolver sistemas mais complexos
+
+2. Combinar diferentes estruturas de controle
+
+3. Implementar lógica de negócios mais sofisticada
+
+[Arrays e Coleções](arrays-collections.html)
+
+Tip:
+
+"O controle de fluxo é como hackear a Matrix - você precisa saber exatamente onde e quando dobrar as regras."
+
+
+
+# Jogo de Números
+
+## Descrição do Projeto
+
+Desenvolva um jogo de adivinhação onde o jogador tenta adivinhar um número gerado aleatoriamente pelo sistema.
+
+## Conceitos Aplicados
+
+* Loops (while/do-while)
+
+* Condicionais (if/else)
+
+* Switch Expressions
+
+* Pattern Matching
+
+## Implementação Base
+
+```JAVA
+public class NumberGame {
+    public static void main(String[] args) {
+        // Configurações do jogo usando tipos primitivos
+        int numeroSecreto = 42; // Número fixo para simplificar
+        int tentativasMaximas = 5;
+        int tentativas = 0;
+        boolean jogoAtivo = true;
+        
+        // Mensagem inicial usando Text Block
+        System.out.println("""
+            === JOGO DE ADIVINHAÇÃO ===
+            Tente adivinhar o número entre 1 e 100
+            Você tem 5 tentativas!
+            =========================
+            """);
+        
+        // Loop principal do jogo
+        while (jogoAtivo && tentativas < tentativasMaximas) {
+            System.out.println("\nTentativa " + (tentativas + 1) + " de " + tentativasMaximas);
+            System.out.print("Digite seu palpite: ");
+            
+            // Simulando entrada do usuário (você pode modificar para testar)
+            var palpite = 50; // Simula entrada do usuário
+            
+            // Incrementa tentativas
+            tentativas++;
+            
+            // Verifica o palpite
+            if (palpite == numeroSecreto) {
+                System.out.println("Parabéns! Você acertou em " + tentativas + " tentativas!");
+                jogoAtivo = false;
+            } else {
+                // Verifica se ainda tem tentativas
+                if (tentativas >= tentativasMaximas) {
+                    System.out.println("Game Over! O número era " + numeroSecreto);
+                } else {
+                    // Dá dicas baseadas no palpite
+                    if (palpite < numeroSecreto) {
+                        System.out.println("Tente um número MAIOR!");
+                    } else {
+                        System.out.println("Tente um número MENOR!");
+                    }
+                    
+                    // Mostra tentativas restantes
+                    System.out.println("Tentativas restantes: " + (tentativasMaximas - tentativas));
+                }
+            }
+            
+            // Pequena pausa para simular processamento
+            System.out.println("Processando...");
+        }
+        
+        // Pontuação final
+        int pontuacao = 0;
+        if (!jogoAtivo) { // Se acertou
+            pontuacao = (tentativasMaximas - tentativas + 1) * 100;
+            System.out.println("Sua pontuação: " + pontuacao);
+        }
+        
+        System.out.println("Fim do jogo!");
+    }
+}
+```
+
+## Interface com Usuário
+
+```JAVA
+public class NumberGameUI {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        NumberGame game = new NumberGame(100, 5);
+        
+        System.out.println("=== Jogo de Adivinhação ===");
+        System.out.println("Tente adivinhar o número entre 1 e 100");
+        
+        do {
+            System.out.print("Digite seu palpite: ");
+            if (scanner.hasNextInt()) {
+                int guess = scanner.nextInt();
+                String result = game.processGuess(guess);
+                System.out.println(result);
+            } else {
+                System.out.println("Por favor, digite um número válido!");
+                scanner.next();
+            }
+        } while (!game.isGameOver());
+    }
+}
+```
+
+## Desafios de Extensão
+
+1. Níveis de Dificuldade
+
+```JAVA
+public enum Difficulty {
+    EASY(1, 10, 6),
+    MEDIUM(1, 100, 5),
+    HARD(1, 1000, 4);
+
+    final int min, max, attempts;
+    
+    Difficulty(int min, int max, int attempts) {
+        this.min = min;
+        this.max = max;
+        this.attempts = attempts;
+    }
+}
+```
+
+1. Sistema de Pontuação
+
+```JAVA
+public int calculateScore() {
+    return switch (state) {
+        case WON -> (maxAttempts - attempts + 1) * 100;
+        case LOST -> 0;
+        default -> throw new IllegalStateException("Jogo ainda em andamento");
+    };
+}
+```
+
+## Próximos Passos
+
+* Implemente o sistema de dificuldade
+
+* Adicione um sistema de recordes
+
+* Crie um modo multiplayer
+
+[Menu System](menu-system.html)
+
+
+
+# Sistema de Menu
+
+## Descrição do Projeto
+
+Desenvolva um sistema de menu interativo estilo cyberpunk para uma interface de terminal.
+
+## Conceitos Aplicados
+
+* Switch Expressions
+
+* Pattern Matching
+
+* Loops
+
+* Condicionais Aninhados
+
+## Implementação Base
+
+```JAVA
+public class MenuSystem {
+    public static void main(String[] args) {
+        // Estado atual do menu usando String
+        String menuAtual = "PRINCIPAL";
+        
+        // Flag para controle do loop
+        boolean sistemaAtivo = true;
+        
+        // Mensagem de boas-vindas usando Text Block
+        System.out.println("""
+            === SISTEMA CYBERDECK v1.0 ===
+            Menu Principal:
+            1. Iniciar Sistema
+            2. Configurações
+            3. Status
+            4. Sair
+            ===========================
+            """);
+        
+        // Loop principal do sistema
+        while (sistemaAtivo) {
+            System.out.println("\nMenu atual: " + menuAtual);
+            System.out.print("Digite uma opção: ");
+            
+            // Simulando entrada do usuário (você pode modificar para testar)
+            var opcao = "1"; // Simula entrada do usuário
+            
+            // Controle de fluxo baseado no menu atual
+            switch (menuAtual) {
+                case "PRINCIPAL":
+                    switch (opcao) {
+                        case "1":
+                            menuAtual = "SISTEMA";
+                            System.out.println("""
+                                === Menu do Sistema ===
+                                1. Verificar Status
+                                2. Executar Diagnóstico
+                                3. Voltar
+                                """);
+                            break;
+                        case "2":
+                            menuAtual = "CONFIG";
+                            System.out.println("""
+                                === Menu de Configurações ===
+                                1. Display
+                                2. Segurança
+                                3. Rede
+                                4. Voltar
+                                """);
+                            break;
+                        case "3":
+                            System.out.println("""
+                                Status do Sistema:
+                                - Memória: OK
+                                - Processador: OK
+                                - Rede: OK
+                                """);
+                            break;
+                        case "4":
+                            sistemaAtivo = false;
+                            break;
+                    }
+                    break;
+                    
+                case "CONFIG":
+                    switch (opcao) {
+                        case "1":
+                            System.out.println("Configurando Display...");
+                            break;
+                        case "2":
+                            System.out.println("Configurando Segurança...");
+                            break;
+                        case "3":
+                            System.out.println("Configurando Rede...");
+                            break;
+                        case "4":
+                            menuAtual = "PRINCIPAL";
+                            System.out.println("Voltando ao Menu Principal...");
+                            break;
+                    }
+                    break;
+                    
+                case "SISTEMA":
+                    switch (opcao) {
+                        case "1":
+                            System.out.println("Verificando status...");
+                            break;
+                        case "2":
+                            System.out.println("Executando diagnóstico...");
+                            break;
+                        case "3":
+                            menuAtual = "PRINCIPAL";
+                            System.out.println("Voltando ao Menu Principal...");
+                            break;
+                    }
+                    break;
+            }
+            
+            // Pequena pausa para simular processamento
+            System.out.println("Processando...");
+        }
+        
+        System.out.println("Sistema finalizado.");
+    }
+}
+```
+
+## Interface com Usuário
+
+```JAVA
+public class MenuSystemUI {
+    public static void main(String[] args) {
+        MenuSystem menu = new MenuSystem();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("""
+            === SISTEMA CYBERDECK v1.0 ===
+            Iniciando interface...
+            """);
+        
+        String input;
+        do {
+            System.out.print("> ");
+            input = scanner.nextLine().trim();
+            String response = menu.processInput(input);
+            System.out.println(response);
+        } while (!input.equals("exit"));
+    }
+}
+```
+
+## Recursos Avançados
+
+1. Animações de Terminal
+
+```JAVA
+public class TerminalEffects {
+    public static void typeWriter(String text) {
+        for (char c : text.toCharArray()) {
+            System.out.print(c);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println();
+    }
+}
+```
+
+1. Sistema de Cores
+
+```JAVA
+public class ColoredOutput {
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    
+    public static String success(String text) {
+        return ANSI_GREEN + text + ANSI_RESET;
+    }
+    
+    public static String error(String text) {
+        return ANSI_RED + text + ANSI_RESET;
+    }
+}
+```
+
+## Desafios de Extensão
+
+1. Adicione autenticação de usuário
+
+2. Implemente submenus dinâmicos
+
+3. Crie um sistema de logs
+
+4. Adicione efeitos visuais ASCII art
+
+## Próximos Passos
+
+* Implemente mais funcionalidades no menu
+
+* Adicione persistência de configurações
+
+* Crie uma interface gráfica ASCII mais elaborada
+
+[State Machine](state-machine.html)
+
+
+
+# Máquina de Estados
+
+## Descrição do Projeto
+
+Implemente uma máquina de estados que simula um sistema de segurança cyberpunk.
+
+## Conceitos Aplicados
+
+* Pattern Matching
+
+* Switch Expressions
+
+* Loops Controlados por Estado
+
+* Condicionais Complexos
+
+## Implementação Base
+
+```JAVA
+public class StateMachine {
+    public static void main(String[] args) {
+        // Estados possíveis usando String
+        String estado = "TRAVADO";  // estado inicial
+        
+        // Contadores e flags usando tipos primitivos
+        int tentativasInvalidas = 0;
+        boolean sistemaAtivo = true;
+        
+        // Mensagem de boas-vindas usando Text Block
+        System.out.println("""
+            === SISTEMA DE SEGURANÇA CYBERPUNK ===
+            Estados: TRAVADO, DESTRAVADO, ALERTA
+            Comandos: 
+            1 - Inserir código válido
+            2 - Inserir código inválido
+            3 - Travar sistema
+            4 - Sair
+            ====================================
+            """);
+        
+        // Loop principal do sistema
+        while (sistemaAtivo) {
+            System.out.println("\nEstado atual: " + estado);
+            System.out.print("Digite um comando: ");
+            
+            // Simulando entrada do usuário (você pode modificar os valores para testar)
+            var comando = "1"; // Simula entrada do usuário
+            
+            // Controle de fluxo baseado no estado atual
+            switch (estado) {
+                case "TRAVADO":
+                    if (comando.equals("1")) {
+                        estado = "DESTRAVADO";
+                        tentativasInvalidas = 0;
+                        System.out.println("Acesso concedido!");
+                    } else if (comando.equals("2")) {
+                        tentativasInvalidas++;
+                        if (tentativasInvalidas >= 3) {
+                            estado = "ALERTA";
+                            System.out.println("ALERTA: Múltiplas tentativas inválidas!");
+                        } else {
+                            System.out.println("Código inválido. Tentativas restantes: " + (3 - tentativasInvalidas));
+                        }
+                    }
+                    break;
+                    
+                case "DESTRAVADO":
+                    if (comando.equals("3")) {
+                        estado = "TRAVADO";
+                        System.out.println("Sistema travado!");
+                    }
+                    break;
+                    
+                case "ALERTA":
+                    if (comando.equals("1")) {
+                        estado = "TRAVADO";
+                        tentativasInvalidas = 0;
+                        System.out.println("Sistema resetado!");
+                    }
+                    break;
+            }
+            
+            // Condição de saída
+            if (comando.equals("4")) {
+                sistemaAtivo = false;
+                System.out.println("Encerrando sistema...");
+            }
+            
+            // Pequena pausa para simular processamento
+            System.out.println("Processando...");
+        }
+    }
+}
+```
+
+## Interface com Usuário
+
+```JAVA
+public class SecuritySystemUI {
+    public static void main(String[] args) {
+        SecuritySystem system = new SecuritySystem();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("""
+            === SISTEMA DE SEGURANÇA CYBERPUNK ===
+            Digite 'help' para ver os comandos disponíveis
+            """);
+        
+        while (true) {
+            System.out.print(">> ");
+            String input = scanner.nextLine().toUpperCase();
+            
+            if (input.equals("EXIT")) break;
+            
+            try {
+                SecurityEvent event = SecurityEvent.valueOf(input);
+                String result = system.processEvent(event);
+                System.out.println(result);
+            } catch (IllegalArgumentException e) {
+                if (input.equals("HELP")) {
+                    showHelp();
+                } else {
+                    System.out.println("Comando inválido");
+                }
+            }
+        }
+    }
+    
+    private static void showHelp() {
+        System.out.println("""
+            Comandos disponíveis:
+            VALID_CODE - Tentar código de acesso
+            INVALID_CODE - Código inválido
+            LOCK - Travar sistema
+            EMERGENCY - Ativar emergência
+            MAINTENANCE_KEY - Modo manutenção
+            RESET - Resetar sistema
+            SHUTDOWN - Desligar sistema
+            EXIT - Sair do programa
+            """);
+    }
+}
+```
+
+## Recursos Avançados
+
+1. Sistema de Biometria
+
+```JAVA
+public class BiometricScanner {
+    public boolean validateBiometric(String bioData) {
+        return switch (bioData.length()) {
+            case 32 -> bioData.matches("[A-F0-9]+");
+            case 64 -> bioData.matches("[a-f0-9]+");
+            default -> false;
+        };
+    }
+}
+```
+
+1. Monitor de Atividades
+
+```JAVA
+public class ActivityMonitor {
+    private final Queue<SecurityEvent> recentEvents;
+    private static final int MAX_EVENTS = 10;
+    
+    public ActivityMonitor() {
+        this.recentEvents = new LinkedList<>();
+    }
+    
+    public void recordEvent(SecurityEvent event) {
+        recentEvents.offer(event);
+        if (recentEvents.size() > MAX_EVENTS) {
+            recentEvents.poll();
+        }
+    }
+    
+    public boolean detectSuspiciousActivity() {
+        long invalidAttempts = recentEvents.stream()
+            .filter(e -> e == SecurityEvent.INVALID_CODE)
+            .count();
+        return invalidAttempts >= 3;
+    }
+}
+```
+
+## Desafios de Extensão
+
+1. Implemente um sistema de níveis de acesso
+
+2. Adicione criptografia para códigos de acesso
+
+3. Crie um sistema de backup automático
+
+4. Implemente notificações em tempo real
+
+## Próximos Passos
+
+* Adicione mais estados e eventos
+
+* Implemente persistência de logs
+
+* Crie uma interface gráfica mais elaborada
+
+* Adicione suporte a múltiplos usuários
+
+[Control Flow](control-flow.html)
+
+
+
+# Arrays e Coleções
+
+![Arrays and Collections Banner](arrays-collections-banner.png)
+
+```
+DATA STRUCTURES
+├── Arrays
+│   ├── Unidimensionais
+│   └── Multidimensionais
+└── Collections
+    ├── List
+    ├── Set
+    ├── Queue
+    └── Map
+```
+
+## Visão Geral
+
+Esta seção explora as estruturas de dados fundamentais em Java, desde arrays básicos até as coleções mais sofisticadas do framework Collections.
+
+```MERMAID
+graph TD
+    A[Estruturas de Dados] --> B[Arrays]
+    A --> C[Collections]
+    
+    B --> D[Arrays Primitivos]
+    B --> E[Arrays de Objetos]
+    
+    C --> F[List]
+    C --> G[Set]
+    C --> H[Queue]
+    C --> I[Map]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#33ccff
+    style E fill:#1a1a1a,stroke:#33ccff
+    style F fill:#1a1a1a,stroke:#33ccff
+    style G fill:#1a1a1a,stroke:#33ccff
+    style H fill:#1a1a1a,stroke:#33ccff
+    style I fill:#1a1a1a,stroke:#33ccff
+```
+
+## Módulos do Curso
+
+### 1. Arrays Fundamentais
+
+* [Arrays](arrays.html) - Estruturas básicas e manipulação
+
+* Arrays unidimensionais e multidimensionais
+
+* Operações comuns e boas práticas
+
+### 2. Framework Collections
+
+* [Visão Geral das Collections](collections-overview.html)
+
+* [Listas](lists.html) - Sequências ordenadas
+
+* [Sets](sets.html) - Conjuntos sem duplicatas
+
+* [Maps](maps.html) - Pares chave-valor
+
+* [Queues](queues.html) - Filas e pilhas
+
+* [Stacks](stacks.html) - Estruturas LIFO
+
+### 3. Projetos Práticos
+
+* [Gerenciador de Tarefas](task-manager.html)
+
+* [Sistema de Inventário](inventory-system.html)
+
+* [Implementação de Cache](cache-implementation.html)
+
+## Conceitos Principais
+
+1. Arrays
+
+* Alocação de memória
+
+* Indexação
+
+* Iteração
+
+* Arrays multidimensionais
+
+2. Collections Framework
+
+* Interfaces principais
+
+* Implementações comuns
+
+* Algoritmos de coleções
+
+* Iteradores
+
+3. Performance e Uso
+
+* Complexidade de tempo
+
+* Uso de memória
+
+* Escolha da estrutura adequada
+
+* Otimizações
+
+## Objetivos de Aprendizado
+
+* Dominar manipulação de arrays
+
+* Entender o framework Collections
+
+* Escolher estruturas apropriadas
+
+* Implementar soluções eficientes
+
+## Próximos Passos
+
+Após esta seção, você estará preparado para:
+
+1. Trabalhar com estruturas de dados complexas
+
+2. Implementar algoritmos eficientes
+
+3. Desenvolver sistemas escaláveis
+
+[Fundamentos de OOP](oop-fundamentals.html)
+
+Tip:
+
+"Em um mundo digital, dados são poder. A forma como você os estrutura determina sua eficiência no combate."
+
+
+
+# Arrays em Java
+
+```
+ARRAY OPERATIONS
+├── Declaração (Como registrar clientes em um bordel)
+├── Inicialização (Abrir as portas)
+├── Acesso (Encontrar seu favorito)
+├── Modificação (Trocar os números)
+└── Iteração (Fazer a ronda noturna)
+```
+
+## Fundamentos
+
+Arrays são como um bordel bem organizado - cada quarto tem seu número, e você sabe exatamente o que esperar em cada um. Sem surpresas desagradáveis.
+
+```JAVA
+// Declaração e inicialização
+int[] quartos = new int[5];  // 5 quartos vazios
+String[] servicos = {"BASICO", "ESPECIAL", "COMPLETO"};
+
+// Array multidimensional (como um prédio com vários andares)
+int[][] predio = new int[3][3];
+```
+
+## Características Principais
+
+### 1. Tamanho Fixo (Como um Motel Lotado)
+
+```JAVA
+// Uma vez definido o número de quartos, não dá pra criar mais
+int numQuartos = 10;
+double[] precos = new double[numQuartos];
+
+// Nem adianta chorar, não vai caber mais
+System.out.println("Quartos disponíveis: " + precos.length);
+```
+
+### 2. Indexação Base-Zero (Como Idade de Político)
+
+```JAVA
+// O primeiro sempre começa do zero
+int primeiro = quartos[0];  // Quarto 0 (mas na placa tá 1)
+
+// O último é sempre um a menos que o total
+int ultimo = quartos[quartos.length - 1];
+```
+
+### 3. Tipo Homogêneo (Como Menu de Boteco)
+
+```JAVA
+// Aqui só serve cachaça, amigo
+String[] drinks = new String[3];
+drinks[0] = "51";
+drinks[1] = "Velho Barreiro";
+drinks[2] = "Pitú";
+```
+
+## Operações Comuns
+
+### Iteração (Como Fazer a Ronda)
+
+```JAVA
+// Método tradicional (checando quarto por quarto)
+for (int i = 0; i < quartos.length; i++) {
+    System.out.println("Verificando quarto " + i);
+}
+
+// Método moderno (câmeras de segurança)
+for (String drink : drinks) {
+    System.out.println("Bebida disponível: " + drink);
+}
+```
+
+### Manipulação (Como Gerenciar o Estabelecimento)
+
+```JAVA
+// Resetar preços (promoção de segunda)
+Arrays.fill(precos, 29.90);
+
+// Ordenar por preço (do mais barato pro mais caro)
+Arrays.sort(precos);
+
+// Procurar aquele cliente especial
+int indice = Arrays.binarySearch(drinks, "51");
+```
+
+## Arrays Multidimensionais (Como um Cassino de Luxo)
+
+### Matrizes
+
+```JAVA
+// Mapa do cassino (3 andares, cada um com 3 salas)
+int[][] cassino = {
+    {1, 2, 3},  // Caça-níqueis
+    {4, 5, 6},  // Poker
+    {7, 8, 9}   // Roleta
+};
+
+// Encontrar mesa específica
+int mesa = cassino[1][2];  // Mesa 6 de poker
+```
+
+### Iteração em Matrizes (Inspeção Sanitária)
+
+```JAVA
+// Verificando todas as mesas
+for (int andar = 0; andar < cassino.length; andar++) {
+    for (int sala = 0; sala < cassino[andar].length; sala++) {
+        System.out.print("Verificando mesa " + cassino[andar][sala]);
+    }
+    System.out.println(" - Andar limpo!");
+}
+```
+
+## Boas Práticas (Regras da Casa)
+
+1. Validação de Índices (Checagem de ID)
+
+```JAVA
+if (quarto >= 0 && quarto < quartos.length) {
+    // Cliente pode entrar
+    return quartos[quarto];
+}
+```
+
+1. Cópia de Arrays (Expandindo o Negócio)
+
+```JAVA
+// Abrindo filial com mesma configuração
+int[] filial = Arrays.copyOf(quartos, quartos.length);
+
+// Pegando só o melhor da casa
+int[] vips = Arrays.copyOfRange(quartos, 1, 4);
+```
+
+## Exercícios Práticos
+
+1. Implemente um sistema de rodízio de "funcionários"
+
+2. Crie um controle de mesas de poker
+
+3. Desenvolva um algoritmo de distribuição de gorjetas
+
+## Próximos Passos
+
+Depois de dominar esse bordel de arrays, você estará pronto para:
+
+1. Gerenciar uma rede de estabelecimentos
+
+2. Implementar sistemas de fidelidade
+
+3. Expandir para o mercado internacional
+
+[Collections: Quando Um Não é Suficiente](collections-overview.html)
+
+Tip:
+
+"Arrays são como um bordel bem administrado - cada elemento no seu lugar, e você sempre sabe onde encontrar o que procura."
+
+
+
+# Collections Framework: O Submundo das Estruturas de Dados
+
+```
+COLLECTIONS HIERARCHY
+├── List (Como uma Lista de Devedores)
+├── Set (Clube Exclusivo, Sem Repetidos)
+├── Queue (Fila do Pão, Mas Com Classe)
+└── Map (Agenda Telefônica do Traficante)
+```
+
+## Anatomia do Submundo
+
+Imagine o Collections Framework como uma organização criminosa bem estruturada - cada família tem sua especialidade, mas todas trabalham juntas quando necessário.
+
+```JAVA
+// As principais famílias
+List<String> listaDaChantagem = new ArrayList<>();
+Set<String> membrosVIP = new HashSet<>();
+Queue<String> filaDeEspera = new LinkedList<>();
+Map<String, Double> contasAReceber = new HashMap<>();
+```
+
+## Famílias Principais
+
+### 1. List (A Lista Negra)
+
+```JAVA
+List<String> alvos = new ArrayList<>();
+alvos.add("João Caloteiro");    // Adiciona no final
+alvos.add(0, "Maria Malandra"); // Adiciona no início
+String proximo = alvos.get(0);  // Próxima vítima
+```
+
+### 2. Set (Clube dos Exclusivos)
+
+```JAVA
+Set<String> vips = new HashSet<>();
+vips.add("Don Corleone");     // Entra no clube
+vips.add("Don Corleone");     // Tenta entrar de novo (falha)
+boolean isMembro = vips.contains("Don Corleone"); // Tá na lista?
+```
+
+### 3. Queue (Fila do Desespero)
+
+```JAVA
+Queue<String> esperando = new LinkedList<>();
+esperando.offer("Zé Devedor");  // Entra na fila
+String proximo = esperando.poll(); // Próximo a ser "atendido"
+String espiadinha = esperando.peek(); // Quem é o próximo sem tirar
+```
+
+### 4. Map (Livro Caixa)
+
+```JAVA
+Map<String, Double> dividas = new HashMap<>();
+dividas.put("Zé", 1000.0);     // Deve mil
+dividas.put("Maria", 2000.0);   // Deve dois mil
+Double quanto = dividas.get("Zé"); // Quanto o Zé deve?
+```
+
+## Escolhendo sua Arma
+
+### ArrayList vs LinkedList
+
+```JAVA
+// ArrayList: Acesso rápido, como endereço fixo
+List<String> enderecos = new ArrayList<>();  // Ótimo para consultas
+
+// LinkedList: Inserção rápida, como mensageiro
+List<String> mensagens = new LinkedList<>();  // Bom para alterações
+```
+
+### HashSet vs TreeSet
+
+```JAVA
+// HashSet: Rápido e caótico, como bar de porto
+Set<String> frequentadores = new HashSet<>();  // Não liga pra ordem
+
+// TreeSet: Organizado e lento, como clube de madame
+Set<String> clientesVIP = new TreeSet<>();     // Tudo ordenadinho
+```
+
+### HashMap vs TreeMap
+
+```JAVA
+// HashMap: Bagunçado mas eficiente, como caderno de agiota
+Map<String, Double> pagamentos = new HashMap<>();
+
+// TreeMap: Organizado e metódico, como livro contábil
+Map<String, Double> contabilidade = new TreeMap<>();
+```
+
+## Operações Especiais
+
+### Iteração (Fazendo a Ronda)
+
+```JAVA
+// For each moderno
+for (String devedor : alvos) {
+    System.out.println("Procurando: " + devedor);
+}
+
+// Iterator (modo old school)
+Iterator<String> it = alvos.iterator();
+while (it.hasNext()) {
+    String alvo = it.next();
+    if (alvo.contains("Delator")) {
+        it.remove(); // Remove o X9
+    }
+}
+```
+
+### Ordenação (Organizando a Casa)
+
+```JAVA
+// Ordenar a lista de devedores por nome
+Collections.sort(alvos);
+
+// Ordenar por valor da dívida
+alvos.sort((a, b) -> dividas.get(a).compareTo(dividas.get(b)));
+```
+
+## Dicas de Sobrevivência
+
+1. Escolha Certa
+
+* ArrayList para acesso rápido
+
+* LinkedList para muitas alterações
+
+* HashSet para unicidade
+
+* TreeSet para ordem natural
+
+* HashMap para acesso por chave
+
+* TreeMap para ordem nas chaves
+
+2. Performance
+
+```JAVA
+// Defina o tamanho inicial se souber
+List<String> lista = new ArrayList<>(1000);
+
+// Use a estrutura certa pro trabalho
+Set<String> conjunto = new HashSet<>();  // Mais rápido que List pra busca
+```
+
+## Exercícios Práticos
+
+1. Implemente um sistema de controle de território
+
+2. Crie um gerenciador de dívidas com juros compostos
+
+3. Desenvolva uma lista de "proteção" com prioridades
+
+## Próximos Passos
+
+Depois de dominar as Collections, você estará pronto para:
+
+1. Gerenciar dados como um profissional
+
+2. Implementar estruturas complexas
+
+3. Otimizar operações de dados
+
+[Arrays: De Volta ao Básico](arrays.html)
+[Lists: Quando a Ordem Importa](lists.html)
+
+Tip:
+
+"Collections são como uma família do crime organizado - cada uma tem seu papel, e juntas controlam toda a cidade dos dados."
+
+
+
+# Lists: A Playlist do Baile Funk
+
+```
+LIST TYPES
+├── ArrayList (Camarote VIP)
+└── LinkedList (Fila do Open Bar)
+```
+
+## Fundamentos
+
+Lists são como uma festa funk - tem ordem, repetição e sempre cabe mais um.
+
+```JAVA
+// Criando a lista de convidados
+List<String> convidados = new ArrayList<>();
+convidados.add("MC Kevinho");    // Adiciona no fim da lista
+convidados.add(0, "MC Livinho"); // Fura a fila (adiciona no início)
+```
+
+## ArrayList vs LinkedList
+
+### ArrayList (Camarote VIP)
+
+```JAVA
+// Rápido pra achar alguém, como camarote numerado
+ArrayList<String> camarote = new ArrayList<>();
+camarote.add("Anitta");
+camarote.get(0);         // Acesso direto, mesa 0
+```
+
+### LinkedList (Fila do Open Bar)
+
+```JAVA
+// Melhor pra galera entrar e sair, como fila de open bar
+LinkedList<String> openBar = new LinkedList<>();
+openBar.addFirst("Sedento");   // Furando fila
+openBar.addLast("Paciente");   // Entrando no fim
+```
+
+## Operações Básicas (Como Gerenciar o Baile)
+
+### Adição (Deixa Entrar)
+
+```JAVA
+// Vários jeitos de deixar a galera entrar
+List<String> baile = new ArrayList<>();
+baile.add("Dançarino");           // Fim da fila
+baile.add(0, "DJ");               // VIP, direto pro início
+baile.addAll(Arrays.asList("MC", "DJ", "Beat Maker")); // Grupo
+```
+
+### Remoção (Expulsando da Festa)
+
+```JAVA
+// Diferentes formas de expulsar
+baile.remove("Confusão");          // Remove elemento específico
+baile.remove(0);                   // Remove da posição
+baile.removeIf(x -> x.contains("Briga")); // Remove todos briguentos
+```
+
+### Acesso (Procurando na Multidão)
+
+```JAVA
+// Encontrando a galera
+String vip = baile.get(0);         // Pega pela posição
+int pos = baile.indexOf("DJ");     // Onde tá o DJ?
+boolean temMC = baile.contains("MC"); // O MC chegou?
+```
+
+## Lists Especializadas (Áreas VIP)
+
+### Vector (Antiga Casa de Show)
+
+```JAVA
+// Synchronized por padrão, como segurança old school
+Vector<String> casaAntiga = new Vector<>();
+casaAntiga.add("Dançarino Clássico");
+```
+
+### Stack (Pilha de Caixas de Som)
+
+```JAVA
+// LIFO - Last In, First Out
+Stack<String> equipamento = new Stack<>();
+equipamento.push("Grave");     // Empilha
+String topo = equipamento.pop(); // Desempilha
+```
+
+## Ordenação (Organizando o Line-up)
+
+```JAVA
+// Ordenando a lista de apresentações
+List<String> lineup = new ArrayList<>();
+lineup.addAll(Arrays.asList("MC Late", "DJ Early", "MC Prime"));
+
+// Ordem alfabética
+Collections.sort(lineup);
+
+// Ordem personalizada
+lineup.sort((a, b) -> a.length() - b.length()); // Por tamanho do nome
+```
+
+## Iteração (Passando o Som)
+
+```JAVA
+// For tradicional (Contagem regressiva)
+for (int i = 0; i < lineup.size(); i++) {
+    System.out.println("Próximo: " + lineup.get(i));
+}
+
+// For each (Passando o som)
+for (String artista : lineup) {
+    System.out.println("No palco: " + artista);
+}
+
+// Iterator (Revista na entrada)
+Iterator<String> revista = lineup.iterator();
+while (revista.hasNext()) {
+    String pessoa = revista.next();
+    if (pessoa.contains("Problema")) {
+        revista.remove(); // Barrado
+    }
+}
+```
+
+## Dicas Pro Baile
+
+1. Escolha Certa
+
+* ArrayList: Quando precisa acessar rápido
+
+* LinkedList: Quando a galera entra e sai muito
+
+2. Performance
+
+```JAVA
+// Define o tamanho se souber quantos vem
+List<String> convidados = new ArrayList<>(100);
+
+// Limpa a lista depois da festa
+convidados.clear();
+```
+
+## Exercícios Práticos
+
+1. Implemente um sistema de fila de entrada
+
+2. Crie um gerenciador de playlists
+
+3. Desenvolva um controlador de pedidos de música
+
+## Próximos Passos
+
+Depois de dominar as Lists, você estará pronto para:
+
+1. Gerenciar qualquer tipo de sequência ordenada
+
+2. Implementar filas e pilhas eficientes
+
+3. Organizar dados com repetição
+
+[Collections Overview](collections-overview.html)
+[Sets: Sem Repeteco](sets.html)
+
+Tip:
+
+"Lists são como um baile funk: tem ordem, aceita repetição e sempre cabe mais um na pista!"
+
+
+
+# Sets: O Clube dos Únicos
+
+```
+SET TYPES
+├── HashSet (Balada Alternativa)
+├── LinkedHashSet (Festa Temática)
+└── TreeSet (Clube da Alta Sociedade)
+```
+
+## Fundamentos
+
+Sets são como uma festa exclusiva - não tem repetido e cada um é único.
+
+```JAVA
+// Criando a lista do clube mais exclusivo
+Set<String> clubeDosUnicos = new HashSet<>();
+clubeDosUnicos.add("Hipster");    // Entra
+clubeDosUnicos.add("Hipster");    // Barrado! Já tem um igual
+```
+
+## Tipos de Sets (Diferentes Baladas)
+
+### HashSet (Balada Alternativa)
+
+```JAVA
+// Rápido e caótico, como uma rave
+HashSet<String> rave = new HashSet<>();
+rave.add("Raver");      // Ordem? Que ordem?
+rave.add("DJ");         // Entra onde der
+```
+
+### LinkedHashSet (Festa Temática)
+
+```JAVA
+// Mantém a ordem de entrada, como fila organizada
+LinkedHashSet<String> tematica = new LinkedHashSet<>();
+tematica.add("Anos 80");  // Primeiro
+tematica.add("Anos 90");  // Segundo
+```
+
+### TreeSet (Clube da Alta Sociedade)
+
+```JAVA
+// Sempre ordenado, como lista de socialites
+TreeSet<String> clubeSocial = new TreeSet<>();
+clubeSocial.add("Baronesa");   // Será ordenado
+clubeSocial.add("Condessa");   // Automaticamente
+```
+
+## Operações Básicas (Regras do Clube)
+
+### Adição (Tentando Entrar)
+
+```JAVA
+Set<String> clube = new HashSet<>();
+clube.add("Sócio");            // Bem-vindo ao clube
+clube.add("Sócio");            // Negado! Já é membro
+clube.addAll(Arrays.asList("VIP", "Premium")); // Grupo VIP
+```
+
+### Remoção (Cancelando Sociedade)
+
+```JAVA
+// Diferentes formas de expulsar
+clube.remove("Ex-sócio");       // Remove específico
+clube.removeIf(x -> x.startsWith("Inadimplente")); // Remove todos inadimplentes
+```
+
+### Verificação (Lista na Porta)
+
+```JAVA
+// Checando quem pode entrar
+boolean isMembro = clube.contains("VIP");     // Está na lista?
+boolean todosVIP = clube.containsAll(vips);   // Grupo inteiro na lista?
+```
+
+## Operações de Conjunto (Misturando as Tribos)
+
+```JAVA
+Set<String> metaleiros = new HashSet<>();
+Set<String> punks = new HashSet<>();
+
+// União (Festa de Rock)
+Set<String> rockeiros = new HashSet<>(metaleiros);
+rockeiros.addAll(punks);
+
+// Interseção (Amigos em Comum)
+Set<String> hibridos = new HashSet<>(metaleiros);
+hibridos.retainAll(punks);
+
+// Diferença (Só Metaleiros)
+Set<String> puristas = new HashSet<>(metaleiros);
+puristas.removeAll(punks);
+```
+
+## Iteração (Fazendo a Social)
+
+```JAVA
+// For each (Cumprimentando todo mundo)
+for (String socio : clube) {
+    System.out.println("Boa noite, " + socio);
+}
+
+// Iterator (Revista VIP)
+Iterator<String> revista = clube.iterator();
+while (revista.hasNext()) {
+    String pessoa = revista.next();
+    if (pessoa.contains("Indesejado")) {
+        revista.remove(); // Tchau!
+    }
+}
+```
+
+## Dicas de Etiqueta
+
+1. Escolha do Clube
+
+* HashSet: Quando só importa ser único
+
+* LinkedHashSet: Quando a ordem de entrada importa
+
+* TreeSet: Quando precisa manter tudo ordenado
+
+2. Performance
+
+```JAVA
+// Define tamanho inicial se souber
+Set<String> vips = new HashSet<>(100);
+
+// Use o tipo certo pra cada ocasião
+Set<String> ordenados = new TreeSet<>();  // Sempre ordenado
+```
+
+## Exercícios Práticos
+
+1. Implemente um sistema de controle de sócios
+
+2. Crie um gerenciador de eventos exclusivos
+
+3. Desenvolva um verificador de duplicatas
+
+## Próximos Passos
+
+Depois de dominar os Sets, você estará pronto para:
+
+1. Gerenciar coleções sem duplicatas
+
+2. Implementar sistemas de membros
+
+3. Trabalhar com conjuntos matemáticos
+
+[Lists: A Sequência](lists.html)
+[Maps: Chave e Valor](maps.html)
+
+Tip:
+
+"Sets são como clubes exclusivos - não importa quantas vezes você tente entrar, só passa uma vez!"
+
+
+
+# Maps: O Guarda-Volumes da Matrix
+
+```
+MAP TYPES
+├── HashMap (Armário Digital)
+├── LinkedHashMap (Armário com Histórico)
+└── TreeMap (Armário Ordenado)
+```
+
+## Fundamentos
+
+Maps são como um guarda-volumes high-tech - cada item tem sua chave única, e você pode guardar qualquer coisa lá dentro.
+
+```JAVA
+// Criando um guarda-volumes digital
+Map<String, String> lockers = new HashMap<>();
+lockers.put("A123", "Katana Digital");    // Guarda item
+lockers.get("A123");                      // Recupera item
+```
+
+## Tipos de Maps (Diferentes Sistemas)
+
+### HashMap (Armário Quantum)
+
+```JAVA
+// Rápido e aleatório, como teletransporte
+HashMap<Integer, String> quantum = new HashMap<>();
+quantum.put(42, "Dados Encriptados");  // Ordem? Irrelevante!
+quantum.put(7, "Código Fonte");        // Acesso instantâneo
+```
+
+### LinkedHashMap (Registro Cronológico)
+
+```JAVA
+// Mantém ordem de inserção, como log de sistema
+LinkedHashMap<String, String> logs = new LinkedHashMap<>();
+logs.put("09:00", "Login");    // Primeiro registro
+logs.put("09:01", "Download"); // Segundo registro
+```
+
+### TreeMap (Mainframe Ordenado)
+
+```JAVA
+// Sempre ordenado pela chave, como diretório indexado
+TreeMap<String, String> mainframe = new TreeMap<>();
+mainframe.put("sys.exe", "Sistema");     // Ordenação
+mainframe.put("hack.exe", "Ferramentas"); // automática
+```
+
+## Operações Básicas (Protocolos de Acesso)
+
+### Inserção (Upload)
+
+```JAVA
+Map<String, Object> database = new HashMap<>();
+database.put("user.dat", new User());          // Novo registro
+database.putIfAbsent("backup.dat", new Data()); // Só se não existir
+```
+
+### Recuperação (Download)
+
+```JAVA
+// Diferentes formas de acessar
+Object data = database.get("user.dat");        // Acesso direto
+Object safe = database.getOrDefault("temp.dat", new Data()); // Com fallback
+```
+
+### Remoção (Delete)
+
+```JAVA
+// Limpando registros
+database.remove("temp.dat");              // Remove entrada
+database.remove("user.dat", oldUser);     // Remove se valor bater
+```
+
+## Navegação (Scanning)
+
+```JAVA
+Map<String, String> matrix = new HashMap<>();
+
+// Iterando chaves (Scanning IDs)
+for (String key : matrix.keySet()) {
+    System.out.println("ID: " + key);
+}
+
+// Iterando valores (Data Mining)
+for (String value : matrix.values()) {
+    System.out.println("Data: " + value);
+}
+
+// Iterando pares (Full Scan)
+for (Map.Entry<String, String> entry : matrix.entrySet()) {
+    System.out.println(entry.getKey() + " -> " + entry.getValue());
+}
+```
+
+## Operações Avançadas (Hacks)
+
+```JAVA
+// Computação condicional
+matrix.compute("stats", (k, v) -> v == null ? "new" : v + "_updated");
+
+// Merge de dados
+matrix.merge("downloads", 1, (old, new) -> old + new);
+
+// Operações em massa
+matrix.replaceAll((k, v) -> v.toUpperCase());
+```
+
+## Dicas de Segurança
+
+1. Escolha do Sistema
+
+* HashMap: Para acesso rápido e aleatório
+
+* LinkedHashMap: Quando ordem de inserção importa
+
+* TreeMap: Para manter chaves ordenadas
+
+2. Performance
+
+```JAVA
+// Inicialize com tamanho se souber
+Map<String, String> system = new HashMap<>(100);
+
+// Use o tipo certo para cada operação
+Map<String, Integer> sorted = new TreeMap<>();  // Para dados ordenados
+```
+
+## Exercícios Práticos
+
+1. Implemente um sistema de cache
+
+2. Crie um gerenciador de sessões
+
+3. Desenvolva um contador de frequência
+
+## Próximos Passos
+
+Depois de dominar os Maps, você estará pronto para:
+
+1. Criar sistemas de armazenamento chave-valor
+
+2. Implementar caches eficientes
+
+3. Gerenciar dados indexados
+
+[Sets: Exclusividade](sets.html)
+[Queues: Processamento](queues.html)
+
+Tip:
+
+"Maps são como o guarda-volumes da Matrix - cada segredo tem sua chave, e só você sabe onde procurar!"
+
+
+
+# Queues: A Fila do Banco Digital
+
+```
+QUEUE TYPES
+├── Queue (Fila Normal)
+├── Deque (Fila Premium)
+└── PriorityQueue (Fila Preferencial)
+```
+
+## Fundamentos
+
+Queues são como filas de banco digitais - primeiro a chegar, primeiro a ser atendido (FIFO).
+
+```JAVA
+// Criando uma fila digital
+Queue<String> fila = new LinkedList<>();
+fila.offer("Cliente#1");    // Entra na fila
+String proximo = fila.poll(); // Próximo a ser atendido
+```
+
+## Tipos de Queues
+
+### Queue Básica
+
+```JAVA
+Queue<String> atendimento = new LinkedList<>();
+atendimento.offer("Usuário");  // Adiciona ao fim
+atendimento.poll();            // Remove do início
+atendimento.peek();            // Consulta próximo
+```
+
+### Deque (Double-Ended Queue)
+
+```JAVA
+Deque<String> premium = new ArrayDeque<>();
+premium.offerFirst("VIP");     // Fura fila
+premium.offerLast("Regular");  // Entra normal
+premium.pollFirst();           // Remove do início
+premium.pollLast();           // Remove do fim
+```
+
+### PriorityQueue
+
+```JAVA
+// Fila com prioridades
+PriorityQueue<Integer> senha = new PriorityQueue<>();
+senha.offer(3);  // Organiza automaticamente
+senha.offer(1);  // por ordem natural
+senha.offer(2);  // ou comparador customizado
+```
+
+## Operações Comuns
+
+### Inserção
+
+```JAVA
+Queue<String> fila = new LinkedList<>();
+fila.offer("Normal");      // Preferido (retorna boolean)
+fila.add("Força");        // Lança exceção se cheio
+```
+
+### Remoção
+
+```JAVA
+String cliente = fila.poll();     // Retorna null se vazio
+String proximo = fila.remove();   // Lança exceção se vazio
+```
+
+### Consulta
+
+```JAVA
+String espiar = fila.peek();      // Retorna null se vazio
+String primeiro = fila.element(); // Lança exceção se vazio
+```
+
+## Casos de Uso
+
+1. Processamento de Transações
+
+```JAVA
+Queue<Transaction> transactions = new LinkedList<>();
+transactions.offer(new Transaction("Depósito"));
+processTransaction(transactions.poll());
+```
+
+1. Sistema de Mensagens
+
+```JAVA
+PriorityQueue<Message> messages = new PriorityQueue<>();
+messages.offer(new Message("Urgente", 1));
+messages.offer(new Message("Normal", 2));
+```
+
+## Dicas de Performance
+
+```JAVA
+// Inicialize com tamanho se souber
+Queue<String> fila = new LinkedList<>(100);
+
+// Use o tipo certo para o caso
+Deque<String> rapido = new ArrayDeque<>();  // Mais eficiente que LinkedList
+```
+
+## Exercícios Práticos
+
+1. Implemente um sistema de atendimento
+
+2. Crie um processador de eventos
+
+3. Desenvolva um escalonador de tarefas
+
+## Próximos Passos
+
+Depois de dominar Queues, você estará pronto para:
+
+1. Gerenciar filas de processamento
+
+2. Implementar sistemas de mensageria
+
+3. Criar escalonadores de tarefas
+
+[Maps: Chave-Valor](maps.html)
+[Stacks: Pilha](stacks.html)
+
+Tip:
+
+"Queues são como filas digitais: justas, ordenadas e sempre processando na ordem certa!"
+
+
+
+# Stacks: A Pilha de Downloads
+
+```
+STACK OPERATIONS
+├── push() (Upload)
+├── pop()  (Download)
+└── peek() (Preview)
+```
+
+## Fundamentos
+
+Stacks são como uma pilha de downloads - o último arquivo baixado é o primeiro que você acessa (LIFO).
+
+```JAVA
+// Criando uma pilha de downloads
+Stack<String> downloads = new Stack<>();
+downloads.push("arquivo.zip");    // Adiciona no topo
+String ultimo = downloads.pop();  // Remove do topo
+```
+
+## Operações Básicas
+
+### Push (Upload)
+
+```JAVA
+Stack<String> stack = new Stack<>();
+stack.push("Camada 1");  // Base
+stack.push("Camada 2");  // Meio
+stack.push("Camada 3");  // Topo
+```
+
+### Pop (Download)
+
+```JAVA
+String top = stack.pop();     // Remove e retorna topo
+String peek = stack.peek();   // Só espia o topo
+boolean vazia = stack.empty(); // Checa se está vazia
+```
+
+### Busca
+
+```JAVA
+int posicao = stack.search("Camada 1"); // Busca na pilha
+// Retorna posição (1 = topo) ou -1 se não encontrar
+```
+
+## Casos de Uso
+
+### 1. Histórico de Navegação
+
+```JAVA
+Stack<String> historico = new Stack<>();
+historico.push("homepage.html");
+historico.push("perfil.html");
+String voltar = historico.pop(); // Volta página
+```
+
+### 2. Desfazer/Refazer
+
+```JAVA
+Stack<Command> undoStack = new Stack<>();
+undoStack.push(new Command("save"));
+Command lastCommand = undoStack.pop(); // Desfaz
+```
+
+### 3. Validação de Sintaxe
+
+```JAVA
+Stack<Character> brackets = new Stack<>();
+brackets.push('{');  // Abre
+char close = brackets.pop(); // Fecha
+// Válido se stack vazia no final
+```
+
+## Implementação Alternativa
+
+```JAVA
+// Usando Deque como Stack (mais moderno)
+Deque<String> stack = new ArrayDeque<>();
+stack.push("Novo");
+String top = stack.pop();
+```
+
+## Dicas de Performance
+
+```JAVA
+// Vector é thread-safe mas mais lento
+Stack<Integer> threadsafe = new Stack<>();
+
+// ArrayDeque é mais rápido mas não thread-safe
+Deque<Integer> fast = new ArrayDeque<>();
+```
+
+## Exercícios Práticos
+
+1. Implemente um verificador de parênteses
+
+2. Crie um sistema de desfazer/refazer
+
+3. Desenvolva um navegador simplificado
+
+## Próximos Passos
+
+Depois de dominar Stacks, você estará pronto para:
+
+1. Implementar históricos e navegação
+
+2. Criar sistemas de desfazer/refazer
+
+3. Validar expressões e sintaxe
+
+[Queues: Filas](queues.html)
+[Collections Projects](collections-projects.html)
+
+Tip:
+
+"Stacks são como downloads: o último que chegou é o primeiro que você acessa!"
+
+
+
+# Projetos Práticos: Collections em Ação
+
+## Projeto 1: Task Manager (Lista de Contratos)
+
+### Objetivo
+
+Criar um sistema de gerenciamento de tarefas usando diferentes Collections.
+
+```JAVA
+public class TaskManager {
+    private List<Task> allTasks = new ArrayList<>();
+    private Map<String, Task> taskById = new HashMap<>();
+    private PriorityQueue<Task> urgentTasks = new PriorityQueue<>();
+    
+    public void addTask(Task task) {
+        allTasks.add(task);
+        taskById.put(task.getId(), task);
+        if (task.isUrgent()) {
+            urgentTasks.offer(task);
+        }
+    }
+    
+    public Task getNextUrgentTask() {
+        return urgentTasks.poll();
+    }
+}
+```
+
+### Funcionalidades
+
+* Adicionar/remover tarefas
+
+* Priorização automática
+
+* Busca por ID/status
+
+* Histórico de alterações
+
+## Projeto 2: Inventory System (Controle de Arsenal)
+
+### Objetivo
+
+Implementar um sistema de inventário com controle de estoque.
+
+```JAVA
+public class InventorySystem {
+    private Map<String, Item> inventory = new HashMap<>();
+    private Set<String> lowStock = new HashSet<>();
+    private Queue<Order> pendingOrders = new LinkedList<>();
+    
+    public void addItem(Item item) {
+        inventory.put(item.getCode(), item);
+        checkStock(item);
+    }
+    
+    private void checkStock(Item item) {
+        if (item.getQuantity() < item.getMinimum()) {
+            lowStock.add(item.getCode());
+            createRestockOrder(item);
+        }
+    }
+}
+```
+
+### Funcionalidades
+
+* Controle de estoque
+
+* Alertas de baixo estoque
+
+* Processamento de pedidos
+
+* Relatórios de inventário
+
+## Projeto 3: Cache Implementation (Memória Temporária)
+
+### Objetivo
+
+Desenvolver um sistema de cache com política de expiração.
+
+```JAVA
+public class CacheSystem<K, V> {
+    private Map<K, CacheEntry<V>> cache = new LinkedHashMap<>();
+    private Queue<K> expirationQueue = new PriorityQueue<>();
+    
+    public void put(K key, V value, long ttl) {
+        cache.put(key, new CacheEntry<>(value, ttl));
+        expirationQueue.offer(key);
+        cleanExpired();
+    }
+    
+    public V get(K key) {
+        CacheEntry<V> entry = cache.get(key);
+        return (entry != null && !entry.isExpired()) ? entry.getValue() : null;
+    }
+}
+```
+
+### Funcionalidades
+
+* Cache com TTL (Time To Live)
+
+* Política LRU (Least Recently Used)
+
+* Limpeza automática
+
+* Estatísticas de hit/miss
+
+## Desafios Extras
+
+### 1. Sistema Multi-Thread
+
+```JAVA
+public class ThreadSafeTaskManager {
+    private final ConcurrentHashMap<String, Task> tasks = new ConcurrentHashMap<>();
+    private final BlockingQueue<Task> taskQueue = new LinkedBlockingQueue<>();
+    
+    public void processTask() {
+        while (true) {
+            Task task = taskQueue.take(); // Bloqueia até ter tarefa
+            executeTask(task);
+        }
+    }
+}
+```
+
+### 2. Sistema de Eventos
+
+```JAVA
+public class EventSystem {
+    private final Deque<Event> eventHistory = new ArrayDeque<>();
+    private final Map<String, List<EventHandler>> handlers = new HashMap<>();
+    
+    public void emit(Event event) {
+        eventHistory.push(event);
+        notifyHandlers(event);
+    }
+    
+    public void undo() {
+        if (!eventHistory.isEmpty()) {
+            revertEvent(eventHistory.pop());
+        }
+    }
+}
+```
+
+## Próximos Passos
+
+1. Implemente os projetos base
+
+2. Adicione funcionalidades extras
+
+3. Otimize o código
+
+4. Adicione testes unitários
+
+5. Documente seu código
+
+[Stacks: Pilhas](stacks.html)
+[OOP Fundamentals](oop-fundamentals.html)
+
+Tip:
+
+"A verdadeira maestria vem da prática. Cada projeto é uma chance de aperfeiçoar suas habilidades!"
+
+
+
+# Task Manager: Gerenciador de Tarefas Digital
+
+## Objetivo do Projeto
+
+Criar um gerenciador de tarefas simples usando arrays e collections básicas.
+
+## Estruturas de Dados Utilizadas
+
+```JAVA
+// Lista de tarefas usando array
+String[] tarefas = new String[100];
+int[] prioridades = new int[100];
+boolean[] concluidas = new boolean[100];
+int totalTarefas = 0;
+
+// Lista dinâmica usando ArrayList
+ArrayList<String> tarefasDinamicas = new ArrayList<>();
+
+// Fila de tarefas urgentes
+Queue<String> tarefasUrgentes = new LinkedList<>();
+
+// Mapa para busca rápida
+HashMap<String, Integer> indiceTarefas = new HashMap<>();
+```
+
+## Funcionalidades Principais
+
+### 1. Adicionar Tarefa
+
+```JAVA
+public static void adicionarTarefa(String tarefa, int prioridade) {
+    if (totalTarefas < tarefas.length) {
+        tarefas[totalTarefas] = tarefa;
+        prioridades[totalTarefas] = prioridade;
+        concluidas[totalTarefas] = false;
+        
+        // Adiciona nas estruturas dinâmicas
+        tarefasDinamicas.add(tarefa);
+        indiceTarefas.put(tarefa, totalTarefas);
+        
+        if (prioridade > 8) {
+            tarefasUrgentes.offer(tarefa);
+        }
+        
+        totalTarefas++;
+        System.out.println("Tarefa adicionada: " + tarefa);
+    }
+}
+```
+
+### 2. Listar Tarefas
+
+```JAVA
+public static void listarTarefas() {
+    System.out.println("\n=== Lista de Tarefas ===");
+    for (int i = 0; i < totalTarefas; i++) {
+        String status = concluidas[i] ? "[X]" : "[ ]";
+        System.out.printf("%s %s (Prioridade: %d)%n", 
+            status, tarefas[i], prioridades[i]);
+    }
+}
+```
+
+### 3. Marcar Como Concluída
+
+```JAVA
+public static void concluirTarefa(String tarefa) {
+    Integer indice = indiceTarefas.get(tarefa);
+    if (indice != null) {
+        concluidas[indice] = true;
+        System.out.println("Tarefa concluída: " + tarefa);
+    }
+}
+```
+
+### 4. Buscar Tarefas
+
+```JAVA
+public static void buscarTarefa(String termo) {
+    System.out.println("\n=== Resultados da Busca ===");
+    for (int i = 0; i < totalTarefas; i++) {
+        if (tarefas[i].toLowerCase().contains(termo.toLowerCase())) {
+            System.out.println("- " + tarefas[i]);
+        }
+    }
+}
+```
+
+### 5. Próxima Tarefa Urgente
+
+```JAVA
+public static String proximaTarefaUrgente() {
+    return tarefasUrgentes.poll();
+}
+```
+
+## Exemplo de Uso
+
+```JAVA
+public static void main(String[] args) {
+    // Adicionar algumas tarefas
+    adicionarTarefa("Debugar código", 9);
+    adicionarTarefa("Backup sistema", 7);
+    adicionarTarefa("Atualizar firewall", 10);
+    
+    // Listar todas as tarefas
+    listarTarefas();
+    
+    // Concluir uma tarefa
+    concluirTarefa("Backup sistema");
+    
+    // Buscar tarefas
+    buscarTarefa("firewall");
+    
+    // Verificar próxima tarefa urgente
+    String urgente = proximaTarefaUrgente();
+    System.out.println("Próxima urgente: " + urgente);
+}
+```
+
+## Desafios para Praticar
+
+1. Filtrar por Prioridade
+
+```JAVA
+public static void filtrarPorPrioridade(int minimo) {
+    for (int i = 0; i < totalTarefas; i++) {
+        if (prioridades[i] >= minimo) {
+            System.out.println(tarefas[i]);
+        }
+    }
+}
+```
+
+1. Remover Tarefa
+
+```JAVA
+public static void removerTarefa(String tarefa) {
+    Integer indice = indiceTarefas.get(tarefa);
+    if (indice != null) {
+        // Shift elements
+        for (int i = indice; i < totalTarefas - 1; i++) {
+            tarefas[i] = tarefas[i + 1];
+            prioridades[i] = prioridades[i + 1];
+            concluidas[i] = concluidas[i + 1];
+        }
+        totalTarefas--;
+        
+        // Atualizar estruturas dinâmicas
+        tarefasDinamicas.remove(tarefa);
+        indiceTarefas.remove(tarefa);
+    }
+}
+```
+
+## Exercícios Propostos
+
+1. Implementar ordenação por prioridade
+
+2. Adicionar data limite para tarefas
+
+3. Criar filtro por status (pendente/concluída)
+
+4. Implementar sistema de tags usando arrays
+
+5. Adicionar persistência em arquivo texto
+
+## Próximos Passos
+
+* [Inventory System](inventory-system.html)
+
+* [Cache Implementation](cache-implementation.html)
+
+Tip:
+
+"Uma tarefa bem organizada é uma tarefa meio feita!"
+
+
+
+# Sistema de Inventário (Arsenal)
+
+Um sistema de inventário cyberpunk para gerenciar equipamentos e recursos.
+
+## Objetivos de Aprendizado
+
+* Implementar um sistema usando `Map`, `Set` e `Queue`
+
+* Gerenciar estoque com estruturas de dados apropriadas
+
+* Aplicar lógica de negócios com coleções
+
+## Conceitos Aplicados
+
+* HashMap para armazenamento principal
+
+* HashSet para itens em baixo estoque
+
+* Queue para pedidos pendentes
+
+* Encapsulamento de dados
+
+* Validações de negócio
+
+## Implementação Base
+
+### Classe Item
+
+```JAVA
+public class Item {
+    private String code;
+    private String name;
+    private int quantity;
+    private int minimum;
+    private double price;
+
+    public Item(String code, String name, int quantity, int minimum, double price) {
+        this.code = code;
+        this.name = name;
+        this.quantity = quantity;
+        this.minimum = minimum;
+        this.price = price;
+    }
+
+    // Getters e Setters
+    public String getCode() { return code; }
+    public String getName() { return name; }
+    public int getQuantity() { return quantity; }
+    public int getMinimum() { return minimum; }
+    public double getPrice() { return price; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+}
+```
+
+### Classe Order
+
+```JAVA
+public class Order {
+    private String itemCode;
+    private int quantity;
+    private String status;
+
+    public Order(String itemCode, int quantity) {
+        this.itemCode = itemCode;
+        this.quantity = quantity;
+        this.status = "PENDING";
+    }
+
+    // Getters e Setters
+    public String getItemCode() { return itemCode; }
+    public int getQuantity() { return quantity; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}
+```
+
+### Sistema Principal
+
+```JAVA
+public class InventorySystem {
+    private Map<String, Item> inventory = new HashMap<>();
+    private Set<String> lowStock = new HashSet<>();
+    private Queue<Order> pendingOrders = new LinkedList<>();
+    
+    // Adicionar item ao inventário
+    public void addItem(Item item) {
+        inventory.put(item.getCode(), item);
+        checkStock(item);
+    }
+    
+    // Verificar nível de estoque
+    private void checkStock(Item item) {
+        if (item.getQuantity() < item.getMinimum()) {
+            lowStock.add(item.getCode());
+            createRestockOrder(item);
+        }
+    }
+    
+    // Criar pedido de reposição
+    private void createRestockOrder(Item item) {
+        int orderQuantity = item.getMinimum() - item.getQuantity();
+        Order order = new Order(item.getCode(), orderQuantity);
+        pendingOrders.offer(order);
+    }
+    
+    // Remover item do inventário
+    public void removeItem(String code) {
+        inventory.remove(code);
+        lowStock.remove(code);
+    }
+    
+    // Atualizar quantidade
+    public void updateQuantity(String code, int quantity) {
+        Item item = inventory.get(code);
+        if (item != null) {
+            item.setQuantity(quantity);
+            checkStock(item);
+        }
+    }
+    
+    // Listar itens em baixo estoque
+    public Set<String> getLowStockItems() {
+        return new HashSet<>(lowStock);
+    }
+    
+    // Processar próximo pedido
+    public Order processNextOrder() {
+        return pendingOrders.poll();
+    }
+}
+```
+
+## Exemplo de Uso
+
+```JAVA
+public class InventoryDemo {
+    public static void main(String[] args) {
+        InventorySystem system = new InventorySystem();
+        
+        // Adicionar itens
+        system.addItem(new Item("HACK001", "NetHack Module", 5, 10, 299.99));
+        system.addItem(new Item("DECK002", "CyberDeck", 2, 5, 999.99));
+        
+        // Verificar baixo estoque
+        Set<String> lowStock = system.getLowStockItems();
+        System.out.println("Itens em baixo estoque: " + lowStock);
+        
+        // Processar pedidos
+        Order nextOrder = system.processNextOrder();
+        if (nextOrder != null) {
+            System.out.println("Processando pedido: " + nextOrder.getItemCode());
+        }
+    }
+}
+```
+
+## Exercícios Propostos
+
+1. Implementar Relatórios
+
+* Gerar relatório de valor total do inventário
+
+* Listar itens por faixa de preço
+
+* Calcular estatísticas de pedidos
+
+2. Adicionar Validações
+
+* Verificar códigos duplicados
+
+* Validar quantidades negativas
+
+* Implementar limites de estoque
+
+3. Expandir Funcionalidades
+
+* Adicionar categorias de itens
+
+* Implementar sistema de alertas
+
+* Criar histórico de transações
+
+## Desafios Avançados
+
+1. Sistema de Prioridade
+
+* Implementar PriorityQueue para pedidos
+
+* Definir critérios de priorização
+
+* Gerenciar pedidos urgentes
+
+2. Persistência de Dados
+
+* Salvar estado do inventário
+
+* Carregar dados de arquivo
+
+* Implementar backup automático
+
+## Dicas de Implementação
+
+* Use enums para status e categorias
+
+* Implemente tratamento de exceções
+
+* Mantenha o código modular
+
+* Documente as funcionalidades
+
+* Adicione logs de operações
+
+## Próximos Passos
+
+* [Cache Implementation](cache-implementation.html)
+
+* [Collections Overview](collections-overview.html)
+
+* [Maps](maps.html)
+
+Tip:
+
+"Um bom arsenal não é apenas sobre quantidade, mas sobre organização e controle."
+
+
+
+# Implementação de Cache
+
+![Cache System](cache-system-banner.png)
+
+Um sistema de cache é uma estrutura de dados que armazena temporariamente dados frequentemente acessados para melhorar a performance. Neste projeto, implementaremos um cache simples usando arrays e conceitos básicos de Java.
+
+## Arquitetura do Sistema
+
+```MERMAID
+graph TD
+    A[Cliente] --> B[Cache]
+    B --> C[Armazenamento]
+    B --> D[Estatísticas]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+```
+
+## Componentes Principais
+
+### Estrutura de Dados
+
+* Arrays paralelos para chaves e valores
+
+* Array para timestamps
+
+* Array para contagem de acessos
+
+* Controle de capacidade e tamanho atual
+
+### Operações Básicas
+
+* Inserção/atualização de itens
+
+* Busca por chave
+
+* Substituição de itens menos usados
+
+* Monitoramento de estatísticas
+
+## Implementação Base
+
+### SimpleCache.java
+
+```JAVA
+public class SimpleCache {
+    private String[] keys;
+    private String[] values;
+    private long[] timestamps;
+    private int[] accessCount;
+    private int capacity;
+    private int size;
+    
+    public SimpleCache(int maxSize) {
+        capacity = maxSize;
+        keys = new String[capacity];
+        values = new String[capacity];
+        timestamps = new long[capacity];
+        accessCount = new int[capacity];
+        size = 0;
+    }
+    
+    // Métodos principais aqui...
+}
+```
+
+### Política de Substituição
+
+O cache utiliza a estratégia LFU (Least Frequently Used):
+
+1. Mantém contagem de acessos para cada item
+
+2. Quando o cache está cheio, remove o item menos acessado
+
+3. Em caso de empate, mantém o item mais antigo
+
+## Interface de Usuário
+
+### Menu Principal
+
+```JAVA
+System.out.println("\n=== Sistema de Cache ===");
+System.out.println("1. Adicionar/Atualizar item");
+System.out.println("2. Buscar item");
+System.out.println("3. Mostrar estatísticas");
+System.out.println("4. Sair");
+```
+
+### Visualização de Estatísticas
+
+```
+=== Cache Stats ===
+Capacity: 5
+Current Size: 3
+
+Cache Contents:
+Key | Value | Access Count | Age (ms)
+------------------------------------
+key1 | value1 | 3 | 1500
+key2 | value2 | 1 | 1000
+key3 | value3 | 2 | 500
+```
+
+## Desafios de Extensão
+
+1. Implementar Cache Genérico
+
+```JAVA
+public class GenericCache<K, V> {
+    private K[] keys;
+    private V[] values;
+    // ...
+}
+```
+
+1. Adicionar Expiração de Items
+
+```JAVA
+public boolean isExpired(String key) {
+    int index = findKey(key);
+    if (index != -1) {
+        long age = System.currentTimeMillis() - timestamps[index];
+        return age > expirationTime;
+    }
+    return true;
+}
+```
+
+1. Implementar Diferentes Políticas
+
+* LRU (Least Recently Used)
+
+* FIFO (First In First Out)
+
+* Random Replacement
+
+## Próximos Passos
+
+1. Adicione suporte a tipos genéricos
+
+2. Implemente expiração de itens
+
+3. Crie diferentes políticas de substituição
+
+4. Adicione persistência em arquivo
+
+5. Implemente cache distribuído
+
+## Conceitos Aplicados
+
+* Arrays e manipulação
+
+* Tipos primitivos
+
+* Strings
+
+* Estruturas de controle
+
+* Métodos e classes
+
+* Entrada/saída básica
+
+## Dicas de Implementação
+
+1. Mantenha o código organizado e bem documentado
+
+2. Use constantes para valores fixos
+
+3. Implemente validações de entrada
+
+4. Adicione logs para depuração
+
+5. Considere casos de erro
+
+## Exercícios Propostos
+
+1. Implemente um cache com limite de tempo
+
+2. Crie um cache que persiste em arquivo
+
+3. Adicione suporte a múltiplos tipos de dados
+
+4. Implemente estatísticas avançadas
+
+5. Crie testes unitários
+
+[Inventory System](inventory-system.html)
+
+
+
+# Fundamentos da Programação Orientada a Objetos
+
+## O que é OOP?
+
+A Programação Orientada a Objetos (OOP) é um paradigma de programação que organiza o código em objetos, que contêm dados e código. Os objetos são instâncias de classes, que servem como blueprints para criar objetos.
+
+## Pilares da OOP
+
+```MERMAID
+graph TD
+    A[OOP] --> B[Encapsulamento]
+    A --> C[Herança]
+    A --> D[Polimorfismo]
+    A --> E[Abstração]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+```
+
+### Encapsulamento
+
+* Oculta detalhes internos
+
+* Protege dados sensíveis
+
+* Reduz complexidade
+
+### Herança
+
+* Reutiliza código
+
+* Estabelece hierarquias
+
+* Especializa comportamentos
+
+### Polimorfismo
+
+* Flexibiliza interfaces
+
+* Adapta comportamentos
+
+* Simplifica código
+
+### Abstração
+
+* Modela conceitos
+
+* Simplifica problemas
+
+* Define interfaces
+
+## Conceitos Fundamentais
+
+### Classes e Objetos
+
+```JAVA
+public class Netrunner {
+    private String codename;
+    private int skillLevel;
+
+    public Netrunner(String codename) {
+        this.codename = codename;
+        this.skillLevel = 1;
+    }
+}
+```
+
+### Atributos e Métodos
+
+```JAVA
+public class CyberDeck {
+    // Atributos
+    private int power;
+    private String model;
+
+    // Métodos
+    public void upgrade() {
+        this.power++;
+    }
+}
+```
+
+## Benefícios da OOP
+
+1. Manutenibilidade
+
+* Código organizado
+
+* Fácil de atualizar
+
+* Modular
+
+2. Reusabilidade
+
+* Componentes reutilizáveis
+
+* Menos duplicação
+
+* Economia de tempo
+
+3. Flexibilidade
+
+* Fácil de estender
+
+* Adaptável
+
+* Escalável
+
+4. Segurança
+
+* Controle de acesso
+
+* Dados protegidos
+
+* Código seguro
+
+## Práticas Recomendadas
+
+### Nomenclatura
+
+* Classes: PascalCase
+
+* Métodos: camelCase
+
+* Variáveis: camelCase
+
+* Constantes: UPPER_CASE
+
+### Organização
+
+* Uma classe por arquivo
+
+* Pacotes lógicos
+
+* Hierarquia clara
+
+### Princípios
+
+* Single Responsibility
+
+* Open/Closed
+
+* Liskov Substitution
+
+* Interface Segregation
+
+* Dependency Inversion
+
+## Próximos Passos
+
+1. Classes e Objetos
+
+2. Encapsulamento
+
+3. Herança
+
+4. Polimorfismo
+
+5. Interfaces e Classes Abstratas
+
+6. Records
+
+7. Sealed Classes
+
+8. Projetos Práticos
+
+## Conceitos Relacionados
+
+* Design Patterns
+
+* SOLID Principles
+
+* Clean Code
+
+* Refactoring
+
+* Testing
+
+[Classes e Objetos](classes-objects.html)
+
+Tip:
+
+"Na Matrix da programação, objetos são as unidades fundamentais de poder. Domine-os, e você dominará o código."
+
+
+
+# Classes e Objetos
+
+## Conceito Base
+
+Uma classe é um template para criar objetos, definindo seus atributos e comportamentos. Um objeto é uma instância de uma classe.
+
+```MERMAID
+graph TD
+    A[Classe] -->|instancia| B[Objeto]
+    B -->|contém| C[Atributos]
+    B -->|contém| D[Métodos]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+```
+
+## Estrutura de uma Classe
+
+```JAVA
+public class CyberHacker {
+    // Atributos
+    private String handle;
+    private int level;
+    private double credits;
+
+    // Construtor
+    public CyberHacker(String handle) {
+        this.handle = handle;
+        this.level = 1;
+        this.credits = 1000.0;
+    }
+
+    // Métodos
+    public void hackSystem() {
+        this.level++;
+        this.credits += 500;
+    }
+}
+```
+
+## Criando Objetos
+
+```JAVA
+// Instanciando objetos
+CyberHacker hacker1 = new CyberHacker("Shadowbyte");
+CyberHacker hacker2 = new CyberHacker("NetPhantom");
+
+// Usando objetos
+hacker1.hackSystem();
+```
+
+## Componentes Principais
+
+### Atributos
+
+* Representam estado
+
+* Definem características
+
+* Armazenam dados
+
+### Métodos
+
+* Definem comportamento
+
+* Manipulam atributos
+
+* Executam operações
+
+### Construtores
+
+* Inicializam objetos
+
+* Configuram estado inicial
+
+* Validam parâmetros
+
+## Boas Práticas
+
+1. Nomeação
+
+* Classes: PascalCase
+
+* Métodos/Atributos: camelCase
+
+2. Organização
+
+* Um arquivo por classe
+
+* Agrupamento lógico
+
+* Pacotes estruturados
+
+3. Responsabilidade
+
+* Propósito único
+
+* Coesão alta
+
+* Acoplamento baixo
+
+## Exercícios Práticos
+
+```JAVA
+public class DataMatrix {
+    private String[] data;
+    private int securityLevel;
+
+    // Implemente os métodos:
+    // 1. Construtor
+    // 2. encrypt()
+    // 3. decrypt()
+    // 4. updateSecurity()
+}
+```
+
+## Próximos Passos
+
+[Encapsulamento](encapsulation.html)
+
+Tip:
+
+"No grid digital, cada objeto é um nó de poder. Construa-os com sabedoria."
+
+
+
+# Encapsulamento
+
+## Conceito Base
+
+Encapsulamento é o princípio de ocultar detalhes internos e fornecer uma interface controlada para interação.
+
+```MERMAID
+graph TD
+    A[Classe] -->|protege| B[Dados Privados]
+    A -->|expõe| C[Interface Pública]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+```
+
+## Implementação
+
+```JAVA
+public class SecureDataVault {
+    // Dados privados
+    private String[] encryptedData;
+    private int accessLevel;
+    private boolean isLocked;
+
+    // Interface pública
+    public void storeData(String data) {
+        if (!isLocked) {
+            // Lógica de armazenamento
+        }
+    }
+
+    public String retrieveData(int index) {
+        if (validateAccess()) {
+            return encryptedData[index];
+        }
+        return null;
+    }
+
+    private boolean validateAccess() {
+        // Lógica de validação
+        return accessLevel > 2;
+    }
+}
+```
+
+## Modificadores de Acesso
+
+1. private
+
+* Acesso apenas na classe
+
+* Máxima proteção
+
+* Dados sensíveis
+
+2. protected
+
+* Acesso na hierarquia
+
+* Classes derivadas
+
+* Pacote atual
+
+3. public
+
+* Acesso universal
+
+* Interface externa
+
+* API pública
+
+## Getters e Setters
+
+```JAVA
+public class CyberAccount {
+    private double credits;
+    private String owner;
+
+    // Getter
+    public double getCredits() {
+        return credits;
+    }
+
+    // Setter com validação
+    public void setCredits(double amount) {
+        if (amount >= 0) {
+            this.credits = amount;
+        }
+    }
+}
+```
+
+## Benefícios
+
+1. Segurança
+
+* Controle de acesso
+
+* Validação de dados
+
+* Proteção de estado
+
+2. Manutenção
+
+* Mudanças internas
+
+* Evolução segura
+
+* Debugging simples
+
+3. Flexibilidade
+
+* Interface estável
+
+* Implementação variável
+
+* Versionamento
+
+## Exercícios Práticos
+
+```JAVA
+public class SecuritySystem {
+    // Implemente:
+    // 1. Dados privados
+    // 2. Getters/Setters
+    // 3. Validações
+    // 4. Métodos de acesso
+}
+```
+
+## Próximos Passos
+
+[Herança](inheritance.html)
+
+Tip:
+
+"Na matrix, a informação é poder. Proteja-a com encapsulamento."
+
+
+
+# Herança
+
+## Conceito Base
+
+Herança permite que uma classe herde atributos e métodos de outra, estabelecendo uma relação "é um" entre classes.
+
+```MERMAID
+graph TD
+    A[Netrunner] -->|herda de| B[Hacker]
+    B -->|herda de| C[CyberOperator]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+```
+
+## Implementação Básica
+
+```JAVA
+public class CyberOperator {
+    protected String codename;
+    protected int accessLevel;
+
+    public CyberOperator(String codename) {
+        this.codename = codename;
+        this.accessLevel = 1;
+    }
+
+    public void accessNetwork() {
+        System.out.println("Basic network access");
+    }
+}
+
+public class Hacker extends CyberOperator {
+    private int hackingSkill;
+
+    public Hacker(String codename) {
+        super(codename);
+        this.hackingSkill = 50;
+    }
+
+    @Override
+    public void accessNetwork() {
+        System.out.println("Advanced network access");
+    }
+}
+```
+
+## Tipos de Herança
+
+### Herança Simples
+
+```JAVA
+public class Netrunner extends Hacker {
+    private String[] cyberdeckModules;
+    
+    public Netrunner(String codename) {
+        super(codename);
+        this.cyberdeckModules = new String[]{"Basic"};
+    }
+}
+```
+
+### Hierarquia de Classes
+
+* Superclasse (pai)
+
+* Subclasse (filho)
+
+* Cadeia de herança
+
+## Palavra-chave super
+
+```JAVA
+public class ICEBreaker extends Netrunner {
+    public ICEBreaker(String codename) {
+        super(codename);  // Chama construtor pai
+    }
+
+    @Override
+    public void accessNetwork() {
+        super.accessNetwork();  // Chama método pai
+        System.out.println("Breaking ICE protocols");
+    }
+}
+```
+
+## Boas Práticas
+
+1. Composição vs Herança
+
+* Prefira composição
+
+* Evite hierarquias profundas
+
+* Mantenha coesão
+
+2. Princípio LSP
+
+* Substituição de Liskov
+
+* Comportamento consistente
+
+* Contratos respeitados
+
+3. Documentação
+
+* Documente extensões
+
+* Explique sobreposições
+
+* Defina contratos
+
+## Exercícios Práticos
+
+```JAVA
+// Implemente:
+public class SecuritySystem {
+    // Base para sistema de segurança
+}
+
+public class FirewallSystem extends SecuritySystem {
+    // Sistema específico de firewall
+}
+
+public class IntrusionDetection extends SecuritySystem {
+    // Sistema de detecção
+}
+```
+
+## Próximos Passos
+
+[Polimorfismo](polymorphism.html)
+
+Tip:
+
+"Na hierarquia do código, cada classe herda o poder de seus ancestrais."
+
+
+
+# Polimorfismo
+
+## Conceito Base
+
+Polimorfismo permite que objetos de diferentes classes sejam tratados como objetos de uma classe comum, possibilitando comportamentos diferentes através da mesma interface.
+
+```MERMAID
+graph TD
+    A[CyberProgram] -->|executa como| B[Virus]
+    A -->|executa como| C[Firewall]
+    A -->|executa como| D[DataMiner]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+```
+
+## Tipos de Polimorfismo
+
+### Sobrescrita (Override)
+
+```JAVA
+public class CyberProgram {
+    public void execute() {
+        System.out.println("Running base program");
+    }
+}
+
+public class Virus extends CyberProgram {
+    @Override
+    public void execute() {
+        System.out.println("Infiltrating system");
+    }
+}
+```
+
+### Sobrecarga (Overload)
+
+```JAVA
+public class DataMiner {
+    public void mine(String data) {
+        // Processa string
+    }
+
+    public void mine(byte[] data) {
+        // Processa bytes
+    }
+
+    public void mine(String data, int depth) {
+        // Processa com profundidade
+    }
+}
+```
+
+## Polimorfismo em Ação
+
+```JAVA
+public class SystemInterface {
+    public void executeProgram(CyberProgram program) {
+        program.execute();  // Polimorfismo em tempo de execução
+    }
+
+    public static void main(String[] args) {
+        SystemInterface system = new SystemInterface();
+        
+        CyberProgram virus = new Virus();
+        CyberProgram firewall = new Firewall();
+        
+        system.executeProgram(virus);    // Executa como Virus
+        system.executeProgram(firewall); // Executa como Firewall
+    }
+}
+```
+
+## Benefícios
+
+1. Flexibilidade
+
+* Código genérico
+
+* Extensibilidade
+
+* Manutenibilidade
+
+2. Reutilização
+
+* Interfaces comuns
+
+* Comportamento variável
+
+* Código limpo
+
+3. Abstração
+
+* Simplificação
+
+* Encapsulamento
+
+* Modularidade
+
+## Padrões Comuns
+
+### Factory Method
+
+```JAVA
+public interface CyberTool {
+    void activate();
+}
+
+public class ToolFactory {
+    public CyberTool createTool(String type) {
+        return switch (type) {
+            case "hack" -> new HackTool();
+            case "scan" -> new ScanTool();
+            default -> throw new IllegalArgumentException();
+        };
+    }
+}
+```
+
+### Strategy Pattern
+
+```JAVA
+public interface AttackStrategy {
+    void execute();
+}
+
+public class CyberAttack {
+    private AttackStrategy strategy;
+    
+    public void setStrategy(AttackStrategy strategy) {
+        this.strategy = strategy;
+    }
+    
+    public void execute() {
+        strategy.execute();
+    }
+}
+```
+
+## Exercícios Práticos
+
+```JAVA
+// Implemente diferentes tipos de programas:
+public interface Program {
+    void run();
+    void stop();
+    String getStatus();
+}
+
+// Crie implementações para:
+// 1. DataAnalyzer
+// 2. NetworkScanner
+// 3. SecurityMonitor
+```
+
+## Próximos Passos
+
+[Interfaces e Classes Abstratas](null)
+
+Tip:
+
+"No ciberespaço, um programa pode assumir muitas formas. O poder está na adaptação."
 
 
 

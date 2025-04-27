@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-27T00:48:29.141006401"><title>Maps: O Guarda-Volumes da Matrix | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"tipos-de-maps-diferentes-sistemas","level":0,"title":"Tipos de Maps (Diferentes Sistemas)","anchor":"#tipos-de-maps-diferentes-sistemas"},{"id":"opera-es-b-sicas-protocolos-de-acesso","level":0,"title":"Operações Básicas (Protocolos de Acesso)","anchor":"#opera-es-b-sicas-protocolos-de-acesso"},{"id":"navega-o-scanning","level":0,"title":"Navegação (Scanning)","anchor":"#navega-o-scanning"},{"id":"opera-es-avan-adas-hacks","level":0,"title":"Operações Avançadas (Hacks)","anchor":"#opera-es-avan-adas-hacks"},{"id":"dicas-de-seguran-a","level":0,"title":"Dicas de Segurança","anchor":"#dicas-de-seguran-a"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Maps: O Guarda-Volumes da Matrix | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/maps.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Maps: O Guarda-Volumes da Matrix | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/maps.html#webpage",
+    "url": "writerside-documentation/java/1.0/maps.html",
+    "name": "Maps: O Guarda-Volumes da Matrix | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="maps" data-main-title="Maps: O Guarda-Volumes da Matrix" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="arrays-collections.md|Arrays e Coleções"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="maps" id="maps.md">Maps: O Guarda-Volumes da Matrix</h1><div class="code-block" data-lang="none">
+MAP TYPES
+├── HashMap (Armário Digital)
+├── LinkedHashMap (Armário com Histórico)
+└── TreeMap (Armário Ordenado)
+</div><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><p id="ucinnv_12">Maps s&atilde;o como um guarda-volumes high-tech - cada item tem sua chave &uacute;nica, e voc&ecirc; pode guardar qualquer coisa l&aacute; dentro.</p><div class="code-block" data-lang="java">
+// Criando um guarda-volumes digital
+Map&lt;String, String&gt; lockers = new HashMap&lt;&gt;();
+lockers.put(&quot;A123&quot;, &quot;Katana Digital&quot;);    // Guarda item
+lockers.get(&quot;A123&quot;);                      // Recupera item
+</div></section><section class="chapter"><h2 id="tipos-de-maps-diferentes-sistemas" data-toc="tipos-de-maps-diferentes-sistemas">Tipos de Maps (Diferentes Sistemas)</h2><section class="chapter"><h3 id="hashmap-arm-rio-quantum" data-toc="hashmap-arm-rio-quantum">HashMap (Arm&aacute;rio Quantum)</h3><div class="code-block" data-lang="java">
+// Rápido e aleatório, como teletransporte
+HashMap&lt;Integer, String&gt; quantum = new HashMap&lt;&gt;();
+quantum.put(42, &quot;Dados Encriptados&quot;);  // Ordem? Irrelevante!
+quantum.put(7, &quot;Código Fonte&quot;);        // Acesso instantâneo
+</div></section><section class="chapter"><h3 id="linkedhashmap-registro-cronol-gico" data-toc="linkedhashmap-registro-cronol-gico">LinkedHashMap (Registro Cronol&oacute;gico)</h3><div class="code-block" data-lang="java">
+// Mantém ordem de inserção, como log de sistema
+LinkedHashMap&lt;String, String&gt; logs = new LinkedHashMap&lt;&gt;();
+logs.put(&quot;09:00&quot;, &quot;Login&quot;);    // Primeiro registro
+logs.put(&quot;09:01&quot;, &quot;Download&quot;); // Segundo registro
+</div></section><section class="chapter"><h3 id="treemap-mainframe-ordenado" data-toc="treemap-mainframe-ordenado">TreeMap (Mainframe Ordenado)</h3><div class="code-block" data-lang="java">
+// Sempre ordenado pela chave, como diretório indexado
+TreeMap&lt;String, String&gt; mainframe = new TreeMap&lt;&gt;();
+mainframe.put(&quot;sys.exe&quot;, &quot;Sistema&quot;);     // Ordenação
+mainframe.put(&quot;hack.exe&quot;, &quot;Ferramentas&quot;); // automática
+</div></section></section><section class="chapter"><h2 id="opera-es-b-sicas-protocolos-de-acesso" data-toc="opera-es-b-sicas-protocolos-de-acesso">Opera&ccedil;&otilde;es B&aacute;sicas (Protocolos de Acesso)</h2><section class="chapter"><h3 id="inser-o-upload" data-toc="inser-o-upload">Inser&ccedil;&atilde;o (Upload)</h3><div class="code-block" data-lang="java">
+Map&lt;String, Object&gt; database = new HashMap&lt;&gt;();
+database.put(&quot;user.dat&quot;, new User());          // Novo registro
+database.putIfAbsent(&quot;backup.dat&quot;, new Data()); // Só se não existir
+</div></section><section class="chapter"><h3 id="recupera-o-download" data-toc="recupera-o-download">Recupera&ccedil;&atilde;o (Download)</h3><div class="code-block" data-lang="java">
+// Diferentes formas de acessar
+Object data = database.get(&quot;user.dat&quot;);        // Acesso direto
+Object safe = database.getOrDefault(&quot;temp.dat&quot;, new Data()); // Com fallback
+</div></section><section class="chapter"><h3 id="remo-o-delete" data-toc="remo-o-delete">Remo&ccedil;&atilde;o (Delete)</h3><div class="code-block" data-lang="java">
+// Limpando registros
+database.remove(&quot;temp.dat&quot;);              // Remove entrada
+database.remove(&quot;user.dat&quot;, oldUser);     // Remove se valor bater
+</div></section></section><section class="chapter"><h2 id="navega-o-scanning" data-toc="navega-o-scanning">Navega&ccedil;&atilde;o (Scanning)</h2><div class="code-block" data-lang="java">
+Map&lt;String, String&gt; matrix = new HashMap&lt;&gt;();
+
+// Iterando chaves (Scanning IDs)
+for (String key : matrix.keySet()) {
+    System.out.println(&quot;ID: &quot; + key);
+}
+
+// Iterando valores (Data Mining)
+for (String value : matrix.values()) {
+    System.out.println(&quot;Data: &quot; + value);
+}
+
+// Iterando pares (Full Scan)
+for (Map.Entry&lt;String, String&gt; entry : matrix.entrySet()) {
+    System.out.println(entry.getKey() + &quot; -&gt; &quot; + entry.getValue());
+}
+</div></section><section class="chapter"><h2 id="opera-es-avan-adas-hacks" data-toc="opera-es-avan-adas-hacks">Opera&ccedil;&otilde;es Avan&ccedil;adas (Hacks)</h2><div class="code-block" data-lang="java">
+// Computação condicional
+matrix.compute(&quot;stats&quot;, (k, v) -&gt; v == null ? &quot;new&quot; : v + &quot;_updated&quot;);
+
+// Merge de dados
+matrix.merge(&quot;downloads&quot;, 1, (old, new) -&gt; old + new);
+
+// Operações em massa
+matrix.replaceAll((k, v) -&gt; v.toUpperCase());
+</div></section><section class="chapter"><h2 id="dicas-de-seguran-a" data-toc="dicas-de-seguran-a">Dicas de Seguran&ccedil;a</h2><ol class="list _decimal" id="ucinnv_28" type="1"><li class="list__item" id="ucinnv_30"><p id="ucinnv_32"><span class="control" id="ucinnv_34">Escolha do Sistema</span></p><ul class="list _bullet" id="ucinnv_33"><li class="list__item" id="ucinnv_35"><p id="ucinnv_38">HashMap: Para acesso r&aacute;pido e aleat&oacute;rio</p></li><li class="list__item" id="ucinnv_36"><p id="ucinnv_39">LinkedHashMap: Quando ordem de inser&ccedil;&atilde;o importa</p></li><li class="list__item" id="ucinnv_37"><p id="ucinnv_40">TreeMap: Para manter chaves ordenadas</p></li></ul></li><li class="list__item" id="ucinnv_31"><p id="ucinnv_41"><span class="control" id="ucinnv_42">Performance</span></p></li></ol><div class="code-block" data-lang="java">
+// Inicialize com tamanho se souber
+Map&lt;String, String&gt; system = new HashMap&lt;&gt;(100);
+
+// Use o tipo certo para cada operação
+Map&lt;String, Integer&gt; sorted = new TreeMap&lt;&gt;();  // Para dados ordenados
+</div></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="ucinnv_43" type="1"><li class="list__item" id="ucinnv_44"><p id="ucinnv_47">Implemente um sistema de cache</p></li><li class="list__item" id="ucinnv_45"><p id="ucinnv_48">Crie um gerenciador de sess&otilde;es</p></li><li class="list__item" id="ucinnv_46"><p id="ucinnv_49">Desenvolva um contador de frequ&ecirc;ncia</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="ucinnv_50">Depois de dominar os Maps, voc&ecirc; estar&aacute; pronto para:</p><ol class="list _decimal" id="ucinnv_51" type="1"><li class="list__item" id="ucinnv_55"><p id="ucinnv_58">Criar sistemas de armazenamento chave-valor</p></li><li class="list__item" id="ucinnv_56"><p id="ucinnv_59">Implementar caches eficientes</p></li><li class="list__item" id="ucinnv_57"><p id="ucinnv_60">Gerenciar dados indexados</p></li></ol><p id="ucinnv_52"><a href="sets.html" id="ucinnv_61" data-tooltip="Sets são como uma festa exclusiva - não tem repetido e cada um é único.">Sets: Exclusividade</a> <a href="queues.html" id="ucinnv_62" data-tooltip="Queues são como filas de banco digitais - primeiro a chegar, primeiro a ser atendido (FIFO).">Queues: Processamento</a></p><aside class="prompt" data-type="tip" data-title="" id="ucinnv_54"><p id="ucinnv_63">&quot;Maps s&atilde;o como o guarda-volumes da Matrix - cada segredo tem sua chave, e s&oacute; voc&ecirc; sabe onde procurar!&quot;</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="sets.html" class="navigation-links__prev">Sets: O Clube dos &Uacute;nicos</a><a href="queues.html" class="navigation-links__next">Queues: A Fila do Banco Digital</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
