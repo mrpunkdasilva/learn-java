@@ -37,6 +37,10 @@
             <toc-element topic="logical.md"/>
             <toc-element topic="bitwise.md"/>
         </toc-element>
+
+        <toc-element topic="i18n.md"/>
+        <toc-element topic="date-formatting.md"/>
+        <toc-element topic="number-formatting.md"/>
         <toc-element topic="strings.md">
             <toc-element topic="string-methods.md"/>
             <toc-element topic="string-builder.md"/>
@@ -121,212 +125,212 @@
         </toc-element>
     </toc-element>
 
-<!--    <toc-element topic="design-patterns.md">-->
-<!--        <toc-element topic="creational-patterns.md">-->
-<!--            <toc-element topic="singleton.md"/>-->
-<!--            <toc-element topic="factory.md"/>-->
-<!--            <toc-element topic="builder.md"/>-->
-<!--            <toc-element topic="prototype.md"/>-->
-<!--            <toc-element topic="abstract-factory.md"/>-->
-<!--            <toc-element topic="creational-projects.md">-->
-<!--                <toc-element topic="database-connection-pool.md"/>-->
-<!--                <toc-element topic="document-generator.md"/>-->
-<!--                <toc-element topic="vehicle-factory.md"/>-->
-<!--            </toc-element>-->
-<!--        </toc-element>-->
-<!--        <toc-element topic="structural-patterns.md">-->
-<!--            <toc-element topic="adapter.md"/>-->
-<!--            <toc-element topic="decorator.md"/>-->
-<!--            <toc-element topic="facade.md"/>-->
-<!--            <toc-element topic="composite.md"/>-->
-<!--            <toc-element topic="proxy.md"/>-->
-<!--            <toc-element topic="structural-projects.md">-->
-<!--                <toc-element topic="payment-gateway-adapter.md"/>-->
-<!--                <toc-element topic="gui-component-system.md"/>-->
-<!--                <toc-element topic="file-system-explorer.md"/>-->
-<!--            </toc-element>-->
-<!--        </toc-element>-->
-<!--        <toc-element topic="behavioral-patterns.md">-->
-<!--            <toc-element topic="observer.md"/>-->
-<!--            <toc-element topic="strategy.md"/>-->
-<!--            <toc-element topic="command.md"/>-->
-<!--            <toc-element topic="template-method.md"/>-->
-<!--            <toc-element topic="state.md"/>-->
-<!--            <toc-element topic="behavioral-projects.md">-->
-<!--                <toc-element topic="trading-system.md"/>-->
-<!--                <toc-element topic="workflow-engine.md"/>-->
-<!--                <toc-element topic="game-ai-system.md"/>-->
-<!--            </toc-element>-->
-<!--        </toc-element>-->
-<!--        <toc-element topic="patterns-projects.md">-->
-<!--            <toc-element topic="notification-system.md"/>-->
-<!--            <toc-element topic="game-characters.md"/>-->
-<!--            <toc-element topic="event-system.md"/>-->
-<!--            <toc-element topic="e-commerce-platform.md"/>-->
-<!--            <toc-element topic="cms-framework.md"/>-->
-<!--            <toc-element topic="social-media-feed.md"/>-->
-<!--        </toc-element>-->
-<!--        <toc-element topic="real-world-patterns.md">-->
-<!--            <toc-element topic="spring-patterns.md"/>-->
-<!--            <toc-element topic="android-patterns.md"/>-->
-<!--            <toc-element topic="enterprise-patterns.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    <toc-element topic="design-patterns.md">-->
+    <!--        <toc-element topic="creational-patterns.md">-->
+    <!--            <toc-element topic="singleton.md"/>-->
+    <!--            <toc-element topic="factory.md"/>-->
+    <!--            <toc-element topic="builder.md"/>-->
+    <!--            <toc-element topic="prototype.md"/>-->
+    <!--            <toc-element topic="abstract-factory.md"/>-->
+    <!--            <toc-element topic="creational-projects.md">-->
+    <!--                <toc-element topic="database-connection-pool.md"/>-->
+    <!--                <toc-element topic="document-generator.md"/>-->
+    <!--                <toc-element topic="vehicle-factory.md"/>-->
+    <!--            </toc-element>-->
+    <!--        </toc-element>-->
+    <!--        <toc-element topic="structural-patterns.md">-->
+    <!--            <toc-element topic="adapter.md"/>-->
+    <!--            <toc-element topic="decorator.md"/>-->
+    <!--            <toc-element topic="facade.md"/>-->
+    <!--            <toc-element topic="composite.md"/>-->
+    <!--            <toc-element topic="proxy.md"/>-->
+    <!--            <toc-element topic="structural-projects.md">-->
+    <!--                <toc-element topic="payment-gateway-adapter.md"/>-->
+    <!--                <toc-element topic="gui-component-system.md"/>-->
+    <!--                <toc-element topic="file-system-explorer.md"/>-->
+    <!--            </toc-element>-->
+    <!--        </toc-element>-->
+    <!--        <toc-element topic="behavioral-patterns.md">-->
+    <!--            <toc-element topic="observer.md"/>-->
+    <!--            <toc-element topic="strategy.md"/>-->
+    <!--            <toc-element topic="command.md"/>-->
+    <!--            <toc-element topic="template-method.md"/>-->
+    <!--            <toc-element topic="state.md"/>-->
+    <!--            <toc-element topic="behavioral-projects.md">-->
+    <!--                <toc-element topic="trading-system.md"/>-->
+    <!--                <toc-element topic="workflow-engine.md"/>-->
+    <!--                <toc-element topic="game-ai-system.md"/>-->
+    <!--            </toc-element>-->
+    <!--        </toc-element>-->
+    <!--        <toc-element topic="patterns-projects.md">-->
+    <!--            <toc-element topic="notification-system.md"/>-->
+    <!--            <toc-element topic="game-characters.md"/>-->
+    <!--            <toc-element topic="event-system.md"/>-->
+    <!--            <toc-element topic="e-commerce-platform.md"/>-->
+    <!--            <toc-element topic="cms-framework.md"/>-->
+    <!--            <toc-element topic="social-media-feed.md"/>-->
+    <!--        </toc-element>-->
+    <!--        <toc-element topic="real-world-patterns.md">-->
+    <!--            <toc-element topic="spring-patterns.md"/>-->
+    <!--            <toc-element topic="android-patterns.md"/>-->
+    <!--            <toc-element topic="enterprise-patterns.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    <toc-element topic="io-operations.md">-->
-<!--        <toc-element topic="file-io.md"/>-->
-<!--        <toc-element topic="nio.md"/>-->
-<!--        <toc-element topic="serialization.md"/>-->
-<!--        <toc-element topic="networking.md"/>-->
-<!--        <toc-element topic="io-projects.md">-->
-<!--            <toc-element topic="file-manager.md"/>-->
-<!--            <toc-element topic="data-exporter.md"/>-->
-<!--            <toc-element topic="network-chat.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    <toc-element topic="io-operations.md">-->
+    <!--        <toc-element topic="file-io.md"/>-->
+    <!--        <toc-element topic="nio.md"/>-->
+    <!--        <toc-element topic="serialization.md"/>-->
+    <!--        <toc-element topic="networking.md"/>-->
+    <!--        <toc-element topic="io-projects.md">-->
+    <!--            <toc-element topic="file-manager.md"/>-->
+    <!--            <toc-element topic="data-exporter.md"/>-->
+    <!--            <toc-element topic="network-chat.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    <toc-element topic="concurrency.md">-->
-<!--        <toc-element topic="threads.md"/>-->
-<!--        <toc-element topic="executors.md"/>-->
-<!--        <toc-element topic="async-programming.md"/>-->
-<!--        <toc-element topic="virtual-threads.md"/>-->
-<!--        <toc-element topic="reactive-programming.md"/>-->
-<!--        <toc-element topic="concurrency-projects.md">-->
-<!--            <toc-element topic="download-manager.md"/>-->
-<!--            <toc-element topic="chat-application.md"/>-->
-<!--            <toc-element topic="stock-market.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    <toc-element topic="concurrency.md">-->
+    <!--        <toc-element topic="threads.md"/>-->
+    <!--        <toc-element topic="executors.md"/>-->
+    <!--        <toc-element topic="async-programming.md"/>-->
+    <!--        <toc-element topic="virtual-threads.md"/>-->
+    <!--        <toc-element topic="reactive-programming.md"/>-->
+    <!--        <toc-element topic="concurrency-projects.md">-->
+    <!--            <toc-element topic="download-manager.md"/>-->
+    <!--            <toc-element topic="chat-application.md"/>-->
+    <!--            <toc-element topic="stock-market.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    <toc-element topic="testing.md">-->
-<!--        <toc-element topic="junit.md"/>-->
-<!--        <toc-element topic="mockito.md"/>-->
-<!--        <toc-element topic="test-patterns.md"/>-->
-<!--        <toc-element topic="tdd.md"/>-->
-<!--        <toc-element topic="bdd.md"/>-->
-<!--        <toc-element topic="testing-projects.md">-->
-<!--            <toc-element topic="unit-testing-demo.md"/>-->
-<!--            <toc-element topic="integration-testing.md"/>-->
-<!--            <toc-element topic="performance-testing.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    <toc-element topic="testing.md">-->
+    <!--        <toc-element topic="junit.md"/>-->
+    <!--        <toc-element topic="mockito.md"/>-->
+    <!--        <toc-element topic="test-patterns.md"/>-->
+    <!--        <toc-element topic="tdd.md"/>-->
+    <!--        <toc-element topic="bdd.md"/>-->
+    <!--        <toc-element topic="testing-projects.md">-->
+    <!--            <toc-element topic="unit-testing-demo.md"/>-->
+    <!--            <toc-element topic="integration-testing.md"/>-->
+    <!--            <toc-element topic="performance-testing.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    <toc-element topic="frameworks-tools.md">-->
-<!--        <toc-element topic="maven.md"/>-->
-<!--        <toc-element topic="gradle.md"/>-->
-<!--        <toc-element topic="spring-basics.md"/>-->
-<!--        <toc-element topic="hibernate.md"/>-->
-<!--        <toc-element topic="frameworks-projects.md">-->
-<!--            <toc-element topic="rest-api.md"/>-->
-<!--            <toc-element topic="web-application.md"/>-->
-<!--            <toc-element topic="microservice.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    <toc-element topic="frameworks-tools.md">-->
+    <!--        <toc-element topic="maven.md"/>-->
+    <!--        <toc-element topic="gradle.md"/>-->
+    <!--        <toc-element topic="spring-basics.md"/>-->
+    <!--        <toc-element topic="hibernate.md"/>-->
+    <!--        <toc-element topic="frameworks-projects.md">-->
+    <!--            <toc-element topic="rest-api.md"/>-->
+    <!--            <toc-element topic="web-application.md"/>-->
+    <!--            <toc-element topic="microservice.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    <toc-element topic="best-practices.md">-->
-<!--        <toc-element topic="clean-code.md"/>-->
-<!--        <toc-element topic="solid.md"/>-->
-<!--        <toc-element topic="code-review.md"/>-->
-<!--        <toc-element topic="performance.md"/>-->
-<!--        <toc-element topic="security.md"/>-->
-<!--        <toc-element topic="logging.md"/>-->
-<!--        <toc-element topic="monitoring.md"/>-->
-<!--        <toc-element topic="deployment.md"/>-->
-<!--    </toc-element>-->
+    <!--    <toc-element topic="best-practices.md">-->
+    <!--        <toc-element topic="clean-code.md"/>-->
+    <!--        <toc-element topic="solid.md"/>-->
+    <!--        <toc-element topic="code-review.md"/>-->
+    <!--        <toc-element topic="performance.md"/>-->
+    <!--        <toc-element topic="security.md"/>-->
+    <!--        <toc-element topic="logging.md"/>-->
+    <!--        <toc-element topic="monitoring.md"/>-->
+    <!--        <toc-element topic="deployment.md"/>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Seção de Segurança &ndash;&gt;-->
-<!--    <toc-element topic="security-fundamentals.md">-->
-<!--        <toc-element topic="cryptography-basics.md"/>-->
-<!--        <toc-element topic="authentication.md"/>-->
-<!--        <toc-element topic="authorization.md"/>-->
-<!--        <toc-element topic="secure-coding.md"/>-->
-<!--        <toc-element topic="security-projects.md">-->
-<!--            <toc-element topic="encryption-system.md"/>-->
-<!--            <toc-element topic="auth-service.md"/>-->
-<!--            <toc-element topic="secure-messaging.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Seção de Segurança &ndash;&gt;-->
+    <!--    <toc-element topic="security-fundamentals.md">-->
+    <!--        <toc-element topic="cryptography-basics.md"/>-->
+    <!--        <toc-element topic="authentication.md"/>-->
+    <!--        <toc-element topic="authorization.md"/>-->
+    <!--        <toc-element topic="secure-coding.md"/>-->
+    <!--        <toc-element topic="security-projects.md">-->
+    <!--            <toc-element topic="encryption-system.md"/>-->
+    <!--            <toc-element topic="auth-service.md"/>-->
+    <!--            <toc-element topic="secure-messaging.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Integração com Tecnologias Modernas &ndash;&gt;-->
-<!--    <toc-element topic="modern-java.md">-->
-<!--        <toc-element topic="cloud-native.md"/>-->
-<!--        <toc-element topic="containerization.md"/>-->
-<!--        <toc-element topic="microservices.md"/>-->
-<!--        <toc-element topic="serverless.md"/>-->
-<!--        <toc-element topic="modern-projects.md">-->
-<!--            <toc-element topic="cloud-deployment.md"/>-->
-<!--            <toc-element topic="kubernetes-integration.md"/>-->
-<!--            <toc-element topic="serverless-api.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Integração com Tecnologias Modernas &ndash;&gt;-->
+    <!--    <toc-element topic="modern-java.md">-->
+    <!--        <toc-element topic="cloud-native.md"/>-->
+    <!--        <toc-element topic="containerization.md"/>-->
+    <!--        <toc-element topic="microservices.md"/>-->
+    <!--        <toc-element topic="serverless.md"/>-->
+    <!--        <toc-element topic="modern-projects.md">-->
+    <!--            <toc-element topic="cloud-deployment.md"/>-->
+    <!--            <toc-element topic="kubernetes-integration.md"/>-->
+    <!--            <toc-element topic="serverless-api.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Performance e Otimização &ndash;&gt;-->
-<!--    <toc-element topic="performance-optimization.md">-->
-<!--        <toc-element topic="profiling.md"/>-->
-<!--        <toc-element topic="memory-management.md"/>-->
-<!--        <toc-element topic="garbage-collection.md"/>-->
-<!--        <toc-element topic="caching-strategies.md"/>-->
-<!--        <toc-element topic="performance-projects.md">-->
-<!--            <toc-element topic="cache-implementation.md"/>-->
-<!--            <toc-element topic="memory-analyzer.md"/>-->
-<!--            <toc-element topic="performance-monitor.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Performance e Otimização &ndash;&gt;-->
+    <!--    <toc-element topic="performance-optimization.md">-->
+    <!--        <toc-element topic="profiling.md"/>-->
+    <!--        <toc-element topic="memory-management.md"/>-->
+    <!--        <toc-element topic="garbage-collection.md"/>-->
+    <!--        <toc-element topic="caching-strategies.md"/>-->
+    <!--        <toc-element topic="performance-projects.md">-->
+    <!--            <toc-element topic="cache-implementation.md"/>-->
+    <!--            <toc-element topic="memory-analyzer.md"/>-->
+    <!--            <toc-element topic="performance-monitor.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Integração e APIs &ndash;&gt;-->
-<!--    <toc-element topic="integration-apis.md">-->
-<!--        <toc-element topic="rest-fundamentals.md"/>-->
-<!--        <toc-element topic="graphql.md"/>-->
-<!--        <toc-element topic="websockets.md"/>-->
-<!--        <toc-element topic="grpc.md"/>-->
-<!--        <toc-element topic="api-projects.md">-->
-<!--            <toc-element topic="rest-client.md"/>-->
-<!--            <toc-element topic="api-gateway.md"/>-->
-<!--            <toc-element topic="real-time-dashboard.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Integração e APIs &ndash;&gt;-->
+    <!--    <toc-element topic="integration-apis.md">-->
+    <!--        <toc-element topic="rest-fundamentals.md"/>-->
+    <!--        <toc-element topic="graphql.md"/>-->
+    <!--        <toc-element topic="websockets.md"/>-->
+    <!--        <toc-element topic="grpc.md"/>-->
+    <!--        <toc-element topic="api-projects.md">-->
+    <!--            <toc-element topic="rest-client.md"/>-->
+    <!--            <toc-element topic="api-gateway.md"/>-->
+    <!--            <toc-element topic="real-time-dashboard.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Data Science e Machine Learning &ndash;&gt;-->
-<!--    <toc-element topic="data-ml.md">-->
-<!--        <toc-element topic="data-processing.md"/>-->
-<!--        <toc-element topic="ml-libraries.md"/>-->
-<!--        <toc-element topic="neural-networks.md"/>-->
-<!--        <toc-element topic="data-visualization.md"/>-->
-<!--        <toc-element topic="ml-projects.md">-->
-<!--            <toc-element topic="predictive-analysis.md"/>-->
-<!--            <toc-element topic="image-recognition.md"/>-->
-<!--            <toc-element topic="recommendation-engine.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Data Science e Machine Learning &ndash;&gt;-->
+    <!--    <toc-element topic="data-ml.md">-->
+    <!--        <toc-element topic="data-processing.md"/>-->
+    <!--        <toc-element topic="ml-libraries.md"/>-->
+    <!--        <toc-element topic="neural-networks.md"/>-->
+    <!--        <toc-element topic="data-visualization.md"/>-->
+    <!--        <toc-element topic="ml-projects.md">-->
+    <!--            <toc-element topic="predictive-analysis.md"/>-->
+    <!--            <toc-element topic="image-recognition.md"/>-->
+    <!--            <toc-element topic="recommendation-engine.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Projeto Final Integrado &ndash;&gt;-->
-<!--    <toc-element topic="cyberpunk-project.md">-->
-<!--        <toc-element topic="project-overview.md"/>-->
-<!--        <toc-element topic="architecture.md"/>-->
-<!--        <toc-element topic="implementation.md"/>-->
-<!--        <toc-element topic="deployment.md"/>-->
-<!--        <toc-element topic="maintenance.md"/>-->
-<!--        <toc-element topic="project-modules.md">-->
-<!--            <toc-element topic="user-authentication.md"/>-->
-<!--            <toc-element topic="data-processing.md"/>-->
-<!--            <toc-element topic="real-time-analytics.md"/>-->
-<!--            <toc-element topic="ai-integration.md"/>-->
-<!--            <toc-element topic="security-layer.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Projeto Final Integrado &ndash;&gt;-->
+    <!--    <toc-element topic="cyberpunk-project.md">-->
+    <!--        <toc-element topic="project-overview.md"/>-->
+    <!--        <toc-element topic="architecture.md"/>-->
+    <!--        <toc-element topic="implementation.md"/>-->
+    <!--        <toc-element topic="deployment.md"/>-->
+    <!--        <toc-element topic="maintenance.md"/>-->
+    <!--        <toc-element topic="project-modules.md">-->
+    <!--            <toc-element topic="user-authentication.md"/>-->
+    <!--            <toc-element topic="data-processing.md"/>-->
+    <!--            <toc-element topic="real-time-analytics.md"/>-->
+    <!--            <toc-element topic="ai-integration.md"/>-->
+    <!--            <toc-element topic="security-layer.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
-<!--    &lt;!&ndash; Carreira e Desenvolvimento Profissional &ndash;&gt;-->
-<!--    <toc-element topic="career-development.md">-->
-<!--        <toc-element topic="job-market.md"/>-->
-<!--        <toc-element topic="interview-prep.md"/>-->
-<!--        <toc-element topic="portfolio-building.md"/>-->
-<!--        <toc-element topic="continuous-learning.md"/>-->
-<!--        <toc-element topic="career-projects.md">-->
-<!--            <toc-element topic="github-portfolio.md"/>-->
-<!--            <toc-element topic="technical-blog.md"/>-->
-<!--            <toc-element topic="open-source.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <!--    &lt;!&ndash; Carreira e Desenvolvimento Profissional &ndash;&gt;-->
+    <!--    <toc-element topic="career-development.md">-->
+    <!--        <toc-element topic="job-market.md"/>-->
+    <!--        <toc-element topic="interview-prep.md"/>-->
+    <!--        <toc-element topic="portfolio-building.md"/>-->
+    <!--        <toc-element topic="continuous-learning.md"/>-->
+    <!--        <toc-element topic="career-projects.md">-->
+    <!--            <toc-element topic="github-portfolio.md"/>-->
+    <!--            <toc-element topic="technical-blog.md"/>-->
+    <!--            <toc-element topic="open-source.md"/>-->
+    <!--        </toc-element>-->
+    <!--    </toc-element>-->
 
     <!-- Recursos e Referências -->
     <toc-element topic="resources.md">
@@ -338,7 +342,4 @@
         <toc-element topic="cheat-sheets.md"/>
         <toc-element topic="glossary.md"/>
     </toc-element>
-    <toc-element topic="i18n.md"/>
-    <toc-element topic="date-formatting.md"/>
-    <toc-element topic="number-formatting.md"/>
 </instance-profile>
