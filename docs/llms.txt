@@ -6375,7 +6375,7 @@ String describeShape(Object shape) {
 
 * Pratique com projetos em [Control Flow Projects](control-flow-projects.html)
 
-* Aprenda sobre sealed classes em [Sealed Classes](null)
+* Aprenda sobre sealed classes em [Sealed Classes](sealed-classes.html)
 
 [Control Flow Projects](control-flow-projects.html)
 
@@ -10013,11 +10013,1423 @@ public interface NetworkComponent {
 
 ## Próximos Passos
 
-[Records](null)
+[Records](records.html)
 
 Tip:
 
 "Na matrix digital, interfaces e abstrações são as ferramentas que moldam a realidade do código."
+
+
+
+# Records
+
+## Conceito Base
+
+Records são classes imutáveis que atuam como portadores transparentes de dados, introduzidos no Java 16.
+
+```MERMAID
+graph TD
+    A[Record] -->|Gera automaticamente| B[Constructor]
+    A -->|Gera automaticamente| C[Getters]
+    A -->|Gera automaticamente| D[equals/hashCode]
+    A -->|Gera automaticamente| E[toString]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+    style E fill:#1a1a1a,stroke:#00ff00
+```
+
+## Sintaxe Básica
+
+```JAVA
+public record NetrunnerCredentials(
+    String handle,
+    byte[] biometricHash,
+    int clearanceLevel
+) {}
+
+// Uso
+var creds = new NetrunnerCredentials("Phantom", 
+    "bio123".getBytes(), 
+    5);
+
+System.out.println(creds.handle());        // Getter automático
+System.out.println(creds.clearanceLevel()); // Getter automático
+```
+
+## Características Principais
+
+### Imutabilidade
+
+```JAVA
+public record SecurityToken(
+    String id,
+    long timestamp,
+    Set<String> permissions
+) {
+    // Construtor canônico validador
+    public SecurityToken {
+        // Cria cópia defensiva imutável
+        permissions = Set.copyOf(permissions);
+    }
+}
+```
+
+### Métodos Adicionais
+
+```JAVA
+public record DataPacket(
+    byte[] payload,
+    String destination,
+    int priority
+) {
+    // Método instance
+    public boolean isHighPriority() {
+        return priority > 5;
+    }
+
+    // Método static
+    public static DataPacket createEmergency(String dest) {
+        return new DataPacket(new byte[0], dest, 10);
+    }
+}
+```
+
+## Casos de Uso
+
+### DTOs (Data Transfer Objects)
+
+```JAVA
+public record UserProfile(
+    String id,
+    String nickname,
+    int reputationScore,
+    LocalDateTime lastLogin
+) {}
+
+public record NetworkStatus(
+    boolean connected,
+    int latency,
+    List<String> activeNodes
+) {}
+```
+
+### Value Objects
+
+```JAVA
+public record IpAddress(String address) {
+    public IpAddress {
+        if (!isValid(address)) {
+            throw new IllegalArgumentException("Invalid IP");
+        }
+    }
+
+    private static boolean isValid(String addr) {
+        // Validação de IP
+        return addr.matches("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
+    }
+}
+```
+
+## Interoperabilidade
+
+### Com Interfaces
+
+```JAVA
+public interface Traceable {
+    String getIdentifier();
+}
+
+public record TraceRoute(
+    String source,
+    String destination,
+    List<String> hops
+) implements Traceable {
+    @Override
+    public String getIdentifier() {
+        return source + "->" + destination;
+    }
+}
+```
+
+### Com Pattern Matching
+
+```JAVA
+public void processData(Object data) {
+    if (data instanceof DataPacket(var payload, var dest, var priority)) {
+        System.out.printf("Packet to %s with priority %d%n", 
+            dest, priority);
+    }
+}
+```
+
+## Boas Práticas
+
+1. Uso Apropriado
+
+* Para dados imutáveis
+
+* Para transferência de dados
+
+* Para objetos de valor
+
+2. Validação
+
+* No construtor canônico
+
+* Cópias defensivas
+
+* Invariantes de negócio
+
+3. Limitações
+
+* Não podem estender classes
+
+* Sempre são final
+
+* Campos sempre são final
+
+## Exercícios Práticos
+
+```JAVA
+// 1. Crie um record para configurações
+public record SystemConfig(
+    int maxConnections,
+    Duration timeout,
+    Set<String> allowedIPs
+) {
+    // Adicione validações
+}
+
+// 2. Implemente um record para métricas
+public record NetworkMetrics(
+    long bytesTransferred,
+    int activeConnections,
+    double throughput
+) {
+    // Adicione métodos úteis
+}
+
+// 3. Desenvolva um record para eventos
+public record SecurityEvent(
+    String eventId,
+    LocalDateTime timestamp,
+    String description,
+    SecurityLevel level
+) {
+    // Implemente lógica adicional
+}
+```
+
+## Próximos Passos
+
+[Sealed Classes](sealed-classes.html)
+
+Tip:
+
+"Records: quando seus dados precisam ser tão transparentes quanto o vidro e tão imutáveis quanto a lei da física digital."
+
+
+
+# Sealed Classes
+
+## Conceito Base
+
+Sealed Classes controlam a hierarquia de herança, permitindo apenas classes específicas como subclasses.
+
+```MERMAID
+graph TD
+    A[Sealed Class/Interface] -->|permits| B[Subclasse 1]
+    A -->|permits| C[Subclasse 2]
+    A -->|permits| D[Subclasse 3]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#00ff00
+    style C fill:#1a1a1a,stroke:#00ff00
+    style D fill:#1a1a1a,stroke:#00ff00
+```
+
+## Sintaxe Básica
+
+```JAVA
+public sealed interface CyberwareComponent 
+    permits NeuralImplant, BiometricEnhancer, CombatModule {
+    
+    void initialize();
+    int getPowerConsumption();
+}
+
+public final class NeuralImplant implements CyberwareComponent {
+    @Override
+    public void initialize() {
+        // Implementação
+    }
+
+    @Override
+    public int getPowerConsumption() {
+        return 50;
+    }
+}
+
+public non-sealed class BiometricEnhancer 
+    implements CyberwareComponent {
+    // Implementação
+}
+
+public sealed class CombatModule implements CyberwareComponent 
+    permits RangedModule, MeleeModule {
+    // Implementação
+}
+```
+
+## Modificadores de Permissão
+
+### final
+
+```JAVA
+public sealed class SecurityProtocol 
+    permits BiometricAuth, TokenAuth {
+    // Base implementation
+}
+
+public final class BiometricAuth extends SecurityProtocol {
+    // Não pode ser estendida
+}
+```
+
+### non-sealed
+
+```JAVA
+public sealed interface DataProcessor 
+    permits StreamProcessor, BatchProcessor {
+    void process(byte[] data);
+}
+
+public non-sealed class StreamProcessor 
+    implements DataProcessor {
+    // Pode ser estendida por qualquer classe
+}
+```
+
+### sealed
+
+```JAVA
+public sealed interface NetworkNode 
+    permits Router, Switch, Firewall {
+    void connect();
+    void disconnect();
+}
+
+public sealed class Router implements NetworkNode 
+    permits CoreRouter, EdgeRouter {
+    // Implementação
+}
+```
+
+## Pattern Matching
+
+```JAVA
+public String analyzeComponent(CyberwareComponent component) {
+    return switch (component) {
+        case NeuralImplant n -> 
+            "Neural Implant: Power=" + n.getPowerConsumption();
+        case BiometricEnhancer b -> 
+            "Biometric: Power=" + b.getPowerConsumption();
+        case CombatModule c -> 
+            "Combat: Power=" + c.getPowerConsumption();
+    };
+}
+```
+
+## Casos de Uso
+
+### Hierarquia de Comandos
+
+```JAVA
+public sealed interface Command 
+    permits QueryCommand, UpdateCommand, DeleteCommand {
+    void execute();
+}
+
+public final class QueryCommand implements Command {
+    private final String query;
+    
+    @Override
+    public void execute() {
+        // Implementação
+    }
+}
+```
+
+### Sistema de Plugins
+
+```JAVA
+public sealed interface Plugin 
+    permits SecurityPlugin, NetworkPlugin, DataPlugin {
+    void load();
+    void unload();
+    String getVersion();
+}
+```
+
+## Boas Práticas
+
+1. Hierarquia Clara
+
+* Defina hierarquias explícitas
+
+* Limite extensibilidade apropriadamente
+
+* Documente o propósito de cada permissão
+
+2. Escolha de Modificadores
+
+* Use `final` para folhas da hierarquia
+
+* Use `non-sealed` para pontos de extensão
+
+* Use `sealed` para controle intermediário
+
+3. Pattern Matching
+
+* Aproveite o pattern matching exaustivo
+
+* Combine com records quando apropriado
+
+* Mantenha switches concisos
+
+## Exercícios Práticos
+
+```JAVA
+// 1. Sistema de Protocolos de Rede
+public sealed interface NetworkProtocol 
+    permits TCP, UDP, ICMP {
+    void sendPacket(byte[] data);
+    void receivePacket();
+}
+
+// 2. Hierarquia de Eventos
+public sealed class SystemEvent 
+    permits UserEvent, NetworkEvent, SecurityEvent {
+    private final LocalDateTime timestamp;
+    // Implementação
+}
+
+// 3. Framework de Processamento
+public sealed interface DataProcessor 
+    permits RealTimeProcessor, BatchProcessor {
+    void process(List<byte[]> data);
+    ProcessingStats getStats();
+}
+```
+
+## Próximos Passos
+
+[Projetos OOP](oop-projects.html)
+
+Tip:
+
+"Em um mundo digital sem fronteiras, sealed classes são as muralhas que protegem sua hierarquia de código."
+
+
+
+# Projetos OOP
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Projetos OOP] --> B[Sistema Bancário]
+    A --> C[Hierarquia de Formas]
+    A --> D[Sistema de Plugins]
+    
+    B --> B1[Contas]
+    B --> B2[Transações]
+    B --> B3[Segurança]
+    
+    C --> C1[Renderização]
+    C --> C2[Cálculos]
+    C --> C3[Transformações]
+    
+    D --> D1[Carregamento]
+    D --> D2[Extensibilidade]
+    D --> D3[Integração]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+```
+
+## Estrutura dos Projetos
+
+```
+PROJETO
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/
+│   │           └── netrunner/
+│   │               └── project/
+│   │                   ├── core/
+│   │                   ├── model/
+│   │                   ├── service/
+│   │                   └── util/
+│   └── test/
+│       └── java/
+└── README.md
+```
+
+## Sistema Bancário Digital
+
+### Objetivos de Aprendizado
+
+* Encapsulamento de dados sensíveis
+
+* Herança para diferentes tipos de contas
+
+* Polimorfismo em operações financeiras
+
+* Interfaces para serviços bancários
+
+* Records para transações imutáveis
+
+* Classes seladas para hierarquia de contas
+
+### Componentes Principais
+
+```JAVA
+// Hierarquia de contas
+public sealed abstract class Account 
+    permits CheckingAccount, SavingsAccount, CryptoAccount {
+    
+    private final String id;
+    private BigDecimal balance;
+    private final SecurityModule security;
+    
+    // Métodos abstratos e concretos
+}
+
+// Transações imutáveis
+public record Transaction(
+    String id,
+    BigDecimal amount,
+    LocalDateTime timestamp,
+    TransactionType type,
+    String description
+) {}
+
+// Interface de serviços
+public interface BankingService {
+    void processTransaction(Transaction tx);
+    Account getAccount(String id);
+    List<Transaction> getHistory(String accountId);
+}
+```
+
+## Hierarquia de Formas
+
+### Objetivos de Aprendizado
+
+* Abstração de formas geométricas
+
+* Herança para especialização
+
+* Polimorfismo em renderização
+
+* Interfaces para comportamentos
+
+* Records para pontos e dimensões
+
+* Classes seladas para tipos de formas
+
+### Componentes Principais
+
+```JAVA
+// Ponto imutável
+public record Point(double x, double y) {
+    public double distanceTo(Point other) {
+        // Cálculo de distância
+    }
+}
+
+// Hierarquia de formas
+public sealed interface Shape 
+    permits Circle, Rectangle, Triangle {
+    
+    double area();
+    double perimeter();
+    void render(Graphics g);
+    boolean contains(Point p);
+}
+
+// Transformações
+public interface Transformable {
+    void rotate(double angle);
+    void scale(double factor);
+    void translate(Point delta);
+}
+```
+
+## Sistema de Plugins
+
+### Objetivos de Aprendizado
+
+* Interfaces para extensibilidade
+
+* Carregamento dinâmico
+
+* Gerenciamento de dependências
+
+* Padrão Observer para eventos
+
+* Records para configurações
+
+* Classes seladas para tipos de plugins
+
+### Componentes Principais
+
+```JAVA
+// Configuração de plugin
+public record PluginConfig(
+    String name,
+    String version,
+    Set<String> dependencies,
+    Map<String, String> settings
+) {}
+
+// Interface base de plugin
+public sealed interface Plugin 
+    permits SecurityPlugin, NetworkPlugin, DataPlugin {
+    
+    void initialize(PluginConfig config);
+    void start();
+    void stop();
+    String getStatus();
+}
+
+// Gerenciador de plugins
+public class PluginManager {
+    private final Map<String, Plugin> plugins;
+    private final DependencyResolver resolver;
+    
+    public void loadPlugin(String path) {
+        // Carregamento dinâmico
+    }
+}
+```
+
+## Desafios Extras
+
+### Sistema Bancário
+
+* Implementar criptografia de dados
+
+* Adicionar autenticação biométrica
+
+* Criar sistema de alertas
+
+* Implementar transações programadas
+
+* Adicionar suporte multi-moeda
+
+### Hierarquia de Formas
+
+* Implementar formas 3D
+
+* Adicionar animações
+
+* Criar sistema de colisões
+
+* Implementar exportação SVG
+
+* Adicionar efeitos visuais
+
+### Sistema de Plugins
+
+* Implementar hot-reload
+
+* Adicionar versionamento
+
+* Criar marketplace
+
+* Implementar sandbox
+
+* Adicionar telemetria
+
+## Dicas de Implementação
+
+1. Planejamento
+
+* Comece com diagramas UML
+
+* Identifique abstrações
+
+* Defina interfaces claras
+
+2. Desenvolvimento
+
+* Use TDD
+
+* Refatore frequentemente
+
+* Documente decisões
+
+3. Testes
+
+* Cubra casos de borda
+
+* Teste integrações
+
+* Valide segurança
+
+## Próximos Passos
+
+[Sistema Bancário](banking-system.html)
+
+Tip:
+
+"Na Matrix do código orientado a objetos, cada projeto é uma oportunidade de criar um universo digital coerente e extensível."
+
+
+
+# Sistema Bancário Digital
+
+## Arquitetura do Sistema
+
+```MERMAID
+graph TD
+    A[Sistema Bancário] --> B[Core]
+    A --> C[Serviços]
+    A --> D[Segurança]
+    
+    B --> B1[Contas]
+    B --> B2[Transações]
+    B --> B3[Usuários]
+    
+    C --> C1[Transferências]
+    C --> C2[Investimentos]
+    C --> C3[Pagamentos]
+    
+    D --> D1[Autenticação]
+    D --> D2[Criptografia]
+    D --> D3[Auditoria]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#ff3366
+```
+
+## Estrutura do Código
+
+### Hierarquia de Contas
+
+```JAVA
+public sealed abstract class Account 
+    permits CheckingAccount, SavingsAccount, CryptoAccount {
+    
+    private final String id;
+    private final String userId;
+    private BigDecimal balance;
+    private final SecurityModule security;
+    
+    public abstract boolean withdraw(BigDecimal amount);
+    public abstract boolean deposit(BigDecimal amount);
+    public abstract AccountType getType();
+    
+    protected final void logTransaction(TransactionType type, 
+                                      BigDecimal amount) {
+        // Logging seguro
+    }
+}
+
+public final class CheckingAccount extends Account {
+    private final BigDecimal overdraftLimit;
+    
+    @Override
+    public boolean withdraw(BigDecimal amount) {
+        if (getBalance().add(overdraftLimit).compareTo(amount) < 0) {
+            return false;
+        }
+        // Processamento do saque
+        return true;
+    }
+    // Outros métodos
+}
+```
+
+### Sistema de Transações
+
+```JAVA
+public record Transaction(
+    String id,
+    String accountId,
+    BigDecimal amount,
+    TransactionType type,
+    LocalDateTime timestamp,
+    String description,
+    TransactionStatus status
+) {}
+
+public interface TransactionProcessor {
+    TransactionResult process(Transaction tx);
+    void rollback(String txId);
+    TransactionStatus checkStatus(String txId);
+}
+
+public class SecureTransactionProcessor 
+    implements TransactionProcessor {
+    
+    private final SecurityModule security;
+    private final TransactionLogger logger;
+    
+    @Override
+    public TransactionResult process(Transaction tx) {
+        try {
+            security.validateTransaction(tx);
+            // Processamento
+            logger.logSuccess(tx);
+            return TransactionResult.success(tx.id());
+        } catch (SecurityException e) {
+            logger.logFailure(tx, e);
+            return TransactionResult.failure(tx.id(), e);
+        }
+    }
+}
+```
+
+### Módulo de Segurança
+
+```JAVA
+public final class SecurityModule {
+    private final EncryptionService encryption;
+    private final AuthenticationService auth;
+    private final AuditLogger audit;
+    
+    public void validateTransaction(Transaction tx) {
+        if (!auth.isAuthenticated()) {
+            throw new SecurityException("Não autenticado");
+        }
+        
+        if (!encryption.isSecureChannel()) {
+            throw new SecurityException("Canal inseguro");
+        }
+        
+        audit.logAccess(tx);
+    }
+}
+```
+
+## Implementação Passo a Passo
+
+1. Configuração Inicial
+
+```JAVA
+public class BankSystem {
+    private final AccountRepository accounts;
+    private final TransactionProcessor txProcessor;
+    private final SecurityModule security;
+
+    public BankSystem() {
+        this.security = new SecurityModule();
+        this.accounts = new AccountRepository();
+        this.txProcessor = new SecureTransactionProcessor(security);
+    }
+}
+```
+
+2. Criação de Conta
+
+```JAVA
+public class AccountService {
+    public Account createAccount(AccountType type, 
+                               String userId) {
+        return switch (type) {
+            case CHECKING -> new CheckingAccount(userId);
+            case SAVINGS -> new SavingsAccount(userId);
+            case CRYPTO -> new CryptoAccount(userId);
+        };
+    }
+}
+```
+
+3. Processamento de Transações
+
+```JAVA
+public class TransactionService {
+    public TransactionResult transfer(String fromId, 
+                                    String toId, 
+                                    BigDecimal amount) {
+        var tx = new Transaction(
+            UUID.randomUUID().toString(),
+            fromId,
+            amount,
+            TransactionType.TRANSFER,
+            LocalDateTime.now(),
+            "Transferência entre contas",
+            TransactionStatus.PENDING
+        );
+
+        return txProcessor.process(tx);
+    }
+}
+```
+
+## Testes
+
+```JAVA
+@Test
+void testOverdraftLimit() {
+    var account = new CheckingAccount("user123");
+    account.deposit(new BigDecimal("100.00"));
+    
+    assertFalse(account.withdraw(new BigDecimal("150.00")));
+    assertEquals(new BigDecimal("100.00"), account.getBalance());
+}
+
+@Test
+void testSecureTransaction() {
+    var processor = new SecureTransactionProcessor(
+        new SecurityModule()
+    );
+    
+    var tx = new Transaction(/* ... */);
+    var result = processor.process(tx);
+    
+    assertTrue(result.isSuccess());
+    assertEquals(TransactionStatus.COMPLETED, 
+                processor.checkStatus(tx.id()));
+}
+```
+
+## Considerações de Segurança
+
+1. Criptografia
+
+* Dados em repouso
+
+* Dados em trânsito
+
+* Chaves seguras
+
+2. Autenticação
+
+* Multi-fator
+
+* Biometria
+
+* Tokens JWT
+
+3. Auditoria
+
+* Logs detalhados
+
+* Trilha de auditoria
+
+* Alertas de segurança
+
+## Próximos Passos
+
+[Hierarquia de Formas](shape-hierarchy.html)
+
+Tip:
+
+"No submundo digital das finanças, a segurança não é apenas uma característica - é uma necessidade."
+
+
+
+# Hierarquia de Formas Geométricas
+
+## Visão Geral
+
+Este projeto implementa um sistema de formas geométricas usando conceitos avançados de Programação Orientada a Objetos em Java.
+
+```MERMAID
+graph TD
+    A[Shape] --> B[Circle]
+    A --> C[Rectangle]
+    A --> D[Triangle]
+    E[Point] --> B
+    E --> C
+    E --> D
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+    style E fill:#1a1a1a,stroke:#ff3366
+```
+
+## Conceitos Demonstrados
+
+* Classes seladas (sealed classes)
+
+* Records para dados imutáveis
+
+* Herança e polimorfismo
+
+* Classes e métodos abstratos
+
+* Encapsulamento
+
+* Geometria computacional
+
+## Estrutura do Projeto
+
+### Classe Base: Shape
+
+```JAVA
+public sealed abstract class Shape permits Circle, Rectangle, Triangle {
+    private Point position;
+    private String color;
+    
+    // Métodos abstratos que todas as formas devem implementar
+    public abstract double area();
+    public abstract double perimeter();
+    public abstract boolean contains(Point point);
+}
+```
+
+### Record Point
+
+```JAVA
+public record Point(double x, double y) {
+    public double distanceTo(Point other) {
+        double dx = this.x - other.x;
+        double dy = this.y - other.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+}
+```
+
+## Implementações
+
+### Circle
+
+* Usa um ponto central e raio
+
+* Área: πr²
+
+* Perímetro: 2πr
+
+* Contém ponto: distância ao centro ≤ raio
+
+### Rectangle
+
+* Definido por ponto superior esquerdo, largura e altura
+
+* Área: largura × altura
+
+* Perímetro: 2(largura + altura)
+
+* Contém ponto: verifica coordenadas x,y dentro dos limites
+
+### Triangle
+
+* Definido por três pontos
+
+* Área: Fórmula de Heron
+
+* Perímetro: soma das distâncias entre pontos
+
+* Contém ponto: coordenadas baricêntricas
+
+## Exemplo de Uso
+
+```JAVA
+// Criar formas
+Circle circle = new Circle(new Point(0, 0), 5, "red");
+Rectangle rectangle = new Rectangle(new Point(2, 2), 4, 3, "blue");
+Triangle triangle = new Triangle(
+    new Point(0, 0),
+    new Point(3, 0),
+    new Point(0, 4),
+    "green"
+);
+
+// Array polimórfico
+Shape[] shapes = {circle, rectangle, triangle};
+
+// Operações com formas
+for (Shape shape : shapes) {
+    System.out.println("Área: " + shape.area());
+    System.out.println("Perímetro: " + shape.perimeter());
+}
+```
+
+## Exercícios Práticos
+
+1. Extensão Básica
+
+* Adicione uma nova forma (ex: Hexágono)
+
+* Implemente rotação para as formas
+
+* Adicione cálculo de escala
+
+2. Funcionalidades Avançadas
+
+* Detecção de colisão entre formas
+
+* Transformações geométricas
+
+* Serialização de formas
+
+3. Interface Gráfica
+
+* Renderização das formas
+
+* Interface para criar/editar formas
+
+* Animações de movimento
+
+## Desafios
+
+1. Otimização
+
+* Melhore o algoritmo de verificação de ponto em triângulo
+
+* Implemente cache para cálculos frequentes
+
+* Otimize operações em lote
+
+2. Extensibilidade
+
+* Adicione sistema de eventos
+
+* Implemente padrão Observer
+
+* Crie sistema de plugins
+
+## Dicas de Implementação
+
+1. Precisão Numérica
+
+* Use `double` para cálculos geométricos
+
+* Considere tolerância em comparações
+
+* Implemente arredondamento adequado
+
+2. Boas Práticas
+
+* Valide parâmetros nos construtores
+
+* Mantenha imutabilidade onde possível
+
+* Use nomes descritivos
+
+3. Testes
+
+* Teste casos limites
+
+* Verifique formas degeneradas
+
+* Valide transformações
+
+## Recursos Adicionais
+
+* [Geometria Computacional](https://www.geeksforgeeks.org/computational-geometry-introduction/)
+
+* [Java Graphics2D](https://docs.oracle.com/javase/tutorial/2d/index.html)
+
+* [Matemática para Programadores](https://www.mathsisfun.com/geometry/index.html)
+
+## Próximos Passos
+
+* Explore padrões de design relacionados
+
+* Implemente persistência de dados
+
+* Adicione suporte a formas compostas
+
+
+
+# Sistema de Plugins
+
+## Visão Geral
+
+Este projeto implementa um sistema de plugins extensível usando recursos modernos do Java, demonstrando conceitos avançados de design de software e modularidade.
+
+```MERMAID
+graph TD
+    A[PluginManager] --> B[Plugin Interface]
+    B --> C[SecurityPlugin]
+    B --> D[NetworkPlugin]
+    B --> E[DataPlugin]
+    A --> F[PluginLoader]
+    A --> G[DependencyResolver]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style F fill:#1a1a1a,stroke:#ff3366
+    style G fill:#1a1a1a,stroke:#ff9933
+```
+
+## Componentes Principais
+
+### Interface Plugin
+
+```JAVA
+public sealed interface Plugin 
+    permits SecurityPlugin, NetworkPlugin, DataPlugin {
+    
+    void initialize(PluginConfig config);
+    void start();
+    void stop();
+    String getStatus();
+}
+```
+
+### Configuração de Plugin
+
+```JAVA
+public record PluginConfig(
+    String name,
+    String version,
+    Set<String> dependencies,
+    Map<String, String> settings
+) {
+    public PluginConfig {
+        // Validação defensiva
+        Objects.requireNonNull(name, "Nome não pode ser nulo");
+        Objects.requireNonNull(version, "Versão não pode ser nula");
+        Objects.requireNonNull(dependencies, "Dependências não podem ser nulas");
+        Objects.requireNonNull(settings, "Configurações não podem ser nulas");
+        
+        // Cria cópias imutáveis
+        dependencies = Set.copyOf(dependencies);
+        settings = Map.copyOf(settings);
+    }
+}
+```
+
+### Gerenciador de Plugins
+
+```JAVA
+public class PluginManager {
+    private final Map<String, Plugin> plugins = new ConcurrentHashMap<>();
+    private final DependencyResolver resolver;
+    private final PluginLoader loader;
+    
+    public void loadPlugin(Path pluginPath) {
+        var config = loader.loadConfig(pluginPath);
+        resolver.validateDependencies(config);
+        
+        var plugin = loader.createPlugin(pluginPath);
+        plugin.initialize(config);
+        plugins.put(config.name(), plugin);
+    }
+    
+    public void startPlugin(String name) {
+        getPlugin(name).start();
+    }
+    
+    public void stopPlugin(String name) {
+        getPlugin(name).stop();
+    }
+    
+    private Plugin getPlugin(String name) {
+        return Optional.ofNullable(plugins.get(name))
+            .orElseThrow(() -> new PluginNotFoundException(name));
+    }
+}
+```
+
+## Implementação de Plugins
+
+### Plugin de Segurança
+
+```JAVA
+public final class SecurityPlugin implements Plugin {
+    private final SecurityManager securityManager;
+    private PluginConfig config;
+    
+    @Override
+    public void initialize(PluginConfig config) {
+        this.config = config;
+        this.securityManager = new SecurityManager(config.settings());
+    }
+    
+    @Override
+    public void start() {
+        securityManager.enableSecurity();
+        log.info("Security plugin started");
+    }
+    
+    @Override
+    public void stop() {
+        securityManager.disableSecurity();
+        log.info("Security plugin stopped");
+    }
+}
+```
+
+## Sistema de Eventos
+
+### Event Bus
+
+```JAVA
+public class PluginEventBus {
+    private final Map<String, Set<EventListener>> listeners = new ConcurrentHashMap<>();
+    
+    public void publish(PluginEvent event) {
+        getListeners(event.type()).forEach(listener -> 
+            CompletableFuture.runAsync(() -> 
+                listener.onEvent(event)));
+    }
+    
+    public void subscribe(String eventType, EventListener listener) {
+        listeners.computeIfAbsent(eventType, k -> 
+            ConcurrentHashMap.newKeySet()).add(listener);
+    }
+}
+```
+
+## Carregamento Dinâmico
+
+### Plugin Loader
+
+```JAVA
+public class PluginLoader {
+    private final ClassLoader classLoader;
+    
+    public Plugin createPlugin(Path path) {
+        try {
+            URL[] urls = { path.toUri().toURL() };
+            URLClassLoader loader = new URLClassLoader(urls, classLoader);
+            Class<?> pluginClass = loader.loadClass("plugin.MainClass");
+            return (Plugin) pluginClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new PluginLoadException("Failed to load plugin", e);
+        }
+    }
+}
+```
+
+## Exemplos de Uso
+
+### Configuração Básica
+
+```JAVA
+var config = new PluginConfig(
+    "security-plugin",
+    "1.0.0",
+    Set.of("core", "crypto"),
+    Map.of(
+        "encryption.algorithm", "AES256",
+        "key.size", "256"
+    )
+);
+
+var manager = new PluginManager();
+manager.loadPlugin(Path.of("/plugins/security.jar"));
+manager.startPlugin("security-plugin");
+```
+
+### Manipulação de Eventos
+
+```JAVA
+pluginEventBus.subscribe("SECURITY_ALERT", event -> {
+    log.warn("Security alert: {}", event.getData());
+    notificationService.sendAlert(event);
+});
+
+// Publicar evento
+pluginEventBus.publish(new PluginEvent(
+    "SECURITY_ALERT",
+    Map.of("type", "intrusion", "severity", "high")
+));
+```
+
+## Exercícios Práticos
+
+1. Plugin Básico
+
+* Criar plugin simples
+
+* Implementar ciclo de vida
+
+* Adicionar configuração
+
+2. Sistema de Eventos
+
+* Implementar observer pattern
+
+* Criar handlers de eventos
+
+* Adicionar logging
+
+3. Hot Reload
+
+* Implementar recarga dinâmica
+
+* Gerenciar estado
+
+* Lidar com exceções
+
+## Desafios Avançados
+
+1. Segurança
+
+* Sandbox para plugins
+
+* Verificação de assinatura
+
+* Isolamento de recursos
+
+2. Performance
+
+* Carregamento lazy
+
+* Pool de threads
+
+* Cache de classes
+
+## Boas Práticas
+
+1. Design
+
+* Interface minimalista
+
+* Versionamento semântico
+
+* Documentação clara
+
+2. Segurança
+
+* Validação de entrada
+
+* Controle de acesso
+
+* Logging seguro
+
+3. Manutenção
+
+* Testes unitários
+
+* Monitoramento
+
+* Backup de configuração
+
+## Recursos Adicionais
+
+* [Java Module System](https://www.oracle.com/corporate/features/understanding-java-9-modules.html)
+
+* [ClassLoader API](https://docs.oracle.com/javase/9/docs/api/java/lang/ClassLoader.html)
+
+* [Design Patterns](https://refactoring.guru/design-patterns)
+
+## Próximos Passos
+
+* Explore padrões de design relacionados
+
+* Implemente sistema de versionamento
+
+* Adicione testes de integração
 
 
 

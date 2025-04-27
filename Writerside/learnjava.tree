@@ -103,20 +103,20 @@
         </toc-element>
     </toc-element>
 
-<!--    <toc-element topic="advanced-features.md">-->
-<!--        <toc-element topic="generics.md"/>-->
-<!--        <toc-element topic="lambda.md"/>-->
-<!--        <toc-element topic="streams.md"/>-->
-<!--        <toc-element topic="optional.md"/>-->
-<!--        <toc-element topic="modules.md"/>-->
-<!--        <toc-element topic="reflection.md"/>-->
-<!--        <toc-element topic="annotations.md"/>-->
-<!--        <toc-element topic="advanced-projects.md">-->
-<!--            <toc-element topic="data-processor.md"/>-->
-<!--            <toc-element topic="functional-calculator.md"/>-->
-<!--            <toc-element topic="custom-framework.md"/>-->
-<!--        </toc-element>-->
-<!--    </toc-element>-->
+    <toc-element topic="advanced-features.md">
+        <toc-element topic="generics.md"/>
+        <toc-element topic="lambda.md"/>
+        <toc-element topic="streams.md"/>
+        <toc-element topic="optional.md"/>
+        <toc-element topic="modules.md"/>
+        <toc-element topic="reflection.md"/>
+        <toc-element topic="annotations.md"/>
+        <toc-element topic="advanced-projects.md">
+            <toc-element topic="data-processor.md"/>
+            <toc-element topic="functional-calculator.md"/>
+            <toc-element topic="custom-framework.md"/>
+        </toc-element>
+    </toc-element>
 
 <!--    <toc-element topic="design-patterns.md">-->
 <!--        <toc-element topic="creational-patterns.md">-->
