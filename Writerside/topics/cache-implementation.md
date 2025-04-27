@@ -1,7 +1,5 @@
 # Implementação de Cache
 
-![Cache System](cache-system-banner.png)
-{style="width:700px"}
 
 Um sistema de cache é uma estrutura de dados que armazena temporariamente dados frequentemente acessados para melhorar a performance. Neste projeto, implementaremos um cache simples usando arrays e conceitos básicos de Java.
 

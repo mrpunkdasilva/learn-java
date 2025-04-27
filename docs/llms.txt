@@ -4612,8 +4612,6 @@ int clearBits = number & ~mask;
 
 * [Operadores Lógicos](logical.html)
 
-* [Manipulação de Bits](null)
-
 [Tipos Primitivos](primitive-types.html)
 
 Tip:
@@ -4914,13 +4912,13 @@ String balance = mf.format(new Object[]{1234.56});
 
 ### Tópicos Relacionados
 
-* [Internacionalização](null)
+* [Internacionalização](i18n.html)
 
-* [Formatação de Datas](null)
+* [Formatação de Datas](date-formatting.html)
 
-* [Formatação de Números](null)
+* [Formatação de Números](number-formatting.html)
 
-[Internacionalização](null)
+[Internacionalização](i18n.html)
 
 Tip:
 
@@ -7076,8 +7074,6 @@ public class ActivityMonitor {
 
 # Arrays e Coleções
 
-![Arrays and Collections Banner](arrays-collections-banner.png)
-
 ```
 DATA STRUCTURES
 ├── Arrays
@@ -8856,8 +8852,6 @@ Tip:
 
 
 # Implementação de Cache
-
-![Cache System](cache-system-banner.png)
 
 Um sistema de cache é uma estrutura de dados que armazena temporariamente dados frequentemente acessados para melhorar a performance. Neste projeto, implementaremos um cache simples usando arrays e conceitos básicos de Java.
 
@@ -13076,8 +13070,6 @@ public class FallbackRegistry {
 
 # Recursos Avançados do Java
 
-![Advanced Features](advanced-features-banner.png)
-
 ## Visão Geral
 
 ```MERMAID
@@ -15406,16 +15398,6 @@ private String data;
 
 * Rastreamento de transformações
 
-## Recursos Adicionais
-
-* [Documentação completa](null)
-
-* [Exemplos de uso](null)
-
-* [Guia de contribuição](null)
-
-* [FAQ](null)
-
 Tip:
 
 Dica: Comece com um conjunto pequeno de validadores e transformadores, e expanda gradualmente conforme as necessidades do projeto.
@@ -16295,8 +16277,6 @@ public class ThreadSafeContainer<T> {
 
 
 # Reflection Explorer
-
-![Reflection Explorer](reflection-explorer-banner.png)
 
 ## Visão Geral do Projeto
 
@@ -17235,6 +17215,439 @@ try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
 * Varargs: Número variável de argumentos
 
 * Virtual Method: Método que pode ser sobrescrito
+
+
+
+# Internacionalização (i18n)
+
+## Conceitos Básicos
+
+### Locale
+
+```JAVA
+// Criando Locales
+Locale brLocale = new Locale("pt", "BR");
+Locale usLocale = Locale.US;
+Locale currentLocale = Locale.getDefault();
+
+// Definindo Locale padrão
+Locale.setDefault(brLocale);
+```
+
+### ResourceBundle
+
+```JAVA
+// Arquivo: messages_pt_BR.properties
+// mensagem=Olá, {0}!
+
+// Arquivo: messages_en_US.properties
+// message=Hello, {0}!
+
+ResourceBundle bundle = ResourceBundle.getBundle("messages", brLocale);
+String msg = bundle.getString("mensagem");
+```
+
+## Textos e Mensagens
+
+### Properties Files
+
+```PROPERTIES
+# messages_pt_BR.properties
+welcome=Bem-vindo
+error.notfound=Não encontrado
+app.title=Minha Aplicação
+
+# messages_en_US.properties
+welcome=Welcome
+error.notfound=Not found
+app.title=My Application
+```
+
+### Uso em Código
+
+```JAVA
+public class I18nDemo {
+    private ResourceBundle messages;
+    
+    public void setLocale(Locale locale) {
+        messages = ResourceBundle.getBundle("messages", locale);
+    }
+    
+    public String getMessage(String key) {
+        return messages.getString(key);
+    }
+}
+```
+
+## Boas Práticas
+
+### Organização
+
+* Separar textos em arquivos properties
+
+* Usar chaves hierárquicas
+
+* Manter consistência entre traduções
+
+* Documentar contexto das mensagens
+
+### Dicas de Implementação
+
+```JAVA
+// Uso de MessageFormat
+String pattern = messages.getString("welcome.user");
+MessageFormat formatter = new MessageFormat(pattern);
+String result = formatter.format(new Object[]{"João"});
+
+// Fallback para locale padrão
+try {
+    String msg = messages.getString("key");
+} catch (MissingResourceException e) {
+    msg = defaultMessages.getString("key");
+}
+```
+
+## Frameworks e Ferramentas
+
+### Spring Framework
+
+```JAVA
+@Configuration
+public class I18nConfig {
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasenames("messages");
+        source.setDefaultEncoding("UTF-8");
+        return source;
+    }
+}
+```
+
+### Ferramentas de Gestão
+
+* POEditor
+
+* Crowdin
+
+* Lokalise
+
+* Trados
+
+## Testes
+
+### Testando Internacionalização
+
+```JAVA
+@Test
+public void testMessageInDifferentLocales() {
+    ResourceBundle ptBR = ResourceBundle.getBundle("messages", new Locale("pt", "BR"));
+    ResourceBundle enUS = ResourceBundle.getBundle("messages", Locale.US);
+    
+    assertEquals("Olá", ptBR.getString("greeting"));
+    assertEquals("Hello", enUS.getString("greeting"));
+}
+```
+
+## Próximos Passos
+
+* [Formatação de Datas](date-formatting.html)
+
+* [Formatação de Números](number-formatting.html)
+
+
+
+# Formatação de Datas
+
+## DateTimeFormatter
+
+### Padrões Básicos
+
+```JAVA
+// Formatadores predefinidos
+DateTimeFormatter isoDate = DateTimeFormatter.ISO_DATE;
+DateTimeFormatter isoTime = DateTimeFormatter.ISO_TIME;
+DateTimeFormatter isoDateTime = DateTimeFormatter.ISO_DATE_TIME;
+
+// Formatação básica
+LocalDate date = LocalDate.now();
+String formatted = date.format(isoDate);  // 2024-01-20
+```
+
+### Padrões Customizados
+
+```JAVA
+// Criando formatadores customizados
+DateTimeFormatter custom = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+DateTimeFormatter withTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+// Aplicando formatação
+LocalDateTime now = LocalDateTime.now();
+String result = now.format(custom);       // 20/01/2024
+```
+
+## Localização
+
+### Formatação por Locale
+
+```JAVA
+// Formatadores localizados
+DateTimeFormatter brFormat = 
+    DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                    .withLocale(new Locale("pt", "BR"));
+
+DateTimeFormatter usFormat = 
+    DateTimeFormatter.ofPattern("MM/dd/yyyy")
+                    .withLocale(Locale.US);
+```
+
+### Nomes Localizados
+
+```JAVA
+// Meses e dias da semana
+DateTimeFormatter monthFormat = 
+    DateTimeFormatter.ofPattern("MMMM", new Locale("pt", "BR"));
+String mes = monthFormat.format(LocalDate.now());  // "janeiro"
+```
+
+## Parsing
+
+### Conversão de Strings
+
+```JAVA
+// Parse básico
+String dateStr = "2024-01-20";
+LocalDate date = LocalDate.parse(dateStr);
+
+// Parse com formato específico
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+LocalDate customDate = LocalDate.parse("20/01/2024", formatter);
+```
+
+### Tratamento de Erros
+
+```JAVA
+try {
+    LocalDate date = LocalDate.parse("data-inválida");
+} catch (DateTimeParseException e) {
+    System.err.println("Formato de data inválido");
+}
+```
+
+## Casos Especiais
+
+### Zonas de Tempo
+
+```JAVA
+// Formatação com timezone
+ZonedDateTime zdt = ZonedDateTime.now();
+DateTimeFormatter zoneFormat = 
+    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm z");
+String withZone = zdt.format(zoneFormat);  // "20/01/2024 15:30 BRT"
+```
+
+### Períodos e Durações
+
+```JAVA
+// Formatando períodos
+Period period = Period.between(
+    LocalDate.of(2023, 1, 1),
+    LocalDate.of(2024, 1, 1)
+);
+// P1Y (ISO-8601)
+
+// Formatando durações
+Duration duration = Duration.between(
+    LocalDateTime.now(),
+    LocalDateTime.now().plusHours(2)
+);
+// PT2H (ISO-8601)
+```
+
+## Boas Práticas
+
+### Constantes de Formato
+
+```JAVA
+public class DateUtils {
+    public static final DateTimeFormatter BR_DATE = 
+        DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
+    public static final DateTimeFormatter BR_DATE_TIME = 
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+}
+```
+
+### Validação
+
+```JAVA
+public boolean isValidDate(String dateStr, DateTimeFormatter formatter) {
+    try {
+        LocalDate.parse(dateStr, formatter);
+        return true;
+    } catch (DateTimeParseException e) {
+        return false;
+    }
+}
+```
+
+## Próximos Passos
+
+* [Formatação de Números](number-formatting.html)
+
+* [Internacionalização](i18n.html)
+
+
+
+# Formatação de Números
+
+## NumberFormat
+
+### Formatação Básica
+
+```JAVA
+// Formatadores básicos
+NumberFormat nf = NumberFormat.getInstance();
+NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+NumberFormat percentFormat = NumberFormat.getPercentInstance();
+
+// Exemplos
+double number = 1234.56;
+String formatted = nf.format(number);          // "1,234.56"
+String currency = currencyFormat.format(number);// "$1,234.56"
+String percent = percentFormat.format(0.75);   // "75%"
+```
+
+### Localização
+
+```JAVA
+// Formatadores localizados
+Locale brLocale = new Locale("pt", "BR");
+NumberFormat brCurrency = NumberFormat.getCurrencyInstance(brLocale);
+String brValue = brCurrency.format(1234.56);   // "R$ 1.234,56"
+
+Locale frLocale = new Locale("fr", "FR");
+NumberFormat frCurrency = NumberFormat.getCurrencyInstance(frLocale);
+String frValue = frCurrency.format(1234.56);   // "1 234,56 €"
+```
+
+## DecimalFormat
+
+### Padrões Customizados
+
+```JAVA
+// Padrões de formatação
+DecimalFormat df = new DecimalFormat("#,###.##");
+String num = df.format(1234567.89);    // "1,234,567.89"
+
+// Zeros à esquerda
+DecimalFormat df2 = new DecimalFormat("000000.00");
+String padded = df2.format(123.4);     // "000123.40"
+
+// Sufixos e prefixos
+DecimalFormat df3 = new DecimalFormat("€ #,###.00");
+String euro = df3.format(1234.56);     // "€ 1,234.56"
+```
+
+### Símbolos Customizados
+
+```JAVA
+DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+symbols.setDecimalSeparator(',');
+symbols.setGroupingSeparator('.');
+
+DecimalFormat custom = new DecimalFormat("#,###.##", symbols);
+String result = custom.format(1234.56); // "1.234,56"
+```
+
+## Parsing
+
+### Conversão de Strings
+
+```JAVA
+// Parse básico
+NumberFormat nf = NumberFormat.getInstance();
+Number num = nf.parse("1,234.56");
+
+// Parse com locale
+NumberFormat frFormat = NumberFormat.getInstance(Locale.FRANCE);
+Number frNum = frFormat.parse("1 234,56");
+
+// Tratamento de erros
+try {
+    Number value = nf.parse("invalid");
+} catch (ParseException e) {
+    System.err.println("Formato inválido");
+}
+```
+
+## Casos Especiais
+
+### Números Científicos
+
+```JAVA
+// Notação científica
+DecimalFormat scientific = new DecimalFormat("0.###E0");
+String sci = scientific.format(123456.789); // "1.235E5"
+
+// Precisão customizada
+DecimalFormat precise = new DecimalFormat("0.000000");
+String precision = precise.format(Math.PI); // "3.141593"
+```
+
+### Arredondamento
+
+```JAVA
+DecimalFormat df = new DecimalFormat("#,###.##");
+df.setRoundingMode(RoundingMode.HALF_UP);
+
+String rounded = df.format(123.456);  // "123.46"
+```
+
+## Boas Práticas
+
+### Constantes de Formato
+
+```JAVA
+public class NumberUtils {
+    public static final DecimalFormat MONEY_FORMAT = 
+        new DecimalFormat("#,##0.00");
+    
+    public static final DecimalFormat PERCENT_FORMAT = 
+        new DecimalFormat("#.##%");
+}
+```
+
+### Validação
+
+```JAVA
+public boolean isValidNumber(String numStr, NumberFormat format) {
+    try {
+        format.parse(numStr);
+        return true;
+    } catch (ParseException e) {
+        return false;
+    }
+}
+```
+
+## Frameworks e Bibliotecas
+
+### Java Money API
+
+```JAVA
+// Usando JavaMoney
+MonetaryAmount amount = Money.of(1234.56, "USD");
+MonetaryAmountFormat format = 
+    MonetaryFormats.getAmountFormat(Locale.US);
+String formatted = format.format(amount);
+```
+
+## Próximos Passos
+
+* [Internacionalização](i18n.html)
+
+* [Formatação de Datas](date-formatting.html)
 
 
 

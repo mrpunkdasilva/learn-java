@@ -1,8 +1,5 @@
 # Reflection Explorer
 
-![Reflection Explorer](reflection-explorer-banner.png)
-{style="width:700px"}
-
 ## Visão Geral do Projeto
 
 O Reflection Explorer é uma ferramenta avançada para análise e manipulação de classes Java em runtime, permitindo:

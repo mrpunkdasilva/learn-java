@@ -1,7 +1,5 @@
 # Arrays e Coleções
 
-![Arrays and Collections Banner](arrays-collections-banner.png)
-{style="width:700px"}
 
 ```ascii
 DATA STRUCTURES

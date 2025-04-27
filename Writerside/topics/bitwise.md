@@ -78,7 +78,6 @@ int clearBits = number & ~mask;
 ### Tópicos Relacionados
 - [Tipos Primitivos](primitive-types.md)
 - [Operadores Lógicos](logical.md)
-- [Manipulação de Bits](bit-manipulation.md)
 
 [Tipos Primitivos](primitive-types.md){.next-step}
 

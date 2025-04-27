@@ -256,11 +256,4 @@ private String data;
    - Logging detalhado
    - Rastreamento de transformações
 
-## Recursos Adicionais
-
-- [Documentação completa](link-para-documentacao)
-- [Exemplos de uso](link-para-exemplos)
-- [Guia de contribuição](link-para-guia)
-- [FAQ](link-para-faq)
-
 > **Dica**: Comece com um conjunto pequeno de validadores e transformadores, e expanda gradualmente conforme as necessidades do projeto.

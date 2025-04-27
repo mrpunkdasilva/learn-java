@@ -1,7 +1,5 @@
 # Recursos Avançados do Java
 
-![Advanced Features](advanced-features-banner.png)
-{style="width:700px"}
 
 ## Visão Geral
 

@@ -338,4 +338,7 @@
         <toc-element topic="cheat-sheets.md"/>
         <toc-element topic="glossary.md"/>
     </toc-element>
+    <toc-element topic="i18n.md"/>
+    <toc-element topic="date-formatting.md"/>
+    <toc-element topic="number-formatting.md"/>
 </instance-profile>

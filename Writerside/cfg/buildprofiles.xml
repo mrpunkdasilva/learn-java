@@ -7,7 +7,6 @@
         <header-logo>logo-primary.svg</header-logo>
         <custom-favicons>logo-primary.svg</custom-favicons>
         <custom-css>custom.css</custom-css>
-        <product-web-url>java.html</product-web-url>
         <download-title>Repositorio</download-title>
         <download-page>https://github.com/mrpunkdasilva/learn-java</download-page>
         <showDownloadButton>true</showDownloadButton>

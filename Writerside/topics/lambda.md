@@ -28,12 +28,14 @@ Integer size = length.apply("NetRunner");
 ```
 
 ### Predicate<T>
+
 ```java
 Predicate<String> isEmpty = str -> str.trim().isEmpty();
 boolean result = isEmpty.test("  ");
 ```
 
 ### Consumer<T>
+
 ```java
 Consumer<String> print = msg -> System.out.println(msg);
 print.accept("Hello, Runner!");
