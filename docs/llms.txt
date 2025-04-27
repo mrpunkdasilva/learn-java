@@ -13074,6 +13074,259 @@ public class FallbackRegistry {
 
 
 
+# Recursos Avançados do Java
+
+![Advanced Features](advanced-features-banner.png)
+
+## Visão Geral
+
+```MERMAID
+mindmap
+  root((Recursos<br>Avançados))
+    (Generics)
+      [Type Erasure]
+      [Wildcards]
+      [Bounds]
+    (Lambda)
+      [Functional Interfaces]
+      [Method References]
+      [Closure]
+    (Streams)
+      [Pipeline]
+      [Collectors]
+      [Parallel]
+    (Optional)
+      [Null Safety]
+      [Monadic Operations]
+    (Modules)
+      [Encapsulation]
+      [Dependencies]
+    (Reflection)
+      [Introspection]
+      [Dynamic Invocation]
+    (Annotations)
+      [Runtime]
+      [Compile-time]
+    (Projetos)
+      [Data Processor]
+      [Custom Framework]
+```
+
+## Recursos Principais
+
+### Generics
+
+Permite criar classes e métodos type-safe que podem trabalhar com diferentes tipos:
+
+```JAVA
+public class Box<T> {
+    private T content;
+    
+    public void set(T content) {
+        this.content = content;
+    }
+    
+    public T get() {
+        return content;
+    }
+}
+```
+
+### Lambda Expressions
+
+Implementa interfaces funcionais de forma concisa:
+
+```JAVA
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+names.forEach(name -> System.out.println("Hello, " + name));
+```
+
+### Streams API
+
+Processa coleções de forma declarativa:
+
+```JAVA
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+int sum = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .mapToInt(Integer::intValue)
+                .sum();
+```
+
+### Optional
+
+Lida com valores nulos de forma segura:
+
+```JAVA
+Optional<String> optional = Optional.ofNullable(getValue());
+String result = optional.map(String::toUpperCase)
+                       .orElse("default");
+```
+
+### Sistema de Módulos
+
+Encapsula e gerencia dependências:
+
+```JAVA
+module com.example.app {
+    requires java.base;
+    requires java.sql;
+    
+    exports com.example.api;
+}
+```
+
+### Reflection
+
+Examina e manipula código em runtime:
+
+```JAVA
+Class<?> clazz = MyClass.class;
+Method method = clazz.getDeclaredMethod("myMethod");
+method.invoke(instance);
+```
+
+### Annotations
+
+Define metadados para código:
+
+```JAVA
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Transactional {
+    boolean readOnly() default false;
+}
+```
+
+## Aplicações Práticas
+
+### Desenvolvimento de Frameworks
+
+```JAVA
+@Controller
+@RequestMapping("/api")
+public class UserController {
+    @Autowired
+    private UserService service;
+    
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id) {
+        return service.findById(id);
+    }
+}
+```
+
+### Processamento de Dados
+
+```JAVA
+public class DataProcessor<T> {
+    public List<R> process(
+        List<T> data,
+        Predicate<T> filter,
+        Function<T, R> transformer
+    ) {
+        return data.stream()
+                  .filter(filter)
+                  .map(transformer)
+                  .collect(Collectors.toList());
+    }
+}
+```
+
+### Plugins Dinâmicos
+
+```JAVA
+public class PluginLoader {
+    public Plugin loadPlugin(String className) {
+        Class<?> pluginClass = Class.forName(className);
+        return (Plugin) pluginClass.getDeclaredConstructor()
+                                 .newInstance();
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Type Safety
+
+* Use Generics apropriadamente
+
+* Evite raw types
+
+* Aplique bounds quando necessário
+
+2. Performance
+
+* Use Streams paralelos com cautela
+
+* Cache resultados de reflection
+
+* Otimize operações lambda críticas
+
+3. Modularidade
+
+* Defina interfaces claras
+
+* Encapsule implementações
+
+* Gerencie dependências explicitamente
+
+## Próximos Passos
+
+* [Generics](generics.html)
+
+* [Lambda Expressions](lambda.html)
+
+* [Streams API](streams.html)
+
+* [Optional](optional.html)
+
+* [Modules](modules.html)
+
+* [Reflection](reflection.html)
+
+* [Annotations](annotations.html)
+
+* [Advanced Projects](advanced-projects.html)
+
+## Recursos Adicionais
+
+### Documentação Oficial
+
+* [Java Language Specification](https://docs.oracle.com/javase/specs/)
+
+* [JDK Documentation](https://docs.oracle.com/en/java/javase/)
+
+### Ferramentas
+
+* IDEs com suporte avançado
+
+* Analisadores estáticos
+
+* Frameworks de teste
+
+### Comunidade
+
+* Fóruns de discussão
+
+* Repositórios de exemplo
+
+* Blogs técnicos
+
+## Desafios de Aprendizado
+
+1. Implemente um framework de injeção de dependência
+
+2. Crie um processador de anotações customizado
+
+3. Desenvolva um container genérico thread-safe
+
+4. Construa um sistema de plugins dinâmico
+
+[Generics](generics.html)
+
+
+
 # Generics: Flexibilidade com Tipo Seguro
 
 ```
@@ -15862,6 +16115,515 @@ public class UserService {
 * [Dagger](https://github.com/google/dagger)
 
 * [MapStruct](https://github.com/mapstruct/mapstruct)
+
+
+
+# Generic Container
+
+![Generic Container](generic-container-banner.png)
+
+## Visão Geral
+
+Um container genérico é uma estrutura de dados flexível que pode armazenar e gerenciar diferentes tipos de objetos de forma type-safe.
+
+## Estrutura Base
+
+### Container Genérico Básico
+
+```JAVA
+public class Container<T> {
+    private final List<T> elements;
+    private final Map<String, T> namedElements;
+    
+    public Container() {
+        this.elements = new ArrayList<>();
+        this.namedElements = new HashMap<>();
+    }
+    
+    public void add(T element) {
+        elements.add(element);
+    }
+    
+    public void addNamed(String name, T element) {
+        namedElements.put(name, element);
+    }
+    
+    public Optional<T> get(int index) {
+        return index >= 0 && index < elements.size() 
+            ? Optional.of(elements.get(index))
+            : Optional.empty();
+    }
+    
+    public Optional<T> getNamed(String name) {
+        return Optional.ofNullable(namedElements.get(name));
+    }
+}
+```
+
+## Funcionalidades Avançadas
+
+### Container com Validação
+
+```JAVA
+public class ValidatedContainer<T> extends Container<T> {
+    private final Predicate<T> validator;
+    
+    public ValidatedContainer(Predicate<T> validator) {
+        super();
+        this.validator = validator;
+    }
+    
+    @Override
+    public void add(T element) {
+        if (validator.test(element)) {
+            super.add(element);
+        } else {
+            throw new IllegalArgumentException("Elemento inválido");
+        }
+    }
+}
+```
+
+### Container com Transformação
+
+```JAVA
+public class TransformingContainer<T, R> {
+    private final Container<T> source;
+    private final Function<T, R> transformer;
+    
+    public TransformingContainer(Container<T> source, Function<T, R> transformer) {
+        this.source = source;
+        this.transformer = transformer;
+    }
+    
+    public Optional<R> getTransformed(int index) {
+        return source.get(index).map(transformer);
+    }
+}
+```
+
+## Casos de Uso
+
+### Gerenciamento de Dados
+
+```JAVA
+Container<User> userContainer = new Container<>();
+userContainer.add(new User("Alice"));
+userContainer.addNamed("admin", new User("Admin"));
+
+ValidatedContainer<Email> emailContainer = 
+    new ValidatedContainer<>(Email::isValid);
+emailContainer.add(new Email("user@example.com"));
+```
+
+### Processamento de Dados
+
+```JAVA
+Container<String> stringContainer = new Container<>();
+stringContainer.add("123");
+stringContainer.add("456");
+
+TransformingContainer<String, Integer> numberContainer =
+    new TransformingContainer<>(stringContainer, Integer::parseInt);
+
+Optional<Integer> number = numberContainer.getTransformed(0); // 123
+```
+
+## Boas Práticas
+
+1. Type Safety
+
+* Use bounds quando necessário
+
+* Evite type erasure quando possível
+
+* Valide tipos em runtime quando apropriado
+
+2. Performance
+
+* Implemente lazy loading
+
+* Use estruturas de dados apropriadas
+
+* Considere cache para operações custosas
+
+3. Thread Safety
+
+```JAVA
+public class ThreadSafeContainer<T> {
+    private final Container<T> container;
+    private final Lock lock;
+    
+    public ThreadSafeContainer() {
+        this.container = new Container<>();
+        this.lock = new ReentrantLock();
+    }
+    
+    public void add(T element) {
+        lock.lock();
+        try {
+            container.add(element);
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+## Exercícios Propostos
+
+1. Implemente um container com suporte a eventos (Observer pattern)
+
+2. Crie um container com política de expiração de elementos
+
+3. Desenvolva um container com suporte a operações em batch
+
+4. Adicione funcionalidade de serialização/deserialização
+
+## Próximos Passos
+
+* Explorar integração com Streams API
+
+* Implementar padrões de design adicionais
+
+* Adicionar suporte a persistência
+
+* Desenvolver visualizações de dados
+
+[Annotation Processor](annotation-processor.html)
+
+
+
+# Reflection Explorer
+
+![Reflection Explorer](reflection-explorer-banner.png)
+
+## Visão Geral do Projeto
+
+O Reflection Explorer é uma ferramenta avançada para análise e manipulação de classes Java em runtime, permitindo:
+
+* Inspeção detalhada de classes
+
+* Modificação dinâmica de objetos
+
+* Geração de proxies
+
+* Análise de dependências
+
+* Visualização de hierarquias
+
+## Arquitetura
+
+```MERMAID
+classDiagram
+    class ReflectionExplorer {
+        -ClassAnalyzer analyzer
+        -ObjectModifier modifier
+        -ProxyGenerator proxyGen
+        +analyze(Class) ClassInfo
+        +modify(Object, Enhancement) Object
+        +createProxy(Class, Handler) Object
+    }
+    
+    class ClassAnalyzer {
+        -methodCache: Map
+        -fieldCache: Map
+        +getMethods(Class) Method[]
+        +getFields(Class) Field[]
+        +getAnnotations(Class) Annotation[]
+    }
+    
+    class ObjectModifier {
+        +enhance(Object) Object
+        +inject(Object, Object) void
+        +intercept(Object, Method) Object
+    }
+    
+    class ProxyGenerator {
+        +createProxy(Class) Object
+        +addHandler(Object, Handler) void
+    }
+    
+    ReflectionExplorer --> ClassAnalyzer
+    ReflectionExplorer --> ObjectModifier
+    ReflectionExplorer --> ProxyGenerator
+```
+
+## Implementação Core
+
+### Analisador de Classes
+
+```JAVA
+public class ClassAnalyzer {
+    private final Map<Class<?>, Method[]> methodCache = new ConcurrentHashMap<>();
+    private final Map<Class<?>, Field[]> fieldCache = new ConcurrentHashMap<>();
+    
+    @Inspect
+    public ClassInfo analyze(Class<?> target) {
+        return ClassInfo.builder()
+            .name(target.getName())
+            .methods(getMethods(target))
+            .fields(getFields(target))
+            .annotations(getAnnotations(target))
+            .superclass(target.getSuperclass())
+            .interfaces(target.getInterfaces())
+            .modifiers(target.getModifiers())
+            .build();
+    }
+    
+    private Method[] getMethods(Class<?> clazz) {
+        return methodCache.computeIfAbsent(clazz, Class::getDeclaredMethods);
+    }
+    
+    private Field[] getFields(Class<?> clazz) {
+        return fieldCache.computeIfAbsent(clazz, Class::getDeclaredFields);
+    }
+}
+```
+
+### Modificador de Objetos
+
+```JAVA
+public class ObjectModifier {
+    @Modify
+    public Object enhance(
+        @Target Object instance,
+        @Enhancement Enhancement enhancement
+    ) {
+        Class<?> clazz = instance.getClass();
+        
+        // Aplicar modificações
+        for (Field field : clazz.getDeclaredFields()) {
+            if (enhancement.shouldModify(field)) {
+                field.setAccessible(true);
+                field.set(instance, enhancement.getNewValue(field));
+            }
+        }
+        
+        return instance;
+    }
+    
+    @Intercept
+    public Object interceptMethod(
+        Object instance,
+        Method method,
+        Object[] args,
+        MethodHandler handler
+    ) throws Exception {
+        // Pré-processamento
+        handler.beforeInvocation(method, args);
+        
+        // Invocação do método
+        Object result = method.invoke(instance, args);
+        
+        // Pós-processamento
+        return handler.afterInvocation(method, result);
+    }
+}
+```
+
+### Gerador de Proxy
+
+```JAVA
+public class ProxyGenerator {
+    public <T> T createProxy(
+        Class<T> interfaceType,
+        InvocationHandler handler
+    ) {
+        return (T) Proxy.newProxyInstance(
+            interfaceType.getClassLoader(),
+            new Class<?>[] { interfaceType },
+            handler
+        );
+    }
+    
+    public class LoggingHandler implements InvocationHandler {
+        private final Object target;
+        
+        public LoggingHandler(Object target) {
+            this.target = target;
+        }
+        
+        @Override
+        public Object invoke(
+            Object proxy,
+            Method method,
+            Object[] args
+        ) throws Throwable {
+            System.out.println("Before: " + method.getName());
+            Object result = method.invoke(target, args);
+            System.out.println("After: " + method.getName());
+            return result;
+        }
+    }
+}
+```
+
+## Recursos Avançados
+
+### Visualizador de Hierarquia
+
+```JAVA
+public class HierarchyVisualizer {
+    public String generateDotGraph(Class<?> rootClass) {
+        StringBuilder dot = new StringBuilder();
+        dot.append("digraph Hierarchy {\n");
+        
+        // Adiciona nós
+        addClassNode(dot, rootClass);
+        
+        // Adiciona relacionamentos
+        addRelationships(dot, rootClass);
+        
+        dot.append("}");
+        return dot.toString();
+    }
+    
+    private void addClassNode(StringBuilder dot, Class<?> clazz) {
+        dot.append(String.format(
+            "  %s [label=\"%s\"];\n",
+            clazz.getSimpleName(),
+            clazz.getName()
+        ));
+    }
+}
+```
+
+### Cache Inteligente
+
+```JAVA
+public class ReflectionCache {
+    private static final Map<Class<?>, ClassInfo> CLASS_INFO_CACHE = 
+        new ConcurrentHashMap<>();
+    
+    public static ClassInfo getClassInfo(Class<?> clazz) {
+        return CLASS_INFO_CACHE.computeIfAbsent(
+            clazz,
+            ReflectionCache::analyzeClass
+        );
+    }
+    
+    private static ClassInfo analyzeClass(Class<?> clazz) {
+        // Análise detalhada da classe
+        return new ClassAnalyzer().analyze(clazz);
+    }
+}
+```
+
+## Exemplos de Uso
+
+### Análise de Dependências
+
+```JAVA
+public class DependencyAnalyzer {
+    public Set<Class<?>> findDependencies(Class<?> targetClass) {
+        Set<Class<?>> dependencies = new HashSet<>();
+        
+        // Analisa campos
+        for (Field field : targetClass.getDeclaredFields()) {
+            dependencies.add(field.getType());
+        }
+        
+        // Analisa métodos
+        for (Method method : targetClass.getDeclaredMethods()) {
+            dependencies.addAll(Arrays.asList(method.getParameterTypes()));
+            dependencies.add(method.getReturnType());
+        }
+        
+        return dependencies;
+    }
+}
+```
+
+### Injeção Dinâmica
+
+```JAVA
+public class DependencyInjector {
+    public void inject(Object instance) {
+        Class<?> clazz = instance.getClass();
+        
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(Inject.class)) {
+                field.setAccessible(true);
+                field.set(instance, createDependency(field.getType()));
+            }
+        }
+    }
+}
+```
+
+## Testes
+
+### Testes Unitários
+
+```JAVA
+@Test
+public void testClassAnalysis() {
+    ClassAnalyzer analyzer = new ClassAnalyzer();
+    ClassInfo info = analyzer.analyze(TestClass.class);
+    
+    assertNotNull(info);
+    assertEquals("TestClass", info.getName());
+    assertTrue(info.getMethods().length > 0);
+}
+
+@Test
+public void testObjectModification() {
+    ObjectModifier modifier = new ObjectModifier();
+    TestClass instance = new TestClass();
+    
+    Enhancement enhancement = new Enhancement("value", "newValue");
+    Object modified = modifier.enhance(instance, enhancement);
+    
+    assertEquals("newValue", ((TestClass)modified).getValue());
+}
+```
+
+## Considerações de Performance
+
+1. Caching
+
+* Cache de reflection metadata
+
+* Reutilização de instâncias
+
+* Lazy loading de informações
+
+2. Otimizações
+
+* Batch processing
+
+* Minimizar reflection em loops
+
+* Usar streams para processamento paralelo
+
+3. Memória
+
+* Limpeza periódica de cache
+
+* Weak references para objetos
+
+* Pooling de instâncias comuns
+
+## Próximos Passos
+
+1. Implementar visualização gráfica
+
+2. Adicionar suporte a bytecode manipulation
+
+3. Criar sistema de plugins
+
+4. Integrar com IDEs populares
+
+## Recursos Adicionais
+
+* [Java Reflection API Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/package-summary.html)
+
+* [ASM Library](https://asm.ow2.io/)
+
+* [ByteBuddy](https://bytebuddy.net/)
+
+[Annotation Processor](annotation-processor.html)
 
 
 
