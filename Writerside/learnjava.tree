@@ -125,19 +125,19 @@
         </toc-element>
     </toc-element>
 
-    <!--    <toc-element topic="design-patterns.md">-->
-    <!--        <toc-element topic="creational-patterns.md">-->
-    <!--            <toc-element topic="singleton.md"/>-->
-    <!--            <toc-element topic="factory.md"/>-->
-    <!--            <toc-element topic="builder.md"/>-->
-    <!--            <toc-element topic="prototype.md"/>-->
-    <!--            <toc-element topic="abstract-factory.md"/>-->
-    <!--            <toc-element topic="creational-projects.md">-->
-    <!--                <toc-element topic="database-connection-pool.md"/>-->
-    <!--                <toc-element topic="document-generator.md"/>-->
-    <!--                <toc-element topic="vehicle-factory.md"/>-->
-    <!--            </toc-element>-->
-    <!--        </toc-element>-->
+<!--        <toc-element topic="design-patterns.md">-->
+            <toc-element topic="creational-patterns.md">
+                <toc-element topic="singleton.md"/>
+                <toc-element topic="factory.md"/>
+                <toc-element topic="builder.md"/>
+                <toc-element topic="prototype.md"/>
+                <toc-element topic="abstract-factory.md"/>
+                <toc-element topic="creational-projects.md">
+                    <toc-element topic="database-connection-pool.md"/>
+                    <toc-element topic="document-generator.md"/>
+                    <toc-element topic="vehicle-factory.md"/>
+                </toc-element>
+            </toc-element>
     <!--        <toc-element topic="structural-patterns.md">-->
     <!--            <toc-element topic="adapter.md"/>-->
     <!--            <toc-element topic="decorator.md"/>-->

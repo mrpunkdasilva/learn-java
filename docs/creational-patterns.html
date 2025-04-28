@@ -1,0 +1,126 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T18:42:35.325480718"><title>Padr&otilde;es Criacionais | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"principais-padr-es","level":0,"title":"Principais Padrões","anchor":"#principais-padr-es"},{"id":"quando-usar","level":0,"title":"Quando Usar","anchor":"#quando-usar"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"anti-patterns","level":0,"title":"Anti-Patterns","anchor":"#anti-patterns"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Padr&otilde;es Criacionais | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/creational-patterns.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Padr&otilde;es Criacionais | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/creational-patterns.html#webpage",
+    "url": "writerside-documentation/java/1.0/creational-patterns.html",
+    "name": "Padr&otilde;es Criacionais | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="creational-patterns" data-main-title="Padrões Criacionais" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="creational-patterns" id="creational-patterns.md">Padrões Criacionais</h1><div class="code-block" data-lang="none">
+DESIGN PATTERNS
+├── Creational
+│   ├── Singleton
+│   ├── Factory Method
+│   ├── Abstract Factory
+│   ├── Builder
+│   └── Prototype
+</div><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="z3npmz8_12">Os padr&otilde;es criacionais s&atilde;o fundamentais no desenvolvimento Java, fornecendo solu&ccedil;&otilde;es elegantes para a cria&ccedil;&atilde;o de objetos. Eles abstraem o processo de instancia&ccedil;&atilde;o, tornando o sistema independente de como seus objetos s&atilde;o criados, compostos e representados.</p></section><section class="chapter"><h2 id="principais-padr-es" data-toc="principais-padr-es">Principais Padr&otilde;es</h2><section class="chapter"><h3 id="1-singleton" data-toc="1-singleton">1. Singleton</h3><p id="z3npmz8_18">Garante que uma classe tenha apenas uma inst&acirc;ncia e fornece um ponto global de acesso a ela.</p><div class="code-block" data-lang="java">
+public class DatabaseConnection {
+    private static DatabaseConnection instance;
+    
+    private DatabaseConnection() {}
+    
+    public static synchronized DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+}
+</div></section><section class="chapter"><h3 id="2-factory-method" data-toc="2-factory-method">2. Factory Method</h3><p id="z3npmz8_20">Define uma interface para criar objetos, mas permite que as subclasses decidam qual classe instanciar.</p><div class="code-block" data-lang="java">
+public interface Animal {
+    void makeSound();
+}
+
+public class Dog implements Animal {
+    public void makeSound() {
+        System.out.println(&quot;Woof!&quot;);
+    }
+}
+
+public class AnimalFactory {
+    public Animal createAnimal(String type) {
+        return switch (type.toLowerCase()) {
+            case &quot;dog&quot; -&gt; new Dog();
+            case &quot;cat&quot; -&gt; new Cat();
+            default -&gt; throw new IllegalArgumentException(&quot;Animal type not supported&quot;);
+        };
+    }
+}
+</div></section><section class="chapter"><h3 id="3-abstract-factory" data-toc="3-abstract-factory">3. Abstract Factory</h3><p id="z3npmz8_22">Fornece uma interface para criar fam&iacute;lias de objetos relacionados sem especificar suas classes concretas.</p><div class="code-block" data-lang="java">
+public interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+public class WindowsFactory implements GUIFactory {
+    public Button createButton() {
+        return new WindowsButton();
+    }
+    
+    public Checkbox createCheckbox() {
+        return new WindowsCheckbox();
+    }
+}
+</div></section><section class="chapter"><h3 id="4-builder" data-toc="4-builder">4. Builder</h3><p id="z3npmz8_24">Separa a constru&ccedil;&atilde;o de um objeto complexo da sua representa&ccedil;&atilde;o, permitindo criar diferentes representa&ccedil;&otilde;es.</p><div class="code-block" data-lang="java">
+public class Computer {
+    private final String cpu;
+    private final String ram;
+    private final String storage;
+    
+    public static class Builder {
+        private String cpu;
+        private String ram;
+        private String storage;
+        
+        public Builder cpu(String cpu) {
+            this.cpu = cpu;
+            return this;
+        }
+        
+        public Builder ram(String ram) {
+            this.ram = ram;
+            return this;
+        }
+        
+        public Builder storage(String storage) {
+            this.storage = storage;
+            return this;
+        }
+        
+        public Computer build() {
+            return new Computer(this);
+        }
+    }
+    
+    private Computer(Builder builder) {
+        this.cpu = builder.cpu;
+        this.ram = builder.ram;
+        this.storage = builder.storage;
+    }
+}
+</div></section><section class="chapter"><h3 id="5-prototype" data-toc="5-prototype">5. Prototype</h3><p id="z3npmz8_26">Especifica os tipos de objetos a serem criados usando uma inst&acirc;ncia protot&iacute;pica e cria novos objetos copiando este prot&oacute;tipo.</p><div class="code-block" data-lang="java">
+public interface Prototype extends Cloneable {
+    Prototype clone();
+}
+
+public class Document implements Prototype {
+    private String content;
+    
+    public Document(String content) {
+        this.content = content;
+    }
+    
+    @Override
+    public Document clone() {
+        return new Document(this.content);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="quando-usar" data-toc="quando-usar">Quando Usar</h2><div class="table-wrapper"><table class="wide" id="z3npmz8_28"><thead><tr class="ijRowHead" id="z3npmz8_29"><th id="z3npmz8_35"><p>Padr&atilde;o</p></th><th id="z3npmz8_36"><p>Uso Recomendado</p></th></tr></thead><tbody><tr id="z3npmz8_30"><td id="z3npmz8_37"><p>Singleton</p></td><td id="z3npmz8_38"><p>Quando precisar de uma &uacute;nica inst&acirc;ncia compartilhada em todo o sistema</p></td></tr><tr id="z3npmz8_31"><td id="z3npmz8_39"><p>Factory Method</p></td><td id="z3npmz8_40"><p>Quando a cria&ccedil;&atilde;o de objetos deve ser flex&iacute;vel e extens&iacute;vel</p></td></tr><tr id="z3npmz8_32"><td id="z3npmz8_41"><p>Abstract Factory</p></td><td id="z3npmz8_42"><p>Quando precisar criar fam&iacute;lias de objetos relacionados</p></td></tr><tr id="z3npmz8_33"><td id="z3npmz8_43"><p>Builder</p></td><td id="z3npmz8_44"><p>Quando a constru&ccedil;&atilde;o de objetos envolver muitos par&acirc;metros e configura&ccedil;&otilde;es</p></td></tr><tr id="z3npmz8_34"><td id="z3npmz8_45"><p>Prototype</p></td><td id="z3npmz8_46"><p>Quando a cria&ccedil;&atilde;o de objetos for custosa e puder ser otimizada por clonagem</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="z3npmz8_47" type="1"><li class="list__item" id="z3npmz8_48"><p id="z3npmz8_51"><span class="control" id="z3npmz8_53">Escolha Adequada</span></p><ul class="list _bullet" id="z3npmz8_52"><li class="list__item" id="z3npmz8_54"><p id="z3npmz8_56">Analise cuidadosamente os requisitos antes de escolher um padr&atilde;o</p></li><li class="list__item" id="z3npmz8_55"><p id="z3npmz8_57">Considere o impacto na manutenibilidade e testabilidade</p></li></ul></li><li class="list__item" id="z3npmz8_49"><p id="z3npmz8_58"><span class="control" id="z3npmz8_60">Implementa&ccedil;&atilde;o</span></p><ul class="list _bullet" id="z3npmz8_59"><li class="list__item" id="z3npmz8_61"><p id="z3npmz8_64">Mantenha o c&oacute;digo limpo e bem documentado</p></li><li class="list__item" id="z3npmz8_62"><p id="z3npmz8_65">Use nomes descritivos para classes e m&eacute;todos</p></li><li class="list__item" id="z3npmz8_63"><p id="z3npmz8_66">Siga os princ&iacute;pios SOLID</p></li></ul></li><li class="list__item" id="z3npmz8_50"><p id="z3npmz8_67"><span class="control" id="z3npmz8_69">Performance</span></p><ul class="list _bullet" id="z3npmz8_68"><li class="list__item" id="z3npmz8_70"><p id="z3npmz8_73">Considere o impacto no desempenho</p></li><li class="list__item" id="z3npmz8_71"><p id="z3npmz8_74">Otimize quando necess&aacute;rio</p></li><li class="list__item" id="z3npmz8_72"><p id="z3npmz8_75">Use lazy loading quando apropriado</p></li></ul></li></ol></section><section class="chapter"><h2 id="anti-patterns" data-toc="anti-patterns">Anti-Patterns</h2><ul class="list _bullet" id="z3npmz8_76"><li class="list__item" id="z3npmz8_77"><p id="z3npmz8_81">Uso excessivo de Singleton</p></li><li class="list__item" id="z3npmz8_78"><p id="z3npmz8_82">Factories muito complexas</p></li><li class="list__item" id="z3npmz8_79"><p id="z3npmz8_83">Builders com poucos par&acirc;metros</p></li><li class="list__item" id="z3npmz8_80"><p id="z3npmz8_84">Prototypes sem necessidade real de clonagem</p></li></ul></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="z3npmz8_85" type="1"><li class="list__item" id="z3npmz8_86"><p id="z3npmz8_91">Implemente um pool de conex&otilde;es usando Singleton</p></li><li class="list__item" id="z3npmz8_87"><p id="z3npmz8_92">Crie uma f&aacute;brica de documentos com Factory Method</p></li><li class="list__item" id="z3npmz8_88"><p id="z3npmz8_93">Desenvolva um sistema de UI com Abstract Factory</p></li><li class="list__item" id="z3npmz8_89"><p id="z3npmz8_94">Construa um builder para objetos de configura&ccedil;&atilde;o</p></li><li class="list__item" id="z3npmz8_90"><p id="z3npmz8_95">Implemente um sistema de clonagem de templates</p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="z3npmz8_96"><li class="list__item" id="z3npmz8_97"><p id="z3npmz8_100"><a href="https://refactoring.guru/design-patterns/creational-patterns" id="z3npmz8_101" data-external="true" rel="noopener noreferrer" target="_blank">Design Patterns - GoF</a></p></li><li class="list__item" id="z3npmz8_98"><p id="z3npmz8_102"><a href="https://java-design-patterns.com/patterns/" id="z3npmz8_103" data-external="true" rel="noopener noreferrer" target="_blank">Java Design Patterns</a></p></li><li class="list__item" id="z3npmz8_99"><p id="z3npmz8_104"><a href="https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/" id="z3npmz8_105" data-external="true" rel="noopener noreferrer" target="_blank">Effective Java - Joshua Bloch</a></p></li></ul></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="z3npmz8_106"><li class="list__item" id="z3npmz8_107"><p id="z3npmz8_111">Explore padr&otilde;es estruturais</p></li><li class="list__item" id="z3npmz8_108"><p id="z3npmz8_112">Estude padr&otilde;es comportamentais</p></li><li class="list__item" id="z3npmz8_109"><p id="z3npmz8_113">Pratique com projetos reais</p></li><li class="list__item" id="z3npmz8_110"><p id="z3npmz8_114">Analise implementa&ccedil;&otilde;es em frameworks populares</p></li></ul></section><div class="last-modified">28 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="reflection-explorer.html" class="navigation-links__prev">Reflection Explorer</a><a href="singleton.html" class="navigation-links__next">Singleton Pattern</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

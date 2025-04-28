@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-27T20:29:05.823392547"><title>Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"tipos-de-loops","level":0,"title":"Tipos de Loops","anchor":"#tipos-de-loops"},{"id":"controle-de-loop","level":0,"title":"Controle de Loop","anchor":"#controle-de-loop"},{"id":"padr-es-de-uso","level":0,"title":"Padrões de Uso","anchor":"#padr-es-de-uso"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplos-avan-ados","level":0,"title":"Exemplos Avançados","anchor":"#exemplos-avan-ados"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/loops.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T18:42:33.827139875"><title>Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"tipos-de-loops","level":0,"title":"Tipos de Loops","anchor":"#tipos-de-loops"},{"id":"controle-de-loop","level":0,"title":"Controle de Loop","anchor":"#controle-de-loop"},{"id":"padr-es-de-uso","level":0,"title":"Padrões de Uso","anchor":"#padr-es-de-uso"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplos-avan-ados","level":0,"title":"Exemplos Avançados","anchor":"#exemplos-avan-ados"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/loops.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": "writerside-documentation/java/1.0/loops.html#webpage",
@@ -17,7 +17,7 @@
 &gt;&gt; Iniciando ciclos de execução...
 &gt;&gt; Configurando iteradores...
 &gt;&gt; Estabelecendo pontos de controle...
-</div><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="-jjb8hz_12">Loops s&atilde;o como rotinas de hack - eles permitem executar opera&ccedil;&otilde;es repetitivas de forma eficiente e controlada.</p></section><section class="chapter"><h2 id="tipos-de-loops" data-toc="tipos-de-loops">Tipos de Loops</h2><section class="chapter"><h3 id="1-for-loop" data-toc="1-for-loop">1. for Loop</h3><div class="code-block" data-lang="java">
+</div><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="qt3muj_12">Loops s&atilde;o como rotinas de hack - eles permitem executar opera&ccedil;&otilde;es repetitivas de forma eficiente e controlada.</p></section><section class="chapter"><h2 id="tipos-de-loops" data-toc="tipos-de-loops">Tipos de Loops</h2><section class="chapter"><h3 id="1-for-loop" data-toc="1-for-loop">1. for Loop</h3><div class="code-block" data-lang="java">
 for (inicialização; condição; incremento) {
     // código a ser repetido
 }
@@ -53,13 +53,13 @@ String[] servidores = {&quot;Alpha&quot;, &quot;Beta&quot;, &quot;Gamma&quot;};
 for (String servidor : servidores) {
     System.out.println(&quot;Verificando servidor: &quot; + servidor);
 }
-</div></section></section></section><section class="chapter"><h2 id="controle-de-loop" data-toc="controle-de-loop">Controle de Loop</h2><section class="chapter"><h3 id="break" data-toc="break">break</h3><p id="-jjb8hz_31">Interrompe a execu&ccedil;&atilde;o do loop completamente.</p><div class="code-block" data-lang="java">
+</div></section></section></section><section class="chapter"><h2 id="controle-de-loop" data-toc="controle-de-loop">Controle de Loop</h2><section class="chapter"><h3 id="break" data-toc="break">break</h3><p id="qt3muj_31">Interrompe a execu&ccedil;&atilde;o do loop completamente.</p><div class="code-block" data-lang="java">
 for (int i = 0; i &lt; 100; i++) {
     if (detectarIntruso()) {
         break; // Sai do loop imediatamente
     }
 }
-</div></section><section class="chapter"><h3 id="continue" data-toc="continue">continue</h3><p id="-jjb8hz_33">Pula para a pr&oacute;xima itera&ccedil;&atilde;o do loop.</p><div class="code-block" data-lang="java">
+</div></section><section class="chapter"><h3 id="continue" data-toc="continue">continue</h3><p id="qt3muj_33">Pula para a pr&oacute;xima itera&ccedil;&atilde;o do loop.</p><div class="code-block" data-lang="java">
 for (int porta = 0; porta &lt; 1024; porta++) {
     if (!portaVulneravel(porta)) {
         continue; // Verifica próxima porta
@@ -84,7 +84,7 @@ for (int i = 0; i &lt; 3; i++) {
     }
     System.out.println();
 }
-</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="-jjb8hz_41" type="1"><li class="list__item" id="-jjb8hz_42"><p id="-jjb8hz_45"><span class="control" id="-jjb8hz_47">Use o Loop Adequado</span></p><div class="code-block" data-lang="java">
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="qt3muj_41" type="1"><li class="list__item" id="qt3muj_42"><p id="qt3muj_45"><span class="control" id="qt3muj_47">Use o Loop Adequado</span></p><div class="code-block" data-lang="java">
 // Para número conhecido de iterações
 for (int i = 0; i &lt; tamanho; i++) { }
 
@@ -93,7 +93,7 @@ while (temDados()) { }
 
 // Para arrays/collections
 for (Elemento e : colecao) { }
-</div></li><li class="list__item" id="-jjb8hz_43"><p id="-jjb8hz_48"><span class="control" id="-jjb8hz_50">Evite Loop Infinito Acidental</span></p><div class="code-block" data-lang="java">
+</div></li><li class="list__item" id="qt3muj_43"><p id="qt3muj_48"><span class="control" id="qt3muj_50">Evite Loop Infinito Acidental</span></p><div class="code-block" data-lang="java">
 // Ruim - possível loop infinito
 while (x &gt; 0) {
     // esqueceu de modificar x
@@ -104,7 +104,7 @@ while (x &gt; 0) {
     x--;
     // processamento
 }
-</div></li><li class="list__item" id="-jjb8hz_44"><p id="-jjb8hz_51"><span class="control" id="-jjb8hz_53">Mantenha Loops Simples</span></p><div class="code-block" data-lang="java">
+</div></li><li class="list__item" id="qt3muj_44"><p id="qt3muj_51"><span class="control" id="qt3muj_53">Mantenha Loops Simples</span></p><div class="code-block" data-lang="java">
 // Evite
 for (int i = 0; i &lt; 100; i++) {
     // muito código aqui
@@ -145,7 +145,7 @@ for (int i = 0; i &lt; dados.length; i++) {
         buffer.setLength(0);
     }
 }
-</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="-jjb8hz_60" type="1"><li class="list__item" id="-jjb8hz_61"><p id="-jjb8hz_63"><span class="control" id="-jjb8hz_65">Scanner de Portas</span></p><div class="code-block" data-lang="java">
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="qt3muj_60" type="1"><li class="list__item" id="qt3muj_61"><p id="qt3muj_63"><span class="control" id="qt3muj_65">Scanner de Portas</span></p><div class="code-block" data-lang="java">
 public void scanearPortas(int inicio, int fim) {
     for (int porta = inicio; porta &lt;= fim; porta++) {
         if (portaAberta(porta)) {
@@ -153,7 +153,7 @@ public void scanearPortas(int inicio, int fim) {
         }
     }
 }
-</div></li><li class="list__item" id="-jjb8hz_62"><p id="-jjb8hz_66"><span class="control" id="-jjb8hz_68">Processador de Dados</span></p><div class="code-block" data-lang="java">
+</div></li><li class="list__item" id="qt3muj_62"><p id="qt3muj_66"><span class="control" id="qt3muj_68">Processador de Dados</span></p><div class="code-block" data-lang="java">
 public void processarDados(List&lt;String&gt; dados) {
     int processados = 0;
     while (!dados.isEmpty()) {
@@ -165,4 +165,4 @@ public void processarDados(List&lt;String&gt; dados) {
         }
     }
 }
-</div></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-jjb8hz_69"><li class="list__item" id="-jjb8hz_71"><p id="-jjb8hz_74">Aprenda sobre condicionais em <a href="conditionals.html" id="-jjb8hz_75" data-tooltip="As estruturas condicionais são como os checkpoints da Matrix - elas determinam quais caminhos seu código pode seguir.">Conditionals</a></p></li><li class="list__item" id="-jjb8hz_72"><p id="-jjb8hz_76">Explore express&otilde;es switch em <a href="switch-expressions.html" id="-jjb8hz_77" data-tooltip="O switch expression é uma feature moderna do Java que oferece uma forma mais concisa e segura de escrever estruturas de decisão múltipla.">Switch Expressions</a></p></li><li class="list__item" id="-jjb8hz_73"><p id="-jjb8hz_78">Descubra pattern matching em <a href="pattern-matching.html" id="-jjb8hz_79" data-tooltip="Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.">Pattern Matching</a></p></li></ul><p id="-jjb8hz_70"><a href="pattern-matching.html" id="-jjb8hz_80" data-tooltip="Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.">Pattern Matching</a></p></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="conditionals.html" class="navigation-links__prev">Estruturas Condicionais</a><a href="switch-expressions.html" class="navigation-links__next">Switch Expressions</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
+</div></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="qt3muj_69"><li class="list__item" id="qt3muj_71"><p id="qt3muj_74">Aprenda sobre condicionais em <a href="conditionals.html" id="qt3muj_75" data-tooltip="As estruturas condicionais são como os checkpoints da Matrix - elas determinam quais caminhos seu código pode seguir.">Conditionals</a></p></li><li class="list__item" id="qt3muj_72"><p id="qt3muj_76">Explore express&otilde;es switch em <a href="switch-expressions.html" id="qt3muj_77" data-tooltip="O switch expression é uma feature moderna do Java que oferece uma forma mais concisa e segura de escrever estruturas de decisão múltipla.">Switch Expressions</a></p></li><li class="list__item" id="qt3muj_73"><p id="qt3muj_78">Descubra pattern matching em <a href="pattern-matching.html" id="qt3muj_79" data-tooltip="Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.">Pattern Matching</a></p></li></ul><p id="qt3muj_70"><a href="pattern-matching.html" id="qt3muj_80" data-tooltip="Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.">Pattern Matching</a></p></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="conditionals.html" class="navigation-links__prev">Estruturas Condicionais</a><a href="switch-expressions.html" class="navigation-links__next">Switch Expressions</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

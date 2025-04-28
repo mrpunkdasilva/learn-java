@@ -17040,6 +17040,1298 @@ public void testObjectModification() {
 
 
 
+# Padrões Criacionais
+
+```
+DESIGN PATTERNS
+├── Creational
+│   ├── Singleton
+│   ├── Factory Method
+│   ├── Abstract Factory
+│   ├── Builder
+│   └── Prototype
+```
+
+## Visão Geral
+
+Os padrões criacionais são fundamentais no desenvolvimento Java, fornecendo soluções elegantes para a criação de objetos. Eles abstraem o processo de instanciação, tornando o sistema independente de como seus objetos são criados, compostos e representados.
+
+## Principais Padrões
+
+### 1. Singleton
+
+Garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela.
+
+```JAVA
+public class DatabaseConnection {
+    private static DatabaseConnection instance;
+    
+    private DatabaseConnection() {}
+    
+    public static synchronized DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+}
+```
+
+### 2. Factory Method
+
+Define uma interface para criar objetos, mas permite que as subclasses decidam qual classe instanciar.
+
+```JAVA
+public interface Animal {
+    void makeSound();
+}
+
+public class Dog implements Animal {
+    public void makeSound() {
+        System.out.println("Woof!");
+    }
+}
+
+public class AnimalFactory {
+    public Animal createAnimal(String type) {
+        return switch (type.toLowerCase()) {
+            case "dog" -> new Dog();
+            case "cat" -> new Cat();
+            default -> throw new IllegalArgumentException("Animal type not supported");
+        };
+    }
+}
+```
+
+### 3. Abstract Factory
+
+Fornece uma interface para criar famílias de objetos relacionados sem especificar suas classes concretas.
+
+```JAVA
+public interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+public class WindowsFactory implements GUIFactory {
+    public Button createButton() {
+        return new WindowsButton();
+    }
+    
+    public Checkbox createCheckbox() {
+        return new WindowsCheckbox();
+    }
+}
+```
+
+### 4. Builder
+
+Separa a construção de um objeto complexo da sua representação, permitindo criar diferentes representações.
+
+```JAVA
+public class Computer {
+    private final String cpu;
+    private final String ram;
+    private final String storage;
+    
+    public static class Builder {
+        private String cpu;
+        private String ram;
+        private String storage;
+        
+        public Builder cpu(String cpu) {
+            this.cpu = cpu;
+            return this;
+        }
+        
+        public Builder ram(String ram) {
+            this.ram = ram;
+            return this;
+        }
+        
+        public Builder storage(String storage) {
+            this.storage = storage;
+            return this;
+        }
+        
+        public Computer build() {
+            return new Computer(this);
+        }
+    }
+    
+    private Computer(Builder builder) {
+        this.cpu = builder.cpu;
+        this.ram = builder.ram;
+        this.storage = builder.storage;
+    }
+}
+```
+
+### 5. Prototype
+
+Especifica os tipos de objetos a serem criados usando uma instância prototípica e cria novos objetos copiando este protótipo.
+
+```JAVA
+public interface Prototype extends Cloneable {
+    Prototype clone();
+}
+
+public class Document implements Prototype {
+    private String content;
+    
+    public Document(String content) {
+        this.content = content;
+    }
+    
+    @Override
+    public Document clone() {
+        return new Document(this.content);
+    }
+}
+```
+
+## Quando Usar
+
+| Padrão |Uso Recomendado |
+---------------------------
+| Singleton |Quando precisar de uma única instância compartilhada em todo o sistema |
+| Factory Method |Quando a criação de objetos deve ser flexível e extensível |
+| Abstract Factory |Quando precisar criar famílias de objetos relacionados |
+| Builder |Quando a construção de objetos envolver muitos parâmetros e configurações |
+| Prototype |Quando a criação de objetos for custosa e puder ser otimizada por clonagem |
+
+## Melhores Práticas
+
+1. Escolha Adequada
+
+* Analise cuidadosamente os requisitos antes de escolher um padrão
+
+* Considere o impacto na manutenibilidade e testabilidade
+
+2. Implementação
+
+* Mantenha o código limpo e bem documentado
+
+* Use nomes descritivos para classes e métodos
+
+* Siga os princípios SOLID
+
+3. Performance
+
+* Considere o impacto no desempenho
+
+* Otimize quando necessário
+
+* Use lazy loading quando apropriado
+
+## Anti-Patterns
+
+* Uso excessivo de Singleton
+
+* Factories muito complexas
+
+* Builders com poucos parâmetros
+
+* Prototypes sem necessidade real de clonagem
+
+## Exercícios Práticos
+
+1. Implemente um pool de conexões usando Singleton
+
+2. Crie uma fábrica de documentos com Factory Method
+
+3. Desenvolva um sistema de UI com Abstract Factory
+
+4. Construa um builder para objetos de configuração
+
+5. Implemente um sistema de clonagem de templates
+
+## Recursos Adicionais
+
+* [Design Patterns - GoF](https://refactoring.guru/design-patterns/creational-patterns)
+
+* [Java Design Patterns](https://java-design-patterns.com/patterns/)
+
+* [Effective Java - Joshua Bloch](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+
+## Próximos Passos
+
+* Explore padrões estruturais
+
+* Estude padrões comportamentais
+
+* Pratique com projetos reais
+
+* Analise implementações em frameworks populares
+
+
+
+# Singleton Pattern
+
+## Visão Geral
+
+O Singleton é um padrão criacional que garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela.
+
+```
+SINGLETON PATTERN
+├── Única Instância
+├── Acesso Global
+├── Lazy Loading
+└── Thread Safety
+```
+
+## Implementações
+
+### 1. Implementação Básica
+
+```JAVA
+public class BasicSingleton {
+    private static BasicSingleton instance;
+    
+    private BasicSingleton() {}
+    
+    public static BasicSingleton getInstance() {
+        if (instance == null) {
+            instance = new BasicSingleton();
+        }
+        return instance;
+    }
+}
+```
+
+### 2. Thread-Safe com Double-Check Locking
+
+```JAVA
+public class ThreadSafeSingleton {
+    private static volatile ThreadSafeSingleton instance;
+    
+    private ThreadSafeSingleton() {}
+    
+    public static ThreadSafeSingleton getInstance() {
+        if (instance == null) {
+            synchronized (ThreadSafeSingleton.class) {
+                if (instance == null) {
+                    instance = new ThreadSafeSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+### 3. Inicialização Estática (Holder Pattern)
+
+```JAVA
+public class HolderSingleton {
+    private HolderSingleton() {}
+    
+    private static class Holder {
+        static final HolderSingleton INSTANCE = new HolderSingleton();
+    }
+    
+    public static HolderSingleton getInstance() {
+        return Holder.INSTANCE;
+    }
+}
+```
+
+### 4. Enum Singleton
+
+```JAVA
+public enum EnumSingleton {
+    INSTANCE;
+    
+    private Connection connection;
+    
+    EnumSingleton() {
+        connection = DatabaseConnection.create();
+    }
+    
+    public void execute(String sql) {
+        connection.execute(sql);
+    }
+}
+```
+
+## Casos de Uso
+
+1. Conexões de Banco de Dados
+
+```JAVA
+public class DatabaseConnection {
+    private static DatabaseConnection instance;
+    private final Connection connection;
+    
+    private DatabaseConnection() {
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db");
+    }
+    
+    public static synchronized DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+}
+```
+
+1. Cache Global
+
+```JAVA
+public class GlobalCache {
+    private static final GlobalCache INSTANCE = new GlobalCache();
+    private Map<String, Object> cache = new ConcurrentHashMap<>();
+    
+    private GlobalCache() {}
+    
+    public static GlobalCache getInstance() {
+        return INSTANCE;
+    }
+    
+    public void put(String key, Object value) {
+        cache.put(key, value);
+    }
+    
+    public Object get(String key) {
+        return cache.get(key);
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Escolha a Implementação Adequada
+
+* Use Holder Pattern para lazy loading thread-safe
+
+* Use Enum para serialização garantida
+
+* Use Double-Check Locking apenas se necessário
+
+2. Evite Estado Mutável
+
+* Minimize o estado interno
+
+* Use imutabilidade quando possível
+
+* Considere thread safety
+
+3. Teste Adequadamente
+
+* Verifique thread safety
+
+* Teste serialização
+
+* Valide comportamento em diferentes cenários
+
+## Anti-Patterns
+
+* Uso excessivo de Singletons
+
+* Singletons com muito estado
+
+* Acoplamento forte com Singletons
+
+* Singletons não thread-safe
+
+## Exercício Prático
+
+Implemente um gerenciador de configurações usando Singleton:
+
+```JAVA
+public class ConfigManager {
+    private static volatile ConfigManager instance;
+    private Properties config;
+    
+    private ConfigManager() {
+        config = new Properties();
+        loadConfig();
+    }
+    
+    public static ConfigManager getInstance() {
+        if (instance == null) {
+            synchronized (ConfigManager.class) {
+                if (instance == null) {
+                    instance = new ConfigManager();
+                }
+            }
+        }
+        return instance;
+    }
+    
+    private void loadConfig() {
+        try (InputStream input = getClass().getClassLoader()
+                .getResourceAsStream("config.properties")) {
+            config.load(input);
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading config", e);
+        }
+    }
+    
+    public String getProperty(String key) {
+        return config.getProperty(key);
+    }
+}
+```
+
+## Próximos Passos
+
+* Explore outros padrões criacionais
+
+* Estude alternativas ao Singleton
+
+* Pratique com diferentes implementações
+
+* Aprenda sobre injeção de dependências
+
+
+
+# Factory Method Pattern
+
+## Visão Geral
+
+O Factory Method é um padrão criacional que define uma interface para criar objetos, mas permite que as subclasses decidam qual classe instanciar.
+
+```
+FACTORY METHOD
+├── Creator (Interface/Abstract)
+├── Concrete Creator
+├── Product (Interface)
+└── Concrete Product
+```
+
+## Implementações
+
+### 1. Factory Method Básico
+
+```JAVA
+public interface Animal {
+    void makeSound();
+}
+
+public class Dog implements Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Woof!");
+    }
+}
+
+public class Cat implements Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Meow!");
+    }
+}
+
+public class AnimalFactory {
+    public Animal createAnimal(String type) {
+        return switch (type.toLowerCase()) {
+            case "dog" -> new Dog();
+            case "cat" -> new Cat();
+            default -> throw new IllegalArgumentException("Unknown animal type");
+        };
+    }
+}
+```
+
+### 2. Factory Method com Creator Abstrato
+
+```JAVA
+public abstract class DocumentCreator {
+    public abstract Document createDocument();
+    
+    public Document processDocument() {
+        Document doc = createDocument();
+        doc.process();
+        return doc;
+    }
+}
+
+public class PDFCreator extends DocumentCreator {
+    @Override
+    public Document createDocument() {
+        return new PDFDocument();
+    }
+}
+
+public class WordCreator extends DocumentCreator {
+    @Override
+    public Document createDocument() {
+        return new WordDocument();
+    }
+}
+```
+
+### 3. Factory Method Parametrizado
+
+```JAVA
+public class VehicleFactory {
+    public Vehicle createVehicle(VehicleType type, String model) {
+        return switch (type) {
+            case CAR -> new Car(model);
+            case TRUCK -> new Truck(model);
+            case MOTORCYCLE -> new Motorcycle(model);
+        };
+    }
+    
+    public enum VehicleType {
+        CAR, TRUCK, MOTORCYCLE
+    }
+}
+```
+
+## Casos de Uso
+
+### 1. Sistema de Notificações
+
+```JAVA
+public interface Notification {
+    void send(String message);
+}
+
+public class EmailNotification implements Notification {
+    @Override
+    public void send(String message) {
+        // Enviar email
+    }
+}
+
+public class SMSNotification implements Notification {
+    @Override
+    public void send(String message) {
+        // Enviar SMS
+    }
+}
+
+public class NotificationFactory {
+    public Notification createNotification(String channel) {
+        return switch (channel.toLowerCase()) {
+            case "email" -> new EmailNotification();
+            case "sms" -> new SMSNotification();
+            default -> throw new IllegalArgumentException("Unknown channel");
+        };
+    }
+}
+```
+
+### 2. Conexões de Banco de Dados
+
+```JAVA
+public interface DatabaseConnection {
+    void connect();
+    void query(String sql);
+}
+
+public class MySQLConnection implements DatabaseConnection {
+    @Override
+    public void connect() {
+        // Conectar ao MySQL
+    }
+    
+    @Override
+    public void query(String sql) {
+        // Executar query MySQL
+    }
+}
+
+public class ConnectionFactory {
+    public DatabaseConnection createConnection(String type) {
+        return switch (type.toLowerCase()) {
+            case "mysql" -> new MySQLConnection();
+            case "postgresql" -> new PostgreSQLConnection();
+            default -> throw new IllegalArgumentException("Unknown database type");
+        };
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Design Claro
+
+* Mantenha a hierarquia de classes simples
+
+* Use nomes descritivos
+
+* Documente o comportamento esperado
+
+2. Extensibilidade
+
+* Facilite a adição de novos produtos
+
+* Use enums para tipos válidos
+
+* Considere configuração externa
+
+3. Tratamento de Erros
+
+* Valide parâmetros de entrada
+
+* Use exceções específicas
+
+* Forneça mensagens de erro claras
+
+## Anti-Patterns
+
+* Factories muito complexas
+
+* Lógica de negócio nas factories
+
+* Duplicação de código entre produtos
+
+* Factories não extensíveis
+
+## Exercício Prático
+
+Implemente um sistema de plugins usando Factory Method:
+
+```JAVA
+public interface Plugin {
+    void initialize();
+    void execute();
+    void shutdown();
+}
+
+public abstract class PluginFactory {
+    public abstract Plugin createPlugin();
+    
+    public Plugin loadPlugin() {
+        Plugin plugin = createPlugin();
+        plugin.initialize();
+        return plugin;
+    }
+}
+
+public class ImagePluginFactory extends PluginFactory {
+    @Override
+    public Plugin createPlugin() {
+        return new ImagePlugin();
+    }
+}
+
+public class AudioPluginFactory extends PluginFactory {
+    @Override
+    public Plugin createPlugin() {
+        return new AudioPlugin();
+    }
+}
+```
+
+## Próximos Passos
+
+* Explore Abstract Factory
+
+* Estude combinações com outros padrões
+
+* Pratique com diferentes cenários
+
+* Aprenda sobre Dependency Injection
+
+
+
+# Builder Pattern
+
+## Visão Geral
+
+O Builder é um padrão criacional que permite construir objetos complexos passo a passo, separando o processo de construção da representação final.
+
+```
+BUILDER PATTERN
+├── Director (Opcional)
+├── Builder (Interface)
+├── Concrete Builder
+└── Product
+```
+
+## Implementações
+
+### 1. Builder Clássico
+
+```JAVA
+public class Pizza {
+    private String dough;
+    private String sauce;
+    private String topping;
+    
+    public static class Builder {
+        private Pizza pizza = new Pizza();
+        
+        public Builder dough(String dough) {
+            pizza.dough = dough;
+            return this;
+        }
+        
+        public Builder sauce(String sauce) {
+            pizza.sauce = sauce;
+            return this;
+        }
+        
+        public Builder topping(String topping) {
+            pizza.topping = topping;
+            return this;
+        }
+        
+        public Pizza build() {
+            return pizza;
+        }
+    }
+}
+
+// Uso:
+Pizza pizza = new Pizza.Builder()
+    .dough("thin")
+    .sauce("tomato")
+    .topping("cheese")
+    .build();
+```
+
+### 2. Builder com Director
+
+```JAVA
+public interface HouseBuilder {
+    void buildFoundation();
+    void buildWalls();
+    void buildRoof();
+    House getResult();
+}
+
+public class ConcreteHouseBuilder implements HouseBuilder {
+    private House house = new House();
+    
+    @Override
+    public void buildFoundation() {
+        house.setFoundation("Concrete Foundation");
+    }
+    
+    @Override
+    public void buildWalls() {
+        house.setWalls("Brick Walls");
+    }
+    
+    @Override
+    public void buildRoof() {
+        house.setRoof("Tile Roof");
+    }
+    
+    @Override
+    public House getResult() {
+        return house;
+    }
+}
+
+public class HouseDirector {
+    private HouseBuilder builder;
+    
+    public HouseDirector(HouseBuilder builder) {
+        this.builder = builder;
+    }
+    
+    public void constructHouse() {
+        builder.buildFoundation();
+        builder.buildWalls();
+        builder.buildRoof();
+    }
+}
+```
+
+### 3. Builder com Validação
+
+```JAVA
+public class User {
+    private final String username;
+    private final String email;
+    private final int age;
+    
+    private User(Builder builder) {
+        this.username = builder.username;
+        this.email = builder.email;
+        this.age = builder.age;
+    }
+    
+    public static class Builder {
+        private String username;
+        private String email;
+        private int age;
+        
+        public Builder username(String username) {
+            if (username == null || username.trim().isEmpty()) {
+                throw new IllegalArgumentException("Username is required");
+            }
+            this.username = username;
+            return this;
+        }
+        
+        public Builder email(String email) {
+            if (!email.contains("@")) {
+                throw new IllegalArgumentException("Invalid email");
+            }
+            this.email = email;
+            return this;
+        }
+        
+        public Builder age(int age) {
+            if (age < 0 || age > 150) {
+                throw new IllegalArgumentException("Invalid age");
+            }
+            this.age = age;
+            return this;
+        }
+        
+        public User build() {
+            validateUserData();
+            return new User(this);
+        }
+        
+        private void validateUserData() {
+            // Validação complexa
+        }
+    }
+}
+```
+
+## Casos de Uso
+
+### 1. Construtor de Documentos
+
+```JAVA
+public class Document {
+    private List<String> headers = new ArrayList<>();
+    private List<String> body = new ArrayList<>();
+    private List<String> footers = new ArrayList<>();
+    
+    public static class Builder {
+        private Document doc = new Document();
+        
+        public Builder addHeader(String header) {
+            doc.headers.add(header);
+            return this;
+        }
+        
+        public Builder addBodyParagraph(String paragraph) {
+            doc.body.add(paragraph);
+            return this;
+        }
+        
+        public Builder addFooter(String footer) {
+            doc.footers.add(footer);
+            return this;
+        }
+        
+        public Document build() {
+            return doc;
+        }
+    }
+}
+```
+
+### 2. Construtor de Queries SQL
+
+```JAVA
+public class SQLQueryBuilder {
+    private StringBuilder query = new StringBuilder();
+    private boolean hasWhere = false;
+    private List<String> conditions = new ArrayList<>();
+    
+    public SQLQueryBuilder select(String... columns) {
+        query.append("SELECT ");
+        query.append(String.join(", ", columns));
+        return this;
+    }
+    
+    public SQLQueryBuilder from(String table) {
+        query.append(" FROM ").append(table);
+        return this;
+    }
+    
+    public SQLQueryBuilder where(String condition) {
+        if (!hasWhere) {
+            query.append(" WHERE ");
+            hasWhere = true;
+        } else {
+            query.append(" AND ");
+        }
+        query.append(condition);
+        return this;
+    }
+    
+    public String build() {
+        return query.toString();
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Imutabilidade
+
+* Use campos finais
+
+* Valide no momento da construção
+
+* Retorne cópias defensivas
+
+2. Validação
+
+* Valide parâmetros individuais
+
+* Faça validação cruzada
+
+* Lance exceções apropriadas
+
+3. Fluência
+
+* Use method chaining
+
+* Nomeie métodos claramente
+
+* Mantenha consistência
+
+## Anti-Patterns
+
+* Builders mutáveis
+
+* Validação insuficiente
+
+* Complexidade desnecessária
+
+* Violação do princípio de responsabilidade única
+
+## Exercício Prático
+
+Implemente um builder para configuração de conexão de banco de dados:
+
+```JAVA
+public class DatabaseConfig {
+    private final String host;
+    private final int port;
+    private final String database;
+    private final String username;
+    private final String password;
+    private final boolean useSSL;
+    private final int timeout;
+    
+    public static class Builder {
+        private String host = "localhost";
+        private int port = 5432;
+        private String database;
+        private String username;
+        private String password;
+        private boolean useSSL = false;
+        private int timeout = 30;
+        
+        public Builder host(String host) {
+            this.host = host;
+            return this;
+        }
+        
+        public Builder port(int port) {
+            this.port = port;
+            return this;
+        }
+        
+        // ... outros setters
+        
+        public DatabaseConfig build() {
+            validate();
+            return new DatabaseConfig(this);
+        }
+        
+        private void validate() {
+            if (database == null || username == null || password == null) {
+                throw new IllegalStateException("Database, username and password are required");
+            }
+            if (port < 0 || port > 65535) {
+                throw new IllegalArgumentException("Invalid port number");
+            }
+            if (timeout <= 0) {
+                throw new IllegalArgumentException("Timeout must be positive");
+            }
+        }
+    }
+    
+    private DatabaseConfig(Builder builder) {
+        this.host = builder.host;
+        this.port = builder.port;
+        this.database = builder.database;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.useSSL = builder.useSSL;
+        this.timeout = builder.timeout;
+    }
+}
+```
+
+## Próximos Passos
+
+* Explore variações do Builder
+
+* Combine com outros padrões
+
+* Estude builders em frameworks
+
+* Pratique com casos complexos
+
+
+
+# Prototype Pattern
+
+## Visão Geral
+
+O Prototype é um padrão criacional que permite copiar objetos existentes sem fazer seu código depender de suas classes.
+
+```
+PROTOTYPE PATTERN
+├── Prototype (Interface)
+├── Concrete Prototype
+└── Client
+```
+
+## Implementações
+
+### 1. Prototype Básico
+
+```JAVA
+public interface Prototype extends Cloneable {
+    Prototype clone();
+}
+
+public class ConcretePrototype implements Prototype {
+    private String field;
+    
+    public ConcretePrototype(String field) {
+        this.field = field;
+    }
+    
+    @Override
+    public Prototype clone() {
+        return new ConcretePrototype(this.field);
+    }
+}
+```
+
+### 2. Deep Clone com Serialização
+
+```JAVA
+public class DeepPrototype implements Serializable {
+    private List<String> data;
+    private ComplexObject object;
+    
+    public DeepPrototype deepClone() {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
+            
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            return (DeepPrototype) ois.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+### 3. Prototype Registry
+
+```JAVA
+public class PrototypeRegistry {
+    private Map<String, Prototype> prototypes = new HashMap<>();
+    
+    public void addPrototype(String key, Prototype prototype) {
+        prototypes.put(key, prototype);
+    }
+    
+    public Prototype getPrototype(String key) {
+        Prototype prototype = prototypes.get(key);
+        if (prototype == null) {
+            throw new IllegalArgumentException("Prototype not found");
+        }
+        return prototype.clone();
+    }
+}
+```
+
+## Casos de Uso
+
+### 1. Sistema de Formas Geométricas
+
+```JAVA
+public abstract class Shape implements Cloneable {
+    private int x;
+    private int y;
+    private String color;
+    
+    public Shape(int x, int y, String color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+    
+    @Override
+    public Shape clone() {
+        try {
+            return (Shape) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+public class Circle extends Shape {
+    private int radius;
+    
+    public Circle(int x, int y, String color, int radius) {
+        super(x, y, color);
+        this.radius = radius;
+    }
+    
+    @Override
+    public Circle clone() {
+        Circle clone = (Circle) super.clone();
+        // Deep clone específico se necessário
+        return clone;
+    }
+}
+```
+
+### 2. Sistema de Templates de Documentos
+
+```JAVA
+public class DocumentTemplate implements Cloneable {
+    private List<Section> sections = new ArrayList<>();
+    private Map<String, String> metadata = new HashMap<>();
+    
+    public void addSection(Section section) {
+        sections.add(section);
+    }
+    
+    public void setMetadata(String key, String value) {
+        metadata.put(key, value);
+    }
+    
+    @Override
+    public DocumentTemplate clone() {
+        try {
+            DocumentTemplate clone = (DocumentTemplate) super.clone();
+            // Deep clone das coleções
+            clone.sections = new ArrayList<>(this.sections);
+            clone.metadata = new HashMap<>(this.metadata);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Clonagem Apropriada
+
+* Decida entre shallow e deep clone
+
+* Implemente clone corretamente
+
+* Considere serialização para deep clone
+
+2. Gerenciamento de Estado
+
+* Mantenha estado consistente
+
+* Clone recursos externos
+
+* Gerencie referências circulares
+
+3. Performance
+
+* Use clone para objetos complexos
+
+* Cache prototypes frequentes
+
+* Otimize deep cloning
+
+## Anti-Patterns
+
+* Clone inconsistente
+
+* Ignorar recursos externos
+
+* Copiar referências mutáveis
+
+* Não implementar clone corretamente
+
+## Exercício Prático
+
+Implemente um sistema de configurações usando Prototype:
+
+```JAVA
+public class Configuration implements Cloneable {
+    private Map<String, Object> settings;
+    private List<String> activeModules;
+    private SecurityConfig security;
+    
+    public Configuration() {
+        this.settings = new HashMap<>();
+        this.activeModules = new ArrayList<>();
+        this.security = new SecurityConfig();
+    }
+    
+    @Override
+    public Configuration clone() {
+        try {
+            Configuration clone = (Configuration) super.clone();
+            // Deep clone
+            clone.settings = new HashMap<>(this.settings);
+            clone.activeModules = new ArrayList<>(this.activeModules);
+            clone.security = this.security.clone();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public static class SecurityConfig implements Cloneable {
+        private String encryption;
+        private List<String> allowedIPs;
+        
+        @Override
+        public SecurityConfig clone() {
+            try {
+                SecurityConfig clone = (SecurityConfig) super.clone();
+                clone.allowedIPs = new ArrayList<>(this.allowedIPs);
+                return clone;
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+// Uso:
+Configuration defaultConfig = new Configuration();
+// Configurar default
+Configuration customConfig = defaultConfig.clone();
+// Personalizar
+```
+
+## Próximos Passos
+
+* Explore clonagem profunda
+
+* Estude serialização
+
+* Combine com outros padrões
+
+* Pratique com objetos complexos
+
+
+
+# 
+
+
+
 # Recursos de Aprendizado Java
 
 ## Visão Geral

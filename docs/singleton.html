@@ -1,0 +1,147 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T18:42:35.629091895"><title>Singleton Pattern | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"implementa-es","level":0,"title":"Implementações","anchor":"#implementa-es"},{"id":"casos-de-uso","level":0,"title":"Casos de Uso","anchor":"#casos-de-uso"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"anti-patterns","level":0,"title":"Anti-Patterns","anchor":"#anti-patterns"},{"id":"exerc-cio-pr-tico","level":0,"title":"Exercício Prático","anchor":"#exerc-cio-pr-tico"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Singleton Pattern | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/singleton.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Singleton Pattern | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/singleton.html#webpage",
+    "url": "writerside-documentation/java/1.0/singleton.html",
+    "name": "Singleton Pattern | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="singleton" data-main-title="Singleton Pattern" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="creational-patterns.md|Padrões Criacionais"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="singleton" id="singleton.md">Singleton Pattern</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="-dytykx_10">O Singleton &eacute; um padr&atilde;o criacional que garante que uma classe tenha apenas uma inst&acirc;ncia e fornece um ponto global de acesso a ela.</p><div class="code-block" data-lang="none">
+SINGLETON PATTERN
+├── Única Instância
+├── Acesso Global
+├── Lazy Loading
+└── Thread Safety
+</div></section><section class="chapter"><h2 id="implementa-es" data-toc="implementa-es">Implementa&ccedil;&otilde;es</h2><section class="chapter"><h3 id="1-implementa-o-b-sica" data-toc="1-implementa-o-b-sica">1. Implementa&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="java">
+public class BasicSingleton {
+    private static BasicSingleton instance;
+    
+    private BasicSingleton() {}
+    
+    public static BasicSingleton getInstance() {
+        if (instance == null) {
+            instance = new BasicSingleton();
+        }
+        return instance;
+    }
+}
+</div></section><section class="chapter"><h3 id="2-thread-safe-com-double-check-locking" data-toc="2-thread-safe-com-double-check-locking">2. Thread-Safe com Double-Check Locking</h3><div class="code-block" data-lang="java">
+public class ThreadSafeSingleton {
+    private static volatile ThreadSafeSingleton instance;
+    
+    private ThreadSafeSingleton() {}
+    
+    public static ThreadSafeSingleton getInstance() {
+        if (instance == null) {
+            synchronized (ThreadSafeSingleton.class) {
+                if (instance == null) {
+                    instance = new ThreadSafeSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+</div></section><section class="chapter"><h3 id="3-inicializa-o-est-tica-holder-pattern" data-toc="3-inicializa-o-est-tica-holder-pattern">3. Inicializa&ccedil;&atilde;o Est&aacute;tica (Holder Pattern)</h3><div class="code-block" data-lang="java">
+public class HolderSingleton {
+    private HolderSingleton() {}
+    
+    private static class Holder {
+        static final HolderSingleton INSTANCE = new HolderSingleton();
+    }
+    
+    public static HolderSingleton getInstance() {
+        return Holder.INSTANCE;
+    }
+}
+</div></section><section class="chapter"><h3 id="4-enum-singleton" data-toc="4-enum-singleton">4. Enum Singleton</h3><div class="code-block" data-lang="java">
+public enum EnumSingleton {
+    INSTANCE;
+    
+    private Connection connection;
+    
+    EnumSingleton() {
+        connection = DatabaseConnection.create();
+    }
+    
+    public void execute(String sql) {
+        connection.execute(sql);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="casos-de-uso" data-toc="casos-de-uso">Casos de Uso</h2><ol class="list _decimal" id="-dytykx_20" type="1"><li class="list__item" id="-dytykx_24"><p id="-dytykx_25"><span class="control" id="-dytykx_26">Conex&otilde;es de Banco de Dados</span></p></li></ol><div class="code-block" data-lang="java">
+public class DatabaseConnection {
+    private static DatabaseConnection instance;
+    private final Connection connection;
+    
+    private DatabaseConnection() {
+        connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/db&quot;);
+    }
+    
+    public static synchronized DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+}
+</div><ol class="list _decimal" id="-dytykx_22" type="1" start="2"><li class="list__item" id="-dytykx_27"><p id="-dytykx_28"><span class="control" id="-dytykx_29">Cache Global</span></p></li></ol><div class="code-block" data-lang="java">
+public class GlobalCache {
+    private static final GlobalCache INSTANCE = new GlobalCache();
+    private Map&lt;String, Object&gt; cache = new ConcurrentHashMap&lt;&gt;();
+    
+    private GlobalCache() {}
+    
+    public static GlobalCache getInstance() {
+        return INSTANCE;
+    }
+    
+    public void put(String key, Object value) {
+        cache.put(key, value);
+    }
+    
+    public Object get(String key) {
+        return cache.get(key);
+    }
+}
+</div></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="-dytykx_30" type="1"><li class="list__item" id="-dytykx_31"><p id="-dytykx_34"><span class="control" id="-dytykx_36">Escolha a Implementa&ccedil;&atilde;o Adequada</span></p><ul class="list _bullet" id="-dytykx_35"><li class="list__item" id="-dytykx_37"><p id="-dytykx_40">Use Holder Pattern para lazy loading thread-safe</p></li><li class="list__item" id="-dytykx_38"><p id="-dytykx_41">Use Enum para serializa&ccedil;&atilde;o garantida</p></li><li class="list__item" id="-dytykx_39"><p id="-dytykx_42">Use Double-Check Locking apenas se necess&aacute;rio</p></li></ul></li><li class="list__item" id="-dytykx_32"><p id="-dytykx_43"><span class="control" id="-dytykx_45">Evite Estado Mut&aacute;vel</span></p><ul class="list _bullet" id="-dytykx_44"><li class="list__item" id="-dytykx_46"><p id="-dytykx_49">Minimize o estado interno</p></li><li class="list__item" id="-dytykx_47"><p id="-dytykx_50">Use imutabilidade quando poss&iacute;vel</p></li><li class="list__item" id="-dytykx_48"><p id="-dytykx_51">Considere thread safety</p></li></ul></li><li class="list__item" id="-dytykx_33"><p id="-dytykx_52"><span class="control" id="-dytykx_54">Teste Adequadamente</span></p><ul class="list _bullet" id="-dytykx_53"><li class="list__item" id="-dytykx_55"><p id="-dytykx_58">Verifique thread safety</p></li><li class="list__item" id="-dytykx_56"><p id="-dytykx_59">Teste serializa&ccedil;&atilde;o</p></li><li class="list__item" id="-dytykx_57"><p id="-dytykx_60">Valide comportamento em diferentes cen&aacute;rios</p></li></ul></li></ol></section><section class="chapter"><h2 id="anti-patterns" data-toc="anti-patterns">Anti-Patterns</h2><ul class="list _bullet" id="-dytykx_61"><li class="list__item" id="-dytykx_62"><p id="-dytykx_66">Uso excessivo de Singletons</p></li><li class="list__item" id="-dytykx_63"><p id="-dytykx_67">Singletons com muito estado</p></li><li class="list__item" id="-dytykx_64"><p id="-dytykx_68">Acoplamento forte com Singletons</p></li><li class="list__item" id="-dytykx_65"><p id="-dytykx_69">Singletons n&atilde;o thread-safe</p></li></ul></section><section class="chapter"><h2 id="exerc-cio-pr-tico" data-toc="exerc-cio-pr-tico">Exerc&iacute;cio Pr&aacute;tico</h2><p id="-dytykx_70">Implemente um gerenciador de configura&ccedil;&otilde;es usando Singleton:</p><div class="code-block" data-lang="java">
+public class ConfigManager {
+    private static volatile ConfigManager instance;
+    private Properties config;
+    
+    private ConfigManager() {
+        config = new Properties();
+        loadConfig();
+    }
+    
+    public static ConfigManager getInstance() {
+        if (instance == null) {
+            synchronized (ConfigManager.class) {
+                if (instance == null) {
+                    instance = new ConfigManager();
+                }
+            }
+        }
+        return instance;
+    }
+    
+    private void loadConfig() {
+        try (InputStream input = getClass().getClassLoader()
+                .getResourceAsStream(&quot;config.properties&quot;)) {
+            config.load(input);
+        } catch (IOException e) {
+            throw new RuntimeException(&quot;Error loading config&quot;, e);
+        }
+    }
+    
+    public String getProperty(String key) {
+        return config.getProperty(key);
+    }
+}
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-dytykx_72"><li class="list__item" id="-dytykx_73"><p id="-dytykx_77">Explore outros padr&otilde;es criacionais</p></li><li class="list__item" id="-dytykx_74"><p id="-dytykx_78">Estude alternativas ao Singleton</p></li><li class="list__item" id="-dytykx_75"><p id="-dytykx_79">Pratique com diferentes implementa&ccedil;&otilde;es</p></li><li class="list__item" id="-dytykx_76"><p id="-dytykx_80">Aprenda sobre inje&ccedil;&atilde;o de depend&ecirc;ncias</p></li></ul></section><div class="last-modified">28 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="creational-patterns.html" class="navigation-links__prev">Padr&otilde;es Criacionais</a><a href="factory.html" class="navigation-links__next">Factory Method Pattern</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
