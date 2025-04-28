@@ -5110,75 +5110,6 @@ Tip:
 
 
 
-# Métodos de String
-
-## Métodos de Busca
-
-### Localização
-
-```JAVA
-String texto = "CYBERPUNK_2077";
-
-// Busca
-int posicao = texto.indexOf("PUNK");    // 5
-int ultimo = texto.lastIndexOf("7");     // 12
-boolean contem = texto.contains("CYBER"); // true
-```
-
-## Métodos de Transformação
-
-### Modificação
-
-```JAVA
-String codigo = "NetRunner";
-
-// Transformações
-String maiusculo = codigo.toUpperCase(); // "NETRUNNER"
-String minusculo = codigo.toLowerCase(); // "netrunner"
-String semEspacos = codigo.trim();      // Remove espaços
-String[] partes = codigo.split("R");    // ["Net", "unner"]
-```
-
-## Métodos de Comparação
-
-### Verificação
-
-```JAVA
-String s1 = "MATRIX";
-String s2 = "matrix";
-
-// Comparações
-boolean igual = s1.equals(s2);           // false
-boolean ignoraCase = s1.equalsIgnoreCase(s2); // true
-int comparacao = s1.compareTo(s2);       // Comparação lexicográfica
-```
-
-## Métodos de Substituição
-
-### Alteração
-
-```JAVA
-String log = "Error:404:NotFound";
-
-// Substituições
-String novo = log.replace(":", "-");     // "Error-404-NotFound"
-String primeiro = log.replaceFirst(":", "-"); // "Error-404:NotFound"
-```
-
-## Próximos Passos
-
-### Tópicos Relacionados
-
-* [StringBuilder](string-builder.html)
-
-* [Formatação de Strings](string-formatting.html)
-
-* [Expressões Regulares](null)
-
-[StringBuilder](string-builder.html)
-
-
-
 # StringBuilder
 
 ## Conceitos Básicos
@@ -13752,129 +13683,6 @@ public class PluginLoader {
 
 
 
-# Generics: Flexibilidade com Tipo Seguro
-
-```
-GENERICS MAP
-├── Type Parameters
-├── Generic Classes
-├── Generic Methods
-└── Type Bounds
-```
-
-## Conceitos Básicos
-
-### Type Parameters
-
-```JAVA
-// T é um type parameter comum
-public class Box<T> {
-    private T content;
-    
-    public void store(T item) {
-        this.content = item;
-    }
-    
-    public T retrieve() {
-        return content;
-    }
-}
-```
-
-### Convenções de Nomenclatura
-
-* `T` - Tipo genérico
-
-* `E` - Elemento
-
-* `K` - Chave
-
-* `V` - Valor
-
-* `N` - Número
-
-## Wildcards
-
-### Upper Bounded
-
-```JAVA
-// Aceita Number ou subtipos
-public void process(List<? extends Number> numbers) {
-    for (Number n : numbers) {
-        System.out.println(n.doubleValue());
-    }
-}
-```
-
-### Lower Bounded
-
-```JAVA
-// Aceita Integer ou supertipos
-public void addNumbers(List<? super Integer> list) {
-    list.add(10);
-    list.add(20);
-}
-```
-
-## Type Erasure
-
-O Java usa type erasure para implementar generics:
-
-```JAVA
-// Em tempo de compilação
-List<String> strings = new ArrayList<String>();
-
-// Em runtime se torna
-List strings = new ArrayList();
-```
-
-## Práticas Recomendadas
-
-1. Use Generics para Collections
-
-```JAVA
-// Ruim
-List lista = new ArrayList();
-
-// Bom
-List<String> lista = new ArrayList<>();
-```
-
-1. Defina Bounds Quando Necessário
-
-```JAVA
-public class NumericBox<T extends Number> {
-    private T number;
-    
-    public double getValue() {
-        return number.doubleValue();
-    }
-}
-```
-
-## Exercício Prático
-
-Implemente uma classe genérica `Stack<T>`:
-
-```JAVA
-public class Stack<T> {
-    private List<T> items = new ArrayList<>();
-    
-    public void push(T item) {
-        items.add(item);
-    }
-    
-    public T pop() {
-        if (items.isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return items.remove(items.size() - 1);
-    }
-}
-```
-
-
-
 # Expressões Lambda: Programação Funcional em Java
 
 ```
@@ -16052,242 +15860,6 @@ Após completar este projeto, você estará preparado para:
 
 
 
-# Framework de Injeção de Dependências Customizado
-
-## Visão Geral
-
-Neste projeto, vamos desenvolver um mini-framework de injeção de dependências usando reflexão e anotações em Java. O framework oferecerá funcionalidades básicas de DI (Dependency Injection) e gerenciamento de ciclo de vida de componentes.
-
-## Principais Características
-
-* Injeção automática de dependências
-
-* Gerenciamento de escopo (singleton/prototype)
-
-* Configuração via anotações
-
-* Inicialização e destruição de componentes
-
-* Suporte a plugins
-
-## Anotações do Framework
-
-### @Component
-
-```JAVA
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Component {
-    String value() default "";
-    String scope() default "singleton";
-}
-```
-
-### @Inject
-
-```JAVA
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.CONSTRUCTOR})
-public @interface Inject {
-}
-```
-
-### @Initialize
-
-```JAVA
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Initialize {
-    int order() default 0;
-}
-```
-
-## Container de Dependências
-
-### Implementação Básica
-
-```JAVA
-public class DIContainer {
-    private Map<Class<?>, Object> singletons = new HashMap<>();
-    private Map<Class<?>, Class<?>> bindings = new HashMap<>();
-
-    public <T> void bind(Class<T> interfaceClass, Class<? extends T> implementationClass) {
-        bindings.put(interfaceClass, implementationClass);
-    }
-
-    public <T> T getInstance(Class<T> type) {
-        // Verifica se é singleton
-        if (singletons.containsKey(type)) {
-            return (T) singletons.get(type);
-        }
-
-        // Cria nova instância
-        return createInstance(type);
-    }
-
-    private <T> T createInstance(Class<T> type) {
-        try {
-            Constructor<?> constructor = type.getDeclaredConstructor();
-            T instance = (T) constructor.newInstance();
-            injectDependencies(instance);
-            return instance;
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar instância", e);
-        }
-    }
-
-    private void injectDependencies(Object instance) {
-        Class<?> type = instance.getClass();
-        for (Field field : type.getDeclaredFields()) {
-            if (field.isAnnotationPresent(Inject.class)) {
-                field.setAccessible(true);
-                Object dependency = getInstance(field.getType());
-                try {
-                    field.set(instance, dependency);
-                } catch (Exception e) {
-                    throw new RuntimeException("Erro ao injetar dependência", e);
-                }
-            }
-        }
-    }
-}
-```
-
-## Exemplo de Uso
-
-### Definição de Componentes
-
-```JAVA
-@Component
-public class UserService {
-    @Inject
-    private UserRepository userRepository;
-    
-    @Initialize
-    public void setup() {
-        System.out.println("Inicializando UserService");
-    }
-    
-    public User findUser(Long id) {
-        return userRepository.findById(id);
-    }
-}
-
-@Component(scope = "prototype")
-public class UserRepository {
-    private DatabaseConnection connection;
-    
-    @Inject
-    public UserRepository(DatabaseConnection connection) {
-        this.connection = connection;
-    }
-    
-    public User findById(Long id) {
-        // Implementação
-        return null;
-    }
-}
-```
-
-### Configuração e Uso
-
-```JAVA
-public class Application {
-    public static void main(String[] args) {
-        DIContainer container = new DIContainer();
-        
-        // Configuração
-        container.bind(UserRepository.class, UserRepositoryImpl.class);
-        
-        // Uso
-        UserService userService = container.getInstance(UserService.class);
-        User user = userService.findUser(1L);
-    }
-}
-```
-
-## Recursos Avançados
-
-### Plugin System
-
-```JAVA
-@Plugin
-public interface UserPlugin {
-    void onUserCreated(User user);
-}
-
-public class PluginManager {
-    private List<UserPlugin> plugins = new ArrayList<>();
-    
-    public void registerPlugin(UserPlugin plugin) {
-        plugins.add(plugin);
-    }
-    
-    public void notifyUserCreated(User user) {
-        plugins.forEach(plugin -> plugin.onUserCreated(user));
-    }
-}
-```
-
-### Aspect-Like Features
-
-```JAVA
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Transactional {
-}
-
-public class TransactionInterceptor {
-    public Object intercept(Method method, Object[] args) {
-        beginTransaction();
-        try {
-            Object result = method.invoke(args);
-            commitTransaction();
-            return result;
-        } catch (Exception e) {
-            rollbackTransaction();
-            throw e;
-        }
-    }
-}
-```
-
-## Considerações de Design
-
-### Padrões Utilizados
-
-* Singleton para gerenciamento de instâncias
-
-* Factory Method para criação de objetos
-
-* Observer para sistema de plugins
-
-* Proxy para interceptação de métodos
-
-### Boas Práticas
-
-* Lazy loading de dependências
-
-* Cache de reflexão para performance
-
-* Detecção de ciclos de dependência
-
-* Logging e tratamento de erros
-
-## Próximos Passos
-
-1. Implementar suporte a profiles
-
-2. Adicionar injeção por construtor
-
-3. Desenvolver sistema de eventos
-
-4. Criar mecanismo de configuração externa
-
-5. Implementar lazy injection
-
-
-
 # Annotation Processor
 
 ## Visão Geral
@@ -18328,7 +17900,1431 @@ Configuration customConfig = defaultConfig.clone();
 
 
 
-# 
+# Abstract Factory Pattern
+
+## Visão Geral
+
+O Abstract Factory é um padrão criacional que fornece uma interface para criar famílias de objetos relacionados sem especificar suas classes concretas.
+
+```
+ABSTRACT FACTORY
+├── Abstract Factory (Interface)
+├── Concrete Factories
+├── Abstract Products
+└── Concrete Products
+```
+
+## Implementações
+
+### 1. Abstract Factory Básico
+
+```JAVA
+// Produtos abstratos
+public interface Button {
+    void render();
+    void onClick();
+}
+
+public interface Checkbox {
+    void render();
+    void toggle();
+}
+
+// Fábrica abstrata
+public interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+// Produtos concretos
+public class WindowsButton implements Button {
+    @Override
+    public void render() {
+        System.out.println("Renderizando botão Windows");
+    }
+    
+    @Override
+    public void onClick() {
+        System.out.println("Click no botão Windows");
+    }
+}
+
+public class WindowsCheckbox implements Checkbox {
+    @Override
+    public void render() {
+        System.out.println("Renderizando checkbox Windows");
+    }
+    
+    @Override
+    public void toggle() {
+        System.out.println("Alternando checkbox Windows");
+    }
+}
+
+// Fábrica concreta
+public class WindowsFactory implements GUIFactory {
+    @Override
+    public Button createButton() {
+        return new WindowsButton();
+    }
+    
+    @Override
+    public Checkbox createCheckbox() {
+        return new WindowsCheckbox();
+    }
+}
+```
+
+### 2. Abstract Factory com Temas
+
+```JAVA
+public interface Theme {
+    Color getPrimaryColor();
+    Color getSecondaryColor();
+    Font getFont();
+}
+
+public interface ThemeFactory {
+    Button createButton();
+    Panel createPanel();
+    Theme getTheme();
+}
+
+public class DarkThemeFactory implements ThemeFactory {
+    @Override
+    public Button createButton() {
+        return new DarkButton();
+    }
+    
+    @Override
+    public Panel createPanel() {
+        return new DarkPanel();
+    }
+    
+    @Override
+    public Theme getTheme() {
+        return new DarkTheme();
+    }
+}
+```
+
+## Casos de Uso
+
+### 1. Sistema de UI Cross-Platform
+
+```JAVA
+public class Application {
+    private GUIFactory factory;
+    private Button button;
+    private Checkbox checkbox;
+    
+    public Application(GUIFactory factory) {
+        this.factory = factory;
+    }
+    
+    public void createUI() {
+        button = factory.createButton();
+        checkbox = factory.createCheckbox();
+    }
+    
+    public void paint() {
+        button.render();
+        checkbox.render();
+    }
+}
+
+// Uso:
+GUIFactory factory = new WindowsFactory();
+Application app = new Application(factory);
+app.createUI();
+app.paint();
+```
+
+### 2. Sistema de Conexões de Banco de Dados
+
+```JAVA
+public interface Connection {
+    void connect();
+    void query(String sql);
+    void disconnect();
+}
+
+public interface Transaction {
+    void begin();
+    void commit();
+    void rollback();
+}
+
+public interface DatabaseFactory {
+    Connection createConnection();
+    Transaction createTransaction();
+}
+
+public class MySQLFactory implements DatabaseFactory {
+    @Override
+    public Connection createConnection() {
+        return new MySQLConnection();
+    }
+    
+    @Override
+    public Transaction createTransaction() {
+        return new MySQLTransaction();
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Coesão de Família
+
+* Mantenha produtos relacionados juntos
+
+* Garanta compatibilidade entre produtos
+
+* Evite misturar famílias diferentes
+
+2. Extensibilidade
+
+* Facilite a adição de novas famílias
+
+* Mantenha interfaces consistentes
+
+* Use composição sobre herança
+
+3. Configuração
+
+* Permita seleção dinâmica de fábricas
+
+* Use injeção de dependência
+
+* Implemente factory method quando necessário
+
+## Anti-Patterns
+
+* Fábricas com responsabilidades misturadas
+
+* Produtos incompatíveis entre famílias
+
+* Lógica de negócio nas fábricas
+
+* Hierarquias muito profundas
+
+## Exercício Prático
+
+Implemente um sistema de documentos com diferentes estilos:
+
+```JAVA
+public interface DocumentFactory {
+    Header createHeader();
+    Body createBody();
+    Footer createFooter();
+}
+
+public class ModernDocumentFactory implements DocumentFactory {
+    @Override
+    public Header createHeader() {
+        return new ModernHeader();
+    }
+    
+    @Override
+    public Body createBody() {
+        return new ModernBody();
+    }
+    
+    @Override
+    public Footer createFooter() {
+        return new ModernFooter();
+    }
+}
+```
+
+## Próximos Passos
+
+* Explore combinações com outros padrões
+
+* Implemente em projetos reais
+
+* Estude variações do padrão
+
+* Pratique com diferentes cenários
+
+
+
+# Projetos de Padrões Criacionais
+
+## Visão Geral
+
+```MERMAID
+graph TD
+    A[Projetos Criacionais] --> B[Database Connection Pool]
+    A --> C[Document Generator]
+    A --> D[Vehicle Factory]
+    
+    B --> B1[Connection Management]
+    B --> B2[Pool Configuration]
+    B --> B3[Thread Safety]
+    
+    C --> C1[Template System]
+    C --> C2[Format Handlers]
+    C --> C3[Builder Chain]
+    
+    D --> D1[Vehicle Types]
+    D --> D2[Customization]
+    D --> D3[Production Line]
+    
+    style A fill:#1a1a1a,stroke:#00ff00
+    style B fill:#1a1a1a,stroke:#33ccff
+    style C fill:#1a1a1a,stroke:#33ccff
+    style D fill:#1a1a1a,stroke:#33ccff
+```
+
+## Projetos Disponíveis
+
+### 1. Database Connection Pool
+
+* Implementação de pool de conexões usando Singleton
+
+* Gerenciamento eficiente de recursos
+
+* Configuração flexível de parâmetros
+
+* Monitoramento de performance
+
+### 2. Document Generator
+
+* Sistema de geração de documentos usando Builder
+
+* Suporte a múltiplos formatos
+
+* Templates customizáveis
+
+* Pipeline de processamento
+
+### 3. Vehicle Factory
+
+* Sistema de produção de veículos usando Abstract Factory
+
+* Customização de componentes
+
+* Linha de montagem virtual
+
+* Controle de qualidade
+
+## Objetivos de Aprendizado
+
+1. Aplicação Prática
+
+* Implementar padrões em cenários reais
+
+* Resolver problemas comuns de design
+
+* Criar soluções escaláveis
+
+* Desenvolver código manutenível
+
+2. Boas Práticas
+
+* Princípios SOLID
+
+* Clean Code
+
+* Testes unitários
+
+* Documentação efetiva
+
+3. Habilidades Técnicas
+
+* Design de API
+
+* Gerenciamento de recursos
+
+* Tratamento de erros
+
+* Performance e otimização
+
+## Estrutura dos Projetos
+
+### Database Connection Pool
+
+```JAVA
+public class ConnectionPool {
+    private static ConnectionPool instance;
+    private final List<Connection> connections;
+    
+    private ConnectionPool(int poolSize) {
+        connections = new ArrayList<>(poolSize);
+        // Inicialização do pool
+    }
+    
+    public static synchronized ConnectionPool getInstance() {
+        if (instance == null) {
+            instance = new ConnectionPool(10);
+        }
+        return instance;
+    }
+}
+```
+
+### Document Generator
+
+```JAVA
+public class DocumentBuilder {
+    private Document document;
+    
+    public DocumentBuilder() {
+        document = new Document();
+    }
+    
+    public DocumentBuilder addHeader(String header) {
+        document.setHeader(header);
+        return this;
+    }
+    
+    public DocumentBuilder addContent(String content) {
+        document.addContent(content);
+        return this;
+    }
+}
+```
+
+### Vehicle Factory
+
+```JAVA
+public interface VehicleFactory {
+    Engine createEngine();
+    Body createBody();
+    Interior createInterior();
+}
+
+public class SportsCar implements VehicleFactory {
+    @Override
+    public Engine createEngine() {
+        return new TurboEngine();
+    }
+    
+    @Override
+    public Body createBody() {
+        return new AerodynamicBody();
+    }
+}
+```
+
+## Desafios Comuns
+
+1. Connection Pool
+
+* Gerenciamento de deadlocks
+
+* Timeout de conexões
+
+* Balanceamento de carga
+
+* Recuperação de falhas
+
+2. Document Generator
+
+* Validação de templates
+
+* Processamento assíncrono
+
+* Versionamento de documentos
+
+* Cache de templates
+
+3. Vehicle Factory
+
+* Extensibilidade do sistema
+
+* Validação de configurações
+
+* Gerenciamento de dependências
+
+* Otimização de produção
+
+## Dicas de Implementação
+
+1. Planejamento
+
+* Comece com diagramas UML
+
+* Defina interfaces claras
+
+* Estabeleça casos de teste
+
+* Documente decisões de design
+
+2. Desenvolvimento
+
+* Use TDD quando possível
+
+* Implemente gradualmente
+
+* Refatore regularmente
+
+* Mantenha o código limpo
+
+3. Testes
+
+* Cubra casos de borda
+
+* Teste performance
+
+* Valide thread safety
+
+* Simule falhas
+
+## Próximos Passos
+
+1. Explore os Projetos
+
+* Analise o código fonte
+
+* Execute os exemplos
+
+* Faça modificações
+
+* Crie novos recursos
+
+2. Pratique
+
+* Implemente variações
+
+* Combine padrões
+
+* Crie novos casos de uso
+
+* Compartilhe soluções
+
+3. Aprofunde
+
+* Estude padrões relacionados
+
+* Leia documentação
+
+* Participe de discussões
+
+* Contribua com melhorias
+
+## Recursos Adicionais
+
+* [Design Patterns - GoF](https://refactoring.guru/design-patterns/creational-patterns)
+
+* [Java Design Patterns](https://java-design-patterns.com/patterns/)
+
+* [Clean Code - Robert Martin](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+
+* [Effective Java - Joshua Bloch](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997)
+
+
+
+# Database Connection Pool
+
+## Visão Geral
+
+O projeto Database Connection Pool implementa um gerenciador de conexões de banco de dados utilizando o padrão Singleton combinado com Object Pool. Este sistema otimiza o uso de recursos e melhora a performance em aplicações com alto volume de operações de banco de dados.
+
+```MERMAID
+classDiagram
+    class ConnectionPool {
+        -ConnectionPool instance$
+        -List~Connection~ connections
+        -int maxSize
+        -int timeout
+        +getInstance()$ ConnectionPool
+        +getConnection() Connection
+        +releaseConnection(Connection)
+        -validateConnection(Connection)
+        -createConnection()
+    }
+    
+    class Connection {
+        -String url
+        -boolean inUse
+        -Timestamp lastUsed
+        +execute(String)
+        +isValid()
+        +close()
+    }
+    
+    class ConnectionFactory {
+        +createConnection()
+        +validateConnection()
+    }
+    
+    ConnectionPool --> Connection : manages
+    ConnectionPool --> ConnectionFactory : uses
+```
+
+## Implementação
+
+### 1. Pool de Conexões
+
+```JAVA
+public class ConnectionPool {
+    private static volatile ConnectionPool instance;
+    private final List<PooledConnection> connections;
+    private final int maxSize;
+    private final int timeout;
+    private final ConnectionFactory factory;
+    
+    private ConnectionPool(ConnectionConfig config) {
+        this.maxSize = config.getMaxSize();
+        this.timeout = config.getTimeout();
+        this.connections = new ArrayList<>();
+        this.factory = new ConnectionFactory(config);
+    }
+    
+    public static ConnectionPool getInstance(ConnectionConfig config) {
+        if (instance == null) {
+            synchronized (ConnectionPool.class) {
+                if (instance == null) {
+                    instance = new ConnectionPool(config);
+                }
+            }
+        }
+        return instance;
+    }
+    
+    public synchronized Connection getConnection() throws ConnectionException {
+        // Procura conexão disponível
+        Optional<PooledConnection> availableConnection = connections.stream()
+            .filter(conn -> !conn.isInUse() && conn.isValid())
+            .findFirst();
+            
+        if (availableConnection.isPresent()) {
+            PooledConnection connection = availableConnection.get();
+            connection.setInUse(true);
+            return connection;
+        }
+        
+        // Cria nova conexão se não atingiu o limite
+        if (connections.size() < maxSize) {
+            PooledConnection connection = factory.createConnection();
+            connections.add(connection);
+            connection.setInUse(true);
+            return connection;
+        }
+        
+        throw new ConnectionException("Connection pool limit reached");
+    }
+    
+    public synchronized void releaseConnection(Connection connection) {
+        if (connection instanceof PooledConnection) {
+            PooledConnection pooledConnection = (PooledConnection) connection;
+            pooledConnection.setInUse(false);
+            pooledConnection.setLastUsed(System.currentTimeMillis());
+        }
+    }
+}
+```
+
+### 2. Conexão com Pool
+
+```JAVA
+public class PooledConnection implements Connection {
+    private final Connection delegate;
+    private boolean inUse;
+    private long lastUsed;
+    private final int timeout;
+    
+    public PooledConnection(Connection delegate, int timeout) {
+        this.delegate = delegate;
+        this.timeout = timeout;
+        this.lastUsed = System.currentTimeMillis();
+    }
+    
+    public boolean isValid() {
+        if (System.currentTimeMillis() - lastUsed > timeout) {
+            return false;
+        }
+        try {
+            return delegate.isValid(1);
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    @Override
+    public void close() {
+        ConnectionPool.getInstance().releaseConnection(this);
+    }
+    
+    // Delegação de outros métodos da interface Connection
+}
+```
+
+### 3. Configuração
+
+```JAVA
+public class ConnectionConfig {
+    private final String url;
+    private final String username;
+    private final String password;
+    private final int maxSize;
+    private final int timeout;
+    
+    private ConnectionConfig(Builder builder) {
+        this.url = builder.url;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.maxSize = builder.maxSize;
+        this.timeout = builder.timeout;
+    }
+    
+    public static class Builder {
+        private String url;
+        private String username;
+        private String password;
+        private int maxSize = 10;
+        private int timeout = 30000;
+        
+        public Builder url(String url) {
+            this.url = url;
+            return this;
+        }
+        
+        // Outros métodos builder...
+        
+        public ConnectionConfig build() {
+            return new ConnectionConfig(this);
+        }
+    }
+}
+```
+
+## Uso do Pool
+
+```JAVA
+// Configuração
+ConnectionConfig config = new ConnectionConfig.Builder()
+    .url("jdbc:postgresql://localhost:5432/db")
+    .username("user")
+    .password("pass")
+    .maxSize(20)
+    .timeout(30000)
+    .build();
+
+// Obter instância do pool
+ConnectionPool pool = ConnectionPool.getInstance(config);
+
+// Usar conexão com try-with-resources
+try (Connection conn = pool.getConnection()) {
+    // Executar operações
+    conn.prepareStatement("SELECT * FROM users").executeQuery();
+} catch (SQLException e) {
+    // Tratamento de erro
+}
+```
+
+## Monitoramento
+
+```JAVA
+public class PoolMonitor {
+    private final ConnectionPool pool;
+    
+    public PoolStatistics getStatistics() {
+        return new PoolStatistics(
+            pool.getTotalConnections(),
+            pool.getActiveConnections(),
+            pool.getIdleConnections(),
+            pool.getAverageWaitTime()
+        );
+    }
+    
+    public void logStatistics() {
+        PoolStatistics stats = getStatistics();
+        Logger.info("Pool Stats: active={}, idle={}, total={}, avgWait={}ms",
+            stats.getActive(),
+            stats.getIdle(),
+            stats.getTotal(),
+            stats.getAverageWaitTime());
+    }
+}
+```
+
+## Boas Práticas
+
+1. Thread Safety
+
+* Use sincronização apropriada
+
+* Evite deadlocks
+
+* Implemente timeout para operações
+
+2. Gestão de Recursos
+
+* Limite máximo de conexões
+
+* Timeout para conexões ociosas
+
+* Limpeza periódica de conexões inválidas
+
+3. Monitoramento
+
+* Logging de operações importantes
+
+* Métricas de utilização
+
+* Alertas para situações críticas
+
+## Desafios Comuns
+
+1. Vazamento de Conexões
+
+* Use try-with-resources
+
+* Implemente timeout
+
+* Monitore conexões ativas
+
+2. Performance
+
+* Balance o tamanho do pool
+
+* Otimize validação de conexões
+
+* Implemente cache de statements
+
+3. Escalabilidade
+
+* Suporte múltiplos bancos
+
+* Configure por ambiente
+
+* Permita ajustes dinâmicos
+
+## Testes
+
+```JAVA
+@Test
+public void testConnectionPool() {
+    // Configurar
+    ConnectionConfig config = new ConnectionConfig.Builder()
+        .url("jdbc:h2:mem:testdb")
+        .maxSize(5)
+        .build();
+    
+    ConnectionPool pool = ConnectionPool.getInstance(config);
+    
+    // Testar obtenção de conexões
+    List<Connection> connections = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+        connections.add(pool.getConnection());
+    }
+    
+    // Verificar limite
+    assertThrows(ConnectionException.class, () -> {
+        pool.getConnection();
+    });
+    
+    // Liberar e reutilizar
+    connections.get(0).close();
+    assertNotNull(pool.getConnection());
+}
+```
+
+## Próximos Passos
+
+1. Melhorias
+
+* Implementar failover
+
+* Adicionar suporte a sharding
+
+* Otimizar performance
+
+2. Integrações
+
+* Framework ORM
+
+* Sistema de métricas
+
+* Ferramentas de monitoramento
+
+3. Documentação
+
+* JavaDoc completo
+
+* Guia de configuração
+
+* Exemplos de uso
+
+## Recursos
+
+* [HikariCP - Pool de Conexões](https://github.com/brettwooldridge/HikariCP)
+
+* [Apache Commons DBCP](https://commons.apache.org/proper/commons-dbcp/)
+
+* [Java JDBC Best Practices](https://www.oracle.com/technical-resources/articles/java/jdbc-best-practices.html)
+
+
+
+# Document Generator Pattern
+
+## Visão Geral
+
+O Document Generator é um exemplo prático do Abstract Factory Pattern que demonstra a criação de diferentes tipos de documentos (PDF, HTML, Markdown) mantendo uma estrutura consistente.
+
+```
+DOCUMENT GENERATOR
+├── Document Factories
+│   ├── PDFDocumentFactory
+│   ├── HTMLDocumentFactory
+│   └── MarkdownDocumentFactory
+├── Document Components
+│   ├── Header
+│   ├── Content
+│   └── Footer
+└── Document Types
+    ├── Report
+    ├── Article
+    └── Manual
+```
+
+## Implementação
+
+### 1. Interfaces Base
+
+```JAVA
+// Componentes do Documento
+public interface Header {
+    void setTitle(String title);
+    void setMetadata(Map<String, String> metadata);
+    String render();
+}
+
+public interface Content {
+    void addSection(String title, String text);
+    void addImage(String path, String caption);
+    String render();
+}
+
+public interface Footer {
+    void setPageNumber(int number);
+    void setFootnotes(List<String> footnotes);
+    String render();
+}
+
+// Fábrica Abstrata
+public interface DocumentFactory {
+    Header createHeader();
+    Content createContent();
+    Footer createFooter();
+}
+```
+
+### 2. Implementação PDF
+
+```JAVA
+public class PDFHeader implements Header {
+    private String title;
+    private Map<String, String> metadata;
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
+    }
+
+    @Override
+    public String render() {
+        return String.format("PDF Header: %s\nMetadata: %s", title, metadata);
+    }
+}
+
+public class PDFDocumentFactory implements DocumentFactory {
+    @Override
+    public Header createHeader() {
+        return new PDFHeader();
+    }
+
+    @Override
+    public Content createContent() {
+        return new PDFContent();
+    }
+
+    @Override
+    public Footer createFooter() {
+        return new PDFFooter();
+    }
+}
+```
+
+### 3. Gerador de Documento
+
+```JAVA
+public class DocumentGenerator {
+    private final DocumentFactory factory;
+    private Header header;
+    private Content content;
+    private Footer footer;
+
+    public DocumentGenerator(DocumentFactory factory) {
+        this.factory = factory;
+    }
+
+    public void createDocument() {
+        header = factory.createHeader();
+        content = factory.createContent();
+        footer = factory.createFooter();
+    }
+
+    public void setDocumentTitle(String title) {
+        header.setTitle(title);
+    }
+
+    public void addSection(String title, String text) {
+        content.addSection(title, text);
+    }
+
+    public void setPageNumber(int number) {
+        footer.setPageNumber(number);
+    }
+
+    public String generateDocument() {
+        StringBuilder document = new StringBuilder();
+        document.append(header.render())
+                .append("\n")
+                .append(content.render())
+                .append("\n")
+                .append(footer.render());
+        return document.toString();
+    }
+}
+```
+
+## Exemplo de Uso
+
+```JAVA
+public class DocumentGeneratorDemo {
+    public static void main(String[] args) {
+        // Criar relatório em PDF
+        DocumentFactory pdfFactory = new PDFDocumentFactory();
+        DocumentGenerator pdfGenerator = new DocumentGenerator(pdfFactory);
+        
+        pdfGenerator.createDocument();
+        pdfGenerator.setDocumentTitle("Relatório Financeiro");
+        pdfGenerator.addSection("Resumo", "Análise financeira do Q3 2023");
+        pdfGenerator.setPageNumber(1);
+        
+        String pdfDocument = pdfGenerator.generateDocument();
+        System.out.println(pdfDocument);
+
+        // Criar artigo em HTML
+        DocumentFactory htmlFactory = new HTMLDocumentFactory();
+        DocumentGenerator htmlGenerator = new DocumentGenerator(htmlFactory);
+        
+        htmlGenerator.createDocument();
+        htmlGenerator.setDocumentTitle("Artigo Técnico");
+        htmlGenerator.addSection("Introdução", "Conceitos de Design Patterns");
+        htmlGenerator.setPageNumber(1);
+        
+        String htmlDocument = htmlGenerator.generateDocument();
+        System.out.println(htmlDocument);
+    }
+}
+```
+
+## Extensões Possíveis
+
+1. Suporte a Temas
+
+```JAVA
+public interface Theme {
+    String getHeaderStyle();
+    String getContentStyle();
+    String getFooterStyle();
+}
+
+public class DocumentFactory {
+    private Theme theme;
+    
+    public DocumentFactory(Theme theme) {
+        this.theme = theme;
+    }
+    
+    // Métodos de fábrica usando o tema
+}
+```
+
+1. Exportação Multi-formato
+
+```JAVA
+public interface DocumentExporter {
+    void export(String content, String path);
+}
+
+public class PDFExporter implements DocumentExporter {
+    @Override
+    public void export(String content, String path) {
+        // Lógica de exportação para PDF
+    }
+}
+```
+
+## Considerações de Design
+
+1. Separação de Responsabilidades
+
+* Cada fábrica cuida apenas da criação
+
+* Lógica de renderização nos componentes
+
+* Exportação separada da geração
+
+2. Extensibilidade
+
+* Fácil adicionar novos formatos
+
+* Suporte a diferentes temas
+
+* Componentes reutilizáveis
+
+3. Manutenibilidade
+
+* Estrutura consistente
+
+* Código organizado
+
+* Fácil de testar
+
+## Exercícios
+
+1. Implemente o `MarkdownDocumentFactory` com seus componentes
+
+2. Adicione suporte para diferentes temas
+
+3. Crie um sistema de templates
+
+4. Implemente exportação para diferentes formatos
+
+## Próximos Passos
+
+* Explore combinações com Builder Pattern
+
+* Adicione validação de documentos
+
+* Implemente cache de componentes
+
+* Crie pipeline de processamento
+
+* Adicione suporte a internacionalização
+
+
+
+# Vehicle Factory Pattern
+
+## Visão Geral
+
+O Vehicle Factory é uma implementação do Abstract Factory Pattern que demonstra a criação de diferentes tipos de veículos e seus componentes.
+
+```
+VEHICLE FACTORY
+├── Abstract Factory
+├── Concrete Factories
+│   ├── SportsCar Factory
+│   ├── SUV Factory
+│   └── Truck Factory
+├── Abstract Products
+│   ├── Engine
+│   ├── Body
+│   └── Interior
+└── Concrete Products
+    ├── Sports Components
+    ├── SUV Components
+    └── Truck Components
+```
+
+## Implementação
+
+### 1. Interfaces Base
+
+```JAVA
+// Componentes abstratos
+public interface Engine {
+    void start();
+    int getHorsepower();
+}
+
+public interface Body {
+    String getDesign();
+    double getAerodynamics();
+}
+
+public interface Interior {
+    int getSeatingCapacity();
+    String getUpholsteryType();
+}
+
+// Fábrica abstrata
+public interface VehicleFactory {
+    Engine createEngine();
+    Body createBody();
+    Interior createInterior();
+}
+```
+
+### 2. Implementação Sports Car
+
+```JAVA
+// Componentes concretos do Sports Car
+public class TurboEngine implements Engine {
+    @Override
+    public void start() {
+        System.out.println("Iniciando motor turbo de alta performance");
+    }
+    
+    @Override
+    public int getHorsepower() {
+        return 450;
+    }
+}
+
+public class AerodynamicBody implements Body {
+    @Override
+    public String getDesign() {
+        return "Design aerodinâmico esportivo";
+    }
+    
+    @Override
+    public double getAerodynamics() {
+        return 0.28; // Coeficiente de arrasto
+    }
+}
+
+public class SportInterior implements Interior {
+    @Override
+    public int getSeatingCapacity() {
+        return 2;
+    }
+    
+    @Override
+    public String getUpholsteryType() {
+        return "Couro esportivo com costuras contrastantes";
+    }
+}
+
+// Fábrica concreta de Sports Car
+public class SportsCarFactory implements VehicleFactory {
+    @Override
+    public Engine createEngine() {
+        return new TurboEngine();
+    }
+    
+    @Override
+    public Body createBody() {
+        return new AerodynamicBody();
+    }
+    
+    @Override
+    public Interior createInterior() {
+        return new SportInterior();
+    }
+}
+```
+
+### 3. Implementação SUV
+
+```JAVA
+public class SUVFactory implements VehicleFactory {
+    @Override
+    public Engine createEngine() {
+        return new PowerfulEngine();
+    }
+    
+    @Override
+    public Body createBody() {
+        return new RobustBody();
+    }
+    
+    @Override
+    public Interior createInterior() {
+        return new LuxuryInterior();
+    }
+}
+
+public class PowerfulEngine implements Engine {
+    @Override
+    public void start() {
+        System.out.println("Iniciando motor V6 com torque elevado");
+    }
+    
+    @Override
+    public int getHorsepower() {
+        return 300;
+    }
+}
+
+// Outras implementações de componentes SUV...
+```
+
+## Uso do Factory
+
+### 1. Cliente Base
+
+```JAVA
+public class VehicleAssembler {
+    private final VehicleFactory factory;
+    
+    public VehicleAssembler(VehicleFactory factory) {
+        this.factory = factory;
+    }
+    
+    public Vehicle assembleVehicle() {
+        Engine engine = factory.createEngine();
+        Body body = factory.createBody();
+        Interior interior = factory.createInterior();
+        
+        return new Vehicle(engine, body, interior);
+    }
+}
+```
+
+### 2. Exemplo de Uso
+
+```JAVA
+public class Demo {
+    public static void main(String[] args) {
+        // Criando um carro esportivo
+        VehicleFactory sportsFactory = new SportsCarFactory();
+        VehicleAssembler sportsAssembler = new VehicleAssembler(sportsFactory);
+        Vehicle sportsCar = sportsAssembler.assembleVehicle();
+        
+        // Criando um SUV
+        VehicleFactory suvFactory = new SUVFactory();
+        VehicleAssembler suvAssembler = new VehicleAssembler(suvFactory);
+        Vehicle suv = suvAssembler.assembleVehicle();
+        
+        // Testando os veículos
+        testVehicle(sportsCar);
+        testVehicle(suv);
+    }
+    
+    private static void testVehicle(Vehicle vehicle) {
+        System.out.println("Testando veículo:");
+        vehicle.getEngine().start();
+        System.out.println("Potência: " + vehicle.getEngine().getHorsepower() + " hp");
+        System.out.println("Design: " + vehicle.getBody().getDesign());
+        System.out.println("Capacidade: " + vehicle.getInterior().getSeatingCapacity() + " pessoas");
+        System.out.println();
+    }
+}
+```
+
+## Extensões Possíveis
+
+1. Sistema de Configuração
+
+```JAVA
+public class VehicleConfigurator {
+    private final VehicleFactory factory;
+    private final Map<String, Object> options;
+    
+    public VehicleConfigurator(VehicleFactory factory) {
+        this.factory = factory;
+        this.options = new HashMap<>();
+    }
+    
+    public void setOption(String key, Object value) {
+        options.put(key, value);
+    }
+    
+    public Vehicle configure() {
+        Vehicle vehicle = new VehicleAssembler(factory).assembleVehicle();
+        applyOptions(vehicle);
+        return vehicle;
+    }
+    
+    private void applyOptions(Vehicle vehicle) {
+        // Aplicar opções personalizadas
+    }
+}
+```
+
+## Melhores Práticas
+
+1. Coesão de Componentes
+
+* Mantenha componentes relacionados na mesma família
+
+* Garanta compatibilidade entre componentes
+
+* Evite dependências entre famílias diferentes
+
+2. Extensibilidade
+
+* Projete para facilitar adição de novos tipos de veículos
+
+* Mantenha interfaces consistentes
+
+* Use composição sobre herança
+
+3. Validação
+
+* Verifique compatibilidade de componentes
+
+* Valide configurações
+
+* Implemente testes unitários
+
+## Anti-Patterns a Evitar
+
+1. Mistura de Responsabilidades
+
+* Não misture lógica de negócio nas fábricas
+
+* Evite acoplamento entre famílias diferentes
+
+* Mantenha separação clara de concerns
+
+2. Complexidade Desnecessária
+
+* Não crie hierarquias muito profundas
+
+* Evite excesso de customização
+
+* Mantenha o código simples e direto
+
+## Exercício Prático
+
+Implemente um sistema de fábrica de veículos elétricos:
+
+1. Crie componentes específicos para veículos elétricos
+
+2. Implemente uma nova fábrica concreta
+
+3. Adicione funcionalidades específicas de veículos elétricos
+
+4. Integre com o sistema existente
+
+```JAVA
+public interface ElectricVehicleFactory extends VehicleFactory {
+    Battery createBattery();
+    ElectricMotor createMotor();
+    ChargingSystem createChargingSystem();
+}
+
+public class ElectricSportsCarFactory implements ElectricVehicleFactory {
+    // Implementação...
+}
+```
+
+## Próximos Passos
+
+1. Explore integração com outros padrões
+
+2. Implemente persistência de configurações
+
+3. Adicione validações de segurança
+
+4. Desenvolva interface de usuário
+
+5. Implemente testes automatizados
 
 
 
@@ -18716,104 +19712,6 @@ RECURSOS JAVA
 * Heap dump
 
 * Thread dump
-
-
-
-# Cheat Sheets
-
-## Sintaxe Básica
-
-```JAVA
-// Declarações
-int numero = 10;
-String texto = "Hello";
-final double PI = 3.14;
-
-// Controle de fluxo
-if (condicao) {
-    // código
-} else {
-    // código
-}
-
-for (int i = 0; i < 10; i++) {
-    // código
-}
-```
-
-## Collections Framework
-
-```JAVA
-// List
-List<String> lista = new ArrayList<>();
-lista.add("item");
-
-// Map
-Map<String, Integer> mapa = new HashMap<>();
-mapa.put("chave", 1);
-
-// Set
-Set<Integer> conjunto = new HashSet<>();
-conjunto.add(1);
-```
-
-## Lambda Expressions
-
-```JAVA
-// Básico
-Runnable r = () -> System.out.println("Hello");
-
-// Com parâmetros
-Consumer<String> c = (s) -> System.out.println(s);
-
-// Com múltiplas linhas
-Comparator<String> comp = (s1, s2) -> {
-    if (s1 == null) return -1;
-    if (s2 == null) return 1;
-    return s1.compareTo(s2);
-};
-```
-
-## Stream API
-
-```JAVA
-// Operações comuns
-list.stream()
-    .filter(x -> x > 0)
-    .map(x -> x * 2)
-    .collect(Collectors.toList());
-
-// Redução
-int sum = numbers.stream()
-    .reduce(0, Integer::sum);
-```
-
-## Optional
-
-```JAVA
-// Criação
-Optional<String> opt = Optional.of("value");
-Optional<String> empty = Optional.empty();
-
-// Uso
-String value = opt.orElse("default");
-opt.ifPresent(System.out::println);
-```
-
-## Files e I/O
-
-```JAVA
-// Leitura
-List<String> lines = Files.readAllLines(Path.of("file.txt"));
-
-// Escrita
-Files.write(Path.of("output.txt"), content.getBytes());
-
-// Try-with-resources
-try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
-    // código
-}
-```
 
 
 
