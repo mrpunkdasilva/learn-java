@@ -344,4 +344,5 @@
     </toc-element>
     <toc-element topic="boolean-expressions.md"/>
     <toc-element topic="string-buffer.md"/>
+    <toc-element topic="regex.md"/>
 </instance-profile>

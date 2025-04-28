@@ -4518,7 +4518,7 @@ boolean xor = true ^ false;
 
 * [Estruturas Condicionais](conditionals.html)
 
-* [Expressões Booleanas](null)
+* [Expressões Booleanas](boolean-expressions.html)
 
 [Operadores Bit a Bit](bitwise.html)
 
@@ -5173,7 +5173,7 @@ String primeiro = log.replaceFirst(":", "-"); // "Error-404:NotFound"
 
 * [Formatação de Strings](string-formatting.html)
 
-* [Expressões Regulares](null)
+* [Expressões Regulares](regex.html)
 
 [StringBuilder](string-builder.html)
 
@@ -5259,7 +5259,7 @@ cmd.replace(0, 2, "RE");     // Substitui range
 
 * [Formatação de Strings](string-formatting.html)
 
-* [StringBuffer](null)
+* [StringBuffer](string-buffer.html)
 
 * [Performance](null)
 
@@ -20364,6 +20364,455 @@ try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
 * Varargs: Número variável de argumentos
 
 * Virtual Method: Método que pode ser sobrescrito
+
+
+
+# Expressões Booleanas
+
+## Conceitos Básicos
+
+### Definição
+
+```JAVA
+// Expressões que resultam em true ou false
+boolean resultado = (10 > 5);           // true
+boolean composto = (x > 0 && y < 100);  // depende de x e y
+```
+
+## Operadores de Comparação
+
+### Comparações Básicas
+
+```JAVA
+// Igualdade e diferença
+boolean igual = (valor == 10);      // true se valor for 10
+boolean diferente = (valor != 20);  // true se valor não for 20
+
+// Comparações numéricas
+boolean maior = (contador > 100);    // true se contador maior que 100
+boolean menorIgual = (total <= 50); // true se total menor ou igual a 50
+```
+
+## Operadores Lógicos
+
+### Combinações Lógicas
+
+```JAVA
+// AND (&&) - ambas condições verdadeiras
+boolean aprovado = (nota >= 7.0 && frequencia >= 75);
+
+// OR (||) - pelo menos uma condição verdadeira
+boolean desconto = (isCliente || isPrimeiraCompra);
+
+// NOT (!) - inverte o valor lógico
+boolean invalido = !dadosValidos;
+```
+
+## Expressões Compostas
+
+### Precedência de Operadores
+
+```JAVA
+// Uso de parênteses para clareza
+boolean complexo = (idade >= 18 && (temCNH || temAutorizacao));
+
+// Múltiplas condições
+boolean elegivel = (
+    idade >= 18 &&
+    rendaMinima >= 2000 &&
+    !possuiRestricoes
+);
+```
+
+## Boas Práticas
+
+### Legibilidade
+
+```JAVA
+// Evite negações múltiplas
+boolean ruim = !!!ativo;            // Difícil de ler
+boolean melhor = !ativo;            // Mais claro
+
+// Quebre expressões complexas
+boolean status = 
+    verificarIdade() &&
+    verificarDocumentos() &&
+    verificarHistorico();
+```
+
+### Simplificação
+
+```JAVA
+// Evite redundância
+boolean redundante = (valor == true);    // Não faça isso
+boolean correto = valor;                 // Melhor forma
+
+// Simplifique expressões
+boolean verboso = (idade >= 18) ? true : false;    // Redundante
+boolean simples = idade >= 18;                     // Melhor
+```
+
+## Casos Comuns
+
+### Validações
+
+```JAVA
+// Verificação de strings
+boolean stringValida = texto != null && !texto.isEmpty();
+
+// Ranges numéricos
+boolean dentroLimite = (valor >= minimo && valor <= maximo);
+
+// Verificações de estado
+boolean sistemaPronto = 
+    bancoDados.conectado() &&
+    cache.inicializado() &&
+    !manutencao;
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Operadores Lógicos](logical.html)
+
+* [Estruturas Condicionais](conditionals.html)
+
+* [Controle de Fluxo](control-flow.html)
+
+[Operadores Lógicos](logical.html)
+
+
+
+# StringBuffer
+
+## Conceitos Básicos
+
+### Criação
+
+```JAVA
+// Inicialização
+StringBuffer buffer = new StringBuffer();
+StringBuffer preset = new StringBuffer("INIT:");
+StringBuffer sized = new StringBuffer(32);
+```
+
+## Características Principais
+
+### Thread Safety
+
+```JAVA
+// StringBuffer é thread-safe
+public class SafeLogger {
+    private StringBuffer log = new StringBuffer();
+    
+    public synchronized void addEntry(String entry) {
+        log.append("[")
+           .append(System.currentTimeMillis())
+           .append("] ")
+           .append(entry)
+           .append("\n");
+    }
+}
+```
+
+## Comparação com StringBuilder
+
+### Diferenças Chave
+
+```JAVA
+// StringBuffer: Thread-safe, mais lento
+StringBuffer safeBuffer = new StringBuffer();
+synchronized(safeBuffer) {
+    safeBuffer.append("Thread Safe");
+}
+
+// StringBuilder: Não thread-safe, mais rápido
+StringBuilder fastBuilder = new StringBuilder();
+fastBuilder.append("Fast");  // Sem sincronização
+```
+
+## Operações Básicas
+
+### Manipulação
+
+```JAVA
+StringBuffer message = new StringBuffer();
+
+// Adição
+message.append("STATUS: ")     // Concatenação
+      .append("ACTIVE")       // Encadeamento
+      .append(" - ")
+      .append(2077);
+
+// Inserção
+message.insert(0, "[MSG] ");  // Início
+message.insert(6, "URGENT "); // Meio
+
+// Remoção
+message.delete(0, 5);         // Range
+message.deleteCharAt(10);     // Caractere único
+```
+
+## Performance
+
+### Considerações
+
+```JAVA
+// Escolha baseada no contexto
+public class MessageProcessor {
+    // Use StringBuffer para contextos multi-thread
+    private StringBuffer sharedBuffer = new StringBuffer();
+    
+    // Use StringBuilder para operações locais
+    public String processLocal() {
+        StringBuilder local = new StringBuilder();
+        return local.append("Local").toString();
+    }
+}
+```
+
+## Métodos Úteis
+
+### Funcionalidades
+
+```JAVA
+StringBuffer cmd = new StringBuffer("EXECUTE");
+
+// Capacidade
+int cap = cmd.capacity();     // Capacidade atual
+cmd.ensureCapacity(100);      // Garante capacidade mínima
+
+// Modificação
+cmd.setCharAt(0, 'e');       // Modifica caractere
+cmd.setLength(4);            // Trunca ou expande
+cmd.replace(0, 2, "RE");     // Substitui range
+
+// Reversão
+cmd.reverse();               // Inverte conteúdo
+```
+
+## Boas Práticas
+
+### Recomendações
+
+```JAVA
+// Use StringBuffer quando:
+public class SharedResource {
+    private StringBuffer sharedLog;  // Múltiplas threads
+    
+    public void logEvent(String event) {
+        synchronized(sharedLog) {
+            sharedLog.append(event)
+                    .append("\n");
+        }
+    }
+}
+
+// Prefira StringBuilder quando:
+public String formatLocal() {
+    StringBuilder local = new StringBuilder();  // Single thread
+    return local.append("Local")
+               .append("Format")
+               .toString();
+}
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [StringBuilder](string-builder.html)
+
+* [Concorrência](null)
+
+* [Performance](null)
+
+[StringBuilder](string-builder.html)
+
+
+
+# Expressões Regulares
+
+## Conceitos Básicos
+
+### Padrões Simples
+
+```JAVA
+// Padrões básicos
+String email = "user@domain.com";
+boolean isEmail = email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+
+// Metacaracteres
+String texto = "NetRunner_2077";
+boolean hasDigits = texto.matches(".*\\d+.*");    // Contém números
+boolean isAlpha = texto.matches("[a-zA-Z]+");     // Apenas letras
+```
+
+## Quantificadores
+
+### Repetições
+
+```JAVA
+Pattern pattern = Pattern.compile("\\w+");  // Uma ou mais palavras
+/*
+* ? - zero ou um
+* + - um ou mais
+* * - zero ou mais
+* {n} - exatamente n
+* {n,} - n ou mais
+* {n,m} - entre n e m
+*/
+
+String codigo = "ABC-123-XYZ";
+boolean valid = codigo.matches("[A-Z]{3}-\\d{3}-[A-Z]{3}");
+```
+
+## Classes de Caracteres
+
+### Grupos Predefinidos
+
+```JAVA
+// Classes comuns
+Pattern digitos = Pattern.compile("\\d");    // [0-9]
+Pattern letras = Pattern.compile("\\w");     // [a-zA-Z0-9_]
+Pattern espaco = Pattern.compile("\\s");     // [ \t\n\r\f]
+
+// Negação
+Pattern naoDigito = Pattern.compile("\\D");  // [^0-9]
+Pattern naoLetra = Pattern.compile("\\W");   // [^a-zA-Z0-9_]
+Pattern naoEspaco = Pattern.compile("\\S");  // [^ \t\n\r\f]
+```
+
+## Grupos e Captura
+
+### Agrupamento
+
+```JAVA
+// Grupos nomeados
+Pattern dataPattern = Pattern.compile(
+    "(?<dia>\\d{2})/(?<mes>\\d{2})/(?<ano>\\d{4})"
+);
+Matcher m = dataPattern.matcher("21/12/2077");
+if (m.matches()) {
+    String dia = m.group("dia");   // 21
+    String mes = m.group("mes");   // 12
+    String ano = m.group("ano");   // 2077
+}
+
+// Grupos numerados
+Pattern logPattern = Pattern.compile("(\\w+):(\\d+)");
+Matcher logMatcher = logPattern.matcher("ERROR:404");
+if (logMatcher.matches()) {
+    String tipo = logMatcher.group(1);  // ERROR
+    String codigo = logMatcher.group(2); // 404
+}
+```
+
+## Substituições
+
+### Transformações
+
+```JAVA
+String log = "ERROR:404:Page Not Found";
+
+// Substituição simples
+String formatted = log.replaceAll(":", " - ");
+
+// Substituição com grupos
+Pattern p = Pattern.compile("(\\w+):(\\d+):(.+)");
+Matcher m = p.matcher(log);
+String pretty = m.replaceAll("[$1] Code $2: $3");
+// Resultado: "[ERROR] Code 404: Page Not Found"
+```
+
+## Validações Comuns
+
+### Padrões Úteis
+
+```JAVA
+public class Validators {
+    private static final Pattern EMAIL = Pattern.compile(
+        "^[A-Za-z0-9+_.-]+@(.+)$"
+    );
+    
+    private static final Pattern IP = Pattern.compile(
+        "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"
+    );
+    
+    private static final Pattern URL = Pattern.compile(
+        "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$"
+    );
+    
+    public static boolean isValidEmail(String email) {
+        return email != null && EMAIL.matcher(email).matches();
+    }
+    
+    public static boolean isValidIP(String ip) {
+        return ip != null && IP.matcher(ip).matches();
+    }
+    
+    public static boolean isValidURL(String url) {
+        return url != null && URL.matcher(url).matches();
+    }
+}
+```
+
+## Performance
+
+### Otimizações
+
+```JAVA
+// Compilação de pattern
+public class RegexOptimizer {
+    // Compile uma vez, use várias
+    private static final Pattern PATTERN = Pattern.compile("\\w+");
+    
+    public List<String> findWords(String text) {
+        List<String> words = new ArrayList<>();
+        Matcher matcher = PATTERN.matcher(text);
+        while (matcher.find()) {
+            words.add(matcher.group());
+        }
+        return words;
+    }
+}
+```
+
+## Boas Práticas
+
+### Recomendações
+
+```JAVA
+// Use Pattern.quote para caracteres especiais
+String special = "user.name+tag";
+String escaped = Pattern.quote(special);
+
+// Use grupos nomeados para clareza
+Pattern p = Pattern.compile("(?<protocol>https?)://(?<domain>[\\w.-]+)");
+
+// Cache patterns compilados
+public class Parser {
+    private static final Pattern DATE = Pattern.compile(
+        "\\d{4}-\\d{2}-\\d{2}"
+    );
+    private static final Pattern TIME = Pattern.compile(
+        "\\d{2}:\\d{2}:\\d{2}"
+    );
+}
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Pattern Matching](pattern-matching.html)
+
+* [String Processing](null)
+
+* [Text Analysis](null)
+
+[Pattern Matching](pattern-matching.html)
 
 
 
