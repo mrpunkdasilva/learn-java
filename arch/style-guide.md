@@ -5,7 +5,6 @@
 ```ascii
 TÓPICO
 |-- Título Principal
-|-- Banner/Imagem Conceitual
 |-- Descrição Breve
 |-- Diagrama de Arquitetura
 |-- Componentes Principais
@@ -160,9 +159,6 @@ topic: breve descrição da alteração
 ### Título e Descrição
 ```markdown
 # Implementação de Cache
-
-![Cache System](cache-system-banner.png)
-{style="width:700px"}
 
 Um sistema de cache é uma estrutura de dados que armazena 
 temporariamente dados frequentemente acessados para melhorar 
