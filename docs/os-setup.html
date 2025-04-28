@@ -1,0 +1,206 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:20.404876641"><title>Configura&ccedil;&atilde;o do Sistema Operacional | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"requisitos-por-sistema","level":0,"title":"Requisitos por Sistema","anchor":"#requisitos-por-sistema"},{"id":"configura-o-do-windows","level":0,"title":"Configuração do Windows","anchor":"#configura-o-do-windows"},{"id":"configura-o-do-macos","level":0,"title":"Configuração do macOS","anchor":"#configura-o-do-macos"},{"id":"configura-o-do-linux","level":0,"title":"Configuração do Linux","anchor":"#configura-o-do-linux"},{"id":"configura-es-comuns","level":0,"title":"Configurações Comuns","anchor":"#configura-es-comuns"},{"id":"personaliza-o","level":0,"title":"Personalização","anchor":"#personaliza-o"},{"id":"ambientes-de-desenvolvimento-isolados","level":0,"title":"Ambientes de Desenvolvimento Isolados","anchor":"#ambientes-de-desenvolvimento-isolados"},{"id":"verifica-o","level":0,"title":"Verificação","anchor":"#verifica-o"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Configura&ccedil;&atilde;o do Sistema Operacional | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/os-setup.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Configura&ccedil;&atilde;o do Sistema Operacional | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/os-setup.html#webpage",
+    "url": "writerside-documentation/java/1.0/os-setup.html",
+    "name": "Configura&ccedil;&atilde;o do Sistema Operacional | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="os-setup" data-main-title="Configuração do Sistema Operacional" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="getting-started.md|Iniciando no NetRunner///development-environment.md|Ambiente de Desenvolvimento"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="os-setup" id="os-setup.md">Configuração do Sistema Operacional</h1><div class="code-block" data-lang="none">
+&gt;&gt; Iniciando diagnóstico do sistema...
+&gt;&gt; Verificando compatibilidade...
+&gt;&gt; Ajustando configurações base...
+&gt;&gt; Sistema preparado para desenvolvimento...
+</div><section class="chapter"><h2 id="requisitos-por-sistema" data-toc="requisitos-por-sistema">Requisitos por Sistema</h2><section class="chapter"><h3 id="windows" data-toc="windows">Windows</h3><div class="code-block" data-lang="none">
+WINDOWS SETUP
+├── Windows 10/11
+├── PowerShell 5.1+
+├── Windows Terminal
+└── WSL2 (recomendado)
+</div></section><section class="chapter"><h3 id="macos" data-toc="macos">macOS</h3><div class="code-block" data-lang="none">
+MACOS SETUP
+├── Catalina (10.15)+
+├── Terminal/iTerm2
+├── Homebrew
+└── Command Line Tools
+</div></section><section class="chapter"><h3 id="linux" data-toc="linux">Linux</h3><div class="code-block" data-lang="none">
+LINUX SETUP
+├── Kernel 5.0+
+├── Terminal
+├── Package Manager
+└── Build Tools
+</div></section></section><section class="chapter"><h2 id="configura-o-do-windows" data-toc="configura-o-do-windows">Configura&ccedil;&atilde;o do Windows</h2><section class="chapter"><h3 id="1-habilitar-wsl2" data-toc="1-habilitar-wsl2">1. Habilitar WSL2</h3><div class="code-block" data-lang="powershell">
+# Habilitar WSL
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+# Habilitar Virtualização
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+# Definir WSL2 como padrão
+wsl --set-default-version 2
+</div></section><section class="chapter"><h3 id="2-windows-terminal" data-toc="2-windows-terminal">2. Windows Terminal</h3><div class="code-block" data-lang="none">
+TERMINAL FEATURES
+├── Multi-tabs
+├── Temas personalizados
+├── Split panes
+└── Integração WSL
+</div></section><section class="chapter"><h3 id="3-vari-veis-de-ambiente" data-toc="3-vari-veis-de-ambiente">3. Vari&aacute;veis de Ambiente</h3><div class="code-block" data-lang="powershell">
+# Adicionar ao Path
+[Environment]::SetEnvironmentVariable(
+    &quot;Path&quot;,
+    [Environment]::GetEnvironmentVariable(&quot;Path&quot;, &quot;Machine&quot;) + &quot;;C:\your\path&quot;,
+    &quot;Machine&quot;
+)
+</div></section></section><section class="chapter"><h2 id="configura-o-do-macos" data-toc="configura-o-do-macos">Configura&ccedil;&atilde;o do macOS</h2><section class="chapter"><h3 id="1-homebrew" data-toc="1-homebrew">1. Homebrew</h3><div class="code-block" data-lang="bash">
+# Instalar Homebrew
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+
+# Verificar instalação
+brew doctor
+</div></section><section class="chapter"><h3 id="2-command-line-tools" data-toc="2-command-line-tools">2. Command Line Tools</h3><div class="code-block" data-lang="bash">
+# Instalar Command Line Tools
+xcode-select --install
+
+# Verificar instalação
+xcode-select -p
+</div></section><section class="chapter"><h3 id="3-terminal-enhancement" data-toc="3-terminal-enhancement">3. Terminal Enhancement</h3><div class="code-block" data-lang="bash">
+# Instalar iTerm2
+brew install --cask iterm2
+
+# Instalar Oh My Zsh
+sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+</div></section></section><section class="chapter"><h2 id="configura-o-do-linux" data-toc="configura-o-do-linux">Configura&ccedil;&atilde;o do Linux</h2><section class="chapter"><h3 id="1-pacotes-essenciais" data-toc="1-pacotes-essenciais">1. Pacotes Essenciais</h3><div class="code-block" data-lang="bash">
+# Ubuntu/Debian
+sudo apt update
+sudo apt install build-essential curl wget git
+
+# Fedora
+sudo dnf groupinstall &quot;Development Tools&quot;
+sudo dnf install curl wget git
+</div></section><section class="chapter"><h3 id="2-terminal-setup" data-toc="2-terminal-setup">2. Terminal Setup</h3><div class="code-block" data-lang="bash">
+# Instalar e configurar ZSH
+sudo apt install zsh
+chsh -s $(which zsh)
+
+# Instalar Oh My Zsh
+sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+</div></section></section><section class="chapter"><h2 id="configura-es-comuns" data-toc="configura-es-comuns">Configura&ccedil;&otilde;es Comuns</h2><section class="chapter"><h3 id="1-git-global" data-toc="1-git-global">1. Git Global</h3><div class="code-block" data-lang="bash">
+# Configuração básica
+git config --global user.name &quot;Seu Nome&quot;
+git config --global user.email &quot;seu@email.com&quot;
+
+# Editor padrão
+git config --global core.editor &quot;code --wait&quot;
+</div></section><section class="chapter"><h3 id="2-ssh-keys" data-toc="2-ssh-keys">2. SSH Keys</h3><div class="code-block" data-lang="bash">
+# Gerar nova chave SSH
+ssh-keygen -t ed25519 -C &quot;seu@email.com&quot;
+
+# Iniciar ssh-agent
+eval &quot;$(ssh-agent -s)&quot;
+
+# Adicionar chave
+ssh-add ~/.ssh/id_ed25519
+</div></section></section><section class="chapter"><h2 id="personaliza-o" data-toc="personaliza-o">Personaliza&ccedil;&atilde;o</h2><section class="chapter"><h3 id="terminal-theme" data-toc="terminal-theme">Terminal Theme</h3><div class="code-block" data-lang="json">
+{
+    &quot;colorScheme&quot;: &quot;Cyberpunk&quot;,
+    &quot;fontFace&quot;: &quot;Cascadia Code&quot;,
+    &quot;fontSize&quot;: 12,
+    &quot;useAcrylic&quot;: true,
+    &quot;acrylicOpacity&quot;: 0.8
+}
+</div></section><section class="chapter"><h3 id="aliases-teis" data-toc="aliases-teis">Aliases &Uacute;teis</h3><div class="code-block" data-lang="bash">
+# Git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+
+# Navigation
+alias ll='ls -la'
+alias ..='cd ..'
+alias ...='cd ../..'
+</div></section></section><section class="chapter"><h2 id="ambientes-de-desenvolvimento-isolados" data-toc="ambientes-de-desenvolvimento-isolados">Ambientes de Desenvolvimento Isolados</h2><section class="chapter"><h3 id="sdkman-com-docker" data-toc="sdkman-com-docker">SDKMAN! com Docker</h3><div class="code-block" data-lang="none">
+FROM ubuntu:22.04
+
+# Instalar dependências
+RUN apt-get update &amp;&amp; apt-get install -y \
+    curl \
+    zip \
+    unzip
+
+# Instalar SDKMAN!
+RUN curl -s &quot;https://get.sdkman.io&quot; | bash
+ENV SDKMAN_DIR=&quot;/root/.sdkman&quot;
+
+# Configurar ambiente
+COPY .sdkmanrc /app/.sdkmanrc
+WORKDIR /app
+
+# Instalar SDKs
+RUN bash -c &quot;source $SDKMAN_DIR/bin/sdkman-init.sh &amp;&amp; \
+    sdk env install&quot;
+</div></section><section class="chapter"><h3 id="gerenciamento-de-vers-es-por-projeto" data-toc="gerenciamento-de-vers-es-por-projeto">Gerenciamento de Vers&otilde;es por Projeto</h3><div class="code-block" data-lang="none">
+PROJECT STRUCTURE
+├── .sdkmanrc        # Versões do projeto
+├── .java-version    # Alternativa para Java
+└── docker-compose.yml
+</div></section><section class="chapter"><h3 id="exemplo-de-docker-compose-yml" data-toc="exemplo-de-docker-compose-yml">Exemplo de docker-compose.yml</h3><div class="code-block" data-lang="yaml">
+version: '3.8'
+services:
+  java-dev:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - SDKMAN_DIR=/root/.sdkman
+</div></section><section class="chapter"><h3 id="scripts-de-automa-o" data-toc="scripts-de-automa-o">Scripts de Automa&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# setup-dev.sh
+
+# Verificar SDKMAN!
+if ! command -v sdk &amp;&gt; /dev/null; then
+    echo &quot;Instalando SDKMAN!...&quot;
+    curl -s &quot;https://get.sdkman.io&quot; | bash
+fi
+
+# Carregar SDKMAN!
+source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;
+
+# Instalar versões do projeto
+if [ -f .sdkmanrc ]; then
+    echo &quot;Configurando ambiente do projeto...&quot;
+    sdk env install
+fi
+</div></section><section class="chapter"><h3 id="integra-o-com-ides" data-toc="integra-o-com-ides">Integra&ccedil;&atilde;o com IDEs</h3><div class="code-block" data-lang="none">
+IDE INTEGRATION
+├── IntelliJ IDEA
+│   └── Project SDK
+├── Eclipse
+│   └── Installed JREs
+└── VS Code
+    └── Java Runtime
+</div></section><section class="chapter"><h3 id="verifica-o-de-ambiente" data-toc="verifica-o-de-ambiente">Verifica&ccedil;&atilde;o de Ambiente</h3><div class="code-block" data-lang="bash">
+# Verificar todas as versões instaladas
+sdk current
+
+# Listar candidatos instalados
+sdk list
+
+# Verificar ambiente do projeto
+sdk env
+</div></section></section><section class="chapter"><h2 id="verifica-o" data-toc="verifica-o">Verifica&ccedil;&atilde;o</h2><section class="chapter"><h3 id="checklist-final" data-toc="checklist-final">Checklist Final</h3><ul class="list _bullet" id="-egl2tg_57"><li class="list__item" id="-egl2tg_58"><p id="-egl2tg_63">[ ] Sistema atualizado</p></li><li class="list__item" id="-egl2tg_59"><p id="-egl2tg_64">[ ] Terminal configurado</p></li><li class="list__item" id="-egl2tg_60"><p id="-egl2tg_65">[ ] Git instalado</p></li><li class="list__item" id="-egl2tg_61"><p id="-egl2tg_66">[ ] SSH configurado</p></li><li class="list__item" id="-egl2tg_62"><p id="-egl2tg_67">[ ] Aliases definidos</p></li></ul></section><section class="chapter"><h3 id="teste-de-ambiente" data-toc="teste-de-ambiente">Teste de Ambiente</h3><div class="code-block" data-lang="bash">
+# Verificar versões
+java -version
+git --version
+node --version
+
+# Testar SSH
+ssh -T git@github.com
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ol class="list _decimal" id="-egl2tg_70" type="1"><li class="list__item" id="-egl2tg_74"><p id="-egl2tg_77"><span class="control" id="-egl2tg_79">WSL n&atilde;o inicia</span></p><ul class="list _bullet" id="-egl2tg_78"><li class="list__item" id="-egl2tg_80"><p id="-egl2tg_83">Verificar virtualiza&ccedil;&atilde;o no BIOS</p></li><li class="list__item" id="-egl2tg_81"><p id="-egl2tg_84">Reinstalar WSL</p></li><li class="list__item" id="-egl2tg_82"><p id="-egl2tg_85">Atualizar Windows</p></li></ul></li><li class="list__item" id="-egl2tg_75"><p id="-egl2tg_86"><span class="control" id="-egl2tg_88">Homebrew falha</span></p><ul class="list _bullet" id="-egl2tg_87"><li class="list__item" id="-egl2tg_89"><p id="-egl2tg_92">Verificar permiss&otilde;es</p></li><li class="list__item" id="-egl2tg_90"><p id="-egl2tg_93">Atualizar macOS</p></li><li class="list__item" id="-egl2tg_91"><p id="-egl2tg_94">Reinstalar Xcode CLI</p></li></ul></li><li class="list__item" id="-egl2tg_76"><p id="-egl2tg_95"><span class="control" id="-egl2tg_97">Linux packages quebrados</span></p><ul class="list _bullet" id="-egl2tg_96"><li class="list__item" id="-egl2tg_98"><p id="-egl2tg_101">Limpar cache</p></li><li class="list__item" id="-egl2tg_99"><p id="-egl2tg_102">Atualizar reposit&oacute;rios</p></li><li class="list__item" id="-egl2tg_100"><p id="-egl2tg_103">Verificar depend&ecirc;ncias</p></li></ul></li></ol><p id="-egl2tg_71"><a href="tools-overview.html" id="-egl2tg_104" data-tooltip="SDKMAN! - Gerenciamento de SDKs">Explorar Ferramentas</a></p><aside class="prompt" data-type="tip" data-title="" id="-egl2tg_73"><p id="-egl2tg_105">&quot;Configure seu sistema como um verdadeiro netrunner - cada detalhe importa na Matrix.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="development-environment.html" class="navigation-links__prev">Ambiente de Desenvolvimento</a><a href="tools-overview.html" class="navigation-links__next">Vis&atilde;o Geral das Ferramentas</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

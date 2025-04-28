@@ -1,0 +1,169 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:18.432712086"><title>M&aacute;quina de Estados | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"descri-o-do-projeto","level":0,"title":"Descrição do Projeto","anchor":"#descri-o-do-projeto"},{"id":"conceitos-aplicados","level":0,"title":"Conceitos Aplicados","anchor":"#conceitos-aplicados"},{"id":"implementa-o-base","level":0,"title":"Implementação Base","anchor":"#implementa-o-base"},{"id":"interface-com-usu-rio","level":0,"title":"Interface com Usuário","anchor":"#interface-com-usu-rio"},{"id":"recursos-avan-ados","level":0,"title":"Recursos Avançados","anchor":"#recursos-avan-ados"},{"id":"desafios-de-extens-o","level":0,"title":"Desafios de Extensão","anchor":"#desafios-de-extens-o"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="M&aacute;quina de Estados | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/state-machine.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="M&aacute;quina de Estados | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/state-machine.html#webpage",
+    "url": "writerside-documentation/java/1.0/state-machine.html",
+    "name": "M&aacute;quina de Estados | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="state-machine" data-main-title="Máquina de Estados" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="control-flow.md|Controle de Fluxo///control-flow-projects.md|Projetos de Controle de Fluxo"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="state-machine" id="state-machine.md">Máquina de Estados</h1><section class="chapter"><h2 id="descri-o-do-projeto" data-toc="descri-o-do-projeto">Descri&ccedil;&atilde;o do Projeto</h2><p id="-mnhdxt_10">Implemente uma m&aacute;quina de estados que simula um sistema de seguran&ccedil;a cyberpunk.</p></section><section class="chapter"><h2 id="conceitos-aplicados" data-toc="conceitos-aplicados">Conceitos Aplicados</h2><ul class="list _bullet" id="-mnhdxt_11"><li class="list__item" id="-mnhdxt_12"><p id="-mnhdxt_16">Pattern Matching</p></li><li class="list__item" id="-mnhdxt_13"><p id="-mnhdxt_17">Switch Expressions</p></li><li class="list__item" id="-mnhdxt_14"><p id="-mnhdxt_18">Loops Controlados por Estado</p></li><li class="list__item" id="-mnhdxt_15"><p id="-mnhdxt_19">Condicionais Complexos</p></li></ul></section><section class="chapter"><h2 id="implementa-o-base" data-toc="implementa-o-base">Implementa&ccedil;&atilde;o Base</h2><div class="code-block" data-lang="java">
+public class StateMachine {
+    public static void main(String[] args) {
+        // Estados possíveis usando String
+        String estado = &quot;TRAVADO&quot;;  // estado inicial
+        
+        // Contadores e flags usando tipos primitivos
+        int tentativasInvalidas = 0;
+        boolean sistemaAtivo = true;
+        
+        // Mensagem de boas-vindas usando Text Block
+        System.out.println(&quot;&quot;&quot;
+            === SISTEMA DE SEGURANÇA CYBERPUNK ===
+            Estados: TRAVADO, DESTRAVADO, ALERTA
+            Comandos: 
+            1 - Inserir código válido
+            2 - Inserir código inválido
+            3 - Travar sistema
+            4 - Sair
+            ====================================
+            &quot;&quot;&quot;);
+        
+        // Loop principal do sistema
+        while (sistemaAtivo) {
+            System.out.println(&quot;\nEstado atual: &quot; + estado);
+            System.out.print(&quot;Digite um comando: &quot;);
+            
+            // Simulando entrada do usuário (você pode modificar os valores para testar)
+            var comando = &quot;1&quot;; // Simula entrada do usuário
+            
+            // Controle de fluxo baseado no estado atual
+            switch (estado) {
+                case &quot;TRAVADO&quot;:
+                    if (comando.equals(&quot;1&quot;)) {
+                        estado = &quot;DESTRAVADO&quot;;
+                        tentativasInvalidas = 0;
+                        System.out.println(&quot;Acesso concedido!&quot;);
+                    } else if (comando.equals(&quot;2&quot;)) {
+                        tentativasInvalidas++;
+                        if (tentativasInvalidas &gt;= 3) {
+                            estado = &quot;ALERTA&quot;;
+                            System.out.println(&quot;ALERTA: Múltiplas tentativas inválidas!&quot;);
+                        } else {
+                            System.out.println(&quot;Código inválido. Tentativas restantes: &quot; + (3 - tentativasInvalidas));
+                        }
+                    }
+                    break;
+                    
+                case &quot;DESTRAVADO&quot;:
+                    if (comando.equals(&quot;3&quot;)) {
+                        estado = &quot;TRAVADO&quot;;
+                        System.out.println(&quot;Sistema travado!&quot;);
+                    }
+                    break;
+                    
+                case &quot;ALERTA&quot;:
+                    if (comando.equals(&quot;1&quot;)) {
+                        estado = &quot;TRAVADO&quot;;
+                        tentativasInvalidas = 0;
+                        System.out.println(&quot;Sistema resetado!&quot;);
+                    }
+                    break;
+            }
+            
+            // Condição de saída
+            if (comando.equals(&quot;4&quot;)) {
+                sistemaAtivo = false;
+                System.out.println(&quot;Encerrando sistema...&quot;);
+            }
+            
+            // Pequena pausa para simular processamento
+            System.out.println(&quot;Processando...&quot;);
+        }
+    }
+}
+</div></section><section class="chapter"><h2 id="interface-com-usu-rio" data-toc="interface-com-usu-rio">Interface com Usu&aacute;rio</h2><div class="code-block" data-lang="java">
+public class SecuritySystemUI {
+    public static void main(String[] args) {
+        SecuritySystem system = new SecuritySystem();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println(&quot;&quot;&quot;
+            === SISTEMA DE SEGURANÇA CYBERPUNK ===
+            Digite 'help' para ver os comandos disponíveis
+            &quot;&quot;&quot;);
+        
+        while (true) {
+            System.out.print(&quot;&gt;&gt; &quot;);
+            String input = scanner.nextLine().toUpperCase();
+            
+            if (input.equals(&quot;EXIT&quot;)) break;
+            
+            try {
+                SecurityEvent event = SecurityEvent.valueOf(input);
+                String result = system.processEvent(event);
+                System.out.println(result);
+            } catch (IllegalArgumentException e) {
+                if (input.equals(&quot;HELP&quot;)) {
+                    showHelp();
+                } else {
+                    System.out.println(&quot;Comando inválido&quot;);
+                }
+            }
+        }
+    }
+    
+    private static void showHelp() {
+        System.out.println(&quot;&quot;&quot;
+            Comandos disponíveis:
+            VALID_CODE - Tentar código de acesso
+            INVALID_CODE - Código inválido
+            LOCK - Travar sistema
+            EMERGENCY - Ativar emergência
+            MAINTENANCE_KEY - Modo manutenção
+            RESET - Resetar sistema
+            SHUTDOWN - Desligar sistema
+            EXIT - Sair do programa
+            &quot;&quot;&quot;);
+    }
+}
+</div></section><section class="chapter"><h2 id="recursos-avan-ados" data-toc="recursos-avan-ados">Recursos Avan&ccedil;ados</h2><ol class="list _decimal" id="-mnhdxt_22" type="1"><li class="list__item" id="-mnhdxt_26"><p id="-mnhdxt_27"><span class="control" id="-mnhdxt_28">Sistema de Biometria</span></p></li></ol><div class="code-block" data-lang="java">
+public class BiometricScanner {
+    public boolean validateBiometric(String bioData) {
+        return switch (bioData.length()) {
+            case 32 -&gt; bioData.matches(&quot;[A-F0-9]+&quot;);
+            case 64 -&gt; bioData.matches(&quot;[a-f0-9]+&quot;);
+            default -&gt; false;
+        };
+    }
+}
+</div><ol class="list _decimal" id="-mnhdxt_24" type="1" start="2"><li class="list__item" id="-mnhdxt_29"><p id="-mnhdxt_30"><span class="control" id="-mnhdxt_31">Monitor de Atividades</span></p></li></ol><div class="code-block" data-lang="java">
+public class ActivityMonitor {
+    private final Queue&lt;SecurityEvent&gt; recentEvents;
+    private static final int MAX_EVENTS = 10;
+    
+    public ActivityMonitor() {
+        this.recentEvents = new LinkedList&lt;&gt;();
+    }
+    
+    public void recordEvent(SecurityEvent event) {
+        recentEvents.offer(event);
+        if (recentEvents.size() &gt; MAX_EVENTS) {
+            recentEvents.poll();
+        }
+    }
+    
+    public boolean detectSuspiciousActivity() {
+        long invalidAttempts = recentEvents.stream()
+            .filter(e -&gt; e == SecurityEvent.INVALID_CODE)
+            .count();
+        return invalidAttempts &gt;= 3;
+    }
+}
+</div></section><section class="chapter"><h2 id="desafios-de-extens-o" data-toc="desafios-de-extens-o">Desafios de Extens&atilde;o</h2><ol class="list _decimal" id="-mnhdxt_32" type="1"><li class="list__item" id="-mnhdxt_33"><p id="-mnhdxt_37">Implemente um sistema de n&iacute;veis de acesso</p></li><li class="list__item" id="-mnhdxt_34"><p id="-mnhdxt_38">Adicione criptografia para c&oacute;digos de acesso</p></li><li class="list__item" id="-mnhdxt_35"><p id="-mnhdxt_39">Crie um sistema de backup autom&aacute;tico</p></li><li class="list__item" id="-mnhdxt_36"><p id="-mnhdxt_40">Implemente notifica&ccedil;&otilde;es em tempo real</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-mnhdxt_41"><li class="list__item" id="-mnhdxt_43"><p id="-mnhdxt_47">Adicione mais estados e eventos</p></li><li class="list__item" id="-mnhdxt_44"><p id="-mnhdxt_48">Implemente persist&ecirc;ncia de logs</p></li><li class="list__item" id="-mnhdxt_45"><p id="-mnhdxt_49">Crie uma interface gr&aacute;fica mais elaborada</p></li><li class="list__item" id="-mnhdxt_46"><p id="-mnhdxt_50">Adicione suporte a m&uacute;ltiplos usu&aacute;rios</p></li></ul><p id="-mnhdxt_42"><a href="control-flow.html" id="-mnhdxt_51" data-tooltip="O controle de fluxo é fundamental para direcionar a execução do seu código. Como um netrunner navegando pela matrix, você precisa tomar decisões e repetir ações de forma eficiente.">Control Flow</a></p></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="menu-system.html" class="navigation-links__prev">Sistema de Menu</a><a href="arrays-collections.html" class="navigation-links__next">Arrays e Cole&ccedil;&otilde;es</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.035760703"><title>Essenciais do Terminal | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"comandos-fundamentais","level":0,"title":"Comandos Fundamentais","anchor":"#comandos-fundamentais"},{"id":"permiss-es","level":0,"title":"Permissões","anchor":"#permiss-es"},{"id":"processos","level":0,"title":"Processos","anchor":"#processos"},{"id":"redirecionamento","level":0,"title":"Redirecionamento","anchor":"#redirecionamento"},{"id":"ambiente","level":0,"title":"Ambiente","anchor":"#ambiente"},{"id":"customiza-o","level":0,"title":"Customização","anchor":"#customiza-o"},{"id":"atalhos","level":0,"title":"Atalhos","anchor":"#atalhos"},{"id":"scripts","level":0,"title":"Scripts","anchor":"#scripts"},{"id":"ferramentas-avan-adas","level":0,"title":"Ferramentas Avançadas","anchor":"#ferramentas-avan-adas"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Essenciais do Terminal | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/terminal-essentials.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Essenciais do Terminal | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/terminal-essentials.html#webpage",
+    "url": "writerside-documentation/java/1.0/terminal-essentials.html",
+    "name": "Essenciais do Terminal | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="terminal-essentials" data-main-title="Essenciais do Terminal" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="setup.md|Setup do Ambiente de Desenvolvimento"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="terminal-essentials" id="terminal-essentials.md">Essenciais do Terminal</h1><div class="code-block" data-lang="none">
+TERMINAL MASTERY
+├── Básico
+├── Navegação
+├── Manipulação
+├── Processos
+└── Customização
+</div><section class="chapter"><h2 id="comandos-fundamentais" data-toc="comandos-fundamentais">Comandos Fundamentais</h2><section class="chapter"><h3 id="navega-o" data-toc="navega-o">Navega&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Listar arquivos
+ls
+ls -la
+
+# Mudar diretório
+cd path/to/dir
+cd ..
+cd ~
+
+# Mostrar diretório atual
+pwd
+</div></section><section class="chapter"><h3 id="manipula-o-de-arquivos" data-toc="manipula-o-de-arquivos">Manipula&ccedil;&atilde;o de Arquivos</h3><div class="code-block" data-lang="bash">
+# Criar
+touch arquivo.txt
+mkdir pasta
+
+# Copiar
+cp origem destino
+cp -r pasta1 pasta2
+
+# Mover/Renomear
+mv origem destino
+
+# Remover
+rm arquivo.txt
+rm -r pasta
+</div></section><section class="chapter"><h3 id="visualiza-o" data-toc="visualiza-o">Visualiza&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Ver conteúdo
+cat arquivo.txt
+less arquivo.txt
+head arquivo.txt
+tail arquivo.txt
+
+# Buscar
+grep &quot;texto&quot; arquivo.txt
+find . -name &quot;*.java&quot;
+</div></section></section><section class="chapter"><h2 id="permiss-es" data-toc="permiss-es">Permiss&otilde;es</h2><section class="chapter"><h3 id="gerenciamento" data-toc="gerenciamento">Gerenciamento</h3><div class="code-block" data-lang="bash">
+# Visualizar
+ls -l
+
+# Modificar
+chmod +x script.sh
+chmod 755 arquivo
+
+# Mudar proprietário
+chown usuario:grupo arquivo
+</div></section></section><section class="chapter"><h2 id="processos" data-toc="processos">Processos</h2><section class="chapter"><h3 id="gerenciamento" data-toc="gerenciamento">Gerenciamento</h3><div class="code-block" data-lang="bash">
+# Listar processos
+ps aux
+top
+
+# Background
+comando &amp;
+bg
+fg
+
+# Terminar processo
+kill PID
+killall processo
+</div></section></section><section class="chapter"><h2 id="redirecionamento" data-toc="redirecionamento">Redirecionamento</h2><section class="chapter"><h3 id="input-output" data-toc="input-output">Input/Output</h3><div class="code-block" data-lang="bash">
+# Redirecionamento
+comando &gt; output.txt
+comando &gt;&gt; output.txt
+comando &lt; input.txt
+
+# Pipes
+comando1 | comando2
+</div></section></section><section class="chapter"><h2 id="ambiente" data-toc="ambiente">Ambiente</h2><section class="chapter"><h3 id="vari-veis" data-toc="vari-veis">Vari&aacute;veis</h3><div class="code-block" data-lang="bash">
+# Exibir
+echo $PATH
+env
+
+# Definir
+export JAVA_HOME=/path/to/java
+</div></section></section><section class="chapter"><h2 id="customiza-o" data-toc="customiza-o">Customiza&ccedil;&atilde;o</h2><section class="chapter"><h3 id="shell-rc" data-toc="shell-rc">Shell RC</h3><div class="code-block" data-lang="bash">
+# .bashrc ou .zshrc
+alias ll='ls -la'
+alias gs='git status'
+
+# Path
+export PATH=$PATH:/novo/caminho
+</div></section></section><section class="chapter"><h2 id="atalhos" data-toc="atalhos">Atalhos</h2><section class="chapter"><h3 id="keyboard-shortcuts" data-toc="keyboard-shortcuts">Keyboard Shortcuts</h3><div class="code-block" data-lang="none">
+SHORTCUTS
+├── Ctrl + C  (Cancelar)
+├── Ctrl + L  (Limpar)
+├── Ctrl + R  (Buscar histórico)
+├── Ctrl + A  (Início da linha)
+└── Ctrl + E  (Fim da linha)
+</div></section></section><section class="chapter"><h2 id="scripts" data-toc="scripts">Scripts</h2><section class="chapter"><h3 id="shell-scripts" data-toc="shell-scripts">Shell Scripts</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+
+# Exemplo básico
+echo &quot;Iniciando script...&quot;
+for i in {1..5}; do
+    echo &quot;Iteração $i&quot;
+done
+</div></section></section><section class="chapter"><h2 id="ferramentas-avan-adas" data-toc="ferramentas-avan-adas">Ferramentas Avan&ccedil;adas</h2><section class="chapter"><h3 id="power-tools" data-toc="power-tools">Power Tools</h3><div class="code-block" data-lang="none">
+POWER TOOLS
+├── tmux    (Terminal Multiplexer)
+├── vim     (Editor)
+├── htop    (Process Viewer)
+└── fzf     (Fuzzy Finder)
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="debug" data-toc="debug">Debug</h3><div class="code-block" data-lang="bash">
+# Debug modo
+set -x
+
+# Verificar status
+echo $?
+
+# Ver logs
+tail -f /var/log/syslog
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="aprofundamento" data-toc="aprofundamento">Aprofundamento</h3><ul class="list _bullet" id="oa2fgk_40"><li class="list__item" id="oa2fgk_44"><p id="oa2fgk_48">Shell scripting avan&ccedil;ado</p></li><li class="list__item" id="oa2fgk_45"><p id="oa2fgk_49">Automa&ccedil;&atilde;o com cron</p></li><li class="list__item" id="oa2fgk_46"><p id="oa2fgk_50">Terminal multiplexing</p></li><li class="list__item" id="oa2fgk_47"><p id="oa2fgk_51">Customiza&ccedil;&atilde;o avan&ccedil;ada</p></li></ul><p id="oa2fgk_41"><a href="docker-basics.html" id="oa2fgk_52" data-tooltip="Orquestração com Kubernetes">B&aacute;sico do Docker</a></p><aside class="prompt" data-type="tip" data-title="" id="oa2fgk_43"><p id="oa2fgk_53">&quot;O terminal &eacute; sua interface direta com a Matrix - domine-o, e voc&ecirc; controlar&aacute; o sistema.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="git-basics.html" class="navigation-links__prev">Git B&aacute;sico</a><a href="docker-basics.html" class="navigation-links__next">Docker B&aacute;sico</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.524160724"><title>Pattern Matching | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"introdu-o","level":0,"title":"Introdução","anchor":"#introdu-o"},{"id":"pattern-matching-com-instanceof","level":0,"title":"Pattern Matching com instanceof","anchor":"#pattern-matching-com-instanceof"},{"id":"pattern-matching-em-switch-preview","level":0,"title":"Pattern Matching em Switch (Preview)","anchor":"#pattern-matching-em-switch-preview"},{"id":"casos-de-uso-avan-ados","level":0,"title":"Casos de Uso Avançados","anchor":"#casos-de-uso-avan-ados"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplos-pr-ticos","level":0,"title":"Exemplos Práticos","anchor":"#exemplos-pr-ticos"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Pattern Matching | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/pattern-matching.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Pattern Matching | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/pattern-matching.html#webpage",
+    "url": "writerside-documentation/java/1.0/pattern-matching.html",
+    "name": "Pattern Matching | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="pattern-matching" data-main-title="Pattern Matching" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="control-flow.md|Controle de Fluxo"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="pattern-matching" id="pattern-matching.md">Pattern Matching</h1><div class="code-block" data-lang="none">
+&gt;&gt; Inicializando sistema de correspondência de padrões...
+&gt;&gt; Carregando tipos de dados...
+&gt;&gt; Estabelecendo regras de matching...
+</div><section class="chapter"><h2 id="introdu-o" data-toc="introdu-o">Introdu&ccedil;&atilde;o</h2><p id="-khzl3e_13">Pattern Matching &eacute; uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.</p></section><section class="chapter"><h2 id="pattern-matching-com-instanceof" data-toc="pattern-matching-com-instanceof">Pattern Matching com instanceof</h2><section class="chapter"><h3 id="sintaxe-tradicional-vs-nova" data-toc="sintaxe-tradicional-vs-nova">Sintaxe Tradicional vs. Nova</h3><div class="code-block" data-lang="java">
+// Forma antiga
+if (obj instanceof String) {
+    String str = (String) obj;
+    System.out.println(str.length());
+}
+
+// Pattern Matching
+if (obj instanceof String str) {
+    System.out.println(str.length());
+}
+</div></section><section class="chapter"><h3 id="uso-com-nega-o" data-toc="uso-com-nega-o">Uso com Nega&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+if (!(obj instanceof String str)) {
+    return;
+}
+// str está disponível aqui
+System.out.println(str.length());
+</div></section></section><section class="chapter"><h2 id="pattern-matching-em-switch-preview" data-toc="pattern-matching-em-switch-preview">Pattern Matching em Switch (Preview)</h2><section class="chapter"><h3 id="matching-por-tipo" data-toc="matching-por-tipo">Matching por Tipo</h3><div class="code-block" data-lang="java">
+String formatted = switch (obj) {
+    case String str -&gt; &quot;String: &quot; + str.toUpperCase();
+    case Integer num -&gt; &quot;Int: &quot; + num.toString();
+    case Double d -&gt; &quot;Double: &quot; + String.format(&quot;%.2f&quot;, d);
+    case null -&gt; &quot;null&quot;;
+    default -&gt; &quot;Unknown: &quot; + obj.toString();
+};
+</div></section><section class="chapter"><h3 id="guarded-patterns" data-toc="guarded-patterns">Guarded Patterns</h3><div class="code-block" data-lang="java">
+String checkNumber = switch (num) {
+    case Integer i when i &lt; 0 -&gt; &quot;Negativo&quot;;
+    case Integer i when i &gt; 0 -&gt; &quot;Positivo&quot;;
+    case Integer i -&gt; &quot;Zero&quot;;
+    default -&gt; &quot;Não é um número&quot;;
+};
+</div></section></section><section class="chapter"><h2 id="casos-de-uso-avan-ados" data-toc="casos-de-uso-avan-ados">Casos de Uso Avan&ccedil;ados</h2><section class="chapter"><h3 id="hierarquia-de-classes" data-toc="hierarquia-de-classes">Hierarquia de Classes</h3><div class="code-block" data-lang="java">
+public sealed interface Shape 
+    permits Circle, Rectangle, Triangle {}
+
+record Circle(double radius) implements Shape {}
+record Rectangle(double width, double height) implements Shape {}
+record Triangle(double base, double height) implements Shape {}
+
+double calculateArea(Shape shape) {
+    return switch (shape) {
+        case Circle c -&gt; Math.PI * c.radius() * c.radius();
+        case Rectangle r -&gt; r.width() * r.height();
+        case Triangle t -&gt; (t.base() * t.height()) / 2;
+    };
+}
+</div></section><section class="chapter"><h3 id="processamento-de-dados" data-toc="processamento-de-dados">Processamento de Dados</h3><div class="code-block" data-lang="java">
+String processData(Object data) {
+    return switch (data) {
+        case String s when s.length() &gt; 10 -&gt; &quot;String longa: &quot; + s.substring(0, 10) + &quot;...&quot;;
+        case String s -&gt; &quot;String: &quot; + s;
+        case List&lt;?&gt; list when list.isEmpty() -&gt; &quot;Lista vazia&quot;;
+        case List&lt;?&gt; list -&gt; &quot;Lista com &quot; + list.size() + &quot; elementos&quot;;
+        case Map&lt;?, ?&gt; map -&gt; &quot;Map com &quot; + map.size() + &quot; entradas&quot;;
+        case null -&gt; &quot;Dado nulo&quot;;
+        default -&gt; &quot;Tipo não suportado&quot;;
+    };
+}
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="-khzl3e_26" type="1"><li class="list__item" id="-khzl3e_27"><p id="-khzl3e_30"><span class="control" id="-khzl3e_32">Clareza</span></p><ul class="list _bullet" id="-khzl3e_31"><li class="list__item" id="-khzl3e_33"><p id="-khzl3e_36">Use nomes descritivos para vari&aacute;veis de pattern</p></li><li class="list__item" id="-khzl3e_34"><p id="-khzl3e_37">Mantenha padr&otilde;es simples e diretos</p></li><li class="list__item" id="-khzl3e_35"><p id="-khzl3e_38">Documente casos complexos</p></li></ul></li><li class="list__item" id="-khzl3e_28"><p id="-khzl3e_39"><span class="control" id="-khzl3e_41">Organiza&ccedil;&atilde;o</span></p><ul class="list _bullet" id="-khzl3e_40"><li class="list__item" id="-khzl3e_42"><p id="-khzl3e_45">Ordene casos do mais espec&iacute;fico para o mais gen&eacute;rico</p></li><li class="list__item" id="-khzl3e_43"><p id="-khzl3e_46">Agrupe padr&otilde;es relacionados</p></li><li class="list__item" id="-khzl3e_44"><p id="-khzl3e_47">Use guards para refinar a l&oacute;gica</p></li></ul></li><li class="list__item" id="-khzl3e_29"><p id="-khzl3e_48"><span class="control" id="-khzl3e_50">Performance</span></p><ul class="list _bullet" id="-khzl3e_49"><li class="list__item" id="-khzl3e_51"><p id="-khzl3e_54">Evite opera&ccedil;&otilde;es pesadas em guards</p></li><li class="list__item" id="-khzl3e_52"><p id="-khzl3e_55">Considere a ordem dos padr&otilde;es</p></li><li class="list__item" id="-khzl3e_53"><p id="-khzl3e_56">Mantenha o c&oacute;digo eficiente</p></li></ul></li></ol></section><section class="chapter"><h2 id="exemplos-pr-ticos" data-toc="exemplos-pr-ticos">Exemplos Pr&aacute;ticos</h2><section class="chapter"><h3 id="validador-de-dados" data-toc="validador-de-dados">Validador de Dados</h3><div class="code-block" data-lang="java">
+String validateInput(Object input) {
+    return switch (input) {
+        case String s when s.isBlank() -&gt; &quot;String vazia&quot;;
+        case String s when s.matches(&quot;\\d+&quot;) -&gt; &quot;Número válido: &quot; + s;
+        case String s -&gt; &quot;Texto válido: &quot; + s;
+        case Integer i when i &gt;= 0 -&gt; &quot;Número positivo: &quot; + i;
+        case Integer i -&gt; &quot;Número negativo: &quot; + i;
+        case null -&gt; &quot;Input nulo&quot;;
+        default -&gt; &quot;Input inválido&quot;;
+    };
+}
+</div></section><section class="chapter"><h3 id="processador-de-eventos" data-toc="processador-de-eventos">Processador de Eventos</h3><div class="code-block" data-lang="java">
+void processEvent(Event event) {
+    switch (event) {
+        case UserEvent u when u.isAdmin() -&gt; handleAdminEvent(u);
+        case UserEvent u -&gt; handleUserEvent(u);
+        case SystemEvent s when s.isCritical() -&gt; handleCriticalSystemEvent(s);
+        case SystemEvent s -&gt; handleSystemEvent(s);
+        case null -&gt; throw new IllegalArgumentException(&quot;Evento nulo&quot;);
+        default -&gt; handleUnknownEvent(event);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ol class="list _decimal" id="-khzl3e_62" type="1"><li class="list__item" id="-khzl3e_66"><p id="-khzl3e_67"><span class="control" id="-khzl3e_68">Ordem dos Patterns</span></p></li></ol><div class="code-block" data-lang="java">
+// Incorreto - Padrão inalcançável
+switch (obj) {
+    case Object o -&gt; &quot;Objeto&quot;;    // Captura tudo
+    case String s -&gt; &quot;String&quot;;    // Nunca alcançado
+}
+
+// Correto
+switch (obj) {
+    case String s -&gt; &quot;String&quot;;    // Mais específico primeiro
+    case Object o -&gt; &quot;Objeto&quot;;    // Mais genérico depois
+}
+</div><ol class="list _decimal" id="-khzl3e_64" type="1" start="2"><li class="list__item" id="-khzl3e_69"><p id="-khzl3e_70"><span class="control" id="-khzl3e_71">Null Handling</span></p></li></ol><div class="code-block" data-lang="java">
+// Incorreto - NullPointerException possível
+switch (obj) {
+    case String s -&gt; s.length();
+    default -&gt; 0;
+}
+
+// Correto
+switch (obj) {
+    case null -&gt; 0;
+    case String s -&gt; s.length();
+    default -&gt; 0;
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="-khzl3e_72" type="1"><li class="list__item" id="-khzl3e_76"><p id="-khzl3e_77"><span class="control" id="-khzl3e_78">Analisador de Dados</span></p></li></ol><div class="code-block" data-lang="java">
+String analyzeData(Object data) {
+    return switch (data) {
+        case String s when s.contains(&quot;@&quot;) -&gt; &quot;Email: &quot; + s;
+        case String s when s.matches(&quot;\\d{10}&quot;) -&gt; &quot;Telefone: &quot; + s;
+        case String s -&gt; &quot;Texto: &quot; + s;
+        case Integer i -&gt; &quot;Número: &quot; + i;
+        case List&lt;?&gt; l -&gt; &quot;Lista[&quot; + l.size() + &quot;]&quot;;
+        case null -&gt; &quot;NULO&quot;;
+        default -&gt; &quot;Desconhecido&quot;;
+    };
+}
+</div><ol class="list _decimal" id="-khzl3e_74" type="1" start="2"><li class="list__item" id="-khzl3e_79"><p id="-khzl3e_80"><span class="control" id="-khzl3e_81">Calculadora de Formas</span></p></li></ol><div class="code-block" data-lang="java">
+record Point(int x, int y) {}
+record Circle(Point center, double radius) {}
+record Rectangle(Point topLeft, double width, double height) {}
+
+String describeShape(Object shape) {
+    return switch (shape) {
+        case Circle c -&gt; 
+            String.format(&quot;Círculo em (%d,%d) com raio %.2f&quot;,
+                c.center().x(), c.center().y(), c.radius());
+        case Rectangle r -&gt; 
+            String.format(&quot;Retângulo em (%d,%d) de %.2fx%.2f&quot;,
+                r.topLeft().x(), r.topLeft().y(), r.width(), r.height());
+        case null -&gt; &quot;Forma nula&quot;;
+        default -&gt; &quot;Forma não reconhecida&quot;;
+    };
+}
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-khzl3e_82"><li class="list__item" id="-khzl3e_84"><p id="-khzl3e_87">Explore express&otilde;es switch em <a href="switch-expressions.html" id="-khzl3e_88" data-tooltip="O switch expression é uma feature moderna do Java que oferece uma forma mais concisa e segura de escrever estruturas de decisão múltipla.">Switch Expressions</a></p></li><li class="list__item" id="-khzl3e_85"><p id="-khzl3e_89">Pratique com projetos em <a href="control-flow-projects.html" id="-khzl3e_90" data-tooltip="Esta seção apresenta três projetos práticos que demonstram diferentes aspectos do controle de fluxo em Java, todos ambientados em um contexto cyberpunk.">Control Flow Projects</a></p></li><li class="list__item" id="-khzl3e_86"><p id="-khzl3e_91">Aprenda sobre sealed classes em <a href="sealed-classes.html" id="-khzl3e_92" data-tooltip="Sealed Classes controlam a hierarquia de herança, permitindo apenas classes específicas como subclasses.">Sealed Classes</a></p></li></ul><p id="-khzl3e_83"><a href="control-flow-projects.html" id="-khzl3e_93" data-tooltip="Esta seção apresenta três projetos práticos que demonstram diferentes aspectos do controle de fluxo em Java, todos ambientados em um contexto cyberpunk.">Control Flow Projects</a></p></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="switch-expressions.html" class="navigation-links__prev">Switch Expressions</a><a href="control-flow-projects.html" class="navigation-links__next">Projetos de Controle de Fluxo</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

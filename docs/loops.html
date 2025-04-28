@@ -1,0 +1,168 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.416912766"><title>Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"tipos-de-loops","level":0,"title":"Tipos de Loops","anchor":"#tipos-de-loops"},{"id":"controle-de-loop","level":0,"title":"Controle de Loop","anchor":"#controle-de-loop"},{"id":"padr-es-de-uso","level":0,"title":"Padrões de Uso","anchor":"#padr-es-de-uso"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplos-avan-ados","level":0,"title":"Exemplos Avançados","anchor":"#exemplos-avan-ados"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/loops.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/loops.html#webpage",
+    "url": "writerside-documentation/java/1.0/loops.html",
+    "name": "Estruturas de Repeti&ccedil;&atilde;o | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="loops" data-main-title="Estruturas de Repetição" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="control-flow.md|Controle de Fluxo"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="loops" id="loops.md">Estruturas de Repetição</h1><div class="code-block" data-lang="none">
+&gt;&gt; Iniciando ciclos de execução...
+&gt;&gt; Configurando iteradores...
+&gt;&gt; Estabelecendo pontos de controle...
+</div><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="qt3muj_12">Loops s&atilde;o como rotinas de hack - eles permitem executar opera&ccedil;&otilde;es repetitivas de forma eficiente e controlada.</p></section><section class="chapter"><h2 id="tipos-de-loops" data-toc="tipos-de-loops">Tipos de Loops</h2><section class="chapter"><h3 id="1-for-loop" data-toc="1-for-loop">1. for Loop</h3><div class="code-block" data-lang="java">
+for (inicialização; condição; incremento) {
+    // código a ser repetido
+}
+</div><section class="chapter"><h4 id="exemplo-pr-tico" data-toc="exemplo-pr-tico">Exemplo Pr&aacute;tico</h4><div class="code-block" data-lang="java">
+for (int i = 0; i &lt; 5; i++) {
+    System.out.println(&quot;Tentativa de acesso: &quot; + i);
+}
+</div></section></section><section class="chapter"><h3 id="2-while-loop" data-toc="2-while-loop">2. while Loop</h3><div class="code-block" data-lang="java">
+while (condição) {
+    // código a ser repetido
+}
+</div><section class="chapter"><h4 id="exemplo-pr-tico" data-toc="exemplo-pr-tico">Exemplo Pr&aacute;tico</h4><div class="code-block" data-lang="java">
+int tentativas = 0;
+while (tentativas &lt; 3) {
+    System.out.println(&quot;Tentando conexão...&quot;);
+    tentativas++;
+}
+</div></section></section><section class="chapter"><h3 id="3-do-while-loop" data-toc="3-do-while-loop">3. do-while Loop</h3><div class="code-block" data-lang="java">
+do {
+    // código a ser repetido
+} while (condição);
+</div><section class="chapter"><h4 id="exemplo-pr-tico" data-toc="exemplo-pr-tico">Exemplo Pr&aacute;tico</h4><div class="code-block" data-lang="java">
+int senha;
+do {
+    senha = gerarSenha();
+} while (!validarSenha(senha));
+</div></section></section><section class="chapter"><h3 id="4-for-each-loop" data-toc="4-for-each-loop">4. for-each Loop</h3><div class="code-block" data-lang="java">
+for (tipo elemento : coleção) {
+    // código a ser repetido
+}
+</div><section class="chapter"><h4 id="exemplo-pr-tico" data-toc="exemplo-pr-tico">Exemplo Pr&aacute;tico</h4><div class="code-block" data-lang="java">
+String[] servidores = {&quot;Alpha&quot;, &quot;Beta&quot;, &quot;Gamma&quot;};
+for (String servidor : servidores) {
+    System.out.println(&quot;Verificando servidor: &quot; + servidor);
+}
+</div></section></section></section><section class="chapter"><h2 id="controle-de-loop" data-toc="controle-de-loop">Controle de Loop</h2><section class="chapter"><h3 id="break" data-toc="break">break</h3><p id="qt3muj_31">Interrompe a execu&ccedil;&atilde;o do loop completamente.</p><div class="code-block" data-lang="java">
+for (int i = 0; i &lt; 100; i++) {
+    if (detectarIntruso()) {
+        break; // Sai do loop imediatamente
+    }
+}
+</div></section><section class="chapter"><h3 id="continue" data-toc="continue">continue</h3><p id="qt3muj_33">Pula para a pr&oacute;xima itera&ccedil;&atilde;o do loop.</p><div class="code-block" data-lang="java">
+for (int porta = 0; porta &lt; 1024; porta++) {
+    if (!portaVulneravel(porta)) {
+        continue; // Verifica próxima porta
+    }
+    atacarPorta(porta);
+}
+</div></section></section><section class="chapter"><h2 id="padr-es-de-uso" data-toc="padr-es-de-uso">Padr&otilde;es de Uso</h2><section class="chapter"><h3 id="1-loop-infinito-controlado" data-toc="1-loop-infinito-controlado">1. Loop Infinito Controlado</h3><div class="code-block" data-lang="java">
+while (true) {
+    if (condicaoParada()) {
+        break;
+    }
+    // processamento
+}
+</div></section><section class="chapter"><h3 id="2-loop-com-m-ltiplas-vari-veis" data-toc="2-loop-com-m-ltiplas-vari-veis">2. Loop com M&uacute;ltiplas Vari&aacute;veis</h3><div class="code-block" data-lang="java">
+for (int i = 0, j = 10; i &lt; j; i++, j--) {
+    System.out.printf(&quot;i: %d, j: %d%n&quot;, i, j);
+}
+</div></section><section class="chapter"><h3 id="3-loop-aninhado" data-toc="3-loop-aninhado">3. Loop Aninhado</h3><div class="code-block" data-lang="java">
+for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 3; j++) {
+        System.out.printf(&quot;[%d,%d] &quot;, i, j);
+    }
+    System.out.println();
+}
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="qt3muj_41" type="1"><li class="list__item" id="qt3muj_42"><p id="qt3muj_45"><span class="control" id="qt3muj_47">Use o Loop Adequado</span></p><div class="code-block" data-lang="java">
+// Para número conhecido de iterações
+for (int i = 0; i &lt; tamanho; i++) { }
+
+// Para condição desconhecida
+while (temDados()) { }
+
+// Para arrays/collections
+for (Elemento e : colecao) { }
+</div></li><li class="list__item" id="qt3muj_43"><p id="qt3muj_48"><span class="control" id="qt3muj_50">Evite Loop Infinito Acidental</span></p><div class="code-block" data-lang="java">
+// Ruim - possível loop infinito
+while (x &gt; 0) {
+    // esqueceu de modificar x
+}
+
+// Bom
+while (x &gt; 0) {
+    x--;
+    // processamento
+}
+</div></li><li class="list__item" id="qt3muj_44"><p id="qt3muj_51"><span class="control" id="qt3muj_53">Mantenha Loops Simples</span></p><div class="code-block" data-lang="java">
+// Evite
+for (int i = 0; i &lt; 100; i++) {
+    // muito código aqui
+}
+
+// Prefira
+for (int i = 0; i &lt; 100; i++) {
+    processarItem(i);
+}
+</div></li></ol></section><section class="chapter"><h2 id="exemplos-avan-ados" data-toc="exemplos-avan-ados">Exemplos Avan&ccedil;ados</h2><section class="chapter"><h3 id="1-loop-com-timer" data-toc="1-loop-com-timer">1. Loop com Timer</h3><div class="code-block" data-lang="java">
+long inicio = System.currentTimeMillis();
+long limite = 5000; // 5 segundos
+
+while (System.currentTimeMillis() - inicio &lt; limite) {
+    // processamento limitado por tempo
+}
+</div></section><section class="chapter"><h3 id="2-loop-com-retry" data-toc="2-loop-com-retry">2. Loop com Retry</h3><div class="code-block" data-lang="java">
+int maxTentativas = 3;
+int tentativa = 0;
+
+while (tentativa &lt; maxTentativas) {
+    try {
+        conectar();
+        break;
+    } catch (Exception e) {
+        tentativa++;
+        if (tentativa == maxTentativas) {
+            throw new RuntimeException(&quot;Falha na conexão&quot;);
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="3-loop-com-buffer" data-toc="3-loop-com-buffer">3. Loop com Buffer</h3><div class="code-block" data-lang="java">
+StringBuilder buffer = new StringBuilder();
+for (int i = 0; i &lt; dados.length; i++) {
+    buffer.append(dados[i]);
+    if (buffer.length() &gt;= 1000) {
+        processarBuffer(buffer.toString());
+        buffer.setLength(0);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="qt3muj_60" type="1"><li class="list__item" id="qt3muj_61"><p id="qt3muj_63"><span class="control" id="qt3muj_65">Scanner de Portas</span></p><div class="code-block" data-lang="java">
+public void scanearPortas(int inicio, int fim) {
+    for (int porta = inicio; porta &lt;= fim; porta++) {
+        if (portaAberta(porta)) {
+            System.out.println(&quot;Porta &quot; + porta + &quot; está aberta&quot;);
+        }
+    }
+}
+</div></li><li class="list__item" id="qt3muj_62"><p id="qt3muj_66"><span class="control" id="qt3muj_68">Processador de Dados</span></p><div class="code-block" data-lang="java">
+public void processarDados(List&lt;String&gt; dados) {
+    int processados = 0;
+    while (!dados.isEmpty()) {
+        String dado = dados.remove(0);
+        processar(dado);
+        processados++;
+        if (processados % 100 == 0) {
+            System.out.println(&quot;Progresso: &quot; + processados);
+        }
+    }
+}
+</div></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="qt3muj_69"><li class="list__item" id="qt3muj_71"><p id="qt3muj_74">Aprenda sobre condicionais em <a href="conditionals.html" id="qt3muj_75" data-tooltip="As estruturas condicionais são como os checkpoints da Matrix - elas determinam quais caminhos seu código pode seguir.">Conditionals</a></p></li><li class="list__item" id="qt3muj_72"><p id="qt3muj_76">Explore express&otilde;es switch em <a href="switch-expressions.html" id="qt3muj_77" data-tooltip="O switch expression é uma feature moderna do Java que oferece uma forma mais concisa e segura de escrever estruturas de decisão múltipla.">Switch Expressions</a></p></li><li class="list__item" id="qt3muj_73"><p id="qt3muj_78">Descubra pattern matching em <a href="pattern-matching.html" id="qt3muj_79" data-tooltip="Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.">Pattern Matching</a></p></li></ul><p id="qt3muj_70"><a href="pattern-matching.html" id="qt3muj_80" data-tooltip="Pattern Matching é uma feature moderna do Java que permite testar e extravar valores de objetos de forma mais elegante e segura.">Pattern Matching</a></p></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="conditionals.html" class="navigation-links__prev">Estruturas Condicionais</a><a href="switch-expressions.html" class="navigation-links__next">Switch Expressions</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

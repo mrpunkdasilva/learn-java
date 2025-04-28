@@ -1,0 +1,206 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.667604422"><title>Reflection Explorer | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral-do-projeto","level":0,"title":"Visão Geral do Projeto","anchor":"#vis-o-geral-do-projeto"},{"id":"arquitetura","level":0,"title":"Arquitetura","anchor":"#arquitetura"},{"id":"implementa-o-core","level":0,"title":"Implementação Core","anchor":"#implementa-o-core"},{"id":"recursos-avan-ados","level":0,"title":"Recursos Avançados","anchor":"#recursos-avan-ados"},{"id":"exemplos-de-uso","level":0,"title":"Exemplos de Uso","anchor":"#exemplos-de-uso"},{"id":"testes","level":0,"title":"Testes","anchor":"#testes"},{"id":"considera-es-de-performance","level":0,"title":"Considerações de Performance","anchor":"#considera-es-de-performance"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Reflection Explorer | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/reflection-explorer.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Reflection Explorer | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/reflection-explorer.html#webpage",
+    "url": "writerside-documentation/java/1.0/reflection-explorer.html",
+    "name": "Reflection Explorer | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="reflection-explorer" data-main-title="Reflection Explorer" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="advanced-features.md|Recursos Avançados do Java///advanced-projects.md|Projetos Avançados"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="reflection-explorer" id="reflection-explorer.md">Reflection Explorer</h1><section class="chapter"><h2 id="vis-o-geral-do-projeto" data-toc="vis-o-geral-do-projeto">Vis&atilde;o Geral do Projeto</h2><p id="-wb4gkn_12">O Reflection Explorer &eacute; uma ferramenta avan&ccedil;ada para an&aacute;lise e manipula&ccedil;&atilde;o de classes Java em runtime, permitindo:</p><ul class="list _bullet" id="-wb4gkn_13"><li class="list__item" id="-wb4gkn_14"><p id="-wb4gkn_19">Inspe&ccedil;&atilde;o detalhada de classes</p></li><li class="list__item" id="-wb4gkn_15"><p id="-wb4gkn_20">Modifica&ccedil;&atilde;o din&acirc;mica de objetos</p></li><li class="list__item" id="-wb4gkn_16"><p id="-wb4gkn_21">Gera&ccedil;&atilde;o de proxies</p></li><li class="list__item" id="-wb4gkn_17"><p id="-wb4gkn_22">An&aacute;lise de depend&ecirc;ncias</p></li><li class="list__item" id="-wb4gkn_18"><p id="-wb4gkn_23">Visualiza&ccedil;&atilde;o de hierarquias</p></li></ul></section><section class="chapter"><h2 id="arquitetura" data-toc="arquitetura">Arquitetura</h2><svg aria-roledescription="classDiagram" role="graphics-document document" viewBox="0 0 934.21875 500"  xmlns="http://www.w3.org/2000/svg" width="934.21875" id="mermaid"><g><defs><marker orient="auto" markerHeight="240" markerWidth="190" refY="7" refX="18" class="marker aggregation classDiagram" id="mermaid_classDiagram-aggregationStart"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="28" markerWidth="20" refY="7" refX="1" class="marker aggregation classDiagram" id="mermaid_classDiagram-aggregationEnd"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="240" markerWidth="190" refY="7" refX="18" class="marker extension classDiagram" id="mermaid_classDiagram-extensionStart"><path d="M 1,7 L18,13 V 1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="28" markerWidth="20" refY="7" refX="1" class="marker extension classDiagram" id="mermaid_classDiagram-extensionEnd"><path d="M 1,1 V 13 L18,7 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="240" markerWidth="190" refY="7" refX="18" class="marker composition classDiagram" id="mermaid_classDiagram-compositionStart"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="28" markerWidth="20" refY="7" refX="1" class="marker composition classDiagram" id="mermaid_classDiagram-compositionEnd"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="240" markerWidth="190" refY="7" refX="6" class="marker dependency classDiagram" id="mermaid_classDiagram-dependencyStart"><path d="M 5,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="28" markerWidth="20" refY="7" refX="13" class="marker dependency classDiagram" id="mermaid_classDiagram-dependencyEnd"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker orient="auto" markerHeight="240" markerWidth="190" refY="7" refX="13" class="marker lollipop classDiagram" id="mermaid_classDiagram-lollipopStart"><circle r="6" cy="7" cx="7" fill="transparent" stroke="black"></circle></marker></defs><defs><marker orient="auto" markerHeight="240" markerWidth="190" refY="7" refX="1" class="marker lollipop classDiagram" id="mermaid_classDiagram-lollipopEnd"><circle r="6" cy="7" cx="7" fill="transparent" stroke="black"></circle></marker></defs><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid_classDiagram-dependencyEnd)" style="fill:none" class="edge-pattern-solid relation" id="id_ReflectionExplorer_ClassAnalyzer_1" d="M322.914,188L293.803,200.667C264.693,213.333,206.471,238.667,177.361,254.5C148.25,270.333,148.25,276.667,148.25,279.833L148.25,283"></path><path marker-end="url(#mermaid_classDiagram-dependencyEnd)" style="fill:none" class="edge-pattern-solid relation" id="id_ReflectionExplorer_ObjectModifier_2" d="M471.148,239L471.148,243.167C471.148,247.333,471.148,255.667,471.148,267.667C471.148,279.667,471.148,295.333,471.148,303.167L471.148,311"></path><path marker-end="url(#mermaid_classDiagram-dependencyEnd)" style="fill:none" class="edge-pattern-solid relation" id="id_ReflectionExplorer_ProxyGenerator_3" d="M619.383,188.817L647.82,201.347C676.258,213.878,733.133,238.939,761.57,261.636C790.008,284.333,790.008,304.667,790.008,314.833L790.008,325"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(471.1484375, 123.5)" id="classId-ReflectionExplorer-74" class="node default"><rect height="231" width="296.46875" y="-115.5" x="-148.234375" class="outer title-state" style=""></rect><line y2="-79.5" y1="-79.5" x2="148.234375" x1="-148.234375" class="divider"></line><line y2="20.5" y1="20.5" x2="148.234375" x1="-148.234375" class="divider"></line><g class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"></span></div></foreignObject><foreignObject transform="translate( -71.3515625, -108)" height="24" width="142.703125" class="classTitle"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">ReflectionExplorer</span></div></foreignObject><foreignObject transform="translate( -140.734375, -68)" height="24" width="173.0625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">-ClassAnalyzer analyzer</span></div></foreignObject><foreignObject transform="translate( -140.734375, -40)" height="24" width="170.40625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">-ObjectModifier modifier</span></div></foreignObject><foreignObject transform="translate( -140.734375, -12)" height="24" width="192.65625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">-ProxyGenerator proxyGen</span></div></foreignObject><foreignObject transform="translate( -140.734375, 28)" height="24" width="195.84375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+analyze(Class) : ClassInfo</span></div></foreignObject><foreignObject transform="translate( -140.734375, 56)" height="24" width="281.46875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+modify(Object, Enhancement) : Object</span></div></foreignObject><foreignObject transform="translate( -140.734375, 84)" height="24" width="270.765625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+createProxy(Class, Handler) : Object</span></div></foreignObject></g></g><g transform="translate(148.25, 390.5)" id="classId-ClassAnalyzer-75" class="node default"><rect height="203" width="280.5" y="-101.5" x="-140.25" class="outer title-state" style=""></rect><line y2="-65.5" y1="-65.5" x2="140.25" x1="-140.25" class="divider"></line><line y2="6.5" y1="6.5" x2="140.25" x1="-140.25" class="divider"></line><g class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"></span></div></foreignObject><foreignObject transform="translate( -54.8515625, -94)" height="24" width="109.703125" class="classTitle"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">ClassAnalyzer</span></div></foreignObject><foreignObject transform="translate( -132.75, -54)" height="24" width="145.375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">-methodCache: Map</span></div></foreignObject><foreignObject transform="translate( -132.75, -26)" height="24" width="121.34375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">-fieldCache: Map</span></div></foreignObject><foreignObject transform="translate( -132.75, 14)" height="24" width="219.921875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+getMethods(Class) : Method[]</span></div></foreignObject><foreignObject transform="translate( -132.75, 42)" height="24" width="182.484375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+getFields(Class) : Field[]</span></div></foreignObject><foreignObject transform="translate( -132.75, 70)" height="24" width="265.5"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+getAnnotations(Class) : Annotation[]</span></div></foreignObject></g></g><g transform="translate(471.1484375, 390.5)" id="classId-ObjectModifier-76" class="node default"><rect height="147" width="265.296875" y="-73.5" x="-132.6484375" class="outer title-state" style=""></rect><line y2="-37.5" y1="-37.5" x2="132.6484375" x1="-132.6484375" class="divider"></line><line y2="-21.5" y1="-21.5" x2="132.6484375" x1="-132.6484375" class="divider"></line><g class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"></span></div></foreignObject><foreignObject transform="translate( -56.1796875, -66)" height="24" width="112.359375" class="classTitle"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">ObjectModifier</span></div></foreignObject><foreignObject transform="translate( -125.1484375, -14)" height="24" width="187.8125"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+enhance(Object) : Object</span></div></foreignObject><foreignObject transform="translate( -125.1484375, 14)" height="24" width="202.140625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+inject(Object, Object) : void</span></div></foreignObject><foreignObject transform="translate( -125.1484375, 42)" height="24" width="250.296875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+intercept(Object, Method) : Object</span></div></foreignObject></g></g><g transform="translate(790.0078125, 390.5)" id="classId-ProxyGenerator-77" class="node default"><rect height="119" width="272.421875" y="-59.5" x="-136.2109375" class="outer title-state" style=""></rect><line y2="-23.5" y1="-23.5" x2="136.2109375" x1="-136.2109375" class="divider"></line><line y2="-7.5" y1="-7.5" x2="136.2109375" x1="-136.2109375" class="divider"></line><g class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"></span></div></foreignObject><foreignObject transform="translate( -60.640625, -52)" height="24" width="121.28125" class="classTitle"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">ProxyGenerator</span></div></foreignObject><foreignObject transform="translate( -128.7109375, 0)" height="24" width="205.640625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+createProxy(Class) : Object</span></div></foreignObject><foreignObject transform="translate( -128.7109375, 28)" height="24" width="257.421875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">+addHandler(Object, Handler) : void</span></div></foreignObject></g></g></g></g></g></svg></section><section class="chapter"><h2 id="implementa-o-core" data-toc="implementa-o-core">Implementa&ccedil;&atilde;o Core</h2><section class="chapter"><h3 id="analisador-de-classes" data-toc="analisador-de-classes">Analisador de Classes</h3><div class="code-block" data-lang="java">
+public class ClassAnalyzer {
+    private final Map&lt;Class&lt;?&gt;, Method[]&gt; methodCache = new ConcurrentHashMap&lt;&gt;();
+    private final Map&lt;Class&lt;?&gt;, Field[]&gt; fieldCache = new ConcurrentHashMap&lt;&gt;();
+    
+    @Inspect
+    public ClassInfo analyze(Class&lt;?&gt; target) {
+        return ClassInfo.builder()
+            .name(target.getName())
+            .methods(getMethods(target))
+            .fields(getFields(target))
+            .annotations(getAnnotations(target))
+            .superclass(target.getSuperclass())
+            .interfaces(target.getInterfaces())
+            .modifiers(target.getModifiers())
+            .build();
+    }
+    
+    private Method[] getMethods(Class&lt;?&gt; clazz) {
+        return methodCache.computeIfAbsent(clazz, Class::getDeclaredMethods);
+    }
+    
+    private Field[] getFields(Class&lt;?&gt; clazz) {
+        return fieldCache.computeIfAbsent(clazz, Class::getDeclaredFields);
+    }
+}
+</div></section><section class="chapter"><h3 id="modificador-de-objetos" data-toc="modificador-de-objetos">Modificador de Objetos</h3><div class="code-block" data-lang="java">
+public class ObjectModifier {
+    @Modify
+    public Object enhance(
+        @Target Object instance,
+        @Enhancement Enhancement enhancement
+    ) {
+        Class&lt;?&gt; clazz = instance.getClass();
+        
+        // Aplicar modificações
+        for (Field field : clazz.getDeclaredFields()) {
+            if (enhancement.shouldModify(field)) {
+                field.setAccessible(true);
+                field.set(instance, enhancement.getNewValue(field));
+            }
+        }
+        
+        return instance;
+    }
+    
+    @Intercept
+    public Object interceptMethod(
+        Object instance,
+        Method method,
+        Object[] args,
+        MethodHandler handler
+    ) throws Exception {
+        // Pré-processamento
+        handler.beforeInvocation(method, args);
+        
+        // Invocação do método
+        Object result = method.invoke(instance, args);
+        
+        // Pós-processamento
+        return handler.afterInvocation(method, result);
+    }
+}
+</div></section><section class="chapter"><h3 id="gerador-de-proxy" data-toc="gerador-de-proxy">Gerador de Proxy</h3><div class="code-block" data-lang="java">
+public class ProxyGenerator {
+    public &lt;T&gt; T createProxy(
+        Class&lt;T&gt; interfaceType,
+        InvocationHandler handler
+    ) {
+        return (T) Proxy.newProxyInstance(
+            interfaceType.getClassLoader(),
+            new Class&lt;?&gt;[] { interfaceType },
+            handler
+        );
+    }
+    
+    public class LoggingHandler implements InvocationHandler {
+        private final Object target;
+        
+        public LoggingHandler(Object target) {
+            this.target = target;
+        }
+        
+        @Override
+        public Object invoke(
+            Object proxy,
+            Method method,
+            Object[] args
+        ) throws Throwable {
+            System.out.println(&quot;Before: &quot; + method.getName());
+            Object result = method.invoke(target, args);
+            System.out.println(&quot;After: &quot; + method.getName());
+            return result;
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="recursos-avan-ados" data-toc="recursos-avan-ados">Recursos Avan&ccedil;ados</h2><section class="chapter"><h3 id="visualizador-de-hierarquia" data-toc="visualizador-de-hierarquia">Visualizador de Hierarquia</h3><div class="code-block" data-lang="java">
+public class HierarchyVisualizer {
+    public String generateDotGraph(Class&lt;?&gt; rootClass) {
+        StringBuilder dot = new StringBuilder();
+        dot.append(&quot;digraph Hierarchy {\n&quot;);
+        
+        // Adiciona nós
+        addClassNode(dot, rootClass);
+        
+        // Adiciona relacionamentos
+        addRelationships(dot, rootClass);
+        
+        dot.append(&quot;}&quot;);
+        return dot.toString();
+    }
+    
+    private void addClassNode(StringBuilder dot, Class&lt;?&gt; clazz) {
+        dot.append(String.format(
+            &quot;  %s [label=\&quot;%s\&quot;];\n&quot;,
+            clazz.getSimpleName(),
+            clazz.getName()
+        ));
+    }
+}
+</div></section><section class="chapter"><h3 id="cache-inteligente" data-toc="cache-inteligente">Cache Inteligente</h3><div class="code-block" data-lang="java">
+public class ReflectionCache {
+    private static final Map&lt;Class&lt;?&gt;, ClassInfo&gt; CLASS_INFO_CACHE = 
+        new ConcurrentHashMap&lt;&gt;();
+    
+    public static ClassInfo getClassInfo(Class&lt;?&gt; clazz) {
+        return CLASS_INFO_CACHE.computeIfAbsent(
+            clazz,
+            ReflectionCache::analyzeClass
+        );
+    }
+    
+    private static ClassInfo analyzeClass(Class&lt;?&gt; clazz) {
+        // Análise detalhada da classe
+        return new ClassAnalyzer().analyze(clazz);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exemplos-de-uso" data-toc="exemplos-de-uso">Exemplos de Uso</h2><section class="chapter"><h3 id="an-lise-de-depend-ncias" data-toc="an-lise-de-depend-ncias">An&aacute;lise de Depend&ecirc;ncias</h3><div class="code-block" data-lang="java">
+public class DependencyAnalyzer {
+    public Set&lt;Class&lt;?&gt;&gt; findDependencies(Class&lt;?&gt; targetClass) {
+        Set&lt;Class&lt;?&gt;&gt; dependencies = new HashSet&lt;&gt;();
+        
+        // Analisa campos
+        for (Field field : targetClass.getDeclaredFields()) {
+            dependencies.add(field.getType());
+        }
+        
+        // Analisa métodos
+        for (Method method : targetClass.getDeclaredMethods()) {
+            dependencies.addAll(Arrays.asList(method.getParameterTypes()));
+            dependencies.add(method.getReturnType());
+        }
+        
+        return dependencies;
+    }
+}
+</div></section><section class="chapter"><h3 id="inje-o-din-mica" data-toc="inje-o-din-mica">Inje&ccedil;&atilde;o Din&acirc;mica</h3><div class="code-block" data-lang="java">
+public class DependencyInjector {
+    public void inject(Object instance) {
+        Class&lt;?&gt; clazz = instance.getClass();
+        
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(Inject.class)) {
+                field.setAccessible(true);
+                field.set(instance, createDependency(field.getType()));
+            }
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="testes" data-toc="testes">Testes</h2><section class="chapter"><h3 id="testes-unit-rios" data-toc="testes-unit-rios">Testes Unit&aacute;rios</h3><div class="code-block" data-lang="java">
+@Test
+public void testClassAnalysis() {
+    ClassAnalyzer analyzer = new ClassAnalyzer();
+    ClassInfo info = analyzer.analyze(TestClass.class);
+    
+    assertNotNull(info);
+    assertEquals(&quot;TestClass&quot;, info.getName());
+    assertTrue(info.getMethods().length &gt; 0);
+}
+
+@Test
+public void testObjectModification() {
+    ObjectModifier modifier = new ObjectModifier();
+    TestClass instance = new TestClass();
+    
+    Enhancement enhancement = new Enhancement(&quot;value&quot;, &quot;newValue&quot;);
+    Object modified = modifier.enhance(instance, enhancement);
+    
+    assertEquals(&quot;newValue&quot;, ((TestClass)modified).getValue());
+}
+</div></section></section><section class="chapter"><h2 id="considera-es-de-performance" data-toc="considera-es-de-performance">Considera&ccedil;&otilde;es de Performance</h2><ol class="list _decimal" id="-wb4gkn_41" type="1"><li class="list__item" id="-wb4gkn_42"><p id="-wb4gkn_45"><span class="control" id="-wb4gkn_47">Caching</span></p><ul class="list _bullet" id="-wb4gkn_46"><li class="list__item" id="-wb4gkn_48"><p id="-wb4gkn_51">Cache de reflection metadata</p></li><li class="list__item" id="-wb4gkn_49"><p id="-wb4gkn_52">Reutiliza&ccedil;&atilde;o de inst&acirc;ncias</p></li><li class="list__item" id="-wb4gkn_50"><p id="-wb4gkn_53">Lazy loading de informa&ccedil;&otilde;es</p></li></ul></li><li class="list__item" id="-wb4gkn_43"><p id="-wb4gkn_54"><span class="control" id="-wb4gkn_56">Otimiza&ccedil;&otilde;es</span></p><ul class="list _bullet" id="-wb4gkn_55"><li class="list__item" id="-wb4gkn_57"><p id="-wb4gkn_60">Batch processing</p></li><li class="list__item" id="-wb4gkn_58"><p id="-wb4gkn_61">Minimizar reflection em loops</p></li><li class="list__item" id="-wb4gkn_59"><p id="-wb4gkn_62">Usar streams para processamento paralelo</p></li></ul></li><li class="list__item" id="-wb4gkn_44"><p id="-wb4gkn_63"><span class="control" id="-wb4gkn_65">Mem&oacute;ria</span></p><ul class="list _bullet" id="-wb4gkn_64"><li class="list__item" id="-wb4gkn_66"><p id="-wb4gkn_69">Limpeza peri&oacute;dica de cache</p></li><li class="list__item" id="-wb4gkn_67"><p id="-wb4gkn_70">Weak references para objetos</p></li><li class="list__item" id="-wb4gkn_68"><p id="-wb4gkn_71">Pooling de inst&acirc;ncias comuns</p></li></ul></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-wb4gkn_72" type="1"><li class="list__item" id="-wb4gkn_73"><p id="-wb4gkn_77">Implementar visualiza&ccedil;&atilde;o gr&aacute;fica</p></li><li class="list__item" id="-wb4gkn_74"><p id="-wb4gkn_78">Adicionar suporte a bytecode manipulation</p></li><li class="list__item" id="-wb4gkn_75"><p id="-wb4gkn_79">Criar sistema de plugins</p></li><li class="list__item" id="-wb4gkn_76"><p id="-wb4gkn_80">Integrar com IDEs populares</p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="-wb4gkn_81"><li class="list__item" id="-wb4gkn_83"><p id="-wb4gkn_86"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/package-summary.html" id="-wb4gkn_87" data-external="true" rel="noopener noreferrer" target="_blank">Java Reflection API Documentation</a></p></li><li class="list__item" id="-wb4gkn_84"><p id="-wb4gkn_88"><a href="https://asm.ow2.io/" id="-wb4gkn_89" data-external="true" rel="noopener noreferrer" target="_blank">ASM Library</a></p></li><li class="list__item" id="-wb4gkn_85"><p id="-wb4gkn_90"><a href="https://bytebuddy.net/" id="-wb4gkn_91" data-external="true" rel="noopener noreferrer" target="_blank">ByteBuddy</a></p></li></ul><p id="-wb4gkn_82"><a href="annotation-processor.html" id="-wb4gkn_92" data-tooltip="O Annotation Processor é um mecanismo poderoso do Java que permite processar anotações em tempo de compilação para gerar código, validar restrições e realizar outras tarefas de metaprogramação.">Annotation Processor</a></p></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="generic-container.html" class="navigation-links__prev">Generic Container</a><a href="creational-patterns.html" class="navigation-links__next">Padr&otilde;es Criacionais</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:16.876355752"><title>Builder Pattern | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"implementa-es","level":0,"title":"Implementações","anchor":"#implementa-es"},{"id":"casos-de-uso","level":0,"title":"Casos de Uso","anchor":"#casos-de-uso"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"anti-patterns","level":0,"title":"Anti-Patterns","anchor":"#anti-patterns"},{"id":"exerc-cio-pr-tico","level":0,"title":"Exercício Prático","anchor":"#exerc-cio-pr-tico"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Builder Pattern | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/builder.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Builder Pattern | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/builder.html#webpage",
+    "url": "writerside-documentation/java/1.0/builder.html",
+    "name": "Builder Pattern | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="builder" data-main-title="Builder Pattern" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="creational-patterns.md|Padrões Criacionais"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="builder" id="builder.md">Builder Pattern</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="k1fdy7_10">O Builder &eacute; um padr&atilde;o criacional que permite construir objetos complexos passo a passo, separando o processo de constru&ccedil;&atilde;o da representa&ccedil;&atilde;o final.</p><div class="code-block" data-lang="none">
+BUILDER PATTERN
+├── Director (Opcional)
+├── Builder (Interface)
+├── Concrete Builder
+└── Product
+</div></section><section class="chapter"><h2 id="implementa-es" data-toc="implementa-es">Implementa&ccedil;&otilde;es</h2><section class="chapter"><h3 id="1-builder-cl-ssico" data-toc="1-builder-cl-ssico">1. Builder Cl&aacute;ssico</h3><div class="code-block" data-lang="java">
+public class Pizza {
+    private String dough;
+    private String sauce;
+    private String topping;
+    
+    public static class Builder {
+        private Pizza pizza = new Pizza();
+        
+        public Builder dough(String dough) {
+            pizza.dough = dough;
+            return this;
+        }
+        
+        public Builder sauce(String sauce) {
+            pizza.sauce = sauce;
+            return this;
+        }
+        
+        public Builder topping(String topping) {
+            pizza.topping = topping;
+            return this;
+        }
+        
+        public Pizza build() {
+            return pizza;
+        }
+    }
+}
+
+// Uso:
+Pizza pizza = new Pizza.Builder()
+    .dough(&quot;thin&quot;)
+    .sauce(&quot;tomato&quot;)
+    .topping(&quot;cheese&quot;)
+    .build();
+</div></section><section class="chapter"><h3 id="2-builder-com-director" data-toc="2-builder-com-director">2. Builder com Director</h3><div class="code-block" data-lang="java">
+public interface HouseBuilder {
+    void buildFoundation();
+    void buildWalls();
+    void buildRoof();
+    House getResult();
+}
+
+public class ConcreteHouseBuilder implements HouseBuilder {
+    private House house = new House();
+    
+    @Override
+    public void buildFoundation() {
+        house.setFoundation(&quot;Concrete Foundation&quot;);
+    }
+    
+    @Override
+    public void buildWalls() {
+        house.setWalls(&quot;Brick Walls&quot;);
+    }
+    
+    @Override
+    public void buildRoof() {
+        house.setRoof(&quot;Tile Roof&quot;);
+    }
+    
+    @Override
+    public House getResult() {
+        return house;
+    }
+}
+
+public class HouseDirector {
+    private HouseBuilder builder;
+    
+    public HouseDirector(HouseBuilder builder) {
+        this.builder = builder;
+    }
+    
+    public void constructHouse() {
+        builder.buildFoundation();
+        builder.buildWalls();
+        builder.buildRoof();
+    }
+}
+</div></section><section class="chapter"><h3 id="3-builder-com-valida-o" data-toc="3-builder-com-valida-o">3. Builder com Valida&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+public class User {
+    private final String username;
+    private final String email;
+    private final int age;
+    
+    private User(Builder builder) {
+        this.username = builder.username;
+        this.email = builder.email;
+        this.age = builder.age;
+    }
+    
+    public static class Builder {
+        private String username;
+        private String email;
+        private int age;
+        
+        public Builder username(String username) {
+            if (username == null || username.trim().isEmpty()) {
+                throw new IllegalArgumentException(&quot;Username is required&quot;);
+            }
+            this.username = username;
+            return this;
+        }
+        
+        public Builder email(String email) {
+            if (!email.contains(&quot;@&quot;)) {
+                throw new IllegalArgumentException(&quot;Invalid email&quot;);
+            }
+            this.email = email;
+            return this;
+        }
+        
+        public Builder age(int age) {
+            if (age &lt; 0 || age &gt; 150) {
+                throw new IllegalArgumentException(&quot;Invalid age&quot;);
+            }
+            this.age = age;
+            return this;
+        }
+        
+        public User build() {
+            validateUserData();
+            return new User(this);
+        }
+        
+        private void validateUserData() {
+            // Validação complexa
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="casos-de-uso" data-toc="casos-de-uso">Casos de Uso</h2><section class="chapter"><h3 id="1-construtor-de-documentos" data-toc="1-construtor-de-documentos">1. Construtor de Documentos</h3><div class="code-block" data-lang="java">
+public class Document {
+    private List&lt;String&gt; headers = new ArrayList&lt;&gt;();
+    private List&lt;String&gt; body = new ArrayList&lt;&gt;();
+    private List&lt;String&gt; footers = new ArrayList&lt;&gt;();
+    
+    public static class Builder {
+        private Document doc = new Document();
+        
+        public Builder addHeader(String header) {
+            doc.headers.add(header);
+            return this;
+        }
+        
+        public Builder addBodyParagraph(String paragraph) {
+            doc.body.add(paragraph);
+            return this;
+        }
+        
+        public Builder addFooter(String footer) {
+            doc.footers.add(footer);
+            return this;
+        }
+        
+        public Document build() {
+            return doc;
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="2-construtor-de-queries-sql" data-toc="2-construtor-de-queries-sql">2. Construtor de Queries SQL</h3><div class="code-block" data-lang="java">
+public class SQLQueryBuilder {
+    private StringBuilder query = new StringBuilder();
+    private boolean hasWhere = false;
+    private List&lt;String&gt; conditions = new ArrayList&lt;&gt;();
+    
+    public SQLQueryBuilder select(String... columns) {
+        query.append(&quot;SELECT &quot;);
+        query.append(String.join(&quot;, &quot;, columns));
+        return this;
+    }
+    
+    public SQLQueryBuilder from(String table) {
+        query.append(&quot; FROM &quot;).append(table);
+        return this;
+    }
+    
+    public SQLQueryBuilder where(String condition) {
+        if (!hasWhere) {
+            query.append(&quot; WHERE &quot;);
+            hasWhere = true;
+        } else {
+            query.append(&quot; AND &quot;);
+        }
+        query.append(condition);
+        return this;
+    }
+    
+    public String build() {
+        return query.toString();
+    }
+}
+</div></section></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="k1fdy7_22" type="1"><li class="list__item" id="k1fdy7_23"><p id="k1fdy7_26"><span class="control" id="k1fdy7_28">Imutabilidade</span></p><ul class="list _bullet" id="k1fdy7_27"><li class="list__item" id="k1fdy7_29"><p id="k1fdy7_32">Use campos finais</p></li><li class="list__item" id="k1fdy7_30"><p id="k1fdy7_33">Valide no momento da constru&ccedil;&atilde;o</p></li><li class="list__item" id="k1fdy7_31"><p id="k1fdy7_34">Retorne c&oacute;pias defensivas</p></li></ul></li><li class="list__item" id="k1fdy7_24"><p id="k1fdy7_35"><span class="control" id="k1fdy7_37">Valida&ccedil;&atilde;o</span></p><ul class="list _bullet" id="k1fdy7_36"><li class="list__item" id="k1fdy7_38"><p id="k1fdy7_41">Valide par&acirc;metros individuais</p></li><li class="list__item" id="k1fdy7_39"><p id="k1fdy7_42">Fa&ccedil;a valida&ccedil;&atilde;o cruzada</p></li><li class="list__item" id="k1fdy7_40"><p id="k1fdy7_43">Lance exce&ccedil;&otilde;es apropriadas</p></li></ul></li><li class="list__item" id="k1fdy7_25"><p id="k1fdy7_44"><span class="control" id="k1fdy7_46">Flu&ecirc;ncia</span></p><ul class="list _bullet" id="k1fdy7_45"><li class="list__item" id="k1fdy7_47"><p id="k1fdy7_50">Use method chaining</p></li><li class="list__item" id="k1fdy7_48"><p id="k1fdy7_51">Nomeie m&eacute;todos claramente</p></li><li class="list__item" id="k1fdy7_49"><p id="k1fdy7_52">Mantenha consist&ecirc;ncia</p></li></ul></li></ol></section><section class="chapter"><h2 id="anti-patterns" data-toc="anti-patterns">Anti-Patterns</h2><ul class="list _bullet" id="k1fdy7_53"><li class="list__item" id="k1fdy7_54"><p id="k1fdy7_58">Builders mut&aacute;veis</p></li><li class="list__item" id="k1fdy7_55"><p id="k1fdy7_59">Valida&ccedil;&atilde;o insuficiente</p></li><li class="list__item" id="k1fdy7_56"><p id="k1fdy7_60">Complexidade desnecess&aacute;ria</p></li><li class="list__item" id="k1fdy7_57"><p id="k1fdy7_61">Viola&ccedil;&atilde;o do princ&iacute;pio de responsabilidade &uacute;nica</p></li></ul></section><section class="chapter"><h2 id="exerc-cio-pr-tico" data-toc="exerc-cio-pr-tico">Exerc&iacute;cio Pr&aacute;tico</h2><p id="k1fdy7_62">Implemente um builder para configura&ccedil;&atilde;o de conex&atilde;o de banco de dados:</p><div class="code-block" data-lang="java">
+public class DatabaseConfig {
+    private final String host;
+    private final int port;
+    private final String database;
+    private final String username;
+    private final String password;
+    private final boolean useSSL;
+    private final int timeout;
+    
+    public static class Builder {
+        private String host = &quot;localhost&quot;;
+        private int port = 5432;
+        private String database;
+        private String username;
+        private String password;
+        private boolean useSSL = false;
+        private int timeout = 30;
+        
+        public Builder host(String host) {
+            this.host = host;
+            return this;
+        }
+        
+        public Builder port(int port) {
+            this.port = port;
+            return this;
+        }
+        
+        // ... outros setters
+        
+        public DatabaseConfig build() {
+            validate();
+            return new DatabaseConfig(this);
+        }
+        
+        private void validate() {
+            if (database == null || username == null || password == null) {
+                throw new IllegalStateException(&quot;Database, username and password are required&quot;);
+            }
+            if (port &lt; 0 || port &gt; 65535) {
+                throw new IllegalArgumentException(&quot;Invalid port number&quot;);
+            }
+            if (timeout &lt;= 0) {
+                throw new IllegalArgumentException(&quot;Timeout must be positive&quot;);
+            }
+        }
+    }
+    
+    private DatabaseConfig(Builder builder) {
+        this.host = builder.host;
+        this.port = builder.port;
+        this.database = builder.database;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.useSSL = builder.useSSL;
+        this.timeout = builder.timeout;
+    }
+}
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="k1fdy7_64"><li class="list__item" id="k1fdy7_65"><p id="k1fdy7_69">Explore varia&ccedil;&otilde;es do Builder</p></li><li class="list__item" id="k1fdy7_66"><p id="k1fdy7_70">Combine com outros padr&otilde;es</p></li><li class="list__item" id="k1fdy7_67"><p id="k1fdy7_71">Estude builders em frameworks</p></li><li class="list__item" id="k1fdy7_68"><p id="k1fdy7_72">Pratique com casos complexos</p></li></ul></section><div class="last-modified">28 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="factory.html" class="navigation-links__prev">Factory Method Pattern</a><a href="prototype.html" class="navigation-links__next">Prototype Pattern</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

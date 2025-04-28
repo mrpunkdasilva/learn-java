@@ -1,0 +1,144 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.390840785"><title>Sintaxe Java | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"estrutura-b-sica","level":0,"title":"Estrutura Básica","anchor":"#estrutura-b-sica"},{"id":"declara-es","level":0,"title":"Declarações","anchor":"#declara-es"},{"id":"blocos-de-c-digo","level":0,"title":"Blocos de Código","anchor":"#blocos-de-c-digo"},{"id":"statements","level":0,"title":"Statements","anchor":"#statements"},{"id":"express-es","level":0,"title":"Expressões","anchor":"#express-es"},{"id":"identificadores","level":0,"title":"Identificadores","anchor":"#identificadores"},{"id":"palavras-reservadas","level":0,"title":"Palavras Reservadas","anchor":"#palavras-reservadas"},{"id":"separadores","level":0,"title":"Separadores","anchor":"#separadores"},{"id":"conven-es","level":0,"title":"Convenções","anchor":"#conven-es"},{"id":"exemplos-pr-ticos","level":0,"title":"Exemplos Práticos","anchor":"#exemplos-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Sintaxe Java | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/syntax.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Sintaxe Java | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/syntax.html#webpage",
+    "url": "writerside-documentation/java/1.0/syntax.html",
+    "name": "Sintaxe Java | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="syntax" data-main-title="Sintaxe Java" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="java-basics.md|Fundamentos Java"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="syntax" id="syntax.md">Sintaxe Java</h1><div class="code-block" data-lang="none">
+SYNTAX STRUCTURE
+├── Declarações
+├── Blocos
+├── Expressões
+└── Statements
+</div><section class="chapter"><h2 id="estrutura-b-sica" data-toc="estrutura-b-sica">Estrutura B&aacute;sica</h2><section class="chapter"><h3 id="classe" data-toc="classe">Classe</h3><div class="code-block" data-lang="java">
+public class MatrixCode {
+    // Membros da classe aqui
+}
+</div></section><section class="chapter"><h3 id="m-todo" data-toc="m-todo">M&eacute;todo</h3><div class="code-block" data-lang="java">
+public void hackSystem() {
+    // Código do método aqui
+}
+</div></section></section><section class="chapter"><h2 id="declara-es" data-toc="declara-es">Declara&ccedil;&otilde;es</h2><section class="chapter"><h3 id="vari-veis" data-toc="vari-veis">Vari&aacute;veis</h3><div class="code-block" data-lang="java">
+// Declaração simples
+tipo nome;
+
+// Declaração com inicialização
+tipo nome = valor;
+
+// Exemplos
+int contador = 0;
+String mensagem = &quot;Conexão estabelecida&quot;;
+boolean sistemaBloqueado = false;
+</div></section><section class="chapter"><h3 id="constantes" data-toc="constantes">Constantes</h3><div class="code-block" data-lang="java">
+// Constante
+final double PI = 3.14159;
+
+// Constante estática
+public static final String VERSION = &quot;1.0.0&quot;;
+</div></section></section><section class="chapter"><h2 id="blocos-de-c-digo" data-toc="blocos-de-c-digo">Blocos de C&oacute;digo</h2><section class="chapter"><h3 id="estrutura" data-toc="estrutura">Estrutura</h3><div class="code-block" data-lang="java">
+{
+    // Bloco de código
+    // Pode conter múltiplas linhas
+}
+</div></section><section class="chapter"><h3 id="escopo" data-toc="escopo">Escopo</h3><div class="code-block" data-lang="java">
+public void exemplo() {
+    int x = 1; // Escopo do método
+    {
+        int y = 2; // Escopo do bloco
+        // y é acessível aqui
+    }
+    // y não é acessível aqui
+    // x é acessível em todo o método
+}
+</div></section></section><section class="chapter"><h2 id="statements" data-toc="statements">Statements</h2><section class="chapter"><h3 id="tipos" data-toc="tipos">Tipos</h3><div class="code-block" data-lang="java">
+// Statement simples
+System.out.println(&quot;Executando...&quot;);
+
+// Statement composto
+if (status == &quot;online&quot;) {
+    System.out.println(&quot;Conectado&quot;);
+    iniciarOperacao();
+}
+</div></section></section><section class="chapter"><h2 id="express-es" data-toc="express-es">Express&otilde;es</h2><section class="chapter"><h3 id="componentes" data-toc="componentes">Componentes</h3><div class="code-block" data-lang="java">
+// Expressões aritméticas
+resultado = 10 + 5 * 2;
+
+// Expressões lógicas
+boolean acessoPermitido = nivel &gt;= 5 &amp;&amp; !bloqueado;
+
+// Expressões de string
+String nomeCompleto = nome + &quot; &quot; + sobrenome;
+</div></section></section><section class="chapter"><h2 id="identificadores" data-toc="identificadores">Identificadores</h2><section class="chapter"><h3 id="regras" data-toc="regras">Regras</h3><div class="code-block" data-lang="none">
+IDENTIFIER RULES
+├── Começar com letra, $ ou _
+├── Pode conter números
+├── Case-sensitive
+└── Sem palavras reservadas
+</div></section><section class="chapter"><h3 id="exemplos" data-toc="exemplos">Exemplos</h3><div class="code-block" data-lang="java">
+// Válidos
+String usuarioNome;
+int _contador;
+double $taxa;
+
+// Inválidos
+int 123numero;     // Começa com número
+String class;      // Palavra reservada
+</div></section></section><section class="chapter"><h2 id="palavras-reservadas" data-toc="palavras-reservadas">Palavras Reservadas</h2><section class="chapter"><h3 id="keywords" data-toc="keywords">Keywords</h3><div class="code-block" data-lang="none">
+RESERVED WORDS
+├── Tipos      (boolean, byte, char...)
+├── Controle   (if, else, for, while...)
+├── Acesso     (public, private, protected...)
+└── Outros     (new, return, this, super...)
+</div></section></section><section class="chapter"><h2 id="separadores" data-toc="separadores">Separadores</h2><section class="chapter"><h3 id="caracteres-especiais" data-toc="caracteres-especiais">Caracteres Especiais</h3><div class="code-block" data-lang="none">
+SEPARATORS
+├── { }    Blocos
+├── [ ]    Arrays
+├── ( )    Parâmetros
+├── ;      Fim de statement
+├── ,      Separador
+└── .      Acesso a membros
+</div></section></section><section class="chapter"><h2 id="conven-es" data-toc="conven-es">Conven&ccedil;&otilde;es</h2><section class="chapter"><h3 id="estilo-de-c-digo" data-toc="estilo-de-c-digo">Estilo de C&oacute;digo</h3><div class="code-block" data-lang="none">
+CODE STYLE
+├── Classes        PascalCase
+├── Métodos        camelCase
+├── Variáveis      camelCase
+├── Constantes     UPPER_SNAKE_CASE
+└── Pacotes        lowercase
+</div></section></section><section class="chapter"><h2 id="exemplos-pr-ticos" data-toc="exemplos-pr-ticos">Exemplos Pr&aacute;ticos</h2><section class="chapter"><h3 id="classe-completa" data-toc="classe-completa">Classe Completa</h3><div class="code-block" data-lang="java">
+package com.netrunner.core;
+
+public class SecuritySystem {
+    private static final int MAX_ATTEMPTS = 3;
+    private int attemptCount;
+    
+    public SecuritySystem() {
+        this.attemptCount = 0;
+    }
+    
+    public boolean authenticate(String code) {
+        attemptCount++;
+        if (attemptCount &gt; MAX_ATTEMPTS) {
+            lockSystem();
+            return false;
+        }
+        return validateCode(code);
+    }
+    
+    private void lockSystem() {
+        System.out.println(&quot;Sistema bloqueado!&quot;);
+    }
+    
+    private boolean validateCode(String code) {
+        return code.equals(&quot;MATRIX_1999&quot;);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="t-picos-relacionados" data-toc="t-picos-relacionados">T&oacute;picos Relacionados</h3><ul class="list _bullet" id="-qdpl0z_44"><li class="list__item" id="-qdpl0z_48"><p id="-qdpl0z_51"><a href="variables.html" id="-qdpl0z_52" data-tooltip="Uma variável é um local na memória que armazena dados. Em Java, toda variável tem:">Vari&aacute;veis</a></p></li><li class="list__item" id="-qdpl0z_49"><p id="-qdpl0z_53"><a href="operators.html" id="-qdpl0z_54" data-tooltip="Operadores Aritméticos">Operadores</a></p></li><li class="list__item" id="-qdpl0z_50"><p id="-qdpl0z_55"><a href="control-flow.html" id="-qdpl0z_56" data-tooltip="O controle de fluxo é fundamental para direcionar a execução do seu código. Como um netrunner navegando pela matrix, você precisa tomar decisões e repetir ações de forma eficiente.">Estruturas de Controle</a></p></li></ul><p id="-qdpl0z_45"><a href="variables.html" id="-qdpl0z_57" data-tooltip="Uma variável é um local na memória que armazena dados. Em Java, toda variável tem:">Vari&aacute;veis</a></p><aside class="prompt" data-type="tip" data-title="" id="-qdpl0z_47"><p id="-qdpl0z_58">&quot;A sintaxe &eacute; o protocolo que mant&eacute;m a Matrix funcionando. Domine-a, e voc&ecirc; dominar&aacute; o sistema.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="java-basics.html" class="navigation-links__prev">Fundamentos Java</a><a href="variables.html" class="navigation-links__next">Vari&aacute;veis em Java</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

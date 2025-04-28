@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:16.982915703"><title>Sets: O Clube dos &Uacute;nicos | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"tipos-de-sets-diferentes-baladas","level":0,"title":"Tipos de Sets (Diferentes Baladas)","anchor":"#tipos-de-sets-diferentes-baladas"},{"id":"opera-es-b-sicas-regras-do-clube","level":0,"title":"Operações Básicas (Regras do Clube)","anchor":"#opera-es-b-sicas-regras-do-clube"},{"id":"opera-es-de-conjunto-misturando-as-tribos","level":0,"title":"Operações de Conjunto (Misturando as Tribos)","anchor":"#opera-es-de-conjunto-misturando-as-tribos"},{"id":"itera-o-fazendo-a-social","level":0,"title":"Iteração (Fazendo a Social)","anchor":"#itera-o-fazendo-a-social"},{"id":"dicas-de-etiqueta","level":0,"title":"Dicas de Etiqueta","anchor":"#dicas-de-etiqueta"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Sets: O Clube dos &Uacute;nicos | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/sets.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Sets: O Clube dos &Uacute;nicos | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/sets.html#webpage",
+    "url": "writerside-documentation/java/1.0/sets.html",
+    "name": "Sets: O Clube dos &Uacute;nicos | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="sets" data-main-title="Sets: O Clube dos Únicos" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="arrays-collections.md|Arrays e Coleções"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="sets" id="sets.md">Sets: O Clube dos Únicos</h1><div class="code-block" data-lang="none">
+SET TYPES
+├── HashSet (Balada Alternativa)
+├── LinkedHashSet (Festa Temática)
+└── TreeSet (Clube da Alta Sociedade)
+</div><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><p id="-k74kkh_12">Sets s&atilde;o como uma festa exclusiva - n&atilde;o tem repetido e cada um &eacute; &uacute;nico.</p><div class="code-block" data-lang="java">
+// Criando a lista do clube mais exclusivo
+Set&lt;String&gt; clubeDosUnicos = new HashSet&lt;&gt;();
+clubeDosUnicos.add(&quot;Hipster&quot;);    // Entra
+clubeDosUnicos.add(&quot;Hipster&quot;);    // Barrado! Já tem um igual
+</div></section><section class="chapter"><h2 id="tipos-de-sets-diferentes-baladas" data-toc="tipos-de-sets-diferentes-baladas">Tipos de Sets (Diferentes Baladas)</h2><section class="chapter"><h3 id="hashset-balada-alternativa" data-toc="hashset-balada-alternativa">HashSet (Balada Alternativa)</h3><div class="code-block" data-lang="java">
+// Rápido e caótico, como uma rave
+HashSet&lt;String&gt; rave = new HashSet&lt;&gt;();
+rave.add(&quot;Raver&quot;);      // Ordem? Que ordem?
+rave.add(&quot;DJ&quot;);         // Entra onde der
+</div></section><section class="chapter"><h3 id="linkedhashset-festa-tem-tica" data-toc="linkedhashset-festa-tem-tica">LinkedHashSet (Festa Tem&aacute;tica)</h3><div class="code-block" data-lang="java">
+// Mantém a ordem de entrada, como fila organizada
+LinkedHashSet&lt;String&gt; tematica = new LinkedHashSet&lt;&gt;();
+tematica.add(&quot;Anos 80&quot;);  // Primeiro
+tematica.add(&quot;Anos 90&quot;);  // Segundo
+</div></section><section class="chapter"><h3 id="treeset-clube-da-alta-sociedade" data-toc="treeset-clube-da-alta-sociedade">TreeSet (Clube da Alta Sociedade)</h3><div class="code-block" data-lang="java">
+// Sempre ordenado, como lista de socialites
+TreeSet&lt;String&gt; clubeSocial = new TreeSet&lt;&gt;();
+clubeSocial.add(&quot;Baronesa&quot;);   // Será ordenado
+clubeSocial.add(&quot;Condessa&quot;);   // Automaticamente
+</div></section></section><section class="chapter"><h2 id="opera-es-b-sicas-regras-do-clube" data-toc="opera-es-b-sicas-regras-do-clube">Opera&ccedil;&otilde;es B&aacute;sicas (Regras do Clube)</h2><section class="chapter"><h3 id="adi-o-tentando-entrar" data-toc="adi-o-tentando-entrar">Adi&ccedil;&atilde;o (Tentando Entrar)</h3><div class="code-block" data-lang="java">
+Set&lt;String&gt; clube = new HashSet&lt;&gt;();
+clube.add(&quot;Sócio&quot;);            // Bem-vindo ao clube
+clube.add(&quot;Sócio&quot;);            // Negado! Já é membro
+clube.addAll(Arrays.asList(&quot;VIP&quot;, &quot;Premium&quot;)); // Grupo VIP
+</div></section><section class="chapter"><h3 id="remo-o-cancelando-sociedade" data-toc="remo-o-cancelando-sociedade">Remo&ccedil;&atilde;o (Cancelando Sociedade)</h3><div class="code-block" data-lang="java">
+// Diferentes formas de expulsar
+clube.remove(&quot;Ex-sócio&quot;);       // Remove específico
+clube.removeIf(x -&gt; x.startsWith(&quot;Inadimplente&quot;)); // Remove todos inadimplentes
+</div></section><section class="chapter"><h3 id="verifica-o-lista-na-porta" data-toc="verifica-o-lista-na-porta">Verifica&ccedil;&atilde;o (Lista na Porta)</h3><div class="code-block" data-lang="java">
+// Checando quem pode entrar
+boolean isMembro = clube.contains(&quot;VIP&quot;);     // Está na lista?
+boolean todosVIP = clube.containsAll(vips);   // Grupo inteiro na lista?
+</div></section></section><section class="chapter"><h2 id="opera-es-de-conjunto-misturando-as-tribos" data-toc="opera-es-de-conjunto-misturando-as-tribos">Opera&ccedil;&otilde;es de Conjunto (Misturando as Tribos)</h2><div class="code-block" data-lang="java">
+Set&lt;String&gt; metaleiros = new HashSet&lt;&gt;();
+Set&lt;String&gt; punks = new HashSet&lt;&gt;();
+
+// União (Festa de Rock)
+Set&lt;String&gt; rockeiros = new HashSet&lt;&gt;(metaleiros);
+rockeiros.addAll(punks);
+
+// Interseção (Amigos em Comum)
+Set&lt;String&gt; hibridos = new HashSet&lt;&gt;(metaleiros);
+hibridos.retainAll(punks);
+
+// Diferença (Só Metaleiros)
+Set&lt;String&gt; puristas = new HashSet&lt;&gt;(metaleiros);
+puristas.removeAll(punks);
+</div></section><section class="chapter"><h2 id="itera-o-fazendo-a-social" data-toc="itera-o-fazendo-a-social">Itera&ccedil;&atilde;o (Fazendo a Social)</h2><div class="code-block" data-lang="java">
+// For each (Cumprimentando todo mundo)
+for (String socio : clube) {
+    System.out.println(&quot;Boa noite, &quot; + socio);
+}
+
+// Iterator (Revista VIP)
+Iterator&lt;String&gt; revista = clube.iterator();
+while (revista.hasNext()) {
+    String pessoa = revista.next();
+    if (pessoa.contains(&quot;Indesejado&quot;)) {
+        revista.remove(); // Tchau!
+    }
+}
+</div></section><section class="chapter"><h2 id="dicas-de-etiqueta" data-toc="dicas-de-etiqueta">Dicas de Etiqueta</h2><ol class="list _decimal" id="-k74kkh_28" type="1"><li class="list__item" id="-k74kkh_30"><p id="-k74kkh_32"><span class="control" id="-k74kkh_34">Escolha do Clube</span></p><ul class="list _bullet" id="-k74kkh_33"><li class="list__item" id="-k74kkh_35"><p id="-k74kkh_38">HashSet: Quando s&oacute; importa ser &uacute;nico</p></li><li class="list__item" id="-k74kkh_36"><p id="-k74kkh_39">LinkedHashSet: Quando a ordem de entrada importa</p></li><li class="list__item" id="-k74kkh_37"><p id="-k74kkh_40">TreeSet: Quando precisa manter tudo ordenado</p></li></ul></li><li class="list__item" id="-k74kkh_31"><p id="-k74kkh_41"><span class="control" id="-k74kkh_42">Performance</span></p></li></ol><div class="code-block" data-lang="java">
+// Define tamanho inicial se souber
+Set&lt;String&gt; vips = new HashSet&lt;&gt;(100);
+
+// Use o tipo certo pra cada ocasião
+Set&lt;String&gt; ordenados = new TreeSet&lt;&gt;();  // Sempre ordenado
+</div></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="-k74kkh_43" type="1"><li class="list__item" id="-k74kkh_44"><p id="-k74kkh_47">Implemente um sistema de controle de s&oacute;cios</p></li><li class="list__item" id="-k74kkh_45"><p id="-k74kkh_48">Crie um gerenciador de eventos exclusivos</p></li><li class="list__item" id="-k74kkh_46"><p id="-k74kkh_49">Desenvolva um verificador de duplicatas</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="-k74kkh_50">Depois de dominar os Sets, voc&ecirc; estar&aacute; pronto para:</p><ol class="list _decimal" id="-k74kkh_51" type="1"><li class="list__item" id="-k74kkh_55"><p id="-k74kkh_58">Gerenciar cole&ccedil;&otilde;es sem duplicatas</p></li><li class="list__item" id="-k74kkh_56"><p id="-k74kkh_59">Implementar sistemas de membros</p></li><li class="list__item" id="-k74kkh_57"><p id="-k74kkh_60">Trabalhar com conjuntos matem&aacute;ticos</p></li></ol><p id="-k74kkh_52"><a href="lists.html" id="-k74kkh_61" data-tooltip="Lists são como uma festa funk - tem ordem, repetição e sempre cabe mais um.">Lists: A Sequ&ecirc;ncia</a> <a href="maps.html" id="-k74kkh_62" data-tooltip="Maps são como um guarda-volumes high-tech - cada item tem sua chave única, e você pode guardar qualquer coisa lá dentro.">Maps: Chave e Valor</a></p><aside class="prompt" data-type="tip" data-title="" id="-k74kkh_54"><p id="-k74kkh_63">&quot;Sets s&atilde;o como clubes exclusivos - n&atilde;o importa quantas vezes voc&ecirc; tente entrar, s&oacute; passa uma vez!&quot;</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="lists.html" class="navigation-links__prev">Lists: A Playlist do Baile Funk</a><a href="maps.html" class="navigation-links__next">Maps: O Guarda-Volumes da Matrix</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

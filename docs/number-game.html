@@ -1,0 +1,123 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:18.380783236"><title>Jogo de N&uacute;meros | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"descri-o-do-projeto","level":0,"title":"Descrição do Projeto","anchor":"#descri-o-do-projeto"},{"id":"conceitos-aplicados","level":0,"title":"Conceitos Aplicados","anchor":"#conceitos-aplicados"},{"id":"implementa-o-base","level":0,"title":"Implementação Base","anchor":"#implementa-o-base"},{"id":"interface-com-usu-rio","level":0,"title":"Interface com Usuário","anchor":"#interface-com-usu-rio"},{"id":"desafios-de-extens-o","level":0,"title":"Desafios de Extensão","anchor":"#desafios-de-extens-o"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Jogo de N&uacute;meros | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/number-game.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Jogo de N&uacute;meros | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/number-game.html#webpage",
+    "url": "writerside-documentation/java/1.0/number-game.html",
+    "name": "Jogo de N&uacute;meros | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="number-game" data-main-title="Jogo de Números" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="control-flow.md|Controle de Fluxo///control-flow-projects.md|Projetos de Controle de Fluxo"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="number-game" id="number-game.md">Jogo de Números</h1><section class="chapter"><h2 id="descri-o-do-projeto" data-toc="descri-o-do-projeto">Descri&ccedil;&atilde;o do Projeto</h2><p id="c7gyas_9">Desenvolva um jogo de adivinha&ccedil;&atilde;o onde o jogador tenta adivinhar um n&uacute;mero gerado aleatoriamente pelo sistema.</p></section><section class="chapter"><h2 id="conceitos-aplicados" data-toc="conceitos-aplicados">Conceitos Aplicados</h2><ul class="list _bullet" id="c7gyas_10"><li class="list__item" id="c7gyas_11"><p id="c7gyas_15">Loops (while/do-while)</p></li><li class="list__item" id="c7gyas_12"><p id="c7gyas_16">Condicionais (if/else)</p></li><li class="list__item" id="c7gyas_13"><p id="c7gyas_17">Switch Expressions</p></li><li class="list__item" id="c7gyas_14"><p id="c7gyas_18">Pattern Matching</p></li></ul></section><section class="chapter"><h2 id="implementa-o-base" data-toc="implementa-o-base">Implementa&ccedil;&atilde;o Base</h2><div class="code-block" data-lang="java">
+public class NumberGame {
+    public static void main(String[] args) {
+        // Configurações do jogo usando tipos primitivos
+        int numeroSecreto = 42; // Número fixo para simplificar
+        int tentativasMaximas = 5;
+        int tentativas = 0;
+        boolean jogoAtivo = true;
+        
+        // Mensagem inicial usando Text Block
+        System.out.println(&quot;&quot;&quot;
+            === JOGO DE ADIVINHAÇÃO ===
+            Tente adivinhar o número entre 1 e 100
+            Você tem 5 tentativas!
+            =========================
+            &quot;&quot;&quot;);
+        
+        // Loop principal do jogo
+        while (jogoAtivo &amp;&amp; tentativas &lt; tentativasMaximas) {
+            System.out.println(&quot;\nTentativa &quot; + (tentativas + 1) + &quot; de &quot; + tentativasMaximas);
+            System.out.print(&quot;Digite seu palpite: &quot;);
+            
+            // Simulando entrada do usuário (você pode modificar para testar)
+            var palpite = 50; // Simula entrada do usuário
+            
+            // Incrementa tentativas
+            tentativas++;
+            
+            // Verifica o palpite
+            if (palpite == numeroSecreto) {
+                System.out.println(&quot;Parabéns! Você acertou em &quot; + tentativas + &quot; tentativas!&quot;);
+                jogoAtivo = false;
+            } else {
+                // Verifica se ainda tem tentativas
+                if (tentativas &gt;= tentativasMaximas) {
+                    System.out.println(&quot;Game Over! O número era &quot; + numeroSecreto);
+                } else {
+                    // Dá dicas baseadas no palpite
+                    if (palpite &lt; numeroSecreto) {
+                        System.out.println(&quot;Tente um número MAIOR!&quot;);
+                    } else {
+                        System.out.println(&quot;Tente um número MENOR!&quot;);
+                    }
+                    
+                    // Mostra tentativas restantes
+                    System.out.println(&quot;Tentativas restantes: &quot; + (tentativasMaximas - tentativas));
+                }
+            }
+            
+            // Pequena pausa para simular processamento
+            System.out.println(&quot;Processando...&quot;);
+        }
+        
+        // Pontuação final
+        int pontuacao = 0;
+        if (!jogoAtivo) { // Se acertou
+            pontuacao = (tentativasMaximas - tentativas + 1) * 100;
+            System.out.println(&quot;Sua pontuação: &quot; + pontuacao);
+        }
+        
+        System.out.println(&quot;Fim do jogo!&quot;);
+    }
+}
+</div></section><section class="chapter"><h2 id="interface-com-usu-rio" data-toc="interface-com-usu-rio">Interface com Usu&aacute;rio</h2><div class="code-block" data-lang="java">
+public class NumberGameUI {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        NumberGame game = new NumberGame(100, 5);
+        
+        System.out.println(&quot;=== Jogo de Adivinhação ===&quot;);
+        System.out.println(&quot;Tente adivinhar o número entre 1 e 100&quot;);
+        
+        do {
+            System.out.print(&quot;Digite seu palpite: &quot;);
+            if (scanner.hasNextInt()) {
+                int guess = scanner.nextInt();
+                String result = game.processGuess(guess);
+                System.out.println(result);
+            } else {
+                System.out.println(&quot;Por favor, digite um número válido!&quot;);
+                scanner.next();
+            }
+        } while (!game.isGameOver());
+    }
+}
+</div></section><section class="chapter"><h2 id="desafios-de-extens-o" data-toc="desafios-de-extens-o">Desafios de Extens&atilde;o</h2><ol class="list _decimal" id="c7gyas_21" type="1"><li class="list__item" id="c7gyas_25"><p id="c7gyas_26"><span class="control" id="c7gyas_27">N&iacute;veis de Dificuldade</span></p></li></ol><div class="code-block" data-lang="java">
+public enum Difficulty {
+    EASY(1, 10, 6),
+    MEDIUM(1, 100, 5),
+    HARD(1, 1000, 4);
+
+    final int min, max, attempts;
+    
+    Difficulty(int min, int max, int attempts) {
+        this.min = min;
+        this.max = max;
+        this.attempts = attempts;
+    }
+}
+</div><ol class="list _decimal" id="c7gyas_23" type="1" start="2"><li class="list__item" id="c7gyas_28"><p id="c7gyas_29"><span class="control" id="c7gyas_30">Sistema de Pontua&ccedil;&atilde;o</span></p></li></ol><div class="code-block" data-lang="java">
+public int calculateScore() {
+    return switch (state) {
+        case WON -&gt; (maxAttempts - attempts + 1) * 100;
+        case LOST -&gt; 0;
+        default -&gt; throw new IllegalStateException(&quot;Jogo ainda em andamento&quot;);
+    };
+}
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="c7gyas_31"><li class="list__item" id="c7gyas_33"><p id="c7gyas_36">Implemente o sistema de dificuldade</p></li><li class="list__item" id="c7gyas_34"><p id="c7gyas_37">Adicione um sistema de recordes</p></li><li class="list__item" id="c7gyas_35"><p id="c7gyas_38">Crie um modo multiplayer</p></li></ul><p id="c7gyas_32"><a href="menu-system.html" id="c7gyas_39" data-tooltip="Desenvolva um sistema de menu interativo estilo cyberpunk para uma interface de terminal.">Menu System</a></p></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="control-flow-projects.html" class="navigation-links__prev">Projetos de Controle de Fluxo</a><a href="menu-system.html" class="navigation-links__next">Sistema de Menu</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

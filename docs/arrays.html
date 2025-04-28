@@ -1,0 +1,97 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:16.877155812"><title>Arrays em Java | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"caracter-sticas-principais","level":0,"title":"Características Principais","anchor":"#caracter-sticas-principais"},{"id":"opera-es-comuns","level":0,"title":"Operações Comuns","anchor":"#opera-es-comuns"},{"id":"arrays-multidimensionais-como-um-cassino-de-luxo","level":0,"title":"Arrays Multidimensionais (Como um Cassino de Luxo)","anchor":"#arrays-multidimensionais-como-um-cassino-de-luxo"},{"id":"boas-pr-ticas-regras-da-casa","level":0,"title":"Boas Práticas (Regras da Casa)","anchor":"#boas-pr-ticas-regras-da-casa"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Arrays em Java | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/arrays.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Arrays em Java | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/arrays.html#webpage",
+    "url": "writerside-documentation/java/1.0/arrays.html",
+    "name": "Arrays em Java | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="arrays" data-main-title="Arrays em Java" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="arrays-collections.md|Arrays e Coleções"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="arrays" id="arrays.md">Arrays em Java</h1><div class="code-block" data-lang="none">
+ARRAY OPERATIONS
+├── Declaração (Como registrar clientes em um bordel)
+├── Inicialização (Abrir as portas)
+├── Acesso (Encontrar seu favorito)
+├── Modificação (Trocar os números)
+└── Iteração (Fazer a ronda noturna)
+</div><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><p id="z4u7el2_11">Arrays s&atilde;o como um bordel bem organizado - cada quarto tem seu n&uacute;mero, e voc&ecirc; sabe exatamente o que esperar em cada um. Sem surpresas desagrad&aacute;veis.</p><div class="code-block" data-lang="java">
+// Declaração e inicialização
+int[] quartos = new int[5];  // 5 quartos vazios
+String[] servicos = {&quot;BASICO&quot;, &quot;ESPECIAL&quot;, &quot;COMPLETO&quot;};
+
+// Array multidimensional (como um prédio com vários andares)
+int[][] predio = new int[3][3];
+</div></section><section class="chapter"><h2 id="caracter-sticas-principais" data-toc="caracter-sticas-principais">Caracter&iacute;sticas Principais</h2><section class="chapter"><h3 id="1-tamanho-fixo-como-um-motel-lotado" data-toc="1-tamanho-fixo-como-um-motel-lotado">1. Tamanho Fixo (Como um Motel Lotado)</h3><div class="code-block" data-lang="java">
+// Uma vez definido o número de quartos, não dá pra criar mais
+int numQuartos = 10;
+double[] precos = new double[numQuartos];
+
+// Nem adianta chorar, não vai caber mais
+System.out.println(&quot;Quartos disponíveis: &quot; + precos.length);
+</div></section><section class="chapter"><h3 id="2-indexa-o-base-zero-como-idade-de-pol-tico" data-toc="2-indexa-o-base-zero-como-idade-de-pol-tico">2. Indexa&ccedil;&atilde;o Base-Zero (Como Idade de Pol&iacute;tico)</h3><div class="code-block" data-lang="java">
+// O primeiro sempre começa do zero
+int primeiro = quartos[0];  // Quarto 0 (mas na placa tá 1)
+
+// O último é sempre um a menos que o total
+int ultimo = quartos[quartos.length - 1];
+</div></section><section class="chapter"><h3 id="3-tipo-homog-neo-como-menu-de-boteco" data-toc="3-tipo-homog-neo-como-menu-de-boteco">3. Tipo Homog&ecirc;neo (Como Menu de Boteco)</h3><div class="code-block" data-lang="java">
+// Aqui só serve cachaça, amigo
+String[] drinks = new String[3];
+drinks[0] = &quot;51&quot;;
+drinks[1] = &quot;Velho Barreiro&quot;;
+drinks[2] = &quot;Pitú&quot;;
+</div></section></section><section class="chapter"><h2 id="opera-es-comuns" data-toc="opera-es-comuns">Opera&ccedil;&otilde;es Comuns</h2><section class="chapter"><h3 id="itera-o-como-fazer-a-ronda" data-toc="itera-o-como-fazer-a-ronda">Itera&ccedil;&atilde;o (Como Fazer a Ronda)</h3><div class="code-block" data-lang="java">
+// Método tradicional (checando quarto por quarto)
+for (int i = 0; i &lt; quartos.length; i++) {
+    System.out.println(&quot;Verificando quarto &quot; + i);
+}
+
+// Método moderno (câmeras de segurança)
+for (String drink : drinks) {
+    System.out.println(&quot;Bebida disponível: &quot; + drink);
+}
+</div></section><section class="chapter"><h3 id="manipula-o-como-gerenciar-o-estabelecimento" data-toc="manipula-o-como-gerenciar-o-estabelecimento">Manipula&ccedil;&atilde;o (Como Gerenciar o Estabelecimento)</h3><div class="code-block" data-lang="java">
+// Resetar preços (promoção de segunda)
+Arrays.fill(precos, 29.90);
+
+// Ordenar por preço (do mais barato pro mais caro)
+Arrays.sort(precos);
+
+// Procurar aquele cliente especial
+int indice = Arrays.binarySearch(drinks, &quot;51&quot;);
+</div></section></section><section class="chapter"><h2 id="arrays-multidimensionais-como-um-cassino-de-luxo" data-toc="arrays-multidimensionais-como-um-cassino-de-luxo">Arrays Multidimensionais (Como um Cassino de Luxo)</h2><section class="chapter"><h3 id="matrizes" data-toc="matrizes">Matrizes</h3><div class="code-block" data-lang="java">
+// Mapa do cassino (3 andares, cada um com 3 salas)
+int[][] cassino = {
+    {1, 2, 3},  // Caça-níqueis
+    {4, 5, 6},  // Poker
+    {7, 8, 9}   // Roleta
+};
+
+// Encontrar mesa específica
+int mesa = cassino[1][2];  // Mesa 6 de poker
+</div></section><section class="chapter"><h3 id="itera-o-em-matrizes-inspe-o-sanit-ria" data-toc="itera-o-em-matrizes-inspe-o-sanit-ria">Itera&ccedil;&atilde;o em Matrizes (Inspe&ccedil;&atilde;o Sanit&aacute;ria)</h3><div class="code-block" data-lang="java">
+// Verificando todas as mesas
+for (int andar = 0; andar &lt; cassino.length; andar++) {
+    for (int sala = 0; sala &lt; cassino[andar].length; sala++) {
+        System.out.print(&quot;Verificando mesa &quot; + cassino[andar][sala]);
+    }
+    System.out.println(&quot; - Andar limpo!&quot;);
+}
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas-regras-da-casa" data-toc="boas-pr-ticas-regras-da-casa">Boas Pr&aacute;ticas (Regras da Casa)</h2><ol class="list _decimal" id="z4u7el2_27" type="1"><li class="list__item" id="z4u7el2_31"><p id="z4u7el2_32"><span class="control" id="z4u7el2_33">Valida&ccedil;&atilde;o de &Iacute;ndices (Checagem de ID)</span></p></li></ol><div class="code-block" data-lang="java">
+if (quarto &gt;= 0 &amp;&amp; quarto &lt; quartos.length) {
+    // Cliente pode entrar
+    return quartos[quarto];
+}
+</div><ol class="list _decimal" id="z4u7el2_29" type="1" start="2"><li class="list__item" id="z4u7el2_34"><p id="z4u7el2_35"><span class="control" id="z4u7el2_36">C&oacute;pia de Arrays (Expandindo o Neg&oacute;cio)</span></p></li></ol><div class="code-block" data-lang="java">
+// Abrindo filial com mesma configuração
+int[] filial = Arrays.copyOf(quartos, quartos.length);
+
+// Pegando só o melhor da casa
+int[] vips = Arrays.copyOfRange(quartos, 1, 4);
+</div></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="z4u7el2_37" type="1"><li class="list__item" id="z4u7el2_38"><p id="z4u7el2_41">Implemente um sistema de rod&iacute;zio de &quot;funcion&aacute;rios&quot;</p></li><li class="list__item" id="z4u7el2_39"><p id="z4u7el2_42">Crie um controle de mesas de poker</p></li><li class="list__item" id="z4u7el2_40"><p id="z4u7el2_43">Desenvolva um algoritmo de distribui&ccedil;&atilde;o de gorjetas</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="z4u7el2_44">Depois de dominar esse bordel de arrays, voc&ecirc; estar&aacute; pronto para:</p><ol class="list _decimal" id="z4u7el2_45" type="1"><li class="list__item" id="z4u7el2_49"><p id="z4u7el2_52">Gerenciar uma rede de estabelecimentos</p></li><li class="list__item" id="z4u7el2_50"><p id="z4u7el2_53">Implementar sistemas de fidelidade</p></li><li class="list__item" id="z4u7el2_51"><p id="z4u7el2_54">Expandir para o mercado internacional</p></li></ol><p id="z4u7el2_46"><a href="collections-overview.html" id="z4u7el2_55" data-tooltip="Imagine o Collections Framework como uma organização criminosa bem estruturada - cada família tem sua especialidade, mas todas trabalham juntas quando necessário.">Collections: Quando Um N&atilde;o &eacute; Suficiente</a></p><aside class="prompt" data-type="tip" data-title="" id="z4u7el2_48"><p id="z4u7el2_56">&quot;Arrays s&atilde;o como um bordel bem administrado - cada elemento no seu lugar, e voc&ecirc; sempre sabe onde encontrar o que procura.&quot;</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="arrays-collections.html" class="navigation-links__prev">Arrays e Cole&ccedil;&otilde;es</a><a href="collections-overview.html" class="navigation-links__next">Collections Framework: O Submundo das Estruturas de Dados</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

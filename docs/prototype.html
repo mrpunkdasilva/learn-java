@@ -1,0 +1,184 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:16.917608234"><title>Prototype Pattern | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"implementa-es","level":0,"title":"Implementações","anchor":"#implementa-es"},{"id":"casos-de-uso","level":0,"title":"Casos de Uso","anchor":"#casos-de-uso"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"anti-patterns","level":0,"title":"Anti-Patterns","anchor":"#anti-patterns"},{"id":"exerc-cio-pr-tico","level":0,"title":"Exercício Prático","anchor":"#exerc-cio-pr-tico"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Prototype Pattern | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/prototype.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Prototype Pattern | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/prototype.html#webpage",
+    "url": "writerside-documentation/java/1.0/prototype.html",
+    "name": "Prototype Pattern | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="prototype" data-main-title="Prototype Pattern" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="creational-patterns.md|Padrões Criacionais"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="prototype" id="prototype.md">Prototype Pattern</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="-fikb0o_10">O Prototype &eacute; um padr&atilde;o criacional que permite copiar objetos existentes sem fazer seu c&oacute;digo depender de suas classes.</p><div class="code-block" data-lang="none">
+PROTOTYPE PATTERN
+├── Prototype (Interface)
+├── Concrete Prototype
+└── Client
+</div></section><section class="chapter"><h2 id="implementa-es" data-toc="implementa-es">Implementa&ccedil;&otilde;es</h2><section class="chapter"><h3 id="1-prototype-b-sico" data-toc="1-prototype-b-sico">1. Prototype B&aacute;sico</h3><div class="code-block" data-lang="java">
+public interface Prototype extends Cloneable {
+    Prototype clone();
+}
+
+public class ConcretePrototype implements Prototype {
+    private String field;
+    
+    public ConcretePrototype(String field) {
+        this.field = field;
+    }
+    
+    @Override
+    public Prototype clone() {
+        return new ConcretePrototype(this.field);
+    }
+}
+</div></section><section class="chapter"><h3 id="2-deep-clone-com-serializa-o" data-toc="2-deep-clone-com-serializa-o">2. Deep Clone com Serializa&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+public class DeepPrototype implements Serializable {
+    private List&lt;String&gt; data;
+    private ComplexObject object;
+    
+    public DeepPrototype deepClone() {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
+            
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            return (DeepPrototype) ois.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="3-prototype-registry" data-toc="3-prototype-registry">3. Prototype Registry</h3><div class="code-block" data-lang="java">
+public class PrototypeRegistry {
+    private Map&lt;String, Prototype&gt; prototypes = new HashMap&lt;&gt;();
+    
+    public void addPrototype(String key, Prototype prototype) {
+        prototypes.put(key, prototype);
+    }
+    
+    public Prototype getPrototype(String key) {
+        Prototype prototype = prototypes.get(key);
+        if (prototype == null) {
+            throw new IllegalArgumentException(&quot;Prototype not found&quot;);
+        }
+        return prototype.clone();
+    }
+}
+</div></section></section><section class="chapter"><h2 id="casos-de-uso" data-toc="casos-de-uso">Casos de Uso</h2><section class="chapter"><h3 id="1-sistema-de-formas-geom-tricas" data-toc="1-sistema-de-formas-geom-tricas">1. Sistema de Formas Geom&eacute;tricas</h3><div class="code-block" data-lang="java">
+public abstract class Shape implements Cloneable {
+    private int x;
+    private int y;
+    private String color;
+    
+    public Shape(int x, int y, String color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+    
+    @Override
+    public Shape clone() {
+        try {
+            return (Shape) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+public class Circle extends Shape {
+    private int radius;
+    
+    public Circle(int x, int y, String color, int radius) {
+        super(x, y, color);
+        this.radius = radius;
+    }
+    
+    @Override
+    public Circle clone() {
+        Circle clone = (Circle) super.clone();
+        // Deep clone específico se necessário
+        return clone;
+    }
+}
+</div></section><section class="chapter"><h3 id="2-sistema-de-templates-de-documentos" data-toc="2-sistema-de-templates-de-documentos">2. Sistema de Templates de Documentos</h3><div class="code-block" data-lang="java">
+public class DocumentTemplate implements Cloneable {
+    private List&lt;Section&gt; sections = new ArrayList&lt;&gt;();
+    private Map&lt;String, String&gt; metadata = new HashMap&lt;&gt;();
+    
+    public void addSection(Section section) {
+        sections.add(section);
+    }
+    
+    public void setMetadata(String key, String value) {
+        metadata.put(key, value);
+    }
+    
+    @Override
+    public DocumentTemplate clone() {
+        try {
+            DocumentTemplate clone = (DocumentTemplate) super.clone();
+            // Deep clone das coleções
+            clone.sections = new ArrayList&lt;&gt;(this.sections);
+            clone.metadata = new HashMap&lt;&gt;(this.metadata);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="-fikb0o_22" type="1"><li class="list__item" id="-fikb0o_23"><p id="-fikb0o_26"><span class="control" id="-fikb0o_28">Clonagem Apropriada</span></p><ul class="list _bullet" id="-fikb0o_27"><li class="list__item" id="-fikb0o_29"><p id="-fikb0o_32">Decida entre shallow e deep clone</p></li><li class="list__item" id="-fikb0o_30"><p id="-fikb0o_33">Implemente clone corretamente</p></li><li class="list__item" id="-fikb0o_31"><p id="-fikb0o_34">Considere serializa&ccedil;&atilde;o para deep clone</p></li></ul></li><li class="list__item" id="-fikb0o_24"><p id="-fikb0o_35"><span class="control" id="-fikb0o_37">Gerenciamento de Estado</span></p><ul class="list _bullet" id="-fikb0o_36"><li class="list__item" id="-fikb0o_38"><p id="-fikb0o_41">Mantenha estado consistente</p></li><li class="list__item" id="-fikb0o_39"><p id="-fikb0o_42">Clone recursos externos</p></li><li class="list__item" id="-fikb0o_40"><p id="-fikb0o_43">Gerencie refer&ecirc;ncias circulares</p></li></ul></li><li class="list__item" id="-fikb0o_25"><p id="-fikb0o_44"><span class="control" id="-fikb0o_46">Performance</span></p><ul class="list _bullet" id="-fikb0o_45"><li class="list__item" id="-fikb0o_47"><p id="-fikb0o_50">Use clone para objetos complexos</p></li><li class="list__item" id="-fikb0o_48"><p id="-fikb0o_51">Cache prototypes frequentes</p></li><li class="list__item" id="-fikb0o_49"><p id="-fikb0o_52">Otimize deep cloning</p></li></ul></li></ol></section><section class="chapter"><h2 id="anti-patterns" data-toc="anti-patterns">Anti-Patterns</h2><ul class="list _bullet" id="-fikb0o_53"><li class="list__item" id="-fikb0o_54"><p id="-fikb0o_58">Clone inconsistente</p></li><li class="list__item" id="-fikb0o_55"><p id="-fikb0o_59">Ignorar recursos externos</p></li><li class="list__item" id="-fikb0o_56"><p id="-fikb0o_60">Copiar refer&ecirc;ncias mut&aacute;veis</p></li><li class="list__item" id="-fikb0o_57"><p id="-fikb0o_61">N&atilde;o implementar clone corretamente</p></li></ul></section><section class="chapter"><h2 id="exerc-cio-pr-tico" data-toc="exerc-cio-pr-tico">Exerc&iacute;cio Pr&aacute;tico</h2><p id="-fikb0o_62">Implemente um sistema de configura&ccedil;&otilde;es usando Prototype:</p><div class="code-block" data-lang="java">
+public class Configuration implements Cloneable {
+    private Map&lt;String, Object&gt; settings;
+    private List&lt;String&gt; activeModules;
+    private SecurityConfig security;
+    
+    public Configuration() {
+        this.settings = new HashMap&lt;&gt;();
+        this.activeModules = new ArrayList&lt;&gt;();
+        this.security = new SecurityConfig();
+    }
+    
+    @Override
+    public Configuration clone() {
+        try {
+            Configuration clone = (Configuration) super.clone();
+            // Deep clone
+            clone.settings = new HashMap&lt;&gt;(this.settings);
+            clone.activeModules = new ArrayList&lt;&gt;(this.activeModules);
+            clone.security = this.security.clone();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public static class SecurityConfig implements Cloneable {
+        private String encryption;
+        private List&lt;String&gt; allowedIPs;
+        
+        @Override
+        public SecurityConfig clone() {
+            try {
+                SecurityConfig clone = (SecurityConfig) super.clone();
+                clone.allowedIPs = new ArrayList&lt;&gt;(this.allowedIPs);
+                return clone;
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+// Uso:
+Configuration defaultConfig = new Configuration();
+// Configurar default
+Configuration customConfig = defaultConfig.clone();
+// Personalizar
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-fikb0o_64"><li class="list__item" id="-fikb0o_65"><p id="-fikb0o_69">Explore clonagem profunda</p></li><li class="list__item" id="-fikb0o_66"><p id="-fikb0o_70">Estude serializa&ccedil;&atilde;o</p></li><li class="list__item" id="-fikb0o_67"><p id="-fikb0o_71">Combine com outros padr&otilde;es</p></li><li class="list__item" id="-fikb0o_68"><p id="-fikb0o_72">Pratique com objetos complexos</p></li></ul></section><div class="last-modified">28 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="builder.html" class="navigation-links__prev">Builder Pattern</a><a href="abstract-factory.html" class="navigation-links__next">Abstract Factory Pattern</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

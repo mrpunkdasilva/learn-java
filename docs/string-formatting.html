@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:16.944711493"><title>Formata&ccedil;&atilde;o de Strings | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"string-format","level":0,"title":"String.format()","anchor":"#string-format"},{"id":"system-out-printf","level":0,"title":"System.out.printf()","anchor":"#system-out-printf"},{"id":"especificadores-de-formato","level":0,"title":"Especificadores de Formato","anchor":"#especificadores-de-formato"},{"id":"flags-de-formata-o","level":0,"title":"Flags de Formatação","anchor":"#flags-de-formata-o"},{"id":"messageformat","level":0,"title":"MessageFormat","anchor":"#messageformat"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Formata&ccedil;&atilde;o de Strings | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/string-formatting.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Formata&ccedil;&atilde;o de Strings | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/string-formatting.html#webpage",
+    "url": "writerside-documentation/java/1.0/string-formatting.html",
+    "name": "Formata&ccedil;&atilde;o de Strings | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="string-formatting" data-main-title="Formatação de Strings" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="java-basics.md|Fundamentos Java///strings.md|Strings em Java"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="string-formatting" id="string-formatting.md">Formatação de Strings</h1><section class="chapter"><h2 id="string-format" data-toc="string-format">String.format()</h2><section class="chapter"><h3 id="sintaxe-b-sica" data-toc="sintaxe-b-sica">Sintaxe B&aacute;sica</h3><div class="code-block" data-lang="java">
+// Formatação básica
+String msg = String.format(&quot;Usuário: %s, ID: %d&quot;, &quot;Neo&quot;, 1337);
+
+// Números
+String num = String.format(&quot;%.2f&quot;, 3.14159);  // &quot;3.14&quot;
+String hex = String.format(&quot;%x&quot;, 255);        // &quot;ff&quot;
+</div></section></section><section class="chapter"><h2 id="system-out-printf" data-toc="system-out-printf">System.out.printf()</h2><section class="chapter"><h3 id="sa-da-formatada" data-toc="sa-da-formatada">Sa&iacute;da Formatada</h3><div class="code-block" data-lang="java">
+// Impressão formatada
+System.out.printf(&quot;Status: %s%n&quot;, &quot;ONLINE&quot;);
+
+// Múltiplos argumentos
+System.out.printf(&quot;X: %d, Y: %d%n&quot;, 10, 20);
+</div></section></section><section class="chapter"><h2 id="especificadores-de-formato" data-toc="especificadores-de-formato">Especificadores de Formato</h2><section class="chapter"><h3 id="tipos-comuns" data-toc="tipos-comuns">Tipos Comuns</h3><div class="code-block" data-lang="java">
+// Strings e caracteres
+%s  // String
+%c  // Caractere
+%n  // Nova linha
+
+// Números
+%d  // Inteiro decimal
+%f  // Ponto flutuante
+%e  // Notação científica
+%x  // Hexadecimal
+</div></section></section><section class="chapter"><h2 id="flags-de-formata-o" data-toc="flags-de-formata-o">Flags de Formata&ccedil;&atilde;o</h2><section class="chapter"><h3 id="modificadores" data-toc="modificadores">Modificadores</h3><div class="code-block" data-lang="java">
+// Alinhamento e preenchimento
+String align = String.format(&quot;|%-10s|&quot;, &quot;LEFT&quot;);   // Alinha à esquerda
+String pad = String.format(&quot;%05d&quot;, 42);            // &quot;00042&quot;
+
+// Números
+String prec = String.format(&quot;%.3f&quot;, 3.14159);      // &quot;3.142&quot;
+String group = String.format(&quot;%,d&quot;, 1000000);      // &quot;1,000,000&quot;
+</div></section></section><section class="chapter"><h2 id="messageformat" data-toc="messageformat">MessageFormat</h2><section class="chapter"><h3 id="formata-o-complexa" data-toc="formata-o-complexa">Formata&ccedil;&atilde;o Complexa</h3><div class="code-block" data-lang="java">
+import java.text.MessageFormat;
+
+// Padrão de mensagem
+String pattern = &quot;User {0} logged in at {1}&quot;;
+String msg = MessageFormat.format(pattern, &quot;Trinity&quot;, &quot;12:00&quot;);
+
+// Números e datas
+MessageFormat mf = new MessageFormat(&quot;Balance: {0,number,currency}&quot;);
+String balance = mf.format(new Object[]{1234.56});
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="t-picos-relacionados" data-toc="t-picos-relacionados">T&oacute;picos Relacionados</h3><ul class="list _bullet" id="z5h8w9l_20"><li class="list__item" id="z5h8w9l_24"><p id="z5h8w9l_27"><a href="i18n.html" id="z5h8w9l_28" data-tooltip="Separar textos em arquivos properties">Internacionaliza&ccedil;&atilde;o</a></p></li><li class="list__item" id="z5h8w9l_25"><p id="z5h8w9l_29"><a href="date-formatting.html" id="z5h8w9l_30" data-tooltip="Formatação de Números">Formata&ccedil;&atilde;o de Datas</a></p></li><li class="list__item" id="z5h8w9l_26"><p id="z5h8w9l_31"><a href="number-formatting.html" id="z5h8w9l_32" data-tooltip="Internacionalização">Formata&ccedil;&atilde;o de N&uacute;meros</a></p></li></ul><p id="z5h8w9l_21"><a href="i18n.html" id="z5h8w9l_33" data-tooltip="Separar textos em arquivos properties">Internacionaliza&ccedil;&atilde;o</a></p><aside class="prompt" data-type="tip" data-title="" id="z5h8w9l_23"><p id="z5h8w9l_34">&quot;A formata&ccedil;&atilde;o de strings &eacute; como a interface da Matrix - a forma como apresentamos os dados ao mundo real.&quot;</p></aside></section></section><div class="last-modified">26 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="string-builder.html" class="navigation-links__prev">StringBuilder</a><a href="string-buffer.html" class="navigation-links__next">StringBuffer</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

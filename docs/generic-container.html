@@ -1,0 +1,112 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.633585408"><title>Generic Container | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"estrutura-base","level":0,"title":"Estrutura Base","anchor":"#estrutura-base"},{"id":"funcionalidades-avan-adas","level":0,"title":"Funcionalidades Avançadas","anchor":"#funcionalidades-avan-adas"},{"id":"casos-de-uso","level":0,"title":"Casos de Uso","anchor":"#casos-de-uso"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exerc-cios-propostos","level":0,"title":"Exercícios Propostos","anchor":"#exerc-cios-propostos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Generic Container | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/generic-container.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Generic Container | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/generic-container.html#webpage",
+    "url": "writerside-documentation/java/1.0/generic-container.html",
+    "name": "Generic Container | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="generic-container" data-main-title="Generic Container" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="advanced-features.md|Recursos Avançados do Java///advanced-projects.md|Projetos Avançados"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="generic-container" id="generic-container.md">Generic Container</h1><p> <img alt="Generic Container" src="${primarySource}" class="inline-icon-" title="Generic Container" id="-zbzryp_3"></p><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="-zbzryp_11">Um container gen&eacute;rico &eacute; uma estrutura de dados flex&iacute;vel que pode armazenar e gerenciar diferentes tipos de objetos de forma type-safe.</p></section><section class="chapter"><h2 id="estrutura-base" data-toc="estrutura-base">Estrutura Base</h2><section class="chapter"><h3 id="container-gen-rico-b-sico" data-toc="container-gen-rico-b-sico">Container Gen&eacute;rico B&aacute;sico</h3><div class="code-block" data-lang="java">
+public class Container&lt;T&gt; {
+    private final List&lt;T&gt; elements;
+    private final Map&lt;String, T&gt; namedElements;
+    
+    public Container() {
+        this.elements = new ArrayList&lt;&gt;();
+        this.namedElements = new HashMap&lt;&gt;();
+    }
+    
+    public void add(T element) {
+        elements.add(element);
+    }
+    
+    public void addNamed(String name, T element) {
+        namedElements.put(name, element);
+    }
+    
+    public Optional&lt;T&gt; get(int index) {
+        return index &gt;= 0 &amp;&amp; index &lt; elements.size() 
+            ? Optional.of(elements.get(index))
+            : Optional.empty();
+    }
+    
+    public Optional&lt;T&gt; getNamed(String name) {
+        return Optional.ofNullable(namedElements.get(name));
+    }
+}
+</div></section></section><section class="chapter"><h2 id="funcionalidades-avan-adas" data-toc="funcionalidades-avan-adas">Funcionalidades Avan&ccedil;adas</h2><section class="chapter"><h3 id="container-com-valida-o" data-toc="container-com-valida-o">Container com Valida&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+public class ValidatedContainer&lt;T&gt; extends Container&lt;T&gt; {
+    private final Predicate&lt;T&gt; validator;
+    
+    public ValidatedContainer(Predicate&lt;T&gt; validator) {
+        super();
+        this.validator = validator;
+    }
+    
+    @Override
+    public void add(T element) {
+        if (validator.test(element)) {
+            super.add(element);
+        } else {
+            throw new IllegalArgumentException(&quot;Elemento inválido&quot;);
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="container-com-transforma-o" data-toc="container-com-transforma-o">Container com Transforma&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+public class TransformingContainer&lt;T, R&gt; {
+    private final Container&lt;T&gt; source;
+    private final Function&lt;T, R&gt; transformer;
+    
+    public TransformingContainer(Container&lt;T&gt; source, Function&lt;T, R&gt; transformer) {
+        this.source = source;
+        this.transformer = transformer;
+    }
+    
+    public Optional&lt;R&gt; getTransformed(int index) {
+        return source.get(index).map(transformer);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="casos-de-uso" data-toc="casos-de-uso">Casos de Uso</h2><section class="chapter"><h3 id="gerenciamento-de-dados" data-toc="gerenciamento-de-dados">Gerenciamento de Dados</h3><div class="code-block" data-lang="java">
+Container&lt;User&gt; userContainer = new Container&lt;&gt;();
+userContainer.add(new User(&quot;Alice&quot;));
+userContainer.addNamed(&quot;admin&quot;, new User(&quot;Admin&quot;));
+
+ValidatedContainer&lt;Email&gt; emailContainer = 
+    new ValidatedContainer&lt;&gt;(Email::isValid);
+emailContainer.add(new Email(&quot;user@example.com&quot;));
+</div></section><section class="chapter"><h3 id="processamento-de-dados" data-toc="processamento-de-dados">Processamento de Dados</h3><div class="code-block" data-lang="java">
+Container&lt;String&gt; stringContainer = new Container&lt;&gt;();
+stringContainer.add(&quot;123&quot;);
+stringContainer.add(&quot;456&quot;);
+
+TransformingContainer&lt;String, Integer&gt; numberContainer =
+    new TransformingContainer&lt;&gt;(stringContainer, Integer::parseInt);
+
+Optional&lt;Integer&gt; number = numberContainer.getTransformed(0); // 123
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="-zbzryp_22" type="1"><li class="list__item" id="-zbzryp_24"><p id="-zbzryp_27"><span class="control" id="-zbzryp_29">Type Safety</span></p><ul class="list _bullet" id="-zbzryp_28"><li class="list__item" id="-zbzryp_30"><p id="-zbzryp_33">Use bounds quando necess&aacute;rio</p></li><li class="list__item" id="-zbzryp_31"><p id="-zbzryp_34">Evite type erasure quando poss&iacute;vel</p></li><li class="list__item" id="-zbzryp_32"><p id="-zbzryp_35">Valide tipos em runtime quando apropriado</p></li></ul></li><li class="list__item" id="-zbzryp_25"><p id="-zbzryp_36"><span class="control" id="-zbzryp_38">Performance</span></p><ul class="list _bullet" id="-zbzryp_37"><li class="list__item" id="-zbzryp_39"><p id="-zbzryp_42">Implemente lazy loading</p></li><li class="list__item" id="-zbzryp_40"><p id="-zbzryp_43">Use estruturas de dados apropriadas</p></li><li class="list__item" id="-zbzryp_41"><p id="-zbzryp_44">Considere cache para opera&ccedil;&otilde;es custosas</p></li></ul></li><li class="list__item" id="-zbzryp_26"><p id="-zbzryp_45"><span class="control" id="-zbzryp_46">Thread Safety</span></p></li></ol><div class="code-block" data-lang="java">
+public class ThreadSafeContainer&lt;T&gt; {
+    private final Container&lt;T&gt; container;
+    private final Lock lock;
+    
+    public ThreadSafeContainer() {
+        this.container = new Container&lt;&gt;();
+        this.lock = new ReentrantLock();
+    }
+    
+    public void add(T element) {
+        lock.lock();
+        try {
+            container.add(element);
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+</div></section><section class="chapter"><h2 id="exerc-cios-propostos" data-toc="exerc-cios-propostos">Exerc&iacute;cios Propostos</h2><ol class="list _decimal" id="-zbzryp_47" type="1"><li class="list__item" id="-zbzryp_48"><p id="-zbzryp_52">Implemente um container com suporte a eventos (Observer pattern)</p></li><li class="list__item" id="-zbzryp_49"><p id="-zbzryp_53">Crie um container com pol&iacute;tica de expira&ccedil;&atilde;o de elementos</p></li><li class="list__item" id="-zbzryp_50"><p id="-zbzryp_54">Desenvolva um container com suporte a opera&ccedil;&otilde;es em batch</p></li><li class="list__item" id="-zbzryp_51"><p id="-zbzryp_55">Adicione funcionalidade de serializa&ccedil;&atilde;o/deserializa&ccedil;&atilde;o</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-zbzryp_56"><li class="list__item" id="-zbzryp_58"><p id="-zbzryp_62">Explorar integra&ccedil;&atilde;o com Streams API</p></li><li class="list__item" id="-zbzryp_59"><p id="-zbzryp_63">Implementar padr&otilde;es de design adicionais</p></li><li class="list__item" id="-zbzryp_60"><p id="-zbzryp_64">Adicionar suporte a persist&ecirc;ncia</p></li><li class="list__item" id="-zbzryp_61"><p id="-zbzryp_65">Desenvolver visualiza&ccedil;&otilde;es de dados</p></li></ul><p id="-zbzryp_57"><a href="annotation-processor.html" id="-zbzryp_66" data-tooltip="O Annotation Processor é um mecanismo poderoso do Java que permite processar anotações em tempo de compilação para gerar código, validar restrições e realizar outras tarefas de metaprogramação.">Annotation Processor</a></p></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="annotation-processor.html" class="navigation-links__prev">Annotation Processor</a><a href="reflection-explorer.html" class="navigation-links__next">Reflection Explorer</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:17.119679721"><title>Express&otilde;es Booleanas | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"conceitos-b-sicos","level":0,"title":"Conceitos Básicos","anchor":"#conceitos-b-sicos"},{"id":"operadores-de-compara-o","level":0,"title":"Operadores de Comparação","anchor":"#operadores-de-compara-o"},{"id":"operadores-l-gicos","level":0,"title":"Operadores Lógicos","anchor":"#operadores-l-gicos"},{"id":"express-es-compostas","level":0,"title":"Expressões Compostas","anchor":"#express-es-compostas"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"casos-comuns","level":0,"title":"Casos Comuns","anchor":"#casos-comuns"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Express&otilde;es Booleanas | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/boolean-expressions.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Express&otilde;es Booleanas | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/boolean-expressions.html#webpage",
+    "url": "writerside-documentation/java/1.0/boolean-expressions.html",
+    "name": "Express&otilde;es Booleanas | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="boolean-expressions" data-main-title="Expressões Booleanas" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="java-basics.md|Fundamentos Java///operators.md|Operadores em Java///logical.md|Operadores Lógicos"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="boolean-expressions" id="boolean-expressions.md">Expressões Booleanas</h1><section class="chapter"><h2 id="conceitos-b-sicos" data-toc="conceitos-b-sicos">Conceitos B&aacute;sicos</h2><section class="chapter"><h3 id="defini-o" data-toc="defini-o">Defini&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+// Expressões que resultam em true ou false
+boolean resultado = (10 &gt; 5);           // true
+boolean composto = (x &gt; 0 &amp;&amp; y &lt; 100);  // depende de x e y
+</div></section></section><section class="chapter"><h2 id="operadores-de-compara-o" data-toc="operadores-de-compara-o">Operadores de Compara&ccedil;&atilde;o</h2><section class="chapter"><h3 id="compara-es-b-sicas" data-toc="compara-es-b-sicas">Compara&ccedil;&otilde;es B&aacute;sicas</h3><div class="code-block" data-lang="java">
+// Igualdade e diferença
+boolean igual = (valor == 10);      // true se valor for 10
+boolean diferente = (valor != 20);  // true se valor não for 20
+
+// Comparações numéricas
+boolean maior = (contador &gt; 100);    // true se contador maior que 100
+boolean menorIgual = (total &lt;= 50); // true se total menor ou igual a 50
+</div></section></section><section class="chapter"><h2 id="operadores-l-gicos" data-toc="operadores-l-gicos">Operadores L&oacute;gicos</h2><section class="chapter"><h3 id="combina-es-l-gicas" data-toc="combina-es-l-gicas">Combina&ccedil;&otilde;es L&oacute;gicas</h3><div class="code-block" data-lang="java">
+// AND (&amp;&amp;) - ambas condições verdadeiras
+boolean aprovado = (nota &gt;= 7.0 &amp;&amp; frequencia &gt;= 75);
+
+// OR (||) - pelo menos uma condição verdadeira
+boolean desconto = (isCliente || isPrimeiraCompra);
+
+// NOT (!) - inverte o valor lógico
+boolean invalido = !dadosValidos;
+</div></section></section><section class="chapter"><h2 id="express-es-compostas" data-toc="express-es-compostas">Express&otilde;es Compostas</h2><section class="chapter"><h3 id="preced-ncia-de-operadores" data-toc="preced-ncia-de-operadores">Preced&ecirc;ncia de Operadores</h3><div class="code-block" data-lang="java">
+// Uso de parênteses para clareza
+boolean complexo = (idade &gt;= 18 &amp;&amp; (temCNH || temAutorizacao));
+
+// Múltiplas condições
+boolean elegivel = (
+    idade &gt;= 18 &amp;&amp;
+    rendaMinima &gt;= 2000 &amp;&amp;
+    !possuiRestricoes
+);
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="legibilidade" data-toc="legibilidade">Legibilidade</h3><div class="code-block" data-lang="java">
+// Evite negações múltiplas
+boolean ruim = !!!ativo;            // Difícil de ler
+boolean melhor = !ativo;            // Mais claro
+
+// Quebre expressões complexas
+boolean status = 
+    verificarIdade() &amp;&amp;
+    verificarDocumentos() &amp;&amp;
+    verificarHistorico();
+</div></section><section class="chapter"><h3 id="simplifica-o" data-toc="simplifica-o">Simplifica&ccedil;&atilde;o</h3><div class="code-block" data-lang="java">
+// Evite redundância
+boolean redundante = (valor == true);    // Não faça isso
+boolean correto = valor;                 // Melhor forma
+
+// Simplifique expressões
+boolean verboso = (idade &gt;= 18) ? true : false;    // Redundante
+boolean simples = idade &gt;= 18;                     // Melhor
+</div></section></section><section class="chapter"><h2 id="casos-comuns" data-toc="casos-comuns">Casos Comuns</h2><section class="chapter"><h3 id="valida-es" data-toc="valida-es">Valida&ccedil;&otilde;es</h3><div class="code-block" data-lang="java">
+// Verificação de strings
+boolean stringValida = texto != null &amp;&amp; !texto.isEmpty();
+
+// Ranges numéricos
+boolean dentroLimite = (valor &gt;= minimo &amp;&amp; valor &lt;= maximo);
+
+// Verificações de estado
+boolean sistemaPronto = 
+    bancoDados.conectado() &amp;&amp;
+    cache.inicializado() &amp;&amp;
+    !manutencao;
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><section class="chapter"><h3 id="t-picos-relacionados" data-toc="t-picos-relacionados">T&oacute;picos Relacionados</h3><ul class="list _bullet" id="z3t9yp0_25"><li class="list__item" id="z3t9yp0_27"><p id="z3t9yp0_30"><a href="logical.html" id="z3t9yp0_31" data-tooltip="Operadores Bit a Bit">Operadores L&oacute;gicos</a></p></li><li class="list__item" id="z3t9yp0_28"><p id="z3t9yp0_32"><a href="conditionals.html" id="z3t9yp0_33" data-tooltip="As estruturas condicionais são como os checkpoints da Matrix - elas determinam quais caminhos seu código pode seguir.">Estruturas Condicionais</a></p></li><li class="list__item" id="z3t9yp0_29"><p id="z3t9yp0_34"><a href="control-flow.html" id="z3t9yp0_35" data-tooltip="O controle de fluxo é fundamental para direcionar a execução do seu código. Como um netrunner navegando pela matrix, você precisa tomar decisões e repetir ações de forma eficiente.">Controle de Fluxo</a></p></li></ul><p id="z3t9yp0_26"><a href="logical.html" id="z3t9yp0_36" data-tooltip="Operadores Bit a Bit">Operadores L&oacute;gicos</a></p></section></section><div class="last-modified">28 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="logical.html" class="navigation-links__prev">Operadores L&oacute;gicos</a><a href="bitwise.html" class="navigation-links__next">Operadores Bit a Bit</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:16.93801361"><title>Lists: A Playlist do Baile Funk | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"arraylist-vs-linkedlist","level":0,"title":"ArrayList vs LinkedList","anchor":"#arraylist-vs-linkedlist"},{"id":"opera-es-b-sicas-como-gerenciar-o-baile","level":0,"title":"Operações Básicas (Como Gerenciar o Baile)","anchor":"#opera-es-b-sicas-como-gerenciar-o-baile"},{"id":"lists-especializadas-reas-vip","level":0,"title":"Lists Especializadas (Áreas VIP)","anchor":"#lists-especializadas-reas-vip"},{"id":"ordena-o-organizando-o-line-up","level":0,"title":"Ordenação (Organizando o Line-up)","anchor":"#ordena-o-organizando-o-line-up"},{"id":"itera-o-passando-o-som","level":0,"title":"Iteração (Passando o Som)","anchor":"#itera-o-passando-o-som"},{"id":"dicas-pro-baile","level":0,"title":"Dicas Pro Baile","anchor":"#dicas-pro-baile"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Lists: A Playlist do Baile Funk | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/lists.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Lists: A Playlist do Baile Funk | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/lists.html#webpage",
+    "url": "writerside-documentation/java/1.0/lists.html",
+    "name": "Lists: A Playlist do Baile Funk | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="lists" data-main-title="Lists: A Playlist do Baile Funk" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="arrays-collections.md|Arrays e Coleções"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="lists" id="lists.md">Lists: A Playlist do Baile Funk</h1><div class="code-block" data-lang="none">
+LIST TYPES
+├── ArrayList (Camarote VIP)
+└── LinkedList (Fila do Open Bar)
+</div><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><p id="bq7nfp_13">Lists s&atilde;o como uma festa funk - tem ordem, repeti&ccedil;&atilde;o e sempre cabe mais um.</p><div class="code-block" data-lang="java">
+// Criando a lista de convidados
+List&lt;String&gt; convidados = new ArrayList&lt;&gt;();
+convidados.add(&quot;MC Kevinho&quot;);    // Adiciona no fim da lista
+convidados.add(0, &quot;MC Livinho&quot;); // Fura a fila (adiciona no início)
+</div></section><section class="chapter"><h2 id="arraylist-vs-linkedlist" data-toc="arraylist-vs-linkedlist">ArrayList vs LinkedList</h2><section class="chapter"><h3 id="arraylist-camarote-vip" data-toc="arraylist-camarote-vip">ArrayList (Camarote VIP)</h3><div class="code-block" data-lang="java">
+// Rápido pra achar alguém, como camarote numerado
+ArrayList&lt;String&gt; camarote = new ArrayList&lt;&gt;();
+camarote.add(&quot;Anitta&quot;);
+camarote.get(0);         // Acesso direto, mesa 0
+</div></section><section class="chapter"><h3 id="linkedlist-fila-do-open-bar" data-toc="linkedlist-fila-do-open-bar">LinkedList (Fila do Open Bar)</h3><div class="code-block" data-lang="java">
+// Melhor pra galera entrar e sair, como fila de open bar
+LinkedList&lt;String&gt; openBar = new LinkedList&lt;&gt;();
+openBar.addFirst(&quot;Sedento&quot;);   // Furando fila
+openBar.addLast(&quot;Paciente&quot;);   // Entrando no fim
+</div></section></section><section class="chapter"><h2 id="opera-es-b-sicas-como-gerenciar-o-baile" data-toc="opera-es-b-sicas-como-gerenciar-o-baile">Opera&ccedil;&otilde;es B&aacute;sicas (Como Gerenciar o Baile)</h2><section class="chapter"><h3 id="adi-o-deixa-entrar" data-toc="adi-o-deixa-entrar">Adi&ccedil;&atilde;o (Deixa Entrar)</h3><div class="code-block" data-lang="java">
+// Vários jeitos de deixar a galera entrar
+List&lt;String&gt; baile = new ArrayList&lt;&gt;();
+baile.add(&quot;Dançarino&quot;);           // Fim da fila
+baile.add(0, &quot;DJ&quot;);               // VIP, direto pro início
+baile.addAll(Arrays.asList(&quot;MC&quot;, &quot;DJ&quot;, &quot;Beat Maker&quot;)); // Grupo
+</div></section><section class="chapter"><h3 id="remo-o-expulsando-da-festa" data-toc="remo-o-expulsando-da-festa">Remo&ccedil;&atilde;o (Expulsando da Festa)</h3><div class="code-block" data-lang="java">
+// Diferentes formas de expulsar
+baile.remove(&quot;Confusão&quot;);          // Remove elemento específico
+baile.remove(0);                   // Remove da posição
+baile.removeIf(x -&gt; x.contains(&quot;Briga&quot;)); // Remove todos briguentos
+</div></section><section class="chapter"><h3 id="acesso-procurando-na-multid-o" data-toc="acesso-procurando-na-multid-o">Acesso (Procurando na Multid&atilde;o)</h3><div class="code-block" data-lang="java">
+// Encontrando a galera
+String vip = baile.get(0);         // Pega pela posição
+int pos = baile.indexOf(&quot;DJ&quot;);     // Onde tá o DJ?
+boolean temMC = baile.contains(&quot;MC&quot;); // O MC chegou?
+</div></section></section><section class="chapter"><h2 id="lists-especializadas-reas-vip" data-toc="lists-especializadas-reas-vip">Lists Especializadas (&Aacute;reas VIP)</h2><section class="chapter"><h3 id="vector-antiga-casa-de-show" data-toc="vector-antiga-casa-de-show">Vector (Antiga Casa de Show)</h3><div class="code-block" data-lang="java">
+// Synchronized por padrão, como segurança old school
+Vector&lt;String&gt; casaAntiga = new Vector&lt;&gt;();
+casaAntiga.add(&quot;Dançarino Clássico&quot;);
+</div></section><section class="chapter"><h3 id="stack-pilha-de-caixas-de-som" data-toc="stack-pilha-de-caixas-de-som">Stack (Pilha de Caixas de Som)</h3><div class="code-block" data-lang="java">
+// LIFO - Last In, First Out
+Stack&lt;String&gt; equipamento = new Stack&lt;&gt;();
+equipamento.push(&quot;Grave&quot;);     // Empilha
+String topo = equipamento.pop(); // Desempilha
+</div></section></section><section class="chapter"><h2 id="ordena-o-organizando-o-line-up" data-toc="ordena-o-organizando-o-line-up">Ordena&ccedil;&atilde;o (Organizando o Line-up)</h2><div class="code-block" data-lang="java">
+// Ordenando a lista de apresentações
+List&lt;String&gt; lineup = new ArrayList&lt;&gt;();
+lineup.addAll(Arrays.asList(&quot;MC Late&quot;, &quot;DJ Early&quot;, &quot;MC Prime&quot;));
+
+// Ordem alfabética
+Collections.sort(lineup);
+
+// Ordem personalizada
+lineup.sort((a, b) -&gt; a.length() - b.length()); // Por tamanho do nome
+</div></section><section class="chapter"><h2 id="itera-o-passando-o-som" data-toc="itera-o-passando-o-som">Itera&ccedil;&atilde;o (Passando o Som)</h2><div class="code-block" data-lang="java">
+// For tradicional (Contagem regressiva)
+for (int i = 0; i &lt; lineup.size(); i++) {
+    System.out.println(&quot;Próximo: &quot; + lineup.get(i));
+}
+
+// For each (Passando o som)
+for (String artista : lineup) {
+    System.out.println(&quot;No palco: &quot; + artista);
+}
+
+// Iterator (Revista na entrada)
+Iterator&lt;String&gt; revista = lineup.iterator();
+while (revista.hasNext()) {
+    String pessoa = revista.next();
+    if (pessoa.contains(&quot;Problema&quot;)) {
+        revista.remove(); // Barrado
+    }
+}
+</div></section><section class="chapter"><h2 id="dicas-pro-baile" data-toc="dicas-pro-baile">Dicas Pro Baile</h2><ol class="list _decimal" id="bq7nfp_31" type="1"><li class="list__item" id="bq7nfp_33"><p id="bq7nfp_35"><span class="control" id="bq7nfp_37">Escolha Certa</span></p><ul class="list _bullet" id="bq7nfp_36"><li class="list__item" id="bq7nfp_38"><p id="bq7nfp_40">ArrayList: Quando precisa acessar r&aacute;pido</p></li><li class="list__item" id="bq7nfp_39"><p id="bq7nfp_41">LinkedList: Quando a galera entra e sai muito</p></li></ul></li><li class="list__item" id="bq7nfp_34"><p id="bq7nfp_42"><span class="control" id="bq7nfp_43">Performance</span></p></li></ol><div class="code-block" data-lang="java">
+// Define o tamanho se souber quantos vem
+List&lt;String&gt; convidados = new ArrayList&lt;&gt;(100);
+
+// Limpa a lista depois da festa
+convidados.clear();
+</div></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="bq7nfp_44" type="1"><li class="list__item" id="bq7nfp_45"><p id="bq7nfp_48">Implemente um sistema de fila de entrada</p></li><li class="list__item" id="bq7nfp_46"><p id="bq7nfp_49">Crie um gerenciador de playlists</p></li><li class="list__item" id="bq7nfp_47"><p id="bq7nfp_50">Desenvolva um controlador de pedidos de m&uacute;sica</p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="bq7nfp_51">Depois de dominar as Lists, voc&ecirc; estar&aacute; pronto para:</p><ol class="list _decimal" id="bq7nfp_52" type="1"><li class="list__item" id="bq7nfp_56"><p id="bq7nfp_59">Gerenciar qualquer tipo de sequ&ecirc;ncia ordenada</p></li><li class="list__item" id="bq7nfp_57"><p id="bq7nfp_60">Implementar filas e pilhas eficientes</p></li><li class="list__item" id="bq7nfp_58"><p id="bq7nfp_61">Organizar dados com repeti&ccedil;&atilde;o</p></li></ol><p id="bq7nfp_53"><a href="collections-overview.html" id="bq7nfp_62" data-tooltip="Imagine o Collections Framework como uma organização criminosa bem estruturada - cada família tem sua especialidade, mas todas trabalham juntas quando necessário.">Collections Overview</a> <a href="sets.html" id="bq7nfp_63" data-tooltip="Sets são como uma festa exclusiva - não tem repetido e cada um é único.">Sets: Sem Repeteco</a></p><aside class="prompt" data-type="tip" data-title="" id="bq7nfp_55"><p id="bq7nfp_64">&quot;Lists s&atilde;o como um baile funk: tem ordem, aceita repeti&ccedil;&atilde;o e sempre cabe mais um na pista!&quot;</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="collections-overview.html" class="navigation-links__prev">Collections Framework: O Submundo das Estruturas de Dados</a><a href="sets.html" class="navigation-links__next">Sets: O Clube dos &Uacute;nicos</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

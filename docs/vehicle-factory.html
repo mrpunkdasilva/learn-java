@@ -1,0 +1,217 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:18.819865583"><title>Vehicle Factory Pattern | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"implementa-o","level":0,"title":"Implementação","anchor":"#implementa-o"},{"id":"uso-do-factory","level":0,"title":"Uso do Factory","anchor":"#uso-do-factory"},{"id":"extens-es-poss-veis","level":0,"title":"Extensões Possíveis","anchor":"#extens-es-poss-veis"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"anti-patterns-a-evitar","level":0,"title":"Anti-Patterns a Evitar","anchor":"#anti-patterns-a-evitar"},{"id":"exerc-cio-pr-tico","level":0,"title":"Exercício Prático","anchor":"#exerc-cio-pr-tico"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Vehicle Factory Pattern | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/vehicle-factory.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Vehicle Factory Pattern | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/vehicle-factory.html#webpage",
+    "url": "writerside-documentation/java/1.0/vehicle-factory.html",
+    "name": "Vehicle Factory Pattern | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="vehicle-factory" data-main-title="Vehicle Factory Pattern" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="creational-patterns.md|Padrões Criacionais///creational-projects.md|Projetos de Padrões Criacionais"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="vehicle-factory" id="vehicle-factory.md">Vehicle Factory Pattern</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="-vj6lnz_11">O Vehicle Factory &eacute; uma implementa&ccedil;&atilde;o do Abstract Factory Pattern que demonstra a cria&ccedil;&atilde;o de diferentes tipos de ve&iacute;culos e seus componentes.</p><div class="code-block" data-lang="none">
+VEHICLE FACTORY
+├── Abstract Factory
+├── Concrete Factories
+│   ├── SportsCar Factory
+│   ├── SUV Factory
+│   └── Truck Factory
+├── Abstract Products
+│   ├── Engine
+│   ├── Body
+│   └── Interior
+└── Concrete Products
+    ├── Sports Components
+    ├── SUV Components
+    └── Truck Components
+</div></section><section class="chapter"><h2 id="implementa-o" data-toc="implementa-o">Implementa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-interfaces-base" data-toc="1-interfaces-base">1. Interfaces Base</h3><div class="code-block" data-lang="java">
+// Componentes abstratos
+public interface Engine {
+    void start();
+    int getHorsepower();
+}
+
+public interface Body {
+    String getDesign();
+    double getAerodynamics();
+}
+
+public interface Interior {
+    int getSeatingCapacity();
+    String getUpholsteryType();
+}
+
+// Fábrica abstrata
+public interface VehicleFactory {
+    Engine createEngine();
+    Body createBody();
+    Interior createInterior();
+}
+</div></section><section class="chapter"><h3 id="2-implementa-o-sports-car" data-toc="2-implementa-o-sports-car">2. Implementa&ccedil;&atilde;o Sports Car</h3><div class="code-block" data-lang="java">
+// Componentes concretos do Sports Car
+public class TurboEngine implements Engine {
+    @Override
+    public void start() {
+        System.out.println(&quot;Iniciando motor turbo de alta performance&quot;);
+    }
+    
+    @Override
+    public int getHorsepower() {
+        return 450;
+    }
+}
+
+public class AerodynamicBody implements Body {
+    @Override
+    public String getDesign() {
+        return &quot;Design aerodinâmico esportivo&quot;;
+    }
+    
+    @Override
+    public double getAerodynamics() {
+        return 0.28; // Coeficiente de arrasto
+    }
+}
+
+public class SportInterior implements Interior {
+    @Override
+    public int getSeatingCapacity() {
+        return 2;
+    }
+    
+    @Override
+    public String getUpholsteryType() {
+        return &quot;Couro esportivo com costuras contrastantes&quot;;
+    }
+}
+
+// Fábrica concreta de Sports Car
+public class SportsCarFactory implements VehicleFactory {
+    @Override
+    public Engine createEngine() {
+        return new TurboEngine();
+    }
+    
+    @Override
+    public Body createBody() {
+        return new AerodynamicBody();
+    }
+    
+    @Override
+    public Interior createInterior() {
+        return new SportInterior();
+    }
+}
+</div></section><section class="chapter"><h3 id="3-implementa-o-suv" data-toc="3-implementa-o-suv">3. Implementa&ccedil;&atilde;o SUV</h3><div class="code-block" data-lang="java">
+public class SUVFactory implements VehicleFactory {
+    @Override
+    public Engine createEngine() {
+        return new PowerfulEngine();
+    }
+    
+    @Override
+    public Body createBody() {
+        return new RobustBody();
+    }
+    
+    @Override
+    public Interior createInterior() {
+        return new LuxuryInterior();
+    }
+}
+
+public class PowerfulEngine implements Engine {
+    @Override
+    public void start() {
+        System.out.println(&quot;Iniciando motor V6 com torque elevado&quot;);
+    }
+    
+    @Override
+    public int getHorsepower() {
+        return 300;
+    }
+}
+
+// Outras implementações de componentes SUV...
+</div></section></section><section class="chapter"><h2 id="uso-do-factory" data-toc="uso-do-factory">Uso do Factory</h2><section class="chapter"><h3 id="1-cliente-base" data-toc="1-cliente-base">1. Cliente Base</h3><div class="code-block" data-lang="java">
+public class VehicleAssembler {
+    private final VehicleFactory factory;
+    
+    public VehicleAssembler(VehicleFactory factory) {
+        this.factory = factory;
+    }
+    
+    public Vehicle assembleVehicle() {
+        Engine engine = factory.createEngine();
+        Body body = factory.createBody();
+        Interior interior = factory.createInterior();
+        
+        return new Vehicle(engine, body, interior);
+    }
+}
+</div></section><section class="chapter"><h3 id="2-exemplo-de-uso" data-toc="2-exemplo-de-uso">2. Exemplo de Uso</h3><div class="code-block" data-lang="java">
+public class Demo {
+    public static void main(String[] args) {
+        // Criando um carro esportivo
+        VehicleFactory sportsFactory = new SportsCarFactory();
+        VehicleAssembler sportsAssembler = new VehicleAssembler(sportsFactory);
+        Vehicle sportsCar = sportsAssembler.assembleVehicle();
+        
+        // Criando um SUV
+        VehicleFactory suvFactory = new SUVFactory();
+        VehicleAssembler suvAssembler = new VehicleAssembler(suvFactory);
+        Vehicle suv = suvAssembler.assembleVehicle();
+        
+        // Testando os veículos
+        testVehicle(sportsCar);
+        testVehicle(suv);
+    }
+    
+    private static void testVehicle(Vehicle vehicle) {
+        System.out.println(&quot;Testando veículo:&quot;);
+        vehicle.getEngine().start();
+        System.out.println(&quot;Potência: &quot; + vehicle.getEngine().getHorsepower() + &quot; hp&quot;);
+        System.out.println(&quot;Design: &quot; + vehicle.getBody().getDesign());
+        System.out.println(&quot;Capacidade: &quot; + vehicle.getInterior().getSeatingCapacity() + &quot; pessoas&quot;);
+        System.out.println();
+    }
+}
+</div></section></section><section class="chapter"><h2 id="extens-es-poss-veis" data-toc="extens-es-poss-veis">Extens&otilde;es Poss&iacute;veis</h2><ol class="list _decimal" id="-vj6lnz_23" type="1"><li class="list__item" id="-vj6lnz_25"><p id="-vj6lnz_26"><span class="control" id="-vj6lnz_27">Sistema de Configura&ccedil;&atilde;o</span></p></li></ol><div class="code-block" data-lang="java">
+public class VehicleConfigurator {
+    private final VehicleFactory factory;
+    private final Map&lt;String, Object&gt; options;
+    
+    public VehicleConfigurator(VehicleFactory factory) {
+        this.factory = factory;
+        this.options = new HashMap&lt;&gt;();
+    }
+    
+    public void setOption(String key, Object value) {
+        options.put(key, value);
+    }
+    
+    public Vehicle configure() {
+        Vehicle vehicle = new VehicleAssembler(factory).assembleVehicle();
+        applyOptions(vehicle);
+        return vehicle;
+    }
+    
+    private void applyOptions(Vehicle vehicle) {
+        // Aplicar opções personalizadas
+    }
+}
+</div></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="-vj6lnz_28" type="1"><li class="list__item" id="-vj6lnz_29"><p id="-vj6lnz_32"><span class="control" id="-vj6lnz_34">Coes&atilde;o de Componentes</span></p><ul class="list _bullet" id="-vj6lnz_33"><li class="list__item" id="-vj6lnz_35"><p id="-vj6lnz_38">Mantenha componentes relacionados na mesma fam&iacute;lia</p></li><li class="list__item" id="-vj6lnz_36"><p id="-vj6lnz_39">Garanta compatibilidade entre componentes</p></li><li class="list__item" id="-vj6lnz_37"><p id="-vj6lnz_40">Evite depend&ecirc;ncias entre fam&iacute;lias diferentes</p></li></ul></li><li class="list__item" id="-vj6lnz_30"><p id="-vj6lnz_41"><span class="control" id="-vj6lnz_43">Extensibilidade</span></p><ul class="list _bullet" id="-vj6lnz_42"><li class="list__item" id="-vj6lnz_44"><p id="-vj6lnz_47">Projete para facilitar adi&ccedil;&atilde;o de novos tipos de ve&iacute;culos</p></li><li class="list__item" id="-vj6lnz_45"><p id="-vj6lnz_48">Mantenha interfaces consistentes</p></li><li class="list__item" id="-vj6lnz_46"><p id="-vj6lnz_49">Use composi&ccedil;&atilde;o sobre heran&ccedil;a</p></li></ul></li><li class="list__item" id="-vj6lnz_31"><p id="-vj6lnz_50"><span class="control" id="-vj6lnz_52">Valida&ccedil;&atilde;o</span></p><ul class="list _bullet" id="-vj6lnz_51"><li class="list__item" id="-vj6lnz_53"><p id="-vj6lnz_56">Verifique compatibilidade de componentes</p></li><li class="list__item" id="-vj6lnz_54"><p id="-vj6lnz_57">Valide configura&ccedil;&otilde;es</p></li><li class="list__item" id="-vj6lnz_55"><p id="-vj6lnz_58">Implemente testes unit&aacute;rios</p></li></ul></li></ol></section><section class="chapter"><h2 id="anti-patterns-a-evitar" data-toc="anti-patterns-a-evitar">Anti-Patterns a Evitar</h2><ol class="list _decimal" id="-vj6lnz_59" type="1"><li class="list__item" id="-vj6lnz_60"><p id="-vj6lnz_62"><span class="control" id="-vj6lnz_64">Mistura de Responsabilidades</span></p><ul class="list _bullet" id="-vj6lnz_63"><li class="list__item" id="-vj6lnz_65"><p id="-vj6lnz_68">N&atilde;o misture l&oacute;gica de neg&oacute;cio nas f&aacute;bricas</p></li><li class="list__item" id="-vj6lnz_66"><p id="-vj6lnz_69">Evite acoplamento entre fam&iacute;lias diferentes</p></li><li class="list__item" id="-vj6lnz_67"><p id="-vj6lnz_70">Mantenha separa&ccedil;&atilde;o clara de concerns</p></li></ul></li><li class="list__item" id="-vj6lnz_61"><p id="-vj6lnz_71"><span class="control" id="-vj6lnz_73">Complexidade Desnecess&aacute;ria</span></p><ul class="list _bullet" id="-vj6lnz_72"><li class="list__item" id="-vj6lnz_74"><p id="-vj6lnz_77">N&atilde;o crie hierarquias muito profundas</p></li><li class="list__item" id="-vj6lnz_75"><p id="-vj6lnz_78">Evite excesso de customiza&ccedil;&atilde;o</p></li><li class="list__item" id="-vj6lnz_76"><p id="-vj6lnz_79">Mantenha o c&oacute;digo simples e direto</p></li></ul></li></ol></section><section class="chapter"><h2 id="exerc-cio-pr-tico" data-toc="exerc-cio-pr-tico">Exerc&iacute;cio Pr&aacute;tico</h2><p id="-vj6lnz_80">Implemente um sistema de f&aacute;brica de ve&iacute;culos el&eacute;tricos:</p><ol class="list _decimal" id="-vj6lnz_81" type="1"><li class="list__item" id="-vj6lnz_83"><p id="-vj6lnz_87">Crie componentes espec&iacute;ficos para ve&iacute;culos el&eacute;tricos</p></li><li class="list__item" id="-vj6lnz_84"><p id="-vj6lnz_88">Implemente uma nova f&aacute;brica concreta</p></li><li class="list__item" id="-vj6lnz_85"><p id="-vj6lnz_89">Adicione funcionalidades espec&iacute;ficas de ve&iacute;culos el&eacute;tricos</p></li><li class="list__item" id="-vj6lnz_86"><p id="-vj6lnz_90">Integre com o sistema existente</p></li></ol><div class="code-block" data-lang="java">
+public interface ElectricVehicleFactory extends VehicleFactory {
+    Battery createBattery();
+    ElectricMotor createMotor();
+    ChargingSystem createChargingSystem();
+}
+
+public class ElectricSportsCarFactory implements ElectricVehicleFactory {
+    // Implementação...
+}
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-vj6lnz_91" type="1"><li class="list__item" id="-vj6lnz_92"><p id="-vj6lnz_97">Explore integra&ccedil;&atilde;o com outros padr&otilde;es</p></li><li class="list__item" id="-vj6lnz_93"><p id="-vj6lnz_98">Implemente persist&ecirc;ncia de configura&ccedil;&otilde;es</p></li><li class="list__item" id="-vj6lnz_94"><p id="-vj6lnz_99">Adicione valida&ccedil;&otilde;es de seguran&ccedil;a</p></li><li class="list__item" id="-vj6lnz_95"><p id="-vj6lnz_100">Desenvolva interface de usu&aacute;rio</p></li><li class="list__item" id="-vj6lnz_96"><p id="-vj6lnz_101">Implemente testes automatizados</p></li></ol></section><div class="last-modified">28 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="document-generator.html" class="navigation-links__prev">Document Generator Pattern</a><a href="resources.html" class="navigation-links__next">Recursos de Aprendizado Java</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

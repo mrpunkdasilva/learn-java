@@ -1,0 +1,138 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T20:23:20.31622714"><title>Interfaces e Classes Abstratas | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"interfaces","level":0,"title":"Interfaces","anchor":"#interfaces"},{"id":"classes-abstratas","level":0,"title":"Classes Abstratas","anchor":"#classes-abstratas"},{"id":"compara-o","level":0,"title":"Comparação","anchor":"#compara-o"},{"id":"padr-es-de-uso","level":0,"title":"Padrões de Uso","anchor":"#padr-es-de-uso"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Interfaces e Classes Abstratas | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/interfaces-abstract.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Interfaces e Classes Abstratas | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/java/1.0/interfaces-abstract.html#webpage",
+    "url": "writerside-documentation/java/1.0/interfaces-abstract.html",
+    "name": "Interfaces e Classes Abstratas | NetRunner: Java Mastery Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/java/#website",
+    "url": "writerside-documentation/java/",
+    "name": "NetRunner: Java Mastery Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="interfaces-abstract" data-main-title="Interfaces e Classes Abstratas" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="oop-fundamentals.md|Fundamentos da Programação Orientada a Objetos"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>NetRunner: Java Mastery Guide 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="interfaces-abstract" id="interfaces-abstract.md">Interfaces e Classes Abstratas</h1><section class="chapter"><h2 id="interfaces" data-toc="interfaces">Interfaces</h2><section class="chapter"><h3 id="defini-o-b-sica" data-toc="defini-o-b-sica">Defini&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="java">
+public interface CyberSystem {
+    void initialize();
+    void shutdown();
+    boolean isRunning();
+    
+    default void restart() {
+        shutdown();
+        initialize();
+    }
+}
+</div></section><section class="chapter"><h3 id="implementa-o-m-ltipla" data-toc="implementa-o-m-ltipla">Implementa&ccedil;&atilde;o M&uacute;ltipla</h3><div class="code-block" data-lang="java">
+public interface Hackable {
+    void breach();
+    int getSecurityLevel();
+}
+
+public class SecurityGateway implements CyberSystem, Hackable {
+    private boolean active;
+    private int secLevel;
+
+    @Override
+    public void initialize() {
+        active = true;
+    }
+
+    @Override
+    public void shutdown() {
+        active = false;
+    }
+
+    @Override
+    public boolean isRunning() {
+        return active;
+    }
+
+    @Override
+    public void breach() {
+        secLevel--;
+    }
+
+    @Override
+    public int getSecurityLevel() {
+        return secLevel;
+    }
+}
+</div></section></section><section class="chapter"><h2 id="classes-abstratas" data-toc="classes-abstratas">Classes Abstratas</h2><section class="chapter"><h3 id="estrutura-base" data-toc="estrutura-base">Estrutura Base</h3><div class="code-block" data-lang="java">
+public abstract class NetworkNode {
+    protected String id;
+    protected boolean connected;
+
+    public NetworkNode(String id) {
+        this.id = id;
+        this.connected = false;
+    }
+
+    public abstract void processData(byte[] data);
+    
+    public void connect() {
+        connected = true;
+    }
+}
+</div></section><section class="chapter"><h3 id="implementa-o-concreta" data-toc="implementa-o-concreta">Implementa&ccedil;&atilde;o Concreta</h3><div class="code-block" data-lang="java">
+public class DataNode extends NetworkNode {
+    private DataProcessor processor;
+
+    public DataNode(String id) {
+        super(id);
+        this.processor = new DataProcessor();
+    }
+
+    @Override
+    public void processData(byte[] data) {
+        if (connected) {
+            processor.analyze(data);
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="compara-o" data-toc="compara-o">Compara&ccedil;&atilde;o</h2><section class="chapter"><h3 id="interface-vs-classe-abstrata" data-toc="interface-vs-classe-abstrata">Interface vs Classe Abstrata</h3><svg aria-roledescription="flowchart-v2" role="graphics-document document" viewBox="0 0 533.90625 246"  class="flowchart" xmlns="http://www.w3.org/2000/svg" width="533.90625" id="mermaid"><g><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="5" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="4.5" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M122.305,62L122.305,68.167C122.305,74.333,122.305,86.667,122.305,95.917C122.305,105.167,122.305,111.333,122.305,116.833C122.305,122.333,122.305,127.167,122.305,129.583L122.305,132"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_D_1" d="M406.258,62L406.258,68.167C406.258,74.333,406.258,86.667,406.258,95.917C406.258,105.167,406.258,111.333,406.258,116.833C406.258,122.333,406.258,127.167,406.258,129.583L406.258,132"></path></g><g class="edgeLabels"><g transform="translate(122.3046875, 99)" class="edgeLabel"><g transform="translate(-53.53125, -12)" class="label"><foreignObject height="24" width="107.0625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>Características</p></span></div></foreignObject></g></g><g transform="translate(406.2578125, 99)" class="edgeLabel"><g transform="translate(-53.53125, -12)" class="label"><foreignObject height="24" width="107.0625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>Características</p></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(122.3046875, 35)" id="flowchart-A-5165" class="node default"><rect height="54" width="122.484375" y="-27" x="-61.2421875" data-et="node" data-id="abc" style="fill:#1a1a1a !important;stroke:#00ff00 !important" class="basic label-container"></rect><g transform="translate(-31.2421875, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="62.484375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Interface</p></span></div></foreignObject></g></g><g transform="translate(122.3046875, 187)" id="flowchart-B-5166" class="node default"><rect height="102" width="228.609375" y="-51" x="-114.3046875" data-et="node" data-id="abc" style="fill:#1a1a1a !important;stroke:#00ff00 !important" class="basic label-container"></rect><g transform="translate(-84.3046875, -36)" style="" class="label"><rect></rect><foreignObject height="72" width="168.609375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Múltipla implementação<br>Apenas assinaturas<br>Métodos default</p></span></div></foreignObject></g></g><g transform="translate(406.2578125, 35)" id="flowchart-C-5167" class="node default"><rect height="54" width="172.421875" y="-27" x="-86.2109375" data-et="node" data-id="abc" style="fill:#1a1a1a !important;stroke:#00ff00 !important" class="basic label-container"></rect><g transform="translate(-56.2109375, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="112.421875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Classe Abstrata</p></span></div></foreignObject></g></g><g transform="translate(406.2578125, 187)" id="flowchart-D-5168" class="node default"><rect height="102" width="239.296875" y="-51" x="-119.6484375" data-et="node" data-id="abc" style="fill:#1a1a1a !important;stroke:#00ff00 !important" class="basic label-container"></rect><g transform="translate(-89.6484375, -36)" style="" class="label"><rect></rect><foreignObject height="72" width="179.296875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Herança única<br>Estado e comportamento<br>Construtor</p></span></div></foreignObject></g></g></g></g></g></svg></section></section><section class="chapter"><h2 id="padr-es-de-uso" data-toc="padr-es-de-uso">Padr&otilde;es de Uso</h2><section class="chapter"><h3 id="interface-funcional" data-toc="interface-funcional">Interface Funcional</h3><div class="code-block" data-lang="java">
+@FunctionalInterface
+public interface DataFilter {
+    boolean test(byte[] data);
+    
+    static DataFilter combine(DataFilter f1, DataFilter f2) {
+        return data -&gt; f1.test(data) &amp;&amp; f2.test(data);
+    }
+}
+</div></section><section class="chapter"><h3 id="template-method" data-toc="template-method">Template Method</h3><div class="code-block" data-lang="java">
+public abstract class CyberOperation {
+    public final void execute() {
+        preCheck();
+        runOperation();
+        postCheck();
+    }
+
+    protected abstract void runOperation();
+    
+    protected void preCheck() {
+        // Implementação padrão
+    }
+    
+    protected void postCheck() {
+        // Implementação padrão
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><div class="code-block" data-lang="java">
+// 1. Crie uma hierarquia de sistemas de segurança
+public interface SecurityProtocol {
+    void authenticate();
+    void encrypt(byte[] data);
+    void decrypt(byte[] data);
+}
+
+// 2. Implemente um sistema de logs abstrato
+public abstract class LogSystem {
+    // Implemente métodos comuns e abstratos
+}
+
+// 3. Desenvolva diferentes tipos de nós de rede
+public interface NetworkComponent {
+    // Defina operações de rede
+}
+</div></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="rjqiv9_25" type="1"><li class="list__item" id="rjqiv9_26"><p id="rjqiv9_29"><span class="control" id="rjqiv9_31">Interface Segregation</span></p><ul class="list _bullet" id="rjqiv9_30"><li class="list__item" id="rjqiv9_32"><p id="rjqiv9_35">Interfaces pequenas e coesas</p></li><li class="list__item" id="rjqiv9_33"><p id="rjqiv9_36">Foco em comportamento espec&iacute;fico</p></li><li class="list__item" id="rjqiv9_34"><p id="rjqiv9_37">Evite interfaces gordas</p></li></ul></li><li class="list__item" id="rjqiv9_27"><p id="rjqiv9_38"><span class="control" id="rjqiv9_40">Abstra&ccedil;&atilde;o Apropriada</span></p><ul class="list _bullet" id="rjqiv9_39"><li class="list__item" id="rjqiv9_41"><p id="rjqiv9_44">Use classes abstratas para c&oacute;digo comum</p></li><li class="list__item" id="rjqiv9_42"><p id="rjqiv9_45">Interfaces para contratos puros</p></li><li class="list__item" id="rjqiv9_43"><p id="rjqiv9_46">Balanceie flexibilidade e complexidade</p></li></ul></li><li class="list__item" id="rjqiv9_28"><p id="rjqiv9_47"><span class="control" id="rjqiv9_49">Nomenclatura</span></p><ul class="list _bullet" id="rjqiv9_48"><li class="list__item" id="rjqiv9_50"><p id="rjqiv9_53">Interfaces: capacidade/comportamento</p></li><li class="list__item" id="rjqiv9_51"><p id="rjqiv9_54">Classes abstratas: conceito base</p></li><li class="list__item" id="rjqiv9_52"><p id="rjqiv9_55">M&eacute;todos: verbos/a&ccedil;&otilde;es</p></li></ul></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="rjqiv9_56"><a href="records.html" id="rjqiv9_58" data-tooltip="Records são classes imutáveis que atuam como portadores transparentes de dados, introduzidos no Java 16.">Records</a></p><aside class="prompt" data-type="tip" data-title="" id="rjqiv9_57"><p id="rjqiv9_59">&quot;Na matrix digital, interfaces e abstra&ccedil;&otilde;es s&atilde;o as ferramentas que moldam a realidade do c&oacute;digo.&quot;</p></aside></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="polymorphism.html" class="navigation-links__prev">Polimorfismo</a><a href="records.html" class="navigation-links__next">Records</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
