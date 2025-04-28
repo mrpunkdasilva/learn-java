@@ -34,17 +34,20 @@
         </toc-element>
         <toc-element topic="operators.md">
             <toc-element topic="arithmetic.md"/>
-            <toc-element topic="logical.md"/>
+            <toc-element topic="logical.md">
+                <toc-element topic="boolean-expressions.md"/>
+            </toc-element>
             <toc-element topic="bitwise.md"/>
         </toc-element>
-
-        <toc-element topic="i18n.md"/>
         <toc-element topic="date-formatting.md"/>
         <toc-element topic="number-formatting.md"/>
         <toc-element topic="strings.md">
             <toc-element topic="string-methods.md"/>
             <toc-element topic="string-builder.md"/>
             <toc-element topic="string-formatting.md"/>
+            <toc-element topic="string-buffer.md"/>
+            <toc-element topic="regex.md"/>
+            <toc-element topic="i18n.md"/>
         </toc-element>
         <toc-element topic="basic-projects.md">
             <toc-element topic="calculator.md"/>
@@ -125,19 +128,19 @@
         </toc-element>
     </toc-element>
 
-<!--        <toc-element topic="design-patterns.md">-->
-            <toc-element topic="creational-patterns.md">
-                <toc-element topic="singleton.md"/>
-                <toc-element topic="factory.md"/>
-                <toc-element topic="builder.md"/>
-                <toc-element topic="prototype.md"/>
-                <toc-element topic="abstract-factory.md"/>
-                <toc-element topic="creational-projects.md">
-                    <toc-element topic="database-connection-pool.md"/>
-                    <toc-element topic="document-generator.md"/>
-                    <toc-element topic="vehicle-factory.md"/>
-                </toc-element>
-            </toc-element>
+    <!--        <toc-element topic="design-patterns.md">-->
+    <toc-element topic="creational-patterns.md">
+        <toc-element topic="singleton.md"/>
+        <toc-element topic="factory.md"/>
+        <toc-element topic="builder.md"/>
+        <toc-element topic="prototype.md"/>
+        <toc-element topic="abstract-factory.md"/>
+        <toc-element topic="creational-projects.md">
+            <toc-element topic="database-connection-pool.md"/>
+            <toc-element topic="document-generator.md"/>
+            <toc-element topic="vehicle-factory.md"/>
+        </toc-element>
+    </toc-element>
     <!--        <toc-element topic="structural-patterns.md">-->
     <!--            <toc-element topic="adapter.md"/>-->
     <!--            <toc-element topic="decorator.md"/>-->
@@ -342,7 +345,5 @@
         <toc-element topic="cheat-sheets.md"/>
         <toc-element topic="glossary.md"/>
     </toc-element>
-    <toc-element topic="boolean-expressions.md"/>
-    <toc-element topic="string-buffer.md"/>
-    <toc-element topic="regex.md"/>
+
 </instance-profile>

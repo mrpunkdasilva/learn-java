@@ -4524,6 +4524,123 @@ boolean xor = true ^ false;
 
 
 
+# Expressões Booleanas
+
+## Conceitos Básicos
+
+### Definição
+
+```JAVA
+// Expressões que resultam em true ou false
+boolean resultado = (10 > 5);           // true
+boolean composto = (x > 0 && y < 100);  // depende de x e y
+```
+
+## Operadores de Comparação
+
+### Comparações Básicas
+
+```JAVA
+// Igualdade e diferença
+boolean igual = (valor == 10);      // true se valor for 10
+boolean diferente = (valor != 20);  // true se valor não for 20
+
+// Comparações numéricas
+boolean maior = (contador > 100);    // true se contador maior que 100
+boolean menorIgual = (total <= 50); // true se total menor ou igual a 50
+```
+
+## Operadores Lógicos
+
+### Combinações Lógicas
+
+```JAVA
+// AND (&&) - ambas condições verdadeiras
+boolean aprovado = (nota >= 7.0 && frequencia >= 75);
+
+// OR (||) - pelo menos uma condição verdadeira
+boolean desconto = (isCliente || isPrimeiraCompra);
+
+// NOT (!) - inverte o valor lógico
+boolean invalido = !dadosValidos;
+```
+
+## Expressões Compostas
+
+### Precedência de Operadores
+
+```JAVA
+// Uso de parênteses para clareza
+boolean complexo = (idade >= 18 && (temCNH || temAutorizacao));
+
+// Múltiplas condições
+boolean elegivel = (
+    idade >= 18 &&
+    rendaMinima >= 2000 &&
+    !possuiRestricoes
+);
+```
+
+## Boas Práticas
+
+### Legibilidade
+
+```JAVA
+// Evite negações múltiplas
+boolean ruim = !!!ativo;            // Difícil de ler
+boolean melhor = !ativo;            // Mais claro
+
+// Quebre expressões complexas
+boolean status = 
+    verificarIdade() &&
+    verificarDocumentos() &&
+    verificarHistorico();
+```
+
+### Simplificação
+
+```JAVA
+// Evite redundância
+boolean redundante = (valor == true);    // Não faça isso
+boolean correto = valor;                 // Melhor forma
+
+// Simplifique expressões
+boolean verboso = (idade >= 18) ? true : false;    // Redundante
+boolean simples = idade >= 18;                     // Melhor
+```
+
+## Casos Comuns
+
+### Validações
+
+```JAVA
+// Verificação de strings
+boolean stringValida = texto != null && !texto.isEmpty();
+
+// Ranges numéricos
+boolean dentroLimite = (valor >= minimo && valor <= maximo);
+
+// Verificações de estado
+boolean sistemaPronto = 
+    bancoDados.conectado() &&
+    cache.inicializado() &&
+    !manutencao;
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Operadores Lógicos](logical.html)
+
+* [Estruturas Condicionais](conditionals.html)
+
+* [Controle de Fluxo](control-flow.html)
+
+[Operadores Lógicos](logical.html)
+
+
+
 # Operadores Bit a Bit
 
 ## Operadores Básicos
@@ -4617,145 +4734,6 @@ int clearBits = number & ~mask;
 Tip:
 
 "Os operadores bit a bit são como os comandos de baixo nível da Matrix - manipulando a realidade digital bit por bit."
-
-
-
-# Internacionalização (i18n)
-
-## Conceitos Básicos
-
-### Locale
-
-```JAVA
-// Criando Locales
-Locale brLocale = new Locale("pt", "BR");
-Locale usLocale = Locale.US;
-Locale currentLocale = Locale.getDefault();
-
-// Definindo Locale padrão
-Locale.setDefault(brLocale);
-```
-
-### ResourceBundle
-
-```JAVA
-// Arquivo: messages_pt_BR.properties
-// mensagem=Olá, {0}!
-
-// Arquivo: messages_en_US.properties
-// message=Hello, {0}!
-
-ResourceBundle bundle = ResourceBundle.getBundle("messages", brLocale);
-String msg = bundle.getString("mensagem");
-```
-
-## Textos e Mensagens
-
-### Properties Files
-
-```PROPERTIES
-# messages_pt_BR.properties
-welcome=Bem-vindo
-error.notfound=Não encontrado
-app.title=Minha Aplicação
-
-# messages_en_US.properties
-welcome=Welcome
-error.notfound=Not found
-app.title=My Application
-```
-
-### Uso em Código
-
-```JAVA
-public class I18nDemo {
-    private ResourceBundle messages;
-    
-    public void setLocale(Locale locale) {
-        messages = ResourceBundle.getBundle("messages", locale);
-    }
-    
-    public String getMessage(String key) {
-        return messages.getString(key);
-    }
-}
-```
-
-## Boas Práticas
-
-### Organização
-
-* Separar textos em arquivos properties
-
-* Usar chaves hierárquicas
-
-* Manter consistência entre traduções
-
-* Documentar contexto das mensagens
-
-### Dicas de Implementação
-
-```JAVA
-// Uso de MessageFormat
-String pattern = messages.getString("welcome.user");
-MessageFormat formatter = new MessageFormat(pattern);
-String result = formatter.format(new Object[]{"João"});
-
-// Fallback para locale padrão
-try {
-    String msg = messages.getString("key");
-} catch (MissingResourceException e) {
-    msg = defaultMessages.getString("key");
-}
-```
-
-## Frameworks e Ferramentas
-
-### Spring Framework
-
-```JAVA
-@Configuration
-public class I18nConfig {
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasenames("messages");
-        source.setDefaultEncoding("UTF-8");
-        return source;
-    }
-}
-```
-
-### Ferramentas de Gestão
-
-* POEditor
-
-* Crowdin
-
-* Lokalise
-
-* Trados
-
-## Testes
-
-### Testando Internacionalização
-
-```JAVA
-@Test
-public void testMessageInDifferentLocales() {
-    ResourceBundle ptBR = ResourceBundle.getBundle("messages", new Locale("pt", "BR"));
-    ResourceBundle enUS = ResourceBundle.getBundle("messages", Locale.US);
-    
-    assertEquals("Olá", ptBR.getString("greeting"));
-    assertEquals("Hello", enUS.getString("greeting"));
-}
-```
-
-## Próximos Passos
-
-* [Formatação de Datas](date-formatting.html)
-
-* [Formatação de Números](number-formatting.html)
 
 
 
@@ -5356,6 +5334,477 @@ String balance = mf.format(new Object[]{1234.56});
 Tip:
 
 "A formatação de strings é como a interface da Matrix - a forma como apresentamos os dados ao mundo real."
+
+
+
+# StringBuffer
+
+## Conceitos Básicos
+
+### Criação
+
+```JAVA
+// Inicialização
+StringBuffer buffer = new StringBuffer();
+StringBuffer preset = new StringBuffer("INIT:");
+StringBuffer sized = new StringBuffer(32);
+```
+
+## Características Principais
+
+### Thread Safety
+
+```JAVA
+// StringBuffer é thread-safe
+public class SafeLogger {
+    private StringBuffer log = new StringBuffer();
+    
+    public synchronized void addEntry(String entry) {
+        log.append("[")
+           .append(System.currentTimeMillis())
+           .append("] ")
+           .append(entry)
+           .append("\n");
+    }
+}
+```
+
+## Comparação com StringBuilder
+
+### Diferenças Chave
+
+```JAVA
+// StringBuffer: Thread-safe, mais lento
+StringBuffer safeBuffer = new StringBuffer();
+synchronized(safeBuffer) {
+    safeBuffer.append("Thread Safe");
+}
+
+// StringBuilder: Não thread-safe, mais rápido
+StringBuilder fastBuilder = new StringBuilder();
+fastBuilder.append("Fast");  // Sem sincronização
+```
+
+## Operações Básicas
+
+### Manipulação
+
+```JAVA
+StringBuffer message = new StringBuffer();
+
+// Adição
+message.append("STATUS: ")     // Concatenação
+      .append("ACTIVE")       // Encadeamento
+      .append(" - ")
+      .append(2077);
+
+// Inserção
+message.insert(0, "[MSG] ");  // Início
+message.insert(6, "URGENT "); // Meio
+
+// Remoção
+message.delete(0, 5);         // Range
+message.deleteCharAt(10);     // Caractere único
+```
+
+## Performance
+
+### Considerações
+
+```JAVA
+// Escolha baseada no contexto
+public class MessageProcessor {
+    // Use StringBuffer para contextos multi-thread
+    private StringBuffer sharedBuffer = new StringBuffer();
+    
+    // Use StringBuilder para operações locais
+    public String processLocal() {
+        StringBuilder local = new StringBuilder();
+        return local.append("Local").toString();
+    }
+}
+```
+
+## Métodos Úteis
+
+### Funcionalidades
+
+```JAVA
+StringBuffer cmd = new StringBuffer("EXECUTE");
+
+// Capacidade
+int cap = cmd.capacity();     // Capacidade atual
+cmd.ensureCapacity(100);      // Garante capacidade mínima
+
+// Modificação
+cmd.setCharAt(0, 'e');       // Modifica caractere
+cmd.setLength(4);            // Trunca ou expande
+cmd.replace(0, 2, "RE");     // Substitui range
+
+// Reversão
+cmd.reverse();               // Inverte conteúdo
+```
+
+## Boas Práticas
+
+### Recomendações
+
+```JAVA
+// Use StringBuffer quando:
+public class SharedResource {
+    private StringBuffer sharedLog;  // Múltiplas threads
+    
+    public void logEvent(String event) {
+        synchronized(sharedLog) {
+            sharedLog.append(event)
+                    .append("\n");
+        }
+    }
+}
+
+// Prefira StringBuilder quando:
+public String formatLocal() {
+    StringBuilder local = new StringBuilder();  // Single thread
+    return local.append("Local")
+               .append("Format")
+               .toString();
+}
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [StringBuilder](string-builder.html)
+
+* [Concorrência](null)
+
+* [Performance](null)
+
+[StringBuilder](string-builder.html)
+
+
+
+# Expressões Regulares
+
+## Conceitos Básicos
+
+### Padrões Simples
+
+```JAVA
+// Padrões básicos
+String email = "user@domain.com";
+boolean isEmail = email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+
+// Metacaracteres
+String texto = "NetRunner_2077";
+boolean hasDigits = texto.matches(".*\\d+.*");    // Contém números
+boolean isAlpha = texto.matches("[a-zA-Z]+");     // Apenas letras
+```
+
+## Quantificadores
+
+### Repetições
+
+```JAVA
+Pattern pattern = Pattern.compile("\\w+");  // Uma ou mais palavras
+/*
+* ? - zero ou um
+* + - um ou mais
+* * - zero ou mais
+* {n} - exatamente n
+* {n,} - n ou mais
+* {n,m} - entre n e m
+*/
+
+String codigo = "ABC-123-XYZ";
+boolean valid = codigo.matches("[A-Z]{3}-\\d{3}-[A-Z]{3}");
+```
+
+## Classes de Caracteres
+
+### Grupos Predefinidos
+
+```JAVA
+// Classes comuns
+Pattern digitos = Pattern.compile("\\d");    // [0-9]
+Pattern letras = Pattern.compile("\\w");     // [a-zA-Z0-9_]
+Pattern espaco = Pattern.compile("\\s");     // [ \t\n\r\f]
+
+// Negação
+Pattern naoDigito = Pattern.compile("\\D");  // [^0-9]
+Pattern naoLetra = Pattern.compile("\\W");   // [^a-zA-Z0-9_]
+Pattern naoEspaco = Pattern.compile("\\S");  // [^ \t\n\r\f]
+```
+
+## Grupos e Captura
+
+### Agrupamento
+
+```JAVA
+// Grupos nomeados
+Pattern dataPattern = Pattern.compile(
+    "(?<dia>\\d{2})/(?<mes>\\d{2})/(?<ano>\\d{4})"
+);
+Matcher m = dataPattern.matcher("21/12/2077");
+if (m.matches()) {
+    String dia = m.group("dia");   // 21
+    String mes = m.group("mes");   // 12
+    String ano = m.group("ano");   // 2077
+}
+
+// Grupos numerados
+Pattern logPattern = Pattern.compile("(\\w+):(\\d+)");
+Matcher logMatcher = logPattern.matcher("ERROR:404");
+if (logMatcher.matches()) {
+    String tipo = logMatcher.group(1);  // ERROR
+    String codigo = logMatcher.group(2); // 404
+}
+```
+
+## Substituições
+
+### Transformações
+
+```JAVA
+String log = "ERROR:404:Page Not Found";
+
+// Substituição simples
+String formatted = log.replaceAll(":", " - ");
+
+// Substituição com grupos
+Pattern p = Pattern.compile("(\\w+):(\\d+):(.+)");
+Matcher m = p.matcher(log);
+String pretty = m.replaceAll("[$1] Code $2: $3");
+// Resultado: "[ERROR] Code 404: Page Not Found"
+```
+
+## Validações Comuns
+
+### Padrões Úteis
+
+```JAVA
+public class Validators {
+    private static final Pattern EMAIL = Pattern.compile(
+        "^[A-Za-z0-9+_.-]+@(.+)$"
+    );
+    
+    private static final Pattern IP = Pattern.compile(
+        "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"
+    );
+    
+    private static final Pattern URL = Pattern.compile(
+        "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$"
+    );
+    
+    public static boolean isValidEmail(String email) {
+        return email != null && EMAIL.matcher(email).matches();
+    }
+    
+    public static boolean isValidIP(String ip) {
+        return ip != null && IP.matcher(ip).matches();
+    }
+    
+    public static boolean isValidURL(String url) {
+        return url != null && URL.matcher(url).matches();
+    }
+}
+```
+
+## Performance
+
+### Otimizações
+
+```JAVA
+// Compilação de pattern
+public class RegexOptimizer {
+    // Compile uma vez, use várias
+    private static final Pattern PATTERN = Pattern.compile("\\w+");
+    
+    public List<String> findWords(String text) {
+        List<String> words = new ArrayList<>();
+        Matcher matcher = PATTERN.matcher(text);
+        while (matcher.find()) {
+            words.add(matcher.group());
+        }
+        return words;
+    }
+}
+```
+
+## Boas Práticas
+
+### Recomendações
+
+```JAVA
+// Use Pattern.quote para caracteres especiais
+String special = "user.name+tag";
+String escaped = Pattern.quote(special);
+
+// Use grupos nomeados para clareza
+Pattern p = Pattern.compile("(?<protocol>https?)://(?<domain>[\\w.-]+)");
+
+// Cache patterns compilados
+public class Parser {
+    private static final Pattern DATE = Pattern.compile(
+        "\\d{4}-\\d{2}-\\d{2}"
+    );
+    private static final Pattern TIME = Pattern.compile(
+        "\\d{2}:\\d{2}:\\d{2}"
+    );
+}
+```
+
+## Próximos Passos
+
+### Tópicos Relacionados
+
+* [Pattern Matching](pattern-matching.html)
+
+* [String Processing](null)
+
+* [Text Analysis](null)
+
+[Pattern Matching](pattern-matching.html)
+
+
+
+# Internacionalização (i18n)
+
+## Conceitos Básicos
+
+### Locale
+
+```JAVA
+// Criando Locales
+Locale brLocale = new Locale("pt", "BR");
+Locale usLocale = Locale.US;
+Locale currentLocale = Locale.getDefault();
+
+// Definindo Locale padrão
+Locale.setDefault(brLocale);
+```
+
+### ResourceBundle
+
+```JAVA
+// Arquivo: messages_pt_BR.properties
+// mensagem=Olá, {0}!
+
+// Arquivo: messages_en_US.properties
+// message=Hello, {0}!
+
+ResourceBundle bundle = ResourceBundle.getBundle("messages", brLocale);
+String msg = bundle.getString("mensagem");
+```
+
+## Textos e Mensagens
+
+### Properties Files
+
+```PROPERTIES
+# messages_pt_BR.properties
+welcome=Bem-vindo
+error.notfound=Não encontrado
+app.title=Minha Aplicação
+
+# messages_en_US.properties
+welcome=Welcome
+error.notfound=Not found
+app.title=My Application
+```
+
+### Uso em Código
+
+```JAVA
+public class I18nDemo {
+    private ResourceBundle messages;
+    
+    public void setLocale(Locale locale) {
+        messages = ResourceBundle.getBundle("messages", locale);
+    }
+    
+    public String getMessage(String key) {
+        return messages.getString(key);
+    }
+}
+```
+
+## Boas Práticas
+
+### Organização
+
+* Separar textos em arquivos properties
+
+* Usar chaves hierárquicas
+
+* Manter consistência entre traduções
+
+* Documentar contexto das mensagens
+
+### Dicas de Implementação
+
+```JAVA
+// Uso de MessageFormat
+String pattern = messages.getString("welcome.user");
+MessageFormat formatter = new MessageFormat(pattern);
+String result = formatter.format(new Object[]{"João"});
+
+// Fallback para locale padrão
+try {
+    String msg = messages.getString("key");
+} catch (MissingResourceException e) {
+    msg = defaultMessages.getString("key");
+}
+```
+
+## Frameworks e Ferramentas
+
+### Spring Framework
+
+```JAVA
+@Configuration
+public class I18nConfig {
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasenames("messages");
+        source.setDefaultEncoding("UTF-8");
+        return source;
+    }
+}
+```
+
+### Ferramentas de Gestão
+
+* POEditor
+
+* Crowdin
+
+* Lokalise
+
+* Trados
+
+## Testes
+
+### Testando Internacionalização
+
+```JAVA
+@Test
+public void testMessageInDifferentLocales() {
+    ResourceBundle ptBR = ResourceBundle.getBundle("messages", new Locale("pt", "BR"));
+    ResourceBundle enUS = ResourceBundle.getBundle("messages", Locale.US);
+    
+    assertEquals("Olá", ptBR.getString("greeting"));
+    assertEquals("Hello", enUS.getString("greeting"));
+}
+```
+
+## Próximos Passos
+
+* [Formatação de Datas](date-formatting.html)
+
+* [Formatação de Números](number-formatting.html)
 
 
 
@@ -8708,173 +9157,6 @@ Depois de dominar Stacks, você estará pronto para:
 Tip:
 
 "Stacks são como downloads: o último que chegou é o primeiro que você acessa!"
-
-
-
-# Projetos Práticos: Collections em Ação
-
-## Projeto 1: Task Manager (Lista de Contratos)
-
-### Objetivo
-
-Criar um sistema de gerenciamento de tarefas usando diferentes Collections.
-
-```JAVA
-public class TaskManager {
-    private List<Task> allTasks = new ArrayList<>();
-    private Map<String, Task> taskById = new HashMap<>();
-    private PriorityQueue<Task> urgentTasks = new PriorityQueue<>();
-    
-    public void addTask(Task task) {
-        allTasks.add(task);
-        taskById.put(task.getId(), task);
-        if (task.isUrgent()) {
-            urgentTasks.offer(task);
-        }
-    }
-    
-    public Task getNextUrgentTask() {
-        return urgentTasks.poll();
-    }
-}
-```
-
-### Funcionalidades
-
-* Adicionar/remover tarefas
-
-* Priorização automática
-
-* Busca por ID/status
-
-* Histórico de alterações
-
-## Projeto 2: Inventory System (Controle de Arsenal)
-
-### Objetivo
-
-Implementar um sistema de inventário com controle de estoque.
-
-```JAVA
-public class InventorySystem {
-    private Map<String, Item> inventory = new HashMap<>();
-    private Set<String> lowStock = new HashSet<>();
-    private Queue<Order> pendingOrders = new LinkedList<>();
-    
-    public void addItem(Item item) {
-        inventory.put(item.getCode(), item);
-        checkStock(item);
-    }
-    
-    private void checkStock(Item item) {
-        if (item.getQuantity() < item.getMinimum()) {
-            lowStock.add(item.getCode());
-            createRestockOrder(item);
-        }
-    }
-}
-```
-
-### Funcionalidades
-
-* Controle de estoque
-
-* Alertas de baixo estoque
-
-* Processamento de pedidos
-
-* Relatórios de inventário
-
-## Projeto 3: Cache Implementation (Memória Temporária)
-
-### Objetivo
-
-Desenvolver um sistema de cache com política de expiração.
-
-```JAVA
-public class CacheSystem<K, V> {
-    private Map<K, CacheEntry<V>> cache = new LinkedHashMap<>();
-    private Queue<K> expirationQueue = new PriorityQueue<>();
-    
-    public void put(K key, V value, long ttl) {
-        cache.put(key, new CacheEntry<>(value, ttl));
-        expirationQueue.offer(key);
-        cleanExpired();
-    }
-    
-    public V get(K key) {
-        CacheEntry<V> entry = cache.get(key);
-        return (entry != null && !entry.isExpired()) ? entry.getValue() : null;
-    }
-}
-```
-
-### Funcionalidades
-
-* Cache com TTL (Time To Live)
-
-* Política LRU (Least Recently Used)
-
-* Limpeza automática
-
-* Estatísticas de hit/miss
-
-## Desafios Extras
-
-### 1. Sistema Multi-Thread
-
-```JAVA
-public class ThreadSafeTaskManager {
-    private final ConcurrentHashMap<String, Task> tasks = new ConcurrentHashMap<>();
-    private final BlockingQueue<Task> taskQueue = new LinkedBlockingQueue<>();
-    
-    public void processTask() {
-        while (true) {
-            Task task = taskQueue.take(); // Bloqueia até ter tarefa
-            executeTask(task);
-        }
-    }
-}
-```
-
-### 2. Sistema de Eventos
-
-```JAVA
-public class EventSystem {
-    private final Deque<Event> eventHistory = new ArrayDeque<>();
-    private final Map<String, List<EventHandler>> handlers = new HashMap<>();
-    
-    public void emit(Event event) {
-        eventHistory.push(event);
-        notifyHandlers(event);
-    }
-    
-    public void undo() {
-        if (!eventHistory.isEmpty()) {
-            revertEvent(eventHistory.pop());
-        }
-    }
-}
-```
-
-## Próximos Passos
-
-1. Implemente os projetos base
-
-2. Adicione funcionalidades extras
-
-3. Otimize o código
-
-4. Adicione testes unitários
-
-5. Documente seu código
-
-[Stacks: Pilhas](stacks.html)
-[OOP Fundamentals](oop-fundamentals.html)
-
-Tip:
-
-"A verdadeira maestria vem da prática. Cada projeto é uma chance de aperfeiçoar suas habilidades!"
 
 
 
@@ -20364,455 +20646,6 @@ try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
 * Varargs: Número variável de argumentos
 
 * Virtual Method: Método que pode ser sobrescrito
-
-
-
-# Expressões Booleanas
-
-## Conceitos Básicos
-
-### Definição
-
-```JAVA
-// Expressões que resultam em true ou false
-boolean resultado = (10 > 5);           // true
-boolean composto = (x > 0 && y < 100);  // depende de x e y
-```
-
-## Operadores de Comparação
-
-### Comparações Básicas
-
-```JAVA
-// Igualdade e diferença
-boolean igual = (valor == 10);      // true se valor for 10
-boolean diferente = (valor != 20);  // true se valor não for 20
-
-// Comparações numéricas
-boolean maior = (contador > 100);    // true se contador maior que 100
-boolean menorIgual = (total <= 50); // true se total menor ou igual a 50
-```
-
-## Operadores Lógicos
-
-### Combinações Lógicas
-
-```JAVA
-// AND (&&) - ambas condições verdadeiras
-boolean aprovado = (nota >= 7.0 && frequencia >= 75);
-
-// OR (||) - pelo menos uma condição verdadeira
-boolean desconto = (isCliente || isPrimeiraCompra);
-
-// NOT (!) - inverte o valor lógico
-boolean invalido = !dadosValidos;
-```
-
-## Expressões Compostas
-
-### Precedência de Operadores
-
-```JAVA
-// Uso de parênteses para clareza
-boolean complexo = (idade >= 18 && (temCNH || temAutorizacao));
-
-// Múltiplas condições
-boolean elegivel = (
-    idade >= 18 &&
-    rendaMinima >= 2000 &&
-    !possuiRestricoes
-);
-```
-
-## Boas Práticas
-
-### Legibilidade
-
-```JAVA
-// Evite negações múltiplas
-boolean ruim = !!!ativo;            // Difícil de ler
-boolean melhor = !ativo;            // Mais claro
-
-// Quebre expressões complexas
-boolean status = 
-    verificarIdade() &&
-    verificarDocumentos() &&
-    verificarHistorico();
-```
-
-### Simplificação
-
-```JAVA
-// Evite redundância
-boolean redundante = (valor == true);    // Não faça isso
-boolean correto = valor;                 // Melhor forma
-
-// Simplifique expressões
-boolean verboso = (idade >= 18) ? true : false;    // Redundante
-boolean simples = idade >= 18;                     // Melhor
-```
-
-## Casos Comuns
-
-### Validações
-
-```JAVA
-// Verificação de strings
-boolean stringValida = texto != null && !texto.isEmpty();
-
-// Ranges numéricos
-boolean dentroLimite = (valor >= minimo && valor <= maximo);
-
-// Verificações de estado
-boolean sistemaPronto = 
-    bancoDados.conectado() &&
-    cache.inicializado() &&
-    !manutencao;
-```
-
-## Próximos Passos
-
-### Tópicos Relacionados
-
-* [Operadores Lógicos](logical.html)
-
-* [Estruturas Condicionais](conditionals.html)
-
-* [Controle de Fluxo](control-flow.html)
-
-[Operadores Lógicos](logical.html)
-
-
-
-# StringBuffer
-
-## Conceitos Básicos
-
-### Criação
-
-```JAVA
-// Inicialização
-StringBuffer buffer = new StringBuffer();
-StringBuffer preset = new StringBuffer("INIT:");
-StringBuffer sized = new StringBuffer(32);
-```
-
-## Características Principais
-
-### Thread Safety
-
-```JAVA
-// StringBuffer é thread-safe
-public class SafeLogger {
-    private StringBuffer log = new StringBuffer();
-    
-    public synchronized void addEntry(String entry) {
-        log.append("[")
-           .append(System.currentTimeMillis())
-           .append("] ")
-           .append(entry)
-           .append("\n");
-    }
-}
-```
-
-## Comparação com StringBuilder
-
-### Diferenças Chave
-
-```JAVA
-// StringBuffer: Thread-safe, mais lento
-StringBuffer safeBuffer = new StringBuffer();
-synchronized(safeBuffer) {
-    safeBuffer.append("Thread Safe");
-}
-
-// StringBuilder: Não thread-safe, mais rápido
-StringBuilder fastBuilder = new StringBuilder();
-fastBuilder.append("Fast");  // Sem sincronização
-```
-
-## Operações Básicas
-
-### Manipulação
-
-```JAVA
-StringBuffer message = new StringBuffer();
-
-// Adição
-message.append("STATUS: ")     // Concatenação
-      .append("ACTIVE")       // Encadeamento
-      .append(" - ")
-      .append(2077);
-
-// Inserção
-message.insert(0, "[MSG] ");  // Início
-message.insert(6, "URGENT "); // Meio
-
-// Remoção
-message.delete(0, 5);         // Range
-message.deleteCharAt(10);     // Caractere único
-```
-
-## Performance
-
-### Considerações
-
-```JAVA
-// Escolha baseada no contexto
-public class MessageProcessor {
-    // Use StringBuffer para contextos multi-thread
-    private StringBuffer sharedBuffer = new StringBuffer();
-    
-    // Use StringBuilder para operações locais
-    public String processLocal() {
-        StringBuilder local = new StringBuilder();
-        return local.append("Local").toString();
-    }
-}
-```
-
-## Métodos Úteis
-
-### Funcionalidades
-
-```JAVA
-StringBuffer cmd = new StringBuffer("EXECUTE");
-
-// Capacidade
-int cap = cmd.capacity();     // Capacidade atual
-cmd.ensureCapacity(100);      // Garante capacidade mínima
-
-// Modificação
-cmd.setCharAt(0, 'e');       // Modifica caractere
-cmd.setLength(4);            // Trunca ou expande
-cmd.replace(0, 2, "RE");     // Substitui range
-
-// Reversão
-cmd.reverse();               // Inverte conteúdo
-```
-
-## Boas Práticas
-
-### Recomendações
-
-```JAVA
-// Use StringBuffer quando:
-public class SharedResource {
-    private StringBuffer sharedLog;  // Múltiplas threads
-    
-    public void logEvent(String event) {
-        synchronized(sharedLog) {
-            sharedLog.append(event)
-                    .append("\n");
-        }
-    }
-}
-
-// Prefira StringBuilder quando:
-public String formatLocal() {
-    StringBuilder local = new StringBuilder();  // Single thread
-    return local.append("Local")
-               .append("Format")
-               .toString();
-}
-```
-
-## Próximos Passos
-
-### Tópicos Relacionados
-
-* [StringBuilder](string-builder.html)
-
-* [Concorrência](null)
-
-* [Performance](null)
-
-[StringBuilder](string-builder.html)
-
-
-
-# Expressões Regulares
-
-## Conceitos Básicos
-
-### Padrões Simples
-
-```JAVA
-// Padrões básicos
-String email = "user@domain.com";
-boolean isEmail = email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
-
-// Metacaracteres
-String texto = "NetRunner_2077";
-boolean hasDigits = texto.matches(".*\\d+.*");    // Contém números
-boolean isAlpha = texto.matches("[a-zA-Z]+");     // Apenas letras
-```
-
-## Quantificadores
-
-### Repetições
-
-```JAVA
-Pattern pattern = Pattern.compile("\\w+");  // Uma ou mais palavras
-/*
-* ? - zero ou um
-* + - um ou mais
-* * - zero ou mais
-* {n} - exatamente n
-* {n,} - n ou mais
-* {n,m} - entre n e m
-*/
-
-String codigo = "ABC-123-XYZ";
-boolean valid = codigo.matches("[A-Z]{3}-\\d{3}-[A-Z]{3}");
-```
-
-## Classes de Caracteres
-
-### Grupos Predefinidos
-
-```JAVA
-// Classes comuns
-Pattern digitos = Pattern.compile("\\d");    // [0-9]
-Pattern letras = Pattern.compile("\\w");     // [a-zA-Z0-9_]
-Pattern espaco = Pattern.compile("\\s");     // [ \t\n\r\f]
-
-// Negação
-Pattern naoDigito = Pattern.compile("\\D");  // [^0-9]
-Pattern naoLetra = Pattern.compile("\\W");   // [^a-zA-Z0-9_]
-Pattern naoEspaco = Pattern.compile("\\S");  // [^ \t\n\r\f]
-```
-
-## Grupos e Captura
-
-### Agrupamento
-
-```JAVA
-// Grupos nomeados
-Pattern dataPattern = Pattern.compile(
-    "(?<dia>\\d{2})/(?<mes>\\d{2})/(?<ano>\\d{4})"
-);
-Matcher m = dataPattern.matcher("21/12/2077");
-if (m.matches()) {
-    String dia = m.group("dia");   // 21
-    String mes = m.group("mes");   // 12
-    String ano = m.group("ano");   // 2077
-}
-
-// Grupos numerados
-Pattern logPattern = Pattern.compile("(\\w+):(\\d+)");
-Matcher logMatcher = logPattern.matcher("ERROR:404");
-if (logMatcher.matches()) {
-    String tipo = logMatcher.group(1);  // ERROR
-    String codigo = logMatcher.group(2); // 404
-}
-```
-
-## Substituições
-
-### Transformações
-
-```JAVA
-String log = "ERROR:404:Page Not Found";
-
-// Substituição simples
-String formatted = log.replaceAll(":", " - ");
-
-// Substituição com grupos
-Pattern p = Pattern.compile("(\\w+):(\\d+):(.+)");
-Matcher m = p.matcher(log);
-String pretty = m.replaceAll("[$1] Code $2: $3");
-// Resultado: "[ERROR] Code 404: Page Not Found"
-```
-
-## Validações Comuns
-
-### Padrões Úteis
-
-```JAVA
-public class Validators {
-    private static final Pattern EMAIL = Pattern.compile(
-        "^[A-Za-z0-9+_.-]+@(.+)$"
-    );
-    
-    private static final Pattern IP = Pattern.compile(
-        "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"
-    );
-    
-    private static final Pattern URL = Pattern.compile(
-        "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$"
-    );
-    
-    public static boolean isValidEmail(String email) {
-        return email != null && EMAIL.matcher(email).matches();
-    }
-    
-    public static boolean isValidIP(String ip) {
-        return ip != null && IP.matcher(ip).matches();
-    }
-    
-    public static boolean isValidURL(String url) {
-        return url != null && URL.matcher(url).matches();
-    }
-}
-```
-
-## Performance
-
-### Otimizações
-
-```JAVA
-// Compilação de pattern
-public class RegexOptimizer {
-    // Compile uma vez, use várias
-    private static final Pattern PATTERN = Pattern.compile("\\w+");
-    
-    public List<String> findWords(String text) {
-        List<String> words = new ArrayList<>();
-        Matcher matcher = PATTERN.matcher(text);
-        while (matcher.find()) {
-            words.add(matcher.group());
-        }
-        return words;
-    }
-}
-```
-
-## Boas Práticas
-
-### Recomendações
-
-```JAVA
-// Use Pattern.quote para caracteres especiais
-String special = "user.name+tag";
-String escaped = Pattern.quote(special);
-
-// Use grupos nomeados para clareza
-Pattern p = Pattern.compile("(?<protocol>https?)://(?<domain>[\\w.-]+)");
-
-// Cache patterns compilados
-public class Parser {
-    private static final Pattern DATE = Pattern.compile(
-        "\\d{4}-\\d{2}-\\d{2}"
-    );
-    private static final Pattern TIME = Pattern.compile(
-        "\\d{2}:\\d{2}:\\d{2}"
-    );
-}
-```
-
-## Próximos Passos
-
-### Tópicos Relacionados
-
-* [Pattern Matching](pattern-matching.html)
-
-* [String Processing](null)
-
-* [Text Analysis](null)
-
-[Pattern Matching](pattern-matching.html)
 
 
 
