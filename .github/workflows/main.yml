@@ -1,0 +1,100 @@
+name: NetRunner CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  JAVA_VERSION: '17'
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Run tests
+        run: mvn test
+
+      - name: Cache build artifacts
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+  documentation:
+    name: Build Documentation
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Writerside documentation
+        uses: JetBrains/writerside-github-action@v4
+        with:
+          instance: learnjava
+          artifact: webHelpLEARNJAVA2-all.zip
+          docker-version: '232.10275'
+
+      - name: Upload documentation artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: artifacts/webHelpLEARNJAVA2-all.zip
+
+  deploy:
+    name: Deploy
+    needs: [build, documentation]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download documentation artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: documentation
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: webHelpLEARNJAVA2-all
+          branch: gh-pages
+          clean: true
+
+  notify:
+    name: Notify on Status
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Check build status
+        if: ${{ needs.deploy.result == 'success' }}
+        run: |
+          echo "Deploy successful!"
+          # Aqui você pode adicionar notificações para Slack, Discord, etc
+
+      - name: Notify on failure
+        if: ${{ needs.deploy.result == 'failure' }}
+        run: |
+          echo "Deploy failed!"
+          # Aqui você pode adicionar notificações para Slack, Discord, etc
