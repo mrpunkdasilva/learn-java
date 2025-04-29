@@ -1,0 +1,43 @@
+name: Unzip and Create PR
+
+on:
+  push:
+    paths:
+      - '*.zip'
+  workflow_dispatch:
+
+jobs:
+  process-docs:
+    name: Process Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup environment
+        run: |
+          mkdir -p docs
+          chmod +x scripts/unzip_writerside.sh
+
+      - name: Run unzip script
+        run: ./scripts/unzip_writerside.sh
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: update documentation files"
+          title: "docs: update documentation from ZIP"
+          body: |
+            Automatic documentation update from ZIP file.
+            
+            - Files were automatically extracted
+            - Documentation structure updated
+            - Ready for review
+          branch: docs/auto-update
+          base: main
+          delete-branch: true
+          labels: |
+            documentation
+            automated-pr
