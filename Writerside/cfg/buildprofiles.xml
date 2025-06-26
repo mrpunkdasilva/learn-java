@@ -17,8 +17,6 @@
         <variables>
             <primary-color>#FD6182</primary-color>
             <custom-video-cover>logo-primary.svg</custom-video-cover>
-            <color-preset>contrast</color-preset>
-            <noindex-content>true</noindex-content>
         </variables>
     </build-profile>
 
