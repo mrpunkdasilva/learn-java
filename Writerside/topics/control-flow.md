@@ -1,8 +1,5 @@
 # Controle de Fluxo
 
-![Control Flow Banner](control-flow-banner.png)
-{style="width:700px"}
-
 ```ascii
 >> Inicializando módulo de controle...
 >> Carregando padrões de decisão...

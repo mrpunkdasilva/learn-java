@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-28T21:08:38.09496417"><title>Optional: Tratamento Elegante de Null | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"criando-optionals","level":0,"title":"Criando Optionals","anchor":"#criando-optionals"},{"id":"verificando-valores","level":0,"title":"Verificando Valores","anchor":"#verificando-valores"},{"id":"extraindo-valores","level":0,"title":"Extraindo Valores","anchor":"#extraindo-valores"},{"id":"transformando-valores","level":0,"title":"Transformando Valores","anchor":"#transformando-valores"},{"id":"padr-es-de-uso","level":0,"title":"Padrões de Uso","anchor":"#padr-es-de-uso"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplo-pr-tico","level":0,"title":"Exemplo Prático","anchor":"#exemplo-pr-tico"},{"id":"exerc-cio","level":0,"title":"Exercício","anchor":"#exerc-cio"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Optional: Tratamento Elegante de Null | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/optional.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Optional: Tratamento Elegante de Null | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+<html lang="en-US" data-preset="contrast" data-primary-color="#FD6182"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-06-26T20:14:27.398253815"><title>Optional: Tratamento Elegante de Null | NetRunner: Java Mastery Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"criando-optionals","level":0,"title":"Criando Optionals","anchor":"#criando-optionals"},{"id":"verificando-valores","level":0,"title":"Verificando Valores","anchor":"#verificando-valores"},{"id":"extraindo-valores","level":0,"title":"Extraindo Valores","anchor":"#extraindo-valores"},{"id":"transformando-valores","level":0,"title":"Transformando Valores","anchor":"#transformando-valores"},{"id":"padr-es-de-uso","level":0,"title":"Padrões de Uso","anchor":"#padr-es-de-uso"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplo-pr-tico","level":0,"title":"Exemplo Prático","anchor":"#exemplo-pr-tico"},{"id":"exerc-cio","level":0,"title":"Exercício","anchor":"#exerc-cio"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link href="static/custom.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Optional: Tratamento Elegante de Null | NetRunner: Java Mastery Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="NetRunner: Java Mastery Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/java/1.0/optional.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Optional: Tratamento Elegante de Null | NetRunner: Java Mastery Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": "writerside-documentation/java/1.0/optional.html#webpage",
@@ -71,19 +71,19 @@ opt.ifPresentOrElse(
     value -&gt; System.out.println(value),
     () -&gt; System.out.println(&quot;Vazio&quot;)
 );
-</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="z1cgy5s_24" type="1"><li class="list__item" id="z1cgy5s_30"><p id="z1cgy5s_31"><span class="control" id="z1cgy5s_32">Evite Optional.get()</span></p></li></ol><div class="code-block" data-lang="java">
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="-ij28ge_24" type="1"><li class="list__item" id="-ij28ge_30"><p id="-ij28ge_31"><span class="control" id="-ij28ge_32">Evite Optional.get()</span></p></li></ol><div class="code-block" data-lang="java">
 // Ruim
 String value = optional.get();
 
 // Bom
 String value = optional.orElse(&quot;default&quot;);
-</div><ol class="list _decimal" id="z1cgy5s_26" type="1" start="2"><li class="list__item" id="z1cgy5s_33"><p id="z1cgy5s_34"><span class="control" id="z1cgy5s_35">N&atilde;o use Optional como Par&acirc;metro</span></p></li></ol><div class="code-block" data-lang="java">
+</div><ol class="list _decimal" id="-ij28ge_26" type="1" start="2"><li class="list__item" id="-ij28ge_33"><p id="-ij28ge_34"><span class="control" id="-ij28ge_35">N&atilde;o use Optional como Par&acirc;metro</span></p></li></ol><div class="code-block" data-lang="java">
 // Ruim
 public void process(Optional&lt;String&gt; value) {}
 
 // Bom
 public void process(String value) {}
-</div><ol class="list _decimal" id="z1cgy5s_28" type="1" start="3"><li class="list__item" id="z1cgy5s_36"><p id="z1cgy5s_37"><span class="control" id="z1cgy5s_38">Use para Retornos</span></p></li></ol><div class="code-block" data-lang="java">
+</div><ol class="list _decimal" id="-ij28ge_28" type="1" start="3"><li class="list__item" id="-ij28ge_36"><p id="-ij28ge_37"><span class="control" id="-ij28ge_38">Use para Retornos</span></p></li></ol><div class="code-block" data-lang="java">
 public Optional&lt;User&gt; findUser(String id) {
     User user = database.query(id);
     return Optional.ofNullable(user);
@@ -103,7 +103,7 @@ public class Config {
             .orElse(&quot;default&quot;);
     }
 }
-</div></section></section><section class="chapter"><h2 id="exerc-cio" data-toc="exerc-cio">Exerc&iacute;cio</h2><p id="z1cgy5s_41">Implemente um sistema de cache com Optional:</p><div class="code-block" data-lang="java">
+</div></section></section><section class="chapter"><h2 id="exerc-cio" data-toc="exerc-cio">Exerc&iacute;cio</h2><p id="-ij28ge_41">Implemente um sistema de cache com Optional:</p><div class="code-block" data-lang="java">
 public class Cache&lt;K, V&gt; {
     private Map&lt;K, V&gt; storage = new HashMap&lt;&gt;();
 
@@ -120,4 +120,4 @@ public class Cache&lt;K, V&gt; {
             });
     }
 }
-</div></section><div class="last-modified">27 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="streams.html" class="navigation-links__prev">Streams API: Processamento de Dados Fluente</a><a href="modules.html" class="navigation-links__next">Sistema de M&oacute;dulos Java</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
+</div></section><div class="last-modified">26 June 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="streams.html" class="navigation-links__prev">Streams API: Processamento de Dados Fluente</a><a href="modules.html" class="navigation-links__next">Sistema de M&oacute;dulos Java</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -6170,8 +6170,6 @@ public class StringManipulator {
 
 # Controle de Fluxo
 
-![Control Flow Banner](control-flow-banner.png)
-
 ```
 >> Inicializando módulo de controle...
 >> Carregando padrões de decisão...
